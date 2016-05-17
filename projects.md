@@ -5,14 +5,18 @@ description: Yoosuf, a software engineer and entrepreneur. Love creating great U
 permalink: /projects/
 ---
 
+I have worked with various clients and projects including Dialog Axiata, Action Aid, P&G, Orwell, United Nations Development Program and more. I always enjoy working with a product development.
 
+## Selected Laravel Works
+
+Live at 8 News API
+
+[Dialog Roaming API and Admin Panel](https://github.com/yoosuf/Dialog-Roaming)
+
+[ThePapare-Fan-Zone API and Admin Panel](https://github.com/yoosuf/ThePapare-Fan-Zone)
 
 
 ## Selected WordPress Works
-
-Did you know that the [WordPress is been used by the 39% of today's websites](http://trends.builtwith.com/cms) in this world? WordPress is been popular all because of its frequent development and the core development team continuously working on patching and security updates. Additionally the WordPress is the simple to use CMS (feedback from my clients).
-
-Yoosuf has more than eight years of experience in WordPress theming and plugin development. Yoosuf got in touch with WordPress since 2007 (WordPress version 1.5) , Yoosuf has developed and deployed hundreds of WordPress websites for the client base in the UK, US, Australia and Sri Lanka.
 
 * [Beaufort House Chelsea](http://yoosuf.me/blog/beaufort-house-chelsea-redesign/)
 
@@ -38,11 +42,10 @@ Yoosuf has more than eight years of experience in WordPress theming and plugin 
 * [Punchline Unlimited](http://punchlineunlimited.com/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio)
 
 
-* [Do Events, Wedding Planner](http://do-events.co.uk/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio)
-
-
 * [Confifi Hotel Supplies Limited](http://confifisupplies.com/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio)
 
+
+## Get in touch
 
 Do you want to redesign your website or optimize for best possible speed?  [Please send me a message](http://yoosuf.me/contact/?utm_source=yoosuf.me&utm_medium=wp&utm_campaign=consultancy), I can give you a free quote.
 

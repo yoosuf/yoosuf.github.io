@@ -1,6 +1,6 @@
 ---
 ID: 1651
-post_title: Ruby on Rails Consulting
+meta_title: Ruby on Rails Consulting
 author: Yoosuf
 post_date: 2014-03-20 07:57:00
 post_excerpt: ""

@@ -1,6 +1,6 @@
 ---
 ID: 1272
-post_title: WordPress Consulting
+meta_title: WordPress Consulting
 author: Yoosuf Muhammad
 post_date: 2013-07-09 04:54:01
 post_excerpt: ""

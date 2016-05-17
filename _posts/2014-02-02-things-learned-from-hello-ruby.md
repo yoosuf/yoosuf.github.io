@@ -1,9 +1,9 @@
 ---
 ID: 1605
-post_title: 'Things I&#8217;ve learned from &#8220;Hello Ruby&#8221;'
-author: Yoosuf Muhammad
+title: 'Things I’ve learned from “Hello Ruby”'
+author: Yoosuf
 post_date: 2014-02-02 09:53:01
-post_excerpt: ""
+excerpt: ""
 layout: post
 permalink: /blog/things-learned-from-hello-ruby/
 published: true

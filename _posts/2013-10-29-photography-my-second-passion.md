@@ -1,9 +1,9 @@
 ---
 ID: 1515
-post_title: Photography, My second passion
-author: Yoosuf Muhammad
-post_date: 2013-10-29 12:44:53
-post_excerpt: ""
+title: Photography, My second passion
+author: Yoosuf
+date: 2013-10-29 12:44:53
+excerpt: ""
 layout: post
 permalink: /blog/photography-my-second-passion/
 published: true

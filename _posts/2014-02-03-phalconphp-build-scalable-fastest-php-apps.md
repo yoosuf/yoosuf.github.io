@@ -1,9 +1,9 @@
 ---
 ID: 1611
-post_title: 'PhalconPHP &#8211; to build scalable and fastest PHP apps'
-author: Yoosuf Muhammad
-post_date: 2014-02-03 17:02:33
-post_excerpt: ""
+title: 'PhalconPHP – to build scalable and fastest PHP apps'
+author: Yoosuf
+date: 2014-02-03 17:02:33
+excerpt: ""
 layout: post
 permalink: /blog/phalconphp-build-scalable-fastest-php-apps/
 published: true

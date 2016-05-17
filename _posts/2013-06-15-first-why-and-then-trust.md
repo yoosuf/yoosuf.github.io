@@ -1,7 +1,7 @@
 ---
 ID: 1201
 post_title: First why and then trust
-author: Yoosuf Muhammad
+author: Yoosuf
 post_date: 2013-06-15 08:54:43
 post_excerpt: ""
 layout: post

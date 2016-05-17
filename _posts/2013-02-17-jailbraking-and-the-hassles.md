@@ -1,7 +1,7 @@
 ---
 ID: 768
 post_title: Jailbraking and the hassles
-author: Yoosuf Muhammad
+author: Yoosuf
 post_date: 2013-02-17 23:50:48
 post_excerpt: ""
 layout: post

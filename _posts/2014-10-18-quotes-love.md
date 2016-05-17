@@ -1,14 +1,14 @@
 ---
 ID: 1736
 post_title: Quotes that I love
-author: Yoosuf Muhammad
+author: Yoosuf
 post_date: 2014-10-18 10:29:07
 post_excerpt: ""
 layout: post
 permalink: /blog/quotes-love/
 published: true
 ---
-These are the things I’ve heard and read that help me work, live, and think. The things that shape my work and remind me that everything is going to be ok. And, of course, the things that make me smile. And they’re all from the pens and lips of those much smarter than I could hope to become. I’ll give it a bloody good go, though.<!--more-->
+These are the things I’ve heard and read that help me work, live, and think. The things that shape my work and remind me that everything is going to be ok. And, of course, the things that make me smile. And they’re all from the pens and lips of those much smarter than I could hope to become. I’ll give it a bloody good go, though.
 
 <blockquote>“Ultimately there is no happiness in a world in which things are not as good as they can be.”—Eric Gill</blockquote>
 

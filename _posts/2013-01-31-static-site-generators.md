@@ -1,7 +1,7 @@
 ---
 ID: 650
 post_title: Static Site Generators
-author: Yoosuf Muhammad
+author: Yoosuf
 post_date: 2013-01-31 00:18:39
 post_excerpt: ""
 layout: post

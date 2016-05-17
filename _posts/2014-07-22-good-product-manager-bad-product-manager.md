@@ -1,8 +1,6 @@
 ---
 ID: 1711
-post_title: >
-  Good Product Manager, Bad Product
-  Manager
+post_title: Good Product Manager, Bad Product Manager
 author: Yoosuf Muhammad
 post_date: 2014-07-22 20:34:43
 post_excerpt: ""
@@ -11,7 +9,7 @@ permalink: /blog/good-product-manager-bad-product-manager/
 published: true
 ---
 Good product managers know the market, the product, the product line and the competition extremely well and operate from a strong basis of knowledge and confidence. A good product manager is the CEO of the product. Good product managers take full responsibility and measure themselves in terms of the success of the product. They are responsible for right product/right time and all that entails. A good product manager knows the context going in (the company, our revenue funding, competition, etc.), and they take responsibility for devising and executing a winning plan (no excuses).
-<!--more-->
+
 Bad product managers have lots of excuses. Not enough funding, the engineering manager is an idiot, Microsoft has 10 times as many engineers working on it, I'm overworked, I don't get enough direction. [Netscape CEO] Barksdale doesn't make these kinds of excuses and neither should the CEO of a product.
 
 Good product managers don't get all of their time sucked up by the various organizations that must work together to deliver right product right time. They don't take all the product team minutes, they don't project manage the various functions; they are not gophers for engineering. They are not part of the product team; they manage the product team. Engineering teams don't consider Good Product Managers a "marketing resource." Good product managers are the marketing counterparts of the engineering manager. Good product managers crisply define the target, the “what” (as opposed to the “how”) and manage the delivery of the “what.” Bad product managers feel best about themselves when they figure out “how”. Good product managers communicate crisply to engineering in writing as well as verbally. Good product managers don't give direction informally. Good product managers gather information informally.

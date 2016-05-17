@@ -1,7 +1,7 @@
 ---
 ID: 1660
-post_title: 'Atom &#8211; a hackable text editor for Developers'
-author: Yoosuf Muhammad
+post_title: 'Atom – a hackable text editor for Developers'
+author: Yoosuf
 post_date: 2014-03-28 06:43:58
 post_excerpt: ""
 layout: post

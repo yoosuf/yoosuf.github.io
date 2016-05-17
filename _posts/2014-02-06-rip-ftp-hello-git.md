@@ -1,7 +1,7 @@
 ---
 ID: 1625
 post_title: RIP FTP, Hello GIT
-author: Yoosuf Muhammad
+author: Yoosuf
 post_date: 2014-02-06 11:24:46
 post_excerpt: ""
 layout: post

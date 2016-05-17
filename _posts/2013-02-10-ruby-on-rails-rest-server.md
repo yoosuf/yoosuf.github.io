@@ -1,7 +1,7 @@
 ---
 ID: 728
-post_title: 'Ruby on Rails &#8211; REST Server'
-author: Yoosuf Muhammad
+post_title: Ruby on Rails – REST Server
+author: Yoosuf
 post_date: 2013-02-10 13:54:07
 post_excerpt: ""
 layout: post

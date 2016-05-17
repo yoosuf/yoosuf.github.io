@@ -1,7 +1,7 @@
 ---
 ID: 1255
 post_title: Best Open Source E-Commerce Solutions
-author: Yoosuf Muhammad
+author: Yoosuf
 post_date: 2013-06-25 13:16:38
 post_excerpt: ""
 layout: post

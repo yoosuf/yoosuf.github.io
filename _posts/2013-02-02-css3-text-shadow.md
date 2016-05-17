@@ -1,7 +1,7 @@
 ---
 ID: 630
 post_title: 'CSS3: text-shadow'
-author: Yoosuf Muhammad
+author: Yoosuf
 post_date: 2013-02-02 12:54:41
 post_excerpt: ""
 layout: post

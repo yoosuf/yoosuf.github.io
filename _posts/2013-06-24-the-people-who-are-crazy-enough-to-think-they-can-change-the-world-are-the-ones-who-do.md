@@ -1,7 +1,7 @@
 ---
 ID: 1251
 post_title: The People Who Are Crazy Enough to Think They Can Change the World, Are the Ones Who Do.
-author: Yoosuf Muhammad
+author: Yoosuf
 post_date: 2013-06-24 10:27:34
 post_excerpt: ""
 layout: post

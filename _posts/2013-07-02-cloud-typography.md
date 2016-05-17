@@ -1,7 +1,7 @@
 ---
 ID: 1270
 post_title: Cloud.Typography
-author: Yoosuf Muhammad
+author: Yoosuf
 post_date: 2013-07-02 16:31:53
 post_excerpt: ""
 layout: post

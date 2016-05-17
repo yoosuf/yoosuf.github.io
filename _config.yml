@@ -16,10 +16,10 @@ url: "http://yoosuf.me" # the base hostname & protocol for your site
 #All Social stuff
 twitter_username: eyoosuf
 github_username:  yoosuf
-facebook_username:  yoosuf
-linkedin_username:  yoosuf
-google_username:  yoosuf
-instagram_username:  yoosuf
+facebook_username:  yoosufmuhammad
+linkedin_username:  yoosufmuhammad
+google_username:  YoosufMuhammad
+instagram_username:  mayoosuf
 
 # Build settings
 markdown: kramdown

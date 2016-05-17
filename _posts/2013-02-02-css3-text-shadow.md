@@ -1,9 +1,9 @@
 ---
 ID: 630
-post_title: 'CSS3: text-shadow'
+title: 'CSS3: text-shadow'
 author: Yoosuf
-post_date: 2013-02-02 12:54:41
-post_excerpt: ""
+date: 2013-02-02 12:54:41
+excerpt: ""
 layout: post
 permalink: /blog/css3-text-shadow/
 published: true

@@ -1,9 +1,9 @@
 ---
 ID: 1487
-post_title: Respect people with less power than you
-author: Yoosuf Muhammad
-post_date: 2013-10-03 19:18:23
-post_excerpt: ""
+title: Respect people with less power than you
+author: Yoosuf
+date: 2013-10-03 19:18:23
+excerpt: ""
 layout: post
 permalink: /blog/respect-people-with-less-power-than-you/
 published: true

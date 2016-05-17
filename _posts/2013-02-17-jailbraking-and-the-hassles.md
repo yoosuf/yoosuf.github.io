@@ -1,9 +1,9 @@
 ---
 ID: 768
-post_title: Jailbraking and the hassles
+title: Jailbraking and the hassles
 author: Yoosuf
-post_date: 2013-02-17 23:50:48
-post_excerpt: ""
+date: 2013-02-17 23:50:48
+excerpt: ""
 layout: post
 permalink: /blog/jailbraking-and-the-hassles/
 published: true

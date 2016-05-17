@@ -1,9 +1,9 @@
 ---
 ID: 1017
-post_title: jqModal – jQuery model window solution
+title: jqModal – jQuery model window solution
 author: Yoosuf
-post_date: 2013-04-01 09:16:36
-post_excerpt: ""
+date: 2013-04-01 09:16:36
+excerpt: ""
 layout: post
 permalink: /blog/jqmodal-jquery-modal-window-solution/
 published: true

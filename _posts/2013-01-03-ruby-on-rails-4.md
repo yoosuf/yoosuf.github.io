@@ -1,9 +1,9 @@
 ---
 ID: 438
-post_title: Ruby on Rails 4
-author: Yoosuf Muhammad
-post_date: 2013-01-03 12:22:41
-post_excerpt: ""
+title: Ruby on Rails 4
+author: Yoosuf
+date: 2013-01-03 12:22:41
+excerpt: ""
 layout: post
 permalink: /blog/ruby-on-rails-4/
 published: true

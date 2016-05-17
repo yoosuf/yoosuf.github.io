@@ -1,9 +1,9 @@
 ---
 ID: 1438
-post_title: Crouching love, hidden breakup
-author: Yoosuf Muhammad
-post_date: 2013-09-02 21:39:06
-post_excerpt: ""
+title: Crouching love, hidden breakup
+author: Yoosuf
+date: 2013-09-02 21:39:06
+excerpt: ""
 layout: post
 permalink: /blog/crouching-love-hidden-breakup/
 published: true

@@ -1,11 +1,11 @@
 ---
 ID: 1461
-post_title: >
+title: >
   Rules of thirds, leading lines and
   repeating pattern
-author: Yoosuf Muhammad
-post_date: 2013-09-15 07:35:15
-post_excerpt: ""
+author: Yoosuf
+date: 2013-09-15 07:35:15
+excerpt: ""
 layout: post
 permalink: /blog/rules-of-thirds-leading-lines-and-repeating-pattern/
 published: true

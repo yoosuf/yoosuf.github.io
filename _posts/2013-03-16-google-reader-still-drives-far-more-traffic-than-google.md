@@ -1,9 +1,9 @@
 ---
 ID: 967
-post_title: Google Reader Still Drives Far More Traffic Than Google+
+title: Google Reader Still Drives Far More Traffic Than Google+
 author: Yoosuf
-post_date: 2013-03-16 09:27:10
-post_excerpt: ""
+date: 2013-03-16 09:27:10
+excerpt: ""
 layout: post
 permalink: /blog/google-reader-still-drives-far-more-traffic-than-google/
 published: true

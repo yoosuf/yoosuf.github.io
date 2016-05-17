@@ -1,9 +1,9 @@
 ---
 ID: 1307
-post_title: Stand Against Racism
+title: Stand Against Racism
 author: Yoosuf
-post_date: 2013-08-14 13:39:56
-post_excerpt: ""
+date: 2013-08-14 13:39:56
+excerpt: ""
 layout: post
 permalink: /blog/stand-against-racism/
 published: true

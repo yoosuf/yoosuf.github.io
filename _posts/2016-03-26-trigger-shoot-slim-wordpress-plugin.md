@@ -1,7 +1,7 @@
 ---
 ID: 2053
 title: 'Trigger and Shoot &#8211; Slim WordPress plugin'
-author: Yoosuf Muhammad
+author: Yoosuf
 date: 2016-03-26 07:31:29
 excerpt: ""
 layout: post

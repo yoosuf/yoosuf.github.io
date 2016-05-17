@@ -1,9 +1,9 @@
 ---
 ID: 530
-post_title: Setting Up Mac OS X For Development
-author: Yoosuf Muhammad
-post_date: 2013-01-12 01:42:08
-post_excerpt: ""
+title: Setting Up Mac OS X For Development
+author: Yoosuf
+date: 2013-01-12 01:42:08
+excerpt: ""
 layout: post
 permalink: /blog/setting-up-mac-os-x-for-development/
 published: true

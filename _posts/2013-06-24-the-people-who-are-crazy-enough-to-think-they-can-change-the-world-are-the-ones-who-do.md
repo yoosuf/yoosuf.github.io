@@ -1,9 +1,9 @@
 ---
 ID: 1251
-post_title: The People Who Are Crazy Enough to Think They Can Change the World, Are the Ones Who Do.
+title: The People Who Are Crazy Enough to Think They Can Change the World, Are the Ones Who Do.
 author: Yoosuf
-post_date: 2013-06-24 10:27:34
-post_excerpt: ""
+date: 2013-06-24 10:27:34
+excerpt: ""
 layout: post
 permalink: /blog/the-people-who-are-crazy-enough-to-think-they-can-change-the-world-are-the-ones-who-do/
 published: true

@@ -1,9 +1,9 @@
 ---
 ID: 1270
-post_title: Cloud.Typography
+title: Cloud.Typography
 author: Yoosuf
-post_date: 2013-07-02 16:31:53
-post_excerpt: ""
+date: 2013-07-02 16:31:53
+excerpt: ""
 layout: post
 permalink: /blog/cloud-typography/
 published: true

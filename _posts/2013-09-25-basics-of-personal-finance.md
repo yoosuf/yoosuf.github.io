@@ -1,9 +1,9 @@
 ---
 ID: 1482
-post_title: Basics of Personal Finance
-author: Yoosuf Muhammad
-post_date: 2013-09-25 21:53:53
-post_excerpt: ""
+title: Basics of Personal Finance
+author: Yoosuf
+date: 2013-09-25 21:53:53
+excerpt: ""
 layout: post
 permalink: /blog/basics-of-personal-finance/
 published: true

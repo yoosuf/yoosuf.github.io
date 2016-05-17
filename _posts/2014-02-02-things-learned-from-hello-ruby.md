@@ -2,7 +2,7 @@
 ID: 1605
 title: 'Things I’ve learned from “Hello Ruby”'
 author: Yoosuf
-post_date: 2014-02-02 09:53:01
+date: 2014-02-02 09:53:01
 excerpt: ""
 layout: post
 permalink: /blog/things-learned-from-hello-ruby/

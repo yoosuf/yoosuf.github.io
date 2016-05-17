@@ -1,9 +1,9 @@
 ---
 ID: 1442
-post_title: Do what you love
-author: Yoosuf Muhammad
-post_date: 2013-09-03 07:41:37
-post_excerpt: ""
+title: Do what you love
+author: Yoosuf
+date: 2013-09-03 07:41:37
+excerpt: ""
 layout: post
 permalink: /blog/do-what-you-love/
 published: true

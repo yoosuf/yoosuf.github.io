@@ -1,9 +1,9 @@
 ---
 ID: 1101
-post_title: Performance Checklist for the Mobile Web
-author: Yoosuf Muhammad
-post_date: 2013-05-06 09:24:59
-post_excerpt: ""
+title: Performance Checklist for the Mobile Web
+author: Yoosuf
+date: 2013-05-06 09:24:59
+excerpt: ""
 layout: post
 permalink: /blog/performance-checklist-for-the-mobile-web/
 published: true

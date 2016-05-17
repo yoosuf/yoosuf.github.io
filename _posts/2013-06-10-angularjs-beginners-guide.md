@@ -1,9 +1,9 @@
 ---
 ID: 1146
-post_title: AngularJS – Beginners guide
+title: AngularJS – Beginners guide
 author: Yoosuf
-post_date: 2013-06-10 16:53:24
-post_excerpt: ""
+date: 2013-06-10 16:53:24
+excerpt: ""
 layout: post
 permalink: /blog/angularjs-beginners-guide/
 published: true

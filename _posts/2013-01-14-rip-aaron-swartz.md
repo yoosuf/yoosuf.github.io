@@ -1,9 +1,9 @@
 ---
 ID: 546
-post_title: RIP Aaron Swartz
-author: Yoosuf Muhammad
-post_date: 2013-01-14 10:11:57
-post_excerpt: ""
+title: RIP Aaron Swartz
+author: Yoosuf
+date: 2013-01-14 10:11:57
+excerpt: ""
 layout: post
 permalink: /blog/rip-aaron-swartz/
 published: true

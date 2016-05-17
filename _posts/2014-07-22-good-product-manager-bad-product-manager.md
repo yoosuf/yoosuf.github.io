@@ -1,9 +1,9 @@
 ---
 ID: 1711
-post_title: Good Product Manager, Bad Product Manager
-author: Yoosuf Muhammad
-post_date: 2014-07-22 20:34:43
-post_excerpt: ""
+title: Good Product Manager, Bad Product Manager
+author: Yoosuf
+date: 2014-07-22 20:34:43
+excerpt: ""
 layout: post
 permalink: /blog/good-product-manager-bad-product-manager/
 published: true

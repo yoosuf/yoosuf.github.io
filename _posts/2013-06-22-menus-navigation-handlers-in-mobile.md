@@ -1,9 +1,9 @@
 ---
 ID: 1233
-post_title: Menus/Navigation handlers in mobile
+title: Menus/Navigation handlers in mobile
 author: Yoosuf
-post_date: 2013-06-22 23:06:08
-post_excerpt: ""
+date: 2013-06-22 23:06:08
+excerpt: ""
 layout: post
 permalink: /blog/menus-navigation-handlers-in-mobile/
 published: true

@@ -1,9 +1,9 @@
 ---
 ID: 1418
-post_title: 'A New Earth: Awakening to Your Life&#8217;s Purpose'
-author: Yoosuf Muhammad
-post_date: 2013-08-30 17:33:59
-post_excerpt: ""
+title: 'A New Earth: Awakening to Your Life&#8217;s Purpose'
+author: Yoosuf
+date: 2013-08-30 17:33:59
+excerpt: ""
 layout: post
 permalink: /blog/a-new-earth-awakening-to-your-lifes-purpose/
 published: true

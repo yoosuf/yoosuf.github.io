@@ -1,9 +1,9 @@
 ---
 ID: 612
-post_title: Going back to Sri Lanka
+title: Going back to Sri Lanka
 author: Yoosuf
-post_date: 2013-02-27 08:40:29
-post_excerpt: ""
+date: 2013-02-27 08:40:29
+excerpt: ""
 layout: post
 permalink: /blog/going-back-to-sri-lanka/
 published: true

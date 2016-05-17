@@ -1,9 +1,9 @@
 ---
 ID: 1227
-post_title: Photography with iPhone 5
+title: Photography with iPhone 5
 author: Yoosuf
-post_date: 2013-06-20 21:21:13
-post_excerpt: ""
+date: 2013-06-20 21:21:13
+excerpt: ""
 layout: post
 permalink: /blog/photography-with-iphone-5/
 published: true

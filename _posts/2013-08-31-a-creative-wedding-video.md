@@ -1,9 +1,9 @@
 ---
 ID: 1426
-post_title: A Creative Wedding Video
-author: Yoosuf Muhammad
-post_date: 2013-08-31 08:08:15
-post_excerpt: ""
+title: A Creative Wedding Video
+author: Yoosuf
+date: 2013-08-31 08:08:15
+excerpt: ""
 layout: post
 permalink: /blog/a-creative-wedding-video/
 published: true

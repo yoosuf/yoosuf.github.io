@@ -1,9 +1,9 @@
 ---
 ID: 1625
-post_title: RIP FTP, Hello GIT
+title: RIP FTP, Hello GIT
 author: Yoosuf
-post_date: 2014-02-06 11:24:46
-post_excerpt: ""
+date: 2014-02-06 11:24:46
+excerpt: ""
 layout: post
 permalink: /blog/rip-ftp-hello-git/
 published: true

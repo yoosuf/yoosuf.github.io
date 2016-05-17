@@ -1,9 +1,9 @@
 ---
 ID: 728
-post_title: Ruby on Rails – REST Server
+title: Ruby on Rails – REST Server
 author: Yoosuf
-post_date: 2013-02-10 13:54:07
-post_excerpt: ""
+date: 2013-02-10 13:54:07
+excerpt: ""
 layout: post
 permalink: /blog/ruby-on-rails-rest-server/
 published: true

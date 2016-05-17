@@ -1,9 +1,9 @@
 ---
 ID: 1753
-post_title: HTTP2 for front-end web developers
+title: HTTP2 for front-end web developers
 author: Yoosuf
-post_date: 2015-03-12 19:20:42
-post_excerpt: ""
+date: 2015-03-12 19:20:42
+excerpt: ""
 layout: post
 permalink: /blog/http2-for-front-end-web-developers/
 published: true

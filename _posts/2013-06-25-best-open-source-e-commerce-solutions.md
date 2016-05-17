@@ -1,9 +1,9 @@
 ---
 ID: 1255
-post_title: Best Open Source E-Commerce Solutions
+title: Best Open Source E-Commerce Solutions
 author: Yoosuf
-post_date: 2013-06-25 13:16:38
-post_excerpt: ""
+date: 2013-06-25 13:16:38
+excerpt: ""
 layout: post
 permalink: /blog/best-open-source-e-commerce-solutions/
 published: true

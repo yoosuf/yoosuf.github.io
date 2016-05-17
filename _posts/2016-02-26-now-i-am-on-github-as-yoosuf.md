@@ -1,7 +1,7 @@
 ---
 ID: 1884
 title: Now I am on Github as Yoosuf
-author: Yoosuf Muhammad
+author: Yoosuf
 date: 2016-02-26 07:20:58
 excerpt: ""
 layout: post

@@ -1,11 +1,11 @@
 ---
 ID: 1480
-post_title: >
+title: >
   The Secret to Making Money by starting a
   small business
-author: Yoosuf Muhammad
-post_date: 2013-09-24 17:52:09
-post_excerpt: ""
+author: Yoosuf
+date: 2013-09-24 17:52:09
+excerpt: ""
 layout: post
 permalink: /blog/the-secret-to-making-money-by-starting-a-small-business/
 published: true

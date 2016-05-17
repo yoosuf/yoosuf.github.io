@@ -5,7 +5,7 @@ description: Yoosuf, a software engineer and entrepreneur. Love creating great U
 permalink: /about/
 ---
 
-I am Yoosuf, a Web Developer (Application Developer), particularly passionate about web standards, semantics and accessibility, and I enjoy writing clean, efficient and effective code. I am living in London, United Kingdom Colombo, Sri Lanka. I have worked for number of small and large companies since year 2005.
+I am Yoosuf, a Web Developer (Application Developer), particularly passionate about web standards, semantics and accessibility, and I enjoy writing clean, efficient and effective code. I am living in ~~London, United Kingdom~~ Colombo, Sri Lanka. I have worked for number of small and large companies since year 2005.
 
 Design and back-end development are essential for the web, but the exciting area where they meet is front-end development. As a front-end developer, I get to take a design – something that’s beautiful but static – and turn it into an interface, where its components become tools for unique experiences on the web.
 

@@ -10,18 +10,16 @@ published: true
 ---
 http://www.youtube.com/watch?v=yoEezZD71sc
 
-&nbsp;
-
 An inspirational speech by Tim Minchin
-<ol>
-	<li>You don't have to have a dream.</li>
-	<li>Don't seek happiness.</li>
-	<li>Remember, it's all luck.</li>
-	<li>Exercise.</li>
-	<li>Be hard on your opinions.</li>
-	<li>Be a teacher.</li>
-	<li>Define yourself by what you love.</li>
-	<li>Respect people with less power than you.</li>
-	<li>Don't rush.</li>
-</ol>
+
+1. You don't have to have a dream.
+2. Don't seek happiness.
+3. Remember, it's all luck.
+4. Exercise.
+5. Be hard on your opinions.
+6. Be a teacher.
+7. Define yourself by what you love.
+8. Respect people with less power than you.
+9. Don't rush.
+
 I found them as an amazing tips, and believe it will help you too.

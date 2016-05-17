@@ -7,13 +7,16 @@ permalink: /projects/
 
 I have worked with various clients and projects including Dialog Axiata, Action Aid, P&G, Orwell, United Nations Development Program and more. I always enjoy working with a product development.
 
-## Selected Laravel Works
+## Selected PHP Works
 
-Live at 8 News API
+* Live at 8 News API
 
-[Dialog Roaming API and Admin Panel](https://github.com/yoosuf/Dialog-Roaming)
 
-[ThePapare-Fan-Zone API and Admin Panel](https://github.com/yoosuf/ThePapare-Fan-Zone)
+* [Dialog Roaming API and Admin Panel](https://github.com/yoosuf/Dialog-Roaming)
+
+
+* [ThePapare-Fan-Zone API and Admin Panel](https://github.com/yoosuf/ThePapare-Fan-Zone)
+* [DX Auth - CodeIgniter Auth Package](https://github.com/yoosuf/DX-Auth) (Open Source)
 
 
 ## Selected WordPress Works

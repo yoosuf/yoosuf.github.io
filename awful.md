@@ -8,6 +8,8 @@ layout: page
 permalink: /awful/
 published: true
 ---
+# Awful Employers
+
 Sri Lanka's technology industry is now a hot thing. Many of Sri Lankan's who lived in UK, US and elsewhere trying to start a technology business (outsourcing) in Sri Lanka. Each day there are several job announcements are made in several job-boards and trying to hire people for cheaper price. Most of the time employers never even read the CV you are applying for, while you entered for the interview they ask you applied for this or that. Which is really an awful thing (<i>that's my opinion</i>). Some others very bad at punctuality (<em>possibly it's a Sri Lanka's unique thing</em>), don't even apologies when they are late <em>(well, if you want to be professional and you deserve some respect</em>). Following is the list you better to avoid if you seeking a great professional career in Sri Lanka.
 <blockquote>I am not getting paid by anyone to do this, but this is an initiation totally based on personal experience.</blockquote>
 Email address you should add to spam filter in your Gmail.

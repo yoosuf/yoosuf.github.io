@@ -10,6 +10,18 @@ dl, dd, ol, ul, figure {
 
 
 
+$heading-font-family : "adobe-caslon-pro",serif;;
+$base-font-family :  "source-sans-pro",sans-serif;
+$base-font-size: 20px;
+$base-line-height: 1.5;
+
+$content-width: 770px;
+$background-color: #fff;
+$even-bakground:#fdfdfd;
+$brand-color: #2098D1;
+$small-font-size: 18px;
+
+
 /**
  * Basic styling
  */
@@ -82,7 +94,7 @@ li {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: $base-font-weight;
+    font: $base-font-weight #{$base-font-size}/#{$base-line-height} $heading-font-family;
 }
 
 
@@ -93,14 +105,20 @@ h1, h2, h3, h4, h5, h6 {
 a {
     color: $brand-color;
     text-decoration: none;
+    border-bottom: 2px solid;
 
     &:visited {
-        color: darken($brand-color, 15%);
+        color: darken($brand-color, 5%);
     }
 
     &:hover {
-        color: $text-color;
-        text-decoration: underline;
+        color: darken($brand-color, 30%);;
+        text-decoration: none;
+    }
+
+    &:focus {
+        background-color: #ffbf47;
+        outline: 3px solid #ffbf47;
     }
 }
 
@@ -172,7 +190,10 @@ pre {
     }
 }
 
-
+/**
+* No Show
+*/
+.no-show { display: none;}
 
 /**
  * Clearfix

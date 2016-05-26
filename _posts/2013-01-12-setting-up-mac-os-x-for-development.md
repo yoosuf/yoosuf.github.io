@@ -8,19 +8,18 @@ layout: post
 permalink: /blog/setting-up-mac-os-x-for-development/
 published: true
 ---
-<strong>Step 1: Install Xcode</strong>
-<ol>
-	<li>Open the App Store (located in the dock)</li>
-	<li>Search for ‘Xcode’ and install</li>
-	<li>Open ‘Xcode’ and select Preferences (⌘,)</li>
-	<li>On the ‘Downloads’ tab install the ‘Command Line Utilities’</li>
-</ol>
-<strong>Step 2: Install XQuartz</strong>
-<ol>
-	<li>Browse to <a href="http://xquartz.macosforge.org/landing/">http://xquartz.macosforge.org/landing/</a></li>
-	<li>Download the latest DMG (2.7.2 or newer) and run the XQuartz.pkg</li>
-</ol>
-<strong>Step 3: Install Everything</strong>
-<ul>
-	<li>From Terminal: <code>curl -sL goo.gl/gfdqL | bash</code></li>
-</ul>
+### Step 1: Install Xcode
+
+1. Open the App Store (located in the dock)
+2. Search for ‘Xcode’ and install
+3. Open ‘Xcode’ and select Preferences (⌘,)
+4. On the ‘Downloads’ tab install the ‘Command Line Utilities’
+
+### Step 2: Install XQuartz
+
+1. Browse to [http://xquartz.macosforge.org/landing](http://xquartz.macosforge.org/landing)
+2. Download the latest DMG (2.7.2 or newer) and run the XQuartz.pkg
+
+### Step 3: Install Everything
+
+* From Terminal: `curl -sL goo.gl/gfdqL | bash`

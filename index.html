@@ -11,11 +11,10 @@ description: Yoosuf, a software engineer and entrepreneur. Love creating great U
   <ul class="post-list">
     {% for post in site.posts %}
       <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
+        <span class="post-meta">{{ post.date | date: "%-d %b , %Y" }}</span>
+        <span class="post-title">
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
+        </span>
       </li>
     {% endfor %}
   </ul>

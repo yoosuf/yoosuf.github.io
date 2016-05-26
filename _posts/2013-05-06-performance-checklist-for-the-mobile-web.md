@@ -10,4 +10,4 @@ published: true
 ---
 http://www.youtube.com/watch?v=0UNWi7FA36M
 
-Colt McAnlis (<a title="duhroach" href="https://twitter.com/duhroach" target="_blank">@duhroach</a>), a developer advocate at Google, talks that web performance is more than just how fast a page loads. It is also the experience a user has while using your apps
+Colt McAnlis [(@duhroach](https://twitter.com/duhroach)), a developer advocate at Google, talks that web performance is more than just how fast a page loads. It is also the experience a user has while using your apps.

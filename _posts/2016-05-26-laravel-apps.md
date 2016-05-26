@@ -2,7 +2,7 @@
 ID: 2054
 title: Laravel Apps
 author: Yoosuf
-date: 2016-05-26 14:44:29
+date: 2016-05-26
 excerpt: ""
 layout: post
 permalink: /blog/laravel-apps

@@ -1,31 +1,25 @@
 ---
 layout: page
 title: Projects
-description: Yoosuf, a software engineer and entrepreneur. Love creating great User Experience for users. Working on one thing at a time.
+description: Since 2005, Yoosuf has helped a wide range of clients improve their digital performance.
 permalink: /projects/
 ---
 
-I have worked with various clients and projects including Dialog Axiata, Action Aid, P&G, Orwell, United Nations Development Program and more. I always enjoy working with a product development.
+Since 2005, I helped a wide range of clients improve their digital performance. Here is a chronological list of the companies and organizations I have worked with.
 
-## Selected PHP Works
-
-* Live at 8 News API
-* [Dialog Roaming API and Admin Panel](https://github.com/yoosuf/Dialog-Roaming)
-* [ThePapare-Fan-Zone API and Admin Panel](https://github.com/yoosuf/ThePapare-Fan-Zone)
-* [DX Auth - CodeIgniter Auth Package](https://github.com/yoosuf/DX-Auth) (Open Source)
-
-
-## Selected WordPress Works
-
-* [Beaufort House Chelsea](http://yoosuf.me/blog/beaufort-house-chelsea-redesign/)
-* [ATA Timber, Sweden](http://www.ata.nu/en/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio)
-* [Ealing Altogether](http://ealingaltogether.com/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio)
-* [Modafirma Fashion Blog](https://modafirma.com/blog/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio)
-* [Lomax Personal Training](http://www.lomaxpt.com/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio)
-* [Couture Furniture](http://www.couturefurniture.com/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio)
-* [Virtual IT, London](http://www.virtualit.biz/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio)
-* [Punchline Unlimited](http://punchlineunlimited.com/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio)
-* [Confifi Hotel Supplies Limited](http://confifisupplies.com/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio)
+* [I want a delivery](https://github.com/yoosuf/iwad) Ruby on Rails
+* [Dialog Roaming API and Admin Panel](https://github.com/yoosuf/Dialog-Roaming) Laravel
+* [ThePapare-Fan-Zone API and Admin Panel](https://github.com/yoosuf/ThePapare-Fan-Zone) Laravel
+* [DX Auth - CodeIgniter Auth Package](https://github.com/yoosuf/DX-Auth) CodeIgniter (Open Source)
+* [Beaufort House Chelsea](http://yoosuf.me/blog/beaufort-house-chelsea-redesign/) WordPress
+* [ATA Timber, Sweden](http://www.ata.nu/en/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio) WordPress
+* [Ealing Altogether](http://ealingaltogether.com/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio) WordPress
+* [Modafirma Fashion Blog](https://modafirma.com/blog/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio) WordPress
+* [Lomax Personal Training](http://www.lomaxpt.com/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio) WordPress
+* [Couture Furniture](http://www.couturefurniture.com/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio) WordPress
+* [Virtual IT, London](http://www.virtualit.biz/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio) WordPress
+* [Punchline Unlimited](http://punchlineunlimited.com/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio) WordPress
+* [Confifi Hotel Supplies Limited](http://confifisupplies.com/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio) WordPress
 
 
 ## Get in touch

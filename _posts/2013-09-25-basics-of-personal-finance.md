@@ -8,6 +8,8 @@ layout: post
 permalink: /blog/basics-of-personal-finance/
 published: true
 ---
-https://www.youtube.com/watch?v=wvLafhB_xBU
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wvLafhB_xBU" frameborder="0" allowfullscreen></iframe>
 
 Ramit Sethi describes the fundamentals of the personal finance and how to take control of it, i got plenty of information through this video, perhaps it will be useful for you too.

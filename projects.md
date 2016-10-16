@@ -30,5 +30,4 @@ I have worked with various clients and projects including Dialog Axiata, Action 
 
 ## Get in touch
 
-Do you want to redesign your website or optimize for best possible speed?  [Please send me a message](http://yoosuf.me/contact/?utm_source=yoosuf.me&utm_medium=wp&utm_campaign=consultancy), I can give you a free quote.
-
+Do you want to redesign your website or optimize for best possible speed?  [Please send me a message](/contact/?utm_source=yoosuf.me&utm_medium=wp&utm_campaign=consultancy), I can give you a free quote.

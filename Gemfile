@@ -1,4 +1,4 @@
-source 'https://rubygems.org' do
-  # Gems here
-  gem 'jekyll-sitemap'
-end
+source 'https://rubygems.org'  
+gem 'github-pages'
+# Gems here
+gem 'jekyll-sitemap'

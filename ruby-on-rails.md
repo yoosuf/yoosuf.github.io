@@ -8,6 +8,9 @@ layout: page
 permalink: /ruby-on-rails/
 published: true
 ---
+
+# Ruby on Rails Developer, Consultant and Architect, Sri Lanka - Yoosuf Muhammad
+
 Yoosuf has worked with Ruby on Rails technology since 2009 (Ruby on Rails version 2) and having hands on experience for past five years. Yoosuf has developed and deployed a dozen of applications developed based on Rails, PG and MongoDB. Each application has been developed with TDD and BDD. Additionally each of following apps are developed adhering the incremental **agile** approach.
 
 ### The Ruby Gems

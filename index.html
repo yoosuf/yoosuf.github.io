@@ -1,41 +1,47 @@
 ---
-layout: blank
-meta_title: Yoosuf Muhammad — Full-stack Software Engineer based in Sri Lanka
-description: Yoosuf, a software engineer and entrepreneur. Love creating great User Experience for users. Working on one thing at a time.
+# You don't need to edit this file, it's empty on purpose.
+# Edit theme's home layout instead if you wanna make some changes
+# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+layout: home
+meta_title: >
+  Yoosuf Muhammad — Full-stack Software Engineer based in Sri Lanka 
+description: >
+  Yoosuf, a software engineer and entrepreneur. Love creating great User Experience for users. Working on one thing at a time.
 ---
 
-<div class="home"">
+<div class="home" ">
 
-  <div class="hero">
-
-
-    <img class="hero-profile-image" src="/images/yoosuf-muhammad-prisma.jpeg" alt="Yoosuf Muhammad" />
-
-    <h1 class="hero-profile-desc-text">Hello, I am Yoosuf, based in Colombo, Sri Lanka. Currently working as a Software Consultant for Telenor Group with great bunch of people. Learn more <a href="/about/">about me</a>, and <a href="/contact/">contact me</a> if you need to know anything.</h1>
+  <div class="hero ">
 
 
-    <nav class="hero-profile-links">
-      <a href="https://facebook.com/yoosuf.muhammad">Facebook</a>
-      <a href="https://twitter.com/eyoosuf">Twitter</a>
-      <a href="https://www.linkedin.com/in/yoosufmuhammad">LinkedIn</a>
-      <a href="https://github.com/yoosuf">Github</a>
-      <a href="https://plus.google.com/+yoosufmuhammad">Google+</a>
-      <a href="https://www.instagram.com/eyoosuf/">Instagram</a>
+    <img class="hero-profile-image " src="/images/yoosuf-muhammad-prisma.jpeg " alt="Yoosuf Muhammad " />
+
+    <h1 class="hero-profile-desc-text
+    ">Hello, I am Yoosuf, based in Colombo, Sri Lanka. Currently working as a Software Consultant for Telenor Group with great bunch of people. Learn more <a href="/about/ ">about me</a>, and <a href="/contact/ ">contact me</a> if you need to know anything.</h1>
+
+
+    <nav class="hero-profile-links ">
+      <a href="https://facebook.com/yoosuf.muhammad ">Facebook</a>
+      <a href="https://twitter.com/eyoosuf ">Twitter</a>
+      <a href="https://www.linkedin.com/in/yoosufmuhammad ">LinkedIn</a>
+      <a href="https://github.com/yoosuf ">Github</a>
+      <a href="https://plus.google.com/+yoosufmuhammad ">Google+</a>
+      <a href="https://www.instagram.com/eyoosuf/ ">Instagram</a>
     </nav> 
   </div>
-  <h4 class="separating-heading"><span>Blog posts</span></h4>
+  <h4 class="separating-heading "><span>Blog posts</span></h4>
 
-  <ul class="post-list">
+  <ul class="post-list ">
     {% for post in site.posts %}
       <li>
-        <span class="post-meta">{{ post.date | date: "%-d %b , %Y" }}</span>
-        <span class="post-title">
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        <span class="post-meta ">{{ post.date | date: "%-d %b , %Y " }}</span>
+        <span class="post-title ">
+          <a class="post-link " href="{{ post.url | prepend: site.baseurl }} ">{{ post.title }}</a>
         </span>
       </li>
     {% endfor %}
   </ul>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+  <p class="rss-subscribe ">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }} ">via RSS</a></p>
 
 </div>

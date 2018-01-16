@@ -8,7 +8,6 @@ layout: page
 permalink: /laravel/
 published: true
 ---
-
 # Laravel PHP Developer, Consultant and Architect, Sri Lanka - Yoosuf Muhammad
 
 Yoosuf has worked with Laravel Framework since 2003 (Laravel 4X) and having hands on experience. Yoosuf has developed and deployed a dozen of applications developed using Larave and Lumen, PG and MongoDB. Each application has been developed with TDD and BDD. Additionally each of following apps are developed adhering the incremental **agile** approach.

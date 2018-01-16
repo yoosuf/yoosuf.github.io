@@ -20,6 +20,7 @@ description: > # this means to ignore newlines until "baseurl:"
   Helping people who need Mobile, Wordpress and Ruby on Rails support.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
+lang: en
 twitter_username: eyoosuf
 github_username:  yoosuf
 

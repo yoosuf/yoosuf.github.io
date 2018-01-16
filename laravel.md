@@ -7,6 +7,7 @@ excerpt: ""
 layout: page
 permalink: /laravel/
 published: true
+on_nav: false
 ---
 # Laravel PHP Developer, Consultant and Architect, Sri Lanka - Yoosuf Muhammad
 

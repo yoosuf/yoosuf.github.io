@@ -25,7 +25,7 @@
                 {% for path in page_paths %} 
                     {% assign page = site.pages | where: "path", path | first %} 
                 
-                    {% if page.title %}
+                    {% if page.title and page.on_nav %}
                     <a class="page-link" href="{{ page.url }}">{{ page.title | escape }}</a>
                     {% endif %} 
                 {% endfor %}

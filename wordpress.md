@@ -7,6 +7,7 @@ excerpt: ""
 layout: page
 permalink: /wordpress/
 published: true
+on_nav: false
 ---
 # WordPress Consulting, Sri Lanka - Yoosuf Muhammad
 

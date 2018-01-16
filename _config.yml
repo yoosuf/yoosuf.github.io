@@ -25,7 +25,6 @@ github_username:  yoosuf
 
 # Build settings
 markdown: kramdown
-theme: minima
 gems:
   - jekyll-feed
 exclude:

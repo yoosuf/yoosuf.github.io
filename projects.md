@@ -3,7 +3,7 @@ layout: page
 title: Projects
 description: Since 2005, Yoosuf has helped a wide range of clients improve their digital performance.
 permalink: /projects/
-on_nav: true
+visible: true
 ---
 
 Since 2005, I helped a wide range of clients improve their digital performance. Here is a chronological list of the companies and organizations I have worked with.

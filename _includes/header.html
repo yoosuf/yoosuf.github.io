@@ -26,7 +26,7 @@
                     {% assign page = site.pages | where: "path", path | first %} 
                 
                     
-                    {% if page.title and page.visible == true %}
+                    {% if page.title %}
                     <a class="page-link" href="{{ page.url }}">{{ page.title | escape }}</a>
                     {% endif %} 
                      

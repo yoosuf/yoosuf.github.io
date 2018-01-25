@@ -1,9 +1,6 @@
 ---
 ID: 8
 title: Contact
-author: Yoosuf
-date: 2012-12-18 20:08:32
-excerpt: ""
 layout: page
 permalink: /contact/
 published: true

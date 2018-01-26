@@ -1,5 +1,4 @@
 ---
-ID: 1651
 meta_title: Laravel PHP Developer, Sri Lanka - Yoosuf Muhammad
 layout: page
 permalink: /laravel/

@@ -1,5 +1,4 @@
 ---
-ID: 8
 title: Contact
 layout: page
 permalink: /contact/

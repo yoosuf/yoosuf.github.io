@@ -1,9 +1,5 @@
 ---
-ID: 1651
 meta_title: Ruby on Rails Developer, Sri Lanka - Yoosuf Muhammad
-author: Yoosuf
-date: 2014-03-20 07:57:00
-excerpt: ""
 layout: page
 permalink: /ruby-on-rails/
 published: true

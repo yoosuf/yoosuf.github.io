@@ -17,7 +17,7 @@ title: Yoosuf
 email: mayoosuf@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Yoosuf, an experienced full stack Software Engineer. 
-  Helping people who need Mobile, Wordpress and Ruby on Rails support.
+  Helping people who need Mobile, Wordpress, Laravel and Ruby on Rails support.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 lang: en

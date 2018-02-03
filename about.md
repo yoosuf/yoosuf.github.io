@@ -3,7 +3,8 @@ layout: page
 title: About
 description: Yoosuf, a software engineer and entrepreneur. Love creating great User Experience for users. Working on one thing at a time.
 permalink: /about/
-visible: false
+nav_name: 'About'
+in_nav: true
 ---
 
 I am Yoosuf, a Web Developer (Application Developer), particularly passionate about web standards, semantics and accessibility, and I enjoy writing clean, efficient and effective code. I am living in ~~London, United Kingdom~~ Colombo, Sri Lanka. I have worked for number of small and large companies since year 2005.

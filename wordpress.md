@@ -2,8 +2,8 @@
 meta_title: WordPress Consulting, Sri Lanka - Yoosuf Muhammad
 layout: page
 permalink: /wordpress/
-published: true
-visible: false
+nav_name: 'Wordpress'
+in_nav: false
 ---
 
 Did you know that the [WordPress is been used by the 39% of today's websites](http://trends.builtwith.com/cms) in this world? WordPress is been popular all because of it's frequent development and the core development team continuously working on patching and security updates. Additionally the WordPress is the simple to use CMS (feedback from my clients).

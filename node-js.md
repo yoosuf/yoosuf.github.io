@@ -1,12 +1,10 @@
 ---
-meta_title: Node JS Developer, Sri Lanka - Yoosuf Muhammad
+title: Node JS Developer, Sri Lanka - Yoosuf Muhammad
 layout: page
 permalink: /node-js/
 nav_name: 'node-js'
 in_nav: false
 ---
-# Node JS Developer, Sri Lanka - Yoosuf Muhammad
-
 
 ## Training
 I help fresher's to learn Node JS , well, you can find anything online, but I give the right mentorship for people who are eager to learn the Node JS.

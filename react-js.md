@@ -1,12 +1,11 @@
 ---
-meta_title: React js Developer, Sri Lanka - Yoosuf Muhammad
+title: React js Developer, Sri Lanka - Yoosuf Muhammad
 layout: page
 permalink: /react-js/
 published: true
 nav_name: 'react-js'
 in_nav: false
 ---
-#  React js Developer, Sri Lanka - Yoosuf Muhammad
 
 
 ## Training

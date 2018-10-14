@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: yoosuf
+title: Yoosuf
 email: mayoosuf@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Yoosuf is with  decade of experience in programming, application development and maintenance. Comprehensive knowledge of Object-Oriented Design and Analysis with extensive experience in the full life cycle of the software design process including requirements definition, prototyping, proof of concepts, design, interface implementation, testing and maintenance.

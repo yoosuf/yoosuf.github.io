@@ -1,9 +1,9 @@
 ---
 layout: default
 ---
-<div class="home">
+<div class="blog">
   {% if page.title %}
-  <h1 class="page-heading">{{ page.title }}</h1>
+  <h1 class="page-heading"> Stuff <span class="amp">&amp;</span> Nonsense</h1>
   {% endif %} {{ content }} {% if site.posts.size > 0 %}
   <!-- <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2> -->
   <ul class="post-list">
@@ -17,8 +17,6 @@ layout: default
     </li>
     {% endfor %}
   </ul>
-  <p class="rss-subscribe">subscribe
-    <a href="{{ " /feed.xml " }}">via RSS</a>
-  </p>
+
   {% endif %}
 </div>

@@ -141,6 +141,46 @@ a {
 
 
 
+.blog {
+
+  .page-heading {
+    text-align: center;
+  }
+
+  .post-list {
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 700px;
+
+
+    li {
+        display: flex;            /* Magic begins */
+
+        h3 {
+          order: 0;
+          flex-basis: 90%;
+          font-size: 1em;
+        }
+      .post-meta {
+        flex-basis: 200px;
+        order: 1;
+          color: #868686;
+          display: block;
+          font-size: 1em;
+          margin-block-start: 1em;
+          margin-block-end: 1em;
+          margin-inline-start: 0px;
+          margin-inline-end: 0px;
+          font-weight: normal;
+      }
+    }
+
+
+
+  }
+}
+
 
 @media only screen and (max-width: 64em) {
 
@@ -213,4 +253,28 @@ a {
     [class*="col-"] {
         width: 100%;
     }
+
+
+
+
+    .blog .post-list li  {
+
+
+    flex-direction: column; /* Column layout */
+
+        h3, .post-meta  {
+          flex-basis: auto;
+        }
+
+
+
+        .post-meta {
+          color: #706fd3;
+        flex-basis: none;
+        order: 0;
+        margin-bottom: 0;
+        }
+
+    }
+
 }

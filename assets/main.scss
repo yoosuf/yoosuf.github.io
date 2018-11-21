@@ -175,10 +175,37 @@ a {
           font-weight: normal;
       }
     }
-
-
-
   }
+}
+
+
+.post {
+    margin: 0 auto;
+    padding: 0;
+    max-width: 700px;
+
+
+    .post-header {
+      text-align: center;
+
+
+      .post-meta {
+        text-align: center;
+      }
+    }
+
+    .post-content {
+      img {
+        width: 100%;
+      }
+
+      blockquote {
+        border-left: 5px solid #000;
+        padding: 0 0 0 20px;
+        margin: 0 0 0 0;
+        font-style: italic;
+      }
+    }
 }
 
 

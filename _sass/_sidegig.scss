@@ -1,0 +1,14 @@
+.sidegigs {
+  text-align: center;
+  margin: 40px 0;
+
+
+  a {
+    text-decoration: none;
+    border-bottom: none;
+    &::after {
+      border-bottom: none;
+      content: none;
+    }
+  }
+}

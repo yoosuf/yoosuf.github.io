@@ -1,5 +1,5 @@
 ---
-title: Node JS Developer, Sri Lanka - Yoosuf Muhammad
+title: Node JS Developer, Sri Lanka - Yoosuf Mo
 layout: page
 permalink: /node-js/
 nav_name: 'node-js'

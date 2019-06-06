@@ -1,5 +1,5 @@
 ---
-title: WordPress Consulting, Sri Lanka - Yoosuf Muhammad
+title: WordPress Consulting, Sri Lanka - Yoosuf Mo
 layout: page
 permalink: /wordpress/
 nav_name: 'Wordpress'

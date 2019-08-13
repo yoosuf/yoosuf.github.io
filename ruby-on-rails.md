@@ -1,5 +1,5 @@
 ---
-title: Ruby on Rails Developer, Sri Lanka - Yoosuf Muhammad
+title: Ruby on Rails Developer, Sri Lanka - Yoosuf Mo
 layout: page
 permalink: /ruby-on-rails/
 published: true

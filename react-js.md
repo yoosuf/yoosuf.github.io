@@ -1,5 +1,5 @@
 ---
-title: React js Developer, Sri Lanka - Yoosuf Muhammad
+title: React js Developer, Sri Lanka - Yoosuf Mo
 layout: page
 permalink: /react-js/
 published: true

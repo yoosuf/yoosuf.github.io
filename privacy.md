@@ -1,5 +1,5 @@
 ---
-title: Privacy policy - Yoosuf Muhammad
+title: Privacy policy - Yoosuf Mo
 layout: page
 permalink: /privacy/
 published: true

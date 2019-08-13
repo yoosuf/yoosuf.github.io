@@ -1,5 +1,5 @@
 ---
-title: Laravel PHP Developer, Sri Lanka - Yoosuf Muhammad
+title: Laravel PHP Developer, Sri Lanka - Yoosuf Mo
 layout: page
 permalink: /laravel/
 nav_name: 'Laravel'

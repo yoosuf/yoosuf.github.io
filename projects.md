@@ -15,7 +15,7 @@ Since 2005, I helped a wide range of clients improve their digital performance. 
 * [Dialog Roaming API and Admin Panel](https://github.com/yoosuf/Dialog-Roaming) Laravel
 * [ThePapare-Fan-Zone API and Admin Panel](https://github.com/yoosuf/ThePapare-Fan-Zone) Laravel
 * [DX Auth - CodeIgniter Auth Package](https://github.com/yoosuf/DX-Auth) CodeIgniter (Open Source)
-* [Beaufort House Chelsea](http://yoosuf.me/blog/beaufort-house-chelsea-redesign/) WordPress
+* [Beaufort House Chelsea](http://yoosuf.co/blog/beaufort-house-chelsea-redesign/) WordPress
 * [ATA Timber, Sweden](http://www.ata.nu/en/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio) WordPress
 * [Ealing Altogether](http://ealingaltogether.com/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio) WordPress
 * [Modafirma Fashion Blog](https://modafirma.com/blog/?utm_source=yoosuf.me&utm_medium=freelance&utm_campaign=portfolio) WordPress

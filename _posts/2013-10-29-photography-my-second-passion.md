@@ -13,7 +13,7 @@ It's being a year or so, I am playing around with a semi professional DSLR (Niko
 Following are some of my great shots, also a photography portfolio to come on this website very soon. Please let me know your thoughts.
 
 
-![my previous iPhone photography](http://yoosuf.me/blog/yoosuf-iphone-photography) post.
+![my previous iPhone photography](http://yoosuf.co/blog/yoosuf-iphone-photography) post.
 
 
 ![The Buddha - Captured during the Vesak (Buddha's Birthday) 2013](https://drscdn.500px.org/photo/35740852/q%3D80_m%3D1000/91ed374278bb49d22b7a0119a0efba47)

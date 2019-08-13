@@ -1,7 +1,7 @@
 ---
 title: What happend to my .me domain
 author: Yoosuf
-date: 2018-11-11 01:10:10
+date: 2019-08-13 01:10:10
 excerpt: ""
 layout: post
 permalink: /blog/what-happend-to-my-dot-me-domain

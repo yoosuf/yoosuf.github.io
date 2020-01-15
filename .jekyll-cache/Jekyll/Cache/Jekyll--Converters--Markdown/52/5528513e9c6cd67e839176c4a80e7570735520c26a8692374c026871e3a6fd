@@ -1,0 +1,22 @@
+I"�<p>Here is a video cast describing the upcoming features of the <strong>Ruby on Rails</strong> version 4 by <a title="Andy Llindeman on Twitter" href="https://twitter.com/alindeman" target="_blank">Andy Lindeman</a></p>
+
+<p>http://vimeo.com/51181496</p>
+
+<p>The following are the highlighted features;</p>
+<ul>
+	<li>Rails.queue</li>
+	<li>strong_parameters</li>
+	<li>Turbolinks</li>
+	<li>Russian Doll Caching (cache_digests)</li>
+	<li>ActionController::Live (streaming)</li>
+	<li>PATCH verb</li>
+	<li>Routing concerns</li>
+	<li>Extraction of activeresource</li>
+	<li>ActiveRecord::Relation changes and improvements</li>
+	<li>Removal of plugin support (not gems; only those that are installed in vendor/plugins)</li>
+	<li>Removal of Rails 2 finder syntax</li>
+	<li>Deprecation of most dynamic finders</li>
+	<li>Deprecation of eager-evaluated</li>
+</ul>
+<p>I believe yet again its going to be a killer <strong>Web Development Framework</strong>.</p>
+:ET

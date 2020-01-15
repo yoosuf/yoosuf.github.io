@@ -1,0 +1,117 @@
+I"�!<p>IDE’s and Editors are helping out the coders to simplify the coding in a effective manner, there are many IDE’s commercially and freely available, this post will give you a quick glance about the IDE’s and Editors, then you can simply choose the perfect one for your next project.</p>
+
+<p><img src="http://s3.amazonaws.com/yoosuf.me/wp-content/uploads/2012/12/php_wallpaper-1.jpg" alt="" /></p>
+
+<p>Why you should choose a best IDE for your project? All because, to make to coding simple and faster development and maintain standardized coding among the coders and organization. These days every IDE’s and Editors are supporting the syntax highlighting and Intellicence, additionally you should consider that your IDE/Editor is supporting source control or version controlling, because in the enterprise level development all the source code is saved in central repository, where the IDE is supporting the Frameworks integration, and testing environment. the IDE’s and Editors are categorized for 3 by the functionality;</p>
+
+<ul>
+  <li>Light</li>
+  <li>Intermediate</li>
+  <li>Robust</li>
+</ul>
+
+<p>Above categorization is mainly done by with their features and functionality and the extendability. let’s start reviewing the IDE/Editors.</p>
+
+<h2 id="light">Light</h2>
+
+<p>Light IDEs are not much robust editors, which will help for small purposes, but can’t use them for rapid development.</p>
+
+<h3 id="1-notepad">1. Notepad++</h3>
+
+<p><a href="http://notepad-plus.sourceforge.net/uk/site.htm">Notepad++</a> is a Free Text Editor and Open source project which is hosted in sourceforge.com, its developed with C++ programming language and it has so much of feature than a Text editor, it has so many extendable plug-in’s, also it has nice syntax highlighting feature than a general Text Editor.</p>
+
+<h2 id="intermediate">Intermediate</h2>
+
+<p>Intermediate level IDE’s and Editors are really useful IDE’s and editors that can be use for development, but there are some problems of extendability, so I am listing theme in this level.</p>
+
+<h3 id="2-sublime-text">2. Sublime Text</h3>
+
+<p><a href="http://www.sublimetext.com/">Sublime Text</a> is developers choice editor, it has been recommended  and uses by many programmers around the world, and it is Platform independent and it has so much of Extensions to extend the application  and its a free to use and available to purchase too.</p>
+
+<h3 id="3-text-mate">3. Text Mate</h3>
+
+<p><a href="http://macromates.com/&quot;">TextMate</a> is Mac OS supportive Text Editor which is very powerful Text editor and it has so much of extendability options. TextMate is a commercial application, only can be usable with Mac OSX platform.</p>
+
+<h3 id="4-e-text-editor">4. E-text Editor</h3>
+
+<p><a href="https://github.com/etexteditor/e">E-Text Editor</a> is same blue print of TextMate, but it is installable in Windows platform operating system. It’s a commercial application.</p>
+
+<h3 id="5-bluefish">5. BlueFish</h3>
+
+<p><a href="http://bluefish.openoffice.nl">BlueFish</a> is another Open source Development environment, Blue fish can be defined as Dreamweaver for Linux platform, which is mainly developed for Linux platform, but it has supportive for all the versions on Linux, Mac OSX and windows platform.</p>
+
+<h3 id="6-expression-web">6. Expression Web</h3>
+
+<p><a href="http://www.microsoft.com/expression/">Expression Web</a> is Microsoft’s Web design application which is used to make front end of web application, it has some level of language feature and syntax igniting. Its only available for windows platform.</p>
+
+<h3 id="7-adobe-dreamweaver">7. Adobe Dreamweaver</h3>
+
+<p><a href="http://www.adobe.com/products/dreamweaver/">Adobe Dreamweaver</a> is a super duper editor for Front-end design and development, it has so many features and more supportive for back end programming to, it has lot more feature as an advance editor, but I am placing under light because it has some restriction for auto complete and context sensitive and intelligence. But it can be used as much more for front end development. Dreamweaver is available for Windows and Mac OSX platform.</p>
+
+<h3 id="8-coda">8. CODA</h3>
+
+<p><a href="http://www.panic.com/coda/">CODA</a> is one window application to do web application, it’s recently came up with many futures and it’s a popular application for Mac Based operating systems. It’s highly extendable and powerful IDE for web development. It’s commercially available for Macintosh platform.</p>
+
+<h3 id="9-codelobster-php">9. Codelobster PHP</h3>
+
+<p>It’s a shareware application, which has some API integrated feature, comparatively its a poor editor for above mentioned, the reason for making this application in a intermediate level all because it has the better API’s such as jQuery, WordPress, Smarty and Drupall. <a href="http://www.codelobster.com/download.html">CodeLobstor PHP</a> only available for windows and freely usable for thirty days.</p>
+
+<h3 id="10-komodo-editor">10. Komodo Editor</h3>
+
+<p><a href="http://www.activestate.com/komodo/">Komodo</a> is also one of another editor, Free to use and available to download. Komodo Editor also has so much of features same as above mentioned Applications.</p>
+
+<h3 id="11-nvu">11. Nvu</h3>
+
+<p><a href="http://net2.com/nvu/">Nvu</a> is yet another Free Web authoring tool, it is available for windows, Mac and Linux platform.</p>
+
+<h2 id="robust">Robust</h2>
+
+<p>In this category I am listing out the highly extendable and customizable IDE’s and editors, also these IDE’s are can be used in the Enterprise development.</p>
+
+<ul>
+  <li>Subversion and version control support</li>
+  <li>Framework integration supportive</li>
+  <li>Testing and Debugging features are build in</li>
+</ul>
+
+<h3 id="12-phpdesigner">12. PHPdesigner</h3>
+
+<p>A powerful editor, very well supportive for PHP platform,<a href="http://www.mpsoftware.dk/phpdesigner.php">PHP designer</a> commercially available for windows platform.</p>
+
+<h3 id="13-netbeens">13. Netbeens</h3>
+
+<p>An extra ordinary IDE, which has so much of features and so much of changes and updates on time, <a href="http://www.netbeans.org/">NetBeans</a> is a powerful which was used for school projects and now a day’s its used for enterprise application development. It has so much of extendable feature and it’s a free and open source project, available for the entire platform.</p>
+
+<h3 id="14-eclipse">14. Eclipse</h3>
+
+<p><a href="http://www.eclipse.org/">Ecilplse</a> is a seriously a best IDE for development, it has so many extended versions, some are available for free and some are available commercially.</p>
+
+<ul>
+  <li><a href="http://www.eclipse.org/pdt/">Eclipse PDT</a></li>
+  <li><a href="http://www.myeclipseide.com/">MyEclipse</a></li>
+  <li><a href="http://easyeclipse.org/">easy eclipse</a></li>
+  <li><a href="http://www.aptana.com/">Aptana</a></li>
+</ul>
+
+<p>The above mentioned are the extended version available, and there are more.., eclipse core version is freely available and its available for windows, Linux and Mac OSX.</p>
+
+<h3 id="15-intelijidea--phpstorm">15. IntelijIdea &amp; PhpStorm</h3>
+
+<p><a href="http://www.jetbrains.com/idea/">IntelijIdea</a> is a very intelligent IDE, it has truly best intelligence and very well extended features, it’s a commercial application and its available for windows, Linux and Mac OSX.</p>
+
+<p><a href="http://www.jetbrains.com/phpstorm">PhpStorm</a> is also a tiny footprint PHP IDE available for Windows, Mac and Linux.</p>
+
+<h3 id="16-nusphere-phped">16. NuSphere PhpED</h3>
+
+<p><a href="http://www.nusphere.com/products/phped.htm">NuSphere PhpED</a> is a best IDE which has s much of features of connecting database and other features same as other general IDE’s, this application is available for windows platform.</p>
+
+<h3 id="17-phpedit">17. PHPedit</h3>
+
+<p>One of a best IDE has so much of feature and so many language integration supportive. Lots of plug-in for available for extending the IDE. <a href="http://www.phpedit.com/en">PHPedit</a> is only for windows platform.</p>
+
+<h3 id="18-zend-studio">18. Zend Studio</h3>
+
+<p><a href="http://www.zend.com/en/products/studio/">Zend Studio</a> is a PHP specialized editor which is extended with eclipse and it has much features than the normal eclipse, it’s developed my Official ZEND PHP team, Zend Studio is commercially available and its available for windows, Linux and Mac OSX.</p>
+
+<p>I am re publishing this post form my previous blog (which is permanently offline), Last posted date Oct 13, 2009</p>
+:ET

@@ -14,6 +14,6 @@ I only accept limited projects and if it is a user focused solutions and with re
 
 ## Book an apointment
 
-- Book an appointment [Schedule a Call](http://calendly.com/yoosuf/talk-with-yoosuf)
-- Email Me: [Email](mailto:mayoosuf@gmail.com)
-- Tweet Me: [Twitter](http://twitter.com/eyoosuf)
+- [Schedule a Call](http://calendly.com/yoosuf/talk-with-yoosuf)
+- [Email Me](mailto:mayoosuf@gmail.com)
+- [Follow me on Twitter](http://twitter.com/aitchdei)

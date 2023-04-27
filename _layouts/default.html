@@ -1,2 +1,42 @@
-{% include head.html %} {% include headroom.html %} {{content}} {% include
-footer.html %}
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+  <head>
+    <title>{{ site.title }}</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/css/main.css' | prepend: site.baseurl }}"
+    />
+  </head>
+  <body>
+    <div class="viewport">
+      <header id="jekyll-head" class="jekyll-head outer is-header-hidden">
+        <div class="jekyll-head-inner inner">
+          <div class="jekyll-head-brand">
+            <a class="jekyll-head-logo" href="{{site.url}}"> {{site.title}} </a>
+            <button class="jekyll-burger"></button>
+          </div>
+        </div>
+      </header>
+
+      <div class="site-content">{{content}}</div>
+
+      <footer class="site-footer outer">
+        <div class="inner">
+          <section class="copyright">
+            &copy; 2007-{{ 'now' | date: "%Y" }}
+            <a href="{{ site.url}}">{{site.title}}</a>.
+          </section>
+          <div class="jekyll-powered-by">
+            <a href="https://jekyllrb.com/" target="_blank" rel="noopener"
+              >Powered by Jekyll</a
+            >
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

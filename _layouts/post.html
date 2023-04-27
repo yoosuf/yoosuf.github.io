@@ -2,12 +2,10 @@
 layout: default
 ---
 
-<article
-  class="post h-entry"
-  itemscope
-  itemtype="http://schema.org/BlogPosting"
->
-  <header class="post-header">
+<main id="site-main" class="site-main">
+  <article class="article {{post_class}} {{#match @custom.post_image_style "Full"}}image-full{{else match @custom.post_image_style "=" "Small"}}image-small{{/match}}">
+  
+      <header class="article-header jekyll-canvas">
     <h1 class="post-title p-name" itemprop="name headline">
       {{ page.title | escape }}
     </h1>
@@ -27,7 +25,8 @@ layout: default
       {% endif %}
     </p>
   </header>
-  <div class="post-content e-content" itemprop="articleBody">{{ content }}</div>
-  {% if site.disqus.shortname %} {% include disqus_comments.html %} {% endif %}
-  <a class="u-url" href="{{ page.url }}" hidden></a>
+  <section class="jekyll-content jekyll-canvas">
+  {{ content }}
+  </section>
 </article>
+</main>

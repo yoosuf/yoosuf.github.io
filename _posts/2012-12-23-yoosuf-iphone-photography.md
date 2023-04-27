@@ -1,6 +1,6 @@
 ---
 ID: 207
-title: 'Yoosuf&#8217;s iPhone Photography'
+title: "Yoosuf&#8217;s iPhone Photography"
 author: Yoosuf
 date: 2012-12-23 22:20:51
 excerpt: ""
@@ -8,11 +8,10 @@ layout: post
 permalink: /blog/yoosuf-iphone-photography/
 published: true
 ---
+
 After becoming a iPhone user I've been capturing photographs very often, random pictures and more often various type pictures, iPhone has been a great tool to capture photographs for me and here are some of the best photographs I am sharing. I believe you will love it.
 
 ![London Tower bridge, a view from London Bridge](http://pcdn.500px.net/2810632/b167163d1df4ec76685da7c1874f402ad8a2180a/4.jpg)
-
-
 
 [caption id="" align="aligncenter" width="900"]<a href="http://500px.com/photo/2816932"><img alt="A British Airways crossing the sun" src="http://pcdn.500px.net/3680611/01244a70da3eafcd7e3c87cb4bd996a1205aef8a/4.jpg" width="900" height="672" /></a> A British Airways crossing the sun[/caption]
 

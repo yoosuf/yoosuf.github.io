@@ -1,6 +1,6 @@
 ---
 ID: 1605
-title: 'Things I’ve learned from “Hello Ruby”'
+title: "Things I’ve learned from “Hello Ruby”"
 author: Yoosuf
 date: 2014-02-02 09:53:01
 excerpt: ""
@@ -8,11 +8,13 @@ layout: post
 permalink: /blog/things-learned-from-hello-ruby/
 published: true
 ---
+
 <iframe width="800" height="600" src="https://www.kickstarter.com/projects/lindaliukas/hello-ruby/widget/video.html" frameborder="0" scrolling="no"> </iframe>
 
 Lately a Kickstarter campaign is gone viral in the internet and which is <a title="Hello Ruby" href="https://www.kickstarter.com/projects/lindaliukas/hello-ruby" target="_blank">Hello Ruby</a>, by <a href="https://twitter.com/lindaliukas" target="_blank">Linda Liukas</a>. The Hello Ruby Project is one of the successful project funded in Kickstarter and more on it has reached it's funding just in a day.
 
 The things I've learned form Hello Ruby kickstarted campaigns are;
+
 <ul>
 	<li><a href="https://twitter.com/lindaliukas" target="_blank">Linda Liukas</a> was trying to market hello ruby project before it was launched. They've been talking and presenting about teaching programming for kids.</li>
 	<li>Her gorgeous look and bubbly way of talking</li>

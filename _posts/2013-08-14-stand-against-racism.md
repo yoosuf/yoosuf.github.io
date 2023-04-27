@@ -8,7 +8,8 @@ layout: post
 permalink: /blog/stand-against-racism/
 published: true
 ---
-Recent years Sri Lanka has becoming yet another Burma. Many type of violent are deliberately taking place against the Christens and the Muslims, each time after an attack over the minority Christens and  Muslims, the majority community are replacing their Facebook profile pictures with "*against racism pictures and quotes*", I really don't see a point in it. Each person should think and stay away form racism form their harts, just changing the Facebook profile picture will not going to do any change. Hence I got  to share a pledge for  standing against racism, it is an altered version of [Standagainstracism.org](http://standagainstracism.org/). Please read this with your heart and try to apply in your daily life. Rather praying for god, I believe if you and me follow this, it would help us to create a best humanity in this planet earth.
+
+Recent years Sri Lanka has becoming yet another Burma. Many type of violent are deliberately taking place against the Christens and the Muslims, each time after an attack over the minority Christens and Muslims, the majority community are replacing their Facebook profile pictures with "_against racism pictures and quotes_", I really don't see a point in it. Each person should think and stay away form racism form their harts, just changing the Facebook profile picture will not going to do any change. Hence I got to share a pledge for standing against racism, it is an altered version of [Standagainstracism.org](http://standagainstracism.org/). Please read this with your heart and try to apply in your daily life. Rather praying for god, I believe if you and me follow this, it would help us to create a best humanity in this planet earth.
 
 ### Pledge against racism
 

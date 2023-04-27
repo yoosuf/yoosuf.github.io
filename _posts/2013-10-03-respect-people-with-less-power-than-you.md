@@ -8,6 +8,7 @@ layout: post
 permalink: /blog/respect-people-with-less-power-than-you/
 published: true
 ---
+
 http://www.youtube.com/watch?v=yoEezZD71sc
 
 An inspirational speech by Tim Minchin

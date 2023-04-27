@@ -8,11 +8,13 @@ layout: post
 permalink: /blog/a-better-way-to-show-wordpress-database-errors/
 published: true
 ---
+
 If you visit this website often, you may see some downtime issues (due to the Amazon Cloud server issues). and so many times i felt terrible with that message and finally thought of overriding the WordPress Database Error message and give a better look and feel for the user. to achieve this I followed a <a href="http://digwp.com/2009/11/custom-database-error-page/">blog post</a> of <a title="@perishable" href="http://twitter.com/perishable">Jeff Starr</a> and luckily it worked.
 
 [caption id="attachment_322" align="aligncenter" width="976"]<img class="size-full wp-image-322 " alt="Better way to display WordPress Database Error" src="http://s3.amazonaws.com/yoosuf.me/wp-content/uploads/2012/12/better-way-to-show-wordpress-errors.png" width="976" height="818" /> Better way to display WordPress Database Error[/caption]
 
 Create a file named with <code>db-error.php</code> under <code>wp-content</code> directory and copy and paste the following code. Also style it as you wish.
+
 <pre>&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
@@ -44,4 +46,5 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 
 &lt;/body&gt;
 &lt;/html&gt;</pre>
+
 And share this anywhere you like.

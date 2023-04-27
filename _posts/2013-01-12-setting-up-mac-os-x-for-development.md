@@ -8,6 +8,7 @@ layout: post
 permalink: /blog/setting-up-mac-os-x-for-development/
 published: true
 ---
+
 ### Step 1: Install Xcode
 
 1. Open the App Store (located in the dock)
@@ -22,4 +23,4 @@ published: true
 
 ### Step 3: Install Everything
 
-* From Terminal: `curl -sL goo.gl/gfdqL | bash`
+- From Terminal: `curl -sL goo.gl/gfdqL | bash`

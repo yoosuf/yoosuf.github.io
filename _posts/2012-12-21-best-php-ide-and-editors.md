@@ -8,15 +8,16 @@ layout: post
 permalink: /blog/best-php-ide-and-editors/
 published: true
 ---
+
 IDE’s and Editors are helping out the coders to simplify the coding in a effective manner, there are many IDE’s commercially and freely available, this post will give you a quick glance about the IDE’s and Editors, then you can simply choose the perfect one for your next project.
 
 ![](http://s3.amazonaws.com/yoosuf.me/wp-content/uploads/2012/12/php_wallpaper-1.jpg)
 
 Why you should choose a best IDE for your project? All because, to make to coding simple and faster development and maintain standardized coding among the coders and organization. These days every IDE’s and Editors are supporting the syntax highlighting and Intellicence, additionally you should consider that your IDE/Editor is supporting source control or version controlling, because in the enterprise level development all the source code is saved in central repository, where the IDE is supporting the Frameworks integration, and testing environment. the IDE’s and Editors are categorized for 3 by the functionality;
 
-* Light
-* Intermediate
-* Robust
+- Light
+- Intermediate
+- Robust
 
 Above categorization is mainly done by with their features and functionality and the extendability. let’s start reviewing the IDE/Editors.
 
@@ -76,10 +77,9 @@ It’s a shareware application, which has some API integrated feature, comparati
 
 In this category I am listing out the highly extendable and customizable IDE’s and editors, also these IDE’s are can be used in the Enterprise development.
 
-* Subversion and version control support
-* Framework integration supportive
-* Testing and Debugging features are build in
-
+- Subversion and version control support
+- Framework integration supportive
+- Testing and Debugging features are build in
 
 ### 12. PHPdesigner
 
@@ -93,11 +93,10 @@ An extra ordinary IDE, which has so much of features and so much of changes and 
 
 [Ecilplse](http://www.eclipse.org/) is a seriously a best IDE for development, it has so many extended versions, some are available for free and some are available commercially.
 
-* [Eclipse PDT](http://www.eclipse.org/pdt/)
-* [MyEclipse](http://www.myeclipseide.com/)
-* [easy eclipse](http://easyeclipse.org/)
-* [Aptana](http://www.aptana.com/)
-
+- [Eclipse PDT](http://www.eclipse.org/pdt/)
+- [MyEclipse](http://www.myeclipseide.com/)
+- [easy eclipse](http://easyeclipse.org/)
+- [Aptana](http://www.aptana.com/)
 
 The above mentioned are the extended version available, and there are more.., eclipse core version is freely available and its available for windows, Linux and Mac OSX.
 

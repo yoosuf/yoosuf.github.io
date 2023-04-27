@@ -8,11 +8,13 @@ layout: post
 permalink: /blog/ruby-on-rails-4/
 published: true
 ---
+
 Here is a video cast describing the upcoming features of the <strong>Ruby on Rails</strong> version 4 by <a title="Andy Llindeman on Twitter" href="https://twitter.com/alindeman" target="_blank">Andy Lindeman</a>
 
 http://vimeo.com/51181496
 
 The following are the highlighted features;
+
 <ul>
 	<li>Rails.queue</li>
 	<li>strong_parameters</li>

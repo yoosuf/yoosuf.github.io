@@ -20,7 +20,10 @@ markdown: kramdown
 gems:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-gist
+  - jemoji
+  - jekyll-include-cache
 
 exclude:
   - Gemfile

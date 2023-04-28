@@ -45,7 +45,7 @@
 /* Centered content container blocks */
 .inner {
     margin: 0 auto;
-    max-width: 700px;
+    max-width: 680px;
     width: 100%;
 }
 
@@ -1980,7 +1980,7 @@ iframe.instagram-media + script + :not([id]) {
 
 .site-footer {
     position: relative;
-    margin: max(12%, 64px) 0 0 0;
+    margin: max(12px, 64px) 0 0 0;
     padding-top: 48px;
     padding-bottom: 140px;
     background: color-mod(var(--color-darkgrey) l(-5%));

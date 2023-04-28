@@ -6,6 +6,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% seo %} {% if jekyll.environment == 'production' %} {% if
+    site.tag_manager_id %} {% include google_tag_manager.html %} {% elsif
+    site.google_analytics_tracking_id %} {% include google_analytics.html %} {%
+    endif %} {% endif %} {% include twitter-card.html %} {% include
+    facebook-opengraph.html %}
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "Person",
+        "name": "Yoosuf Mohamed",
+        "url": "https://yoosuf.co",
+        "image": "",
+        "sameAs": [
+          "https://www.facebook.com/aitchdei",
+          "https://twitter.com/aitchdei",
+          "https://www.instagram.com/aitchdei",
+          "https://www.youtube.com/@aitchdei",
+          "https://www.linkedin.com/in/aitchdei/",
+          "https://github.com/yoosuf",
+          "https://yoosuf.co"
+        ],
+        "jobTitle": "Software Engineer",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Crew Digital"
+        }
+      }
+    </script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link
       rel="stylesheet"
       href="{{ '/assets/css/main.css' | prepend: site.baseurl }}"

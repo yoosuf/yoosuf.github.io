@@ -39,7 +39,7 @@
 /* Full width page blocks */
 .outer {
     position: relative;
-    padding: 0 max(4vmin, 20px);
+    padding: 0 max(4%, 20px);
 }
 
 /* Centered content container blocks */
@@ -75,8 +75,8 @@
     z-index: 100;
     display: flex;
     align-items: center;
-    padding-top: calc(19vmin + 44px);
-    padding-bottom: 19vmin;
+    padding-top: calc(19% + 44px);
+    padding-bottom: 19%;
     text-align: center;
     color: var(--color-darkgrey);
 }
@@ -94,12 +94,12 @@
 
 .has-cover .site-header-content.left-aligned {
     align-items: flex-end;
-    padding-bottom: max(4vmin, 32px);
+    padding-bottom: max(4%, 32px);
 }
 
 .site-header-content.no-content {
     padding-top: 0;
-    padding-bottom: 2vmin;
+    padding-bottom: 2%;
 }
 
 .site-header-inner {
@@ -186,13 +186,13 @@
 
 @media (min-width: 992px) {
     .is-head-stacked.has-cover .site-header-content {
-        padding-top: calc(19vmin + 120px);
+        padding-top: calc(19% + 120px);
     }
 }
 
 @media (max-width: 991px) {
     .site-header-content {
-        padding-top: calc(19vmin + 32px);
+        padding-top: calc(19% + 32px);
     }
 }
 
@@ -781,7 +781,7 @@
         flex-direction: column;
         gap: 12px;
         align-items: center;
-        padding: max(4vmin, 20px) 0 max(4vmin, 28px);
+        padding: max(4%, 20px) 0 max(4%, 28px);
         background-color: #fff;
     }
 
@@ -804,13 +804,13 @@
 .post-feed {
     position: relative;
     display: grid;
-    gap: 4.8vmin 4vmin;
+    gap: 4.8% 4%;
     grid-template-columns: repeat(6, 1fr);
-    padding: max(4.8vmin, 36px) 0 0;
+    padding: max(4.8%, 36px) 0 0;
 }
 
 :is(.tag-template, .author-template) .post-feed {
-    margin-top: 4vmin;
+    margin-top: 4%;
 }
 
 @media (max-width: 991px) {
@@ -1054,7 +1054,7 @@ make sure this only happens on large viewports / desktop-ish devices.
     .post-card-large {
         grid-column: span 6;
         display: grid;
-        grid-gap: 4vmin;
+        grid-gap: 4%;
         grid-template-columns: repeat(3, 1fr);
         border-top: 0;
     }
@@ -1143,7 +1143,7 @@ make sure this only happens on large viewports / desktop-ish devices.
     display: none;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    margin-top: 8vmin;
+    margin-top: 8%;
 }
 
 html.no-infinite-scroll .pagination {
@@ -1176,20 +1176,20 @@ html.no-infinite-scroll .pagination {
 /* ---------------------------------------------------------- */
 
 .article {
-    padding: max(8vmin, 40px) 0 max(8vmin, 64px);
+    padding: max(8%, 40px) 0 max(8%, 64px);
     word-break: break-word;
 }
 
 .page-template .article {
-    padding-top: max(12vmin, 64px);
+    padding-top: max(12%, 64px);
 }
 
 .article-header {
-    padding: 0 0 max(6.4vmin, 40px) 0;
+    padding: 0 0 max(6.4%, 40px) 0;
 }
 
 .page-template .article-header {
-    padding-bottom: max(3.2vmin, 28px);
+    padding-bottom: max(3.2%, 28px);
 }
 
 .article-tag {
@@ -1224,7 +1224,7 @@ html.no-infinite-scroll .pagination {
 .jekyll-canvas .article-image {
     grid-column: wide-start / wide-end;
     width: 100%;
-    margin: max(6.4vmin, 40px) 0 0;
+    margin: max(6.4%, 40px) 0 0;
 }
 
 .image-full .article-image {
@@ -1262,15 +1262,15 @@ use it for applying any other styles. */
     display: grid;
     grid-template-columns:
         [full-start]
-        minmax(max(4vmin, 20px), auto)
+        minmax(max(4%, 20px), auto)
             [wide-start]
             minmax(auto, 240px)
                 [main-start]
-                    min(720px, calc(100% - max(8vmin, 40px)))
+                    min(720px, calc(100% - max(8%, 40px)))
                 [main-end]
             minmax(auto, 240px)
             [wide-end]
-        minmax(max(4vmin, 20px), auto)
+        minmax(max(4%, 20px), auto)
         [full-end]
     ;
 }
@@ -1301,7 +1301,7 @@ headings, text, images and lists. We deal with cards lower down. */
 
 /* Default vertical spacing */
 .jekyll-content > * + * {
-    margin-top: max(3.2vmin, 24px);
+    margin-top: max(3.2%, 24px);
     margin-bottom: 0;
 }
 
@@ -1330,11 +1330,11 @@ is the very first element in the post content */
 .jekyll-content > hr,
 .jekyll-content > blockquote {
     position: relative;
-    margin-top: max(4.8vmin, 32px);
+    margin-top: max(4.8%, 32px);
 }
 .jekyll-content > hr + *,
 .jekyll-content > blockquote + * {
-    margin-top: max(4.8vmin, 32px) !important;
+    margin-top: max(4.8%, 32px) !important;
 }
 
 /* Now the content typography styles */
@@ -1462,7 +1462,7 @@ is the very first element in the post content */
     }
 
     .jekyll-content blockquote:not([class])::before {
-        left: min(-4vmin, -20px);
+        left: min(-4%, -20px);
     }
 }
 
@@ -1478,11 +1478,11 @@ make sure they look good, and are given a bit of extra spacing. */
 /* Add extra margin before/after any cards,
 except for when immediately preceeded by a heading */
 .jekyll-content :not(.kg-card):not([id]) + .kg-card {
-    margin-top: 6vmin;
+    margin-top: 6%;
     margin-bottom: 0;
 }
 .jekyll-content .kg-card + :not(.kg-card) {
-    margin-top: 6vmin;
+    margin-top: 6%;
     margin-bottom: 0;
 }
 
@@ -1547,14 +1547,14 @@ figcaption a {
 
 /* Highly specific styles for traditional Instagram embeds */
 iframe.instagram-media {
-    margin-top: 6vmin !important;
+    margin-top: 6% !important;
     margin-left: auto !important;
     margin-right: auto !important;
     margin-bottom: 0 !important;
 }
 
 iframe.instagram-media + script + :not([id]) {
-    margin-top: 6vmin;
+    margin-top: 6%;
 }
 
 
@@ -1578,7 +1578,7 @@ iframe.instagram-media + script + :not([id]) {
 }
 
 .article-comments {
-    margin: 6vmin 0 0 0;
+    margin: 6% 0 0 0;
 }
 
 /* -----old------ */
@@ -1657,7 +1657,7 @@ iframe.instagram-media + script + :not([id]) {
 .article-byline {
     display: flex;
     justify-content: space-between;
-    margin: min(24px, 5.6vmin) 0 0;
+    margin: min(24px, 5.6%) 0 0;
 }
 
 .article-byline-content {
@@ -1693,8 +1693,8 @@ iframe.instagram-media + script + :not([id]) {
     display: block;
     overflow: hidden;
     margin: 0 -4px;
-    width: min(56px, 13.6vmin);
-    height: min(56px, 13.6vmin);
+    width: min(56px, 13.6%);
+    height: min(56px, 13.6%);
     border: #fff 2px solid;
     border-radius: 50%;
     background-color: var(--color-border);
@@ -1723,7 +1723,7 @@ iframe.instagram-media + script + :not([id]) {
 }
 
 .footer-cta-title {
-    margin: 0 0 min(24px, 6.4vmin);
+    margin: 0 0 min(24px, 6.4%);
     font-size: clamp(2.6rem, 5vw, 3.8rem);
     font-weight: 800;
 }
@@ -1768,17 +1768,17 @@ iframe.instagram-media + script + :not([id]) {
 /* ---------------------------------------------------------- */
 
 .read-more-wrap {
-    margin-top: 2.4vmin;
+    margin-top: 2.4%;
 }
 
 .footer-cta + .read-more-wrap {
-    margin-top: max(12vmin, 72px);
+    margin-top: max(12%, 72px);
 }
 
 .read-more {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-gap: 4vmin;
+    grid-gap: 4%;
 }
 
 .read-more .post-card-tags {
@@ -1980,7 +1980,7 @@ iframe.instagram-media + script + :not([id]) {
 
 .site-footer {
     position: relative;
-    margin: max(12vmin, 64px) 0 0 0;
+    margin: max(12%, 64px) 0 0 0;
     padding-top: 48px;
     padding-bottom: 140px;
     background: color-mod(var(--color-darkgrey) l(-5%));

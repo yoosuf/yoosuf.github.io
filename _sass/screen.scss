@@ -94,7 +94,7 @@
 
 .has-cover .site-header-content.left-aligned {
     align-items: flex-end;
-    padding-bottom: max(4%, 32px);
+    padding-bottom: max(4px, 32px);
 }
 
 .site-header-content.no-content {
@@ -186,13 +186,13 @@
 
 @media (min-width: 992px) {
     .is-head-stacked.has-cover .site-header-content {
-        padding-top: calc(19% + 120px);
+        padding-top: calc(19px + 120px);
     }
 }
 
 @media (max-width: 991px) {
     .site-header-content {
-        padding-top: calc(19% + 32px);
+        padding-top: calc(19px + 32px);
     }
 }
 
@@ -781,7 +781,7 @@
         flex-direction: column;
         gap: 12px;
         align-items: center;
-        padding: max(4%, 20px) 0 max(4%, 28px);
+        padding: max(4px, 20px) 0 max(4px, 28px);
         background-color: #fff;
     }
 
@@ -806,7 +806,7 @@
     display: grid;
     gap: 4.8% 4%;
     grid-template-columns: repeat(6, 1fr);
-    padding: max(4.8%, 36px) 0 0;
+    padding: max(5px, 36px) 0 0;
 }
 
 :is(.tag-template, .author-template) .post-feed {
@@ -1176,20 +1176,20 @@ html.no-infinite-scroll .pagination {
 /* ---------------------------------------------------------- */
 
 .article {
-    padding: max(8%, 40px) 0 max(8%, 64px);
+    padding: max(8px, 40px) 0 max(8px, 64px);
     word-break: break-word;
 }
 
 .page-template .article {
-    padding-top: max(12%, 64px);
+    padding-top: max(1px, 64px);
 }
 
 .article-header {
-    padding: 0 0 max(6.4%, 40px) 0;
+    padding: 0 0 max(7px, 40px) 0;
 }
 
 .page-template .article-header {
-    padding-bottom: max(3.2%, 28px);
+    padding-bottom: max(3px, 28px);
 }
 
 .article-tag {
@@ -1224,7 +1224,7 @@ html.no-infinite-scroll .pagination {
 .jekyll-canvas .article-image {
     grid-column: wide-start / wide-end;
     width: 100%;
-    margin: max(6.4%, 40px) 0 0;
+    margin: max(6px, 40px) 0 0;
 }
 
 .image-full .article-image {
@@ -1262,15 +1262,15 @@ use it for applying any other styles. */
     display: grid;
     grid-template-columns:
         [full-start]
-        minmax(max(4%, 20px), auto)
+        minmax(max(4px, 20px), auto)
             [wide-start]
             minmax(auto, 240px)
                 [main-start]
-                    min(720px, calc(100% - max(8%, 40px)))
+                    min(720px, calc(100% - max(8px, 40px)))
                 [main-end]
             minmax(auto, 240px)
             [wide-end]
-        minmax(max(4%, 20px), auto)
+        minmax(max(4px, 20px), auto)
         [full-end]
     ;
 }
@@ -1301,7 +1301,7 @@ headings, text, images and lists. We deal with cards lower down. */
 
 /* Default vertical spacing */
 .jekyll-content > * + * {
-    margin-top: max(3.2%, 24px);
+    margin-top: max(3px, 24px);
     margin-bottom: 0;
 }
 
@@ -1330,11 +1330,11 @@ is the very first element in the post content */
 .jekyll-content > hr,
 .jekyll-content > blockquote {
     position: relative;
-    margin-top: max(4.8%, 32px);
+    margin-top: max(5px, 32px);
 }
 .jekyll-content > hr + *,
 .jekyll-content > blockquote + * {
-    margin-top: max(4.8%, 32px) !important;
+    margin-top: max(5px, 32px) !important;
 }
 
 /* Now the content typography styles */
@@ -1462,7 +1462,7 @@ is the very first element in the post content */
     }
 
     .jekyll-content blockquote:not([class])::before {
-        left: min(-4%, -20px);
+        left: min(-4px, -20px);
     }
 }
 

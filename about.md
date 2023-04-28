@@ -5,12 +5,10 @@ description: Yoosuf, a software engineer and entrepreneur. Love creating great U
 permalink: /about/
 ---
 
-I am Yoosuf, a Software engineer, particularly passionate about web standards, semantics and accessibility, and I enjoy writing clean, efficient and effective code. I am living in  London, United Kingdom. I have worked for number of small and large companies around the globe since year 2007.
+Hi, I'm Yoosuf, a full-stack developer based in London, UK, with over 14 years of experience working for small and large companies worldwide. I'm passionate about web standards, semantics, and accessibility, and I take pride in writing clean, efficient, and effective code.
 
-Design and back-end development are essential for the web, but the exciting area where they meet is front-end development. As a front-end developer, I get to take a design – something that’s beautiful but static – and turn it into an interface, where its components become tools for unique experiences on the web.
+As a full-stack developer, I have a strong foundation in both front-end and back-end development. While front-end development allows me to bring designs to life and create unique user experiences, back-end development is essential for creating a robust and secure web application.
 
-So much is at stake in this stage! The best design can be mangled in the hands of someone uninterested or unwilling to juggle the complexities of cross-browser differences. The best deployment can cause problems down the road if someone didn’t build it to be reusable and adaptable. But a great front-end developer brings designs to the fullness of their intention and sets up a webpage to be flexible and successful years into the future.
+I have experience working with various programming languages, frameworks, and databases, including HTML, CSS, JavaScript, React, Node.js, PHP, Laravel, MySQL, and MongoDB. My expertise allows me to design and develop complex web applications from start to finish, ensuring that they are scalable, maintainable, and future-proof.
 
-## Want to hire me? 
-
-I have limited availability but don’t hesitate to get in touch.
+Whether it's building a simple website or a complex web application, I enjoy the challenge of delivering high-quality products that meet the needs of my clients and users. I am always eager to learn and keep up-to-date with the latest technologies and trends in the industry, ensuring that my skills remain relevant and in-demand.

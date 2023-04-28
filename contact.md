@@ -6,14 +6,15 @@ nav_name: "Contact"
 in_nav: true
 ---
 
-Please don’t hesitate to contact me if you have any questions, comments or messages. I’m always on the lookout for new and interesting opportunities. I’ll try my best to respond to everyone.
+Hello there! I'm glad you're interested in reaching out to me. While I only accept a limited number of projects, I am always open to hearing about new and exciting opportunities that align with my expertise.
 
-## Consulting
+If you have a user-focused solution in mind and a reasonable healthy budget, I would love to discuss how I can help bring your vision to life.
 
-I only accept limited projects and if it is a user focused solutions and with reasonable healthy budget. If you want contact me to talk about anything, feel free to use the different way available below.
+Please feel free to use any of the contact methods listed below to get in touch with me. I look forward to hearing from you and exploring how we can work together to achieve your goals.
 
 ## Book an appointment
 
 - [Schedule a Call](http://calendly.com/yoosuf/talk-with-yoosuf)
-- [Email Me](mailto:mayoosuf@gmail.com)
-- [Follow me on Twitter](http://twitter.com/aitchdei)
+- [E-mail Me](mailto:mayoosuf@gmail.com)
+- [Reach me on Twitter](http://twitter.com/aitchdei)
+- [Reach me on LinkedIn](http://linkedin.com/in/aitchdei)

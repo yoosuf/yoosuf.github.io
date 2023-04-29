@@ -3,7 +3,7 @@ title: Contact
 layout: page
 permalink: /contact/
 nav_name: "Contact"
-in_nav: true
+on_nav: true
 ---
 
 Hello there! I'm glad you're interested in reaching out to me. While I only accept a limited number of projects, I am always open to hearing about new and exciting opportunities that align with my expertise.

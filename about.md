@@ -3,6 +3,7 @@ layout: page
 title: About
 description: Yoosuf, a full stack software engineer and entrepreneur. Love creating great User Experience for users.
 permalink: /about/
+on_nav: true
 ---
 
 Hi, I'm Yoosuf Mohamed, a full-stack developer based in Colombo, Sri Lanka, with over a decade of experience working for small and large companies worldwide. I'm passionate about web standards, semantics, and accessibility, and I take pride in writing clean, efficient, and effective code.

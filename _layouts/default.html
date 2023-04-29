@@ -50,6 +50,27 @@
             <a class="jekyll-head-logo" href="{{site.url}}"> {{site.title}} </a>
             <button class="jekyll-burger"></button>
           </div>
+
+          <nav class="jekyll-head-menu">
+            <ul class="nav">
+              {% for item in site.pages limit:3 %} {% if item.on_nav %}
+
+              <li
+                {%
+                if
+                page.url
+                contains
+                item.url
+                %}class="nav-current"
+                {%
+                endif
+                %}
+              >
+                <a href="{{ item.url }}">{{ item.title }}</a>
+              </li>
+              {% endif %} {% endfor %}
+            </ul>
+          </nav>
         </div>
       </header>
 

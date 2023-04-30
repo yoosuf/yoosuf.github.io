@@ -1,7 +1,7 @@
 ---
 ID: 1227
 title: Photography with iPhone 5
-author: Yoosuf
+author: Yoosuf Mohamed
 date: 2013-06-20 21:21:13
 excerpt: ""
 layout: post

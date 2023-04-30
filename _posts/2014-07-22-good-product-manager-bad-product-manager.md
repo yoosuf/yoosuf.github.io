@@ -1,13 +1,14 @@
 ---
 ID: 1711
 title: Good Product Manager, Bad Product Manager
-author: Yoosuf
+author: Yoosuf Mohamed
 date: 2014-07-22 20:34:43
 excerpt: ""
 layout: post
 permalink: /blog/good-product-manager-bad-product-manager/
 published: true
 ---
+
 Good product managers know the market, the product, the product line and the competition extremely well and operate from a strong basis of knowledge and confidence. A good product manager is the CEO of the product. Good product managers take full responsibility and measure themselves in terms of the success of the product. They are responsible for right product/right time and all that entails. A good product manager knows the context going in (the company, our revenue funding, competition, etc.), and they take responsibility for devising and executing a winning plan (no excuses).
 
 Bad product managers have lots of excuses. Not enough funding, the engineering manager is an idiot, Microsoft has 10 times as many engineers working on it, I'm overworked, I don't get enough direction. [Netscape CEO] Barksdale doesn't make these kinds of excuses and neither should the CEO of a product.

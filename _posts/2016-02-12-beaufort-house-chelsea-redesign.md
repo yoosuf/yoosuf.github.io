@@ -1,13 +1,14 @@
 ---
 ID: 1816
-title: 'Work – Beaufort House Chelsea – Redesign'
-author: Yoosuf
+title: "Work – Beaufort House Chelsea – Redesign"
+author: Yoosuf Mohamed
 date: 2016-02-12 10:03:17
 excerpt: ""
 layout: post
 permalink: /blog/beaufort-house-chelsea-redesign/
 published: true
 ---
+
 Recently got a chance to work with a UK based restaurant website. Which was came to me via [AVM, London](http://animalvegetablemineral.tv/?utm_source=yoosuf.me&utm_medium=beaufort_house_chelsea&utm_campaign=work) a UK based Content Development Agency based in London.
 
 The Beaufort House Chelsea website was build on top of WordPress with amazing full sized background videos and images. Additionally to make this website possible I was using the WordPress ACF plugin to create custom fields and WP Simple 301 redirect for manage the redirection. Also using the WordPress SEO plugin by Yoast.

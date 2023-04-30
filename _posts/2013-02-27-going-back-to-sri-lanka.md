@@ -1,7 +1,7 @@
 ---
 ID: 612
 title: Going back to Sri Lanka
-author: Yoosuf
+author: Yoosuf Mohamed
 date: 2013-02-27 08:40:29
 excerpt: ""
 layout: post

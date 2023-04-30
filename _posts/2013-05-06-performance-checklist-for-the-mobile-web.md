@@ -1,7 +1,7 @@
 ---
 ID: 1101
 title: Performance Checklist for the Mobile Web
-author: Yoosuf
+author: Yoosuf Mohamed
 date: 2013-05-06 09:24:59
 excerpt: ""
 layout: post

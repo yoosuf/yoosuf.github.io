@@ -1,7 +1,7 @@
 ---
 ID: 1677
 title: Component-based Architectures in Ruby and Rails
-author: Yoosuf
+author: Yoosuf Mohamed
 date: 2014-05-20 15:30:35
 excerpt: ""
 layout: post

@@ -1,7 +1,7 @@
 ---
 ID: 207
 title: "Yoosuf&#8217;s iPhone Photography"
-author: Yoosuf
+author: Yoosuf Mohamed
 date: 2012-12-23 22:20:51
 excerpt: ""
 layout: post

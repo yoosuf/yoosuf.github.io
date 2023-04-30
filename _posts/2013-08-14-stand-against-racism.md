@@ -1,7 +1,7 @@
 ---
 ID: 1307
 title: Stand Against Racism
-author: Yoosuf
+author: Yoosuf Mohamed
 date: 2013-08-14 13:39:56
 excerpt: ""
 layout: post

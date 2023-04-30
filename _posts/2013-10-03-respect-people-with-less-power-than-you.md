@@ -1,7 +1,7 @@
 ---
 ID: 1487
 title: Respect people with less power than you
-author: Yoosuf
+author: Yoosuf Mohamed
 date: 2013-10-03 19:18:23
 excerpt: ""
 layout: post

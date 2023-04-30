@@ -1,7 +1,7 @@
 ---
 ID: 319
 title: A Better Way to Show WordPress Database Errors
-author: Yoosuf
+author: Yoosuf Mohamed
 date: 2012-12-28 15:30:31
 excerpt: ""
 layout: post

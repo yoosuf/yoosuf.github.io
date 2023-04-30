@@ -1,7 +1,7 @@
 ---
 ID: 196
 title: "Rails Apps: Rails Application Composer"
-author: Yoosuf
+author: Yoosuf Mohamed
 date: 2012-12-22 16:22:07
 excerpt: ""
 layout: post

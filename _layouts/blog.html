@@ -3,26 +3,33 @@ layout: default
 ---
 
 <main id="site-main" class="site-main outer">
-  <div class="inner posts">
+  <div class="inner article">
     {% if page.title %}
-    <h1 class="page-heading">Stuff <span class="amp">&amp;</span> Nonsense</h1>
+    <header class="article-header">
+      <h1 class="article-title">
+        Stuff <span class="amp">&amp;</span> Nonsense
+      </h1>
+    </header>
     {% endif %} {{ content }} {% if site.posts.size > 0 %}
-    <!-- <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2> -->
-    <ul class="post-list">
-      {% for post in site.posts %}
-      <li>
-        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y"
-        %}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url }}"
-            >{{ post.title | escape }}</a
-          >
-        </h3>
-      </li>
-      {% endfor %}
-    </ul>
 
+    <div class="jekyll-content">
+      {% for post in site.posts %} {% assign date_format =
+      site.minima.date_format | default: "%b %-d, %Y" %}
+
+      <div class="post-card">
+        <div class="post-feed">
+          <span class="post-card-meta"
+            >{{ post.date | date: date_format }}</span
+          >
+          <h3 class="post-card-title">
+            <a class="post-link" href="{{ post.url }}"
+              >{{ post.title | escape }}</a
+            >
+          </h3>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
     {% endif %}
   </div>
 </main>

@@ -297,7 +297,7 @@ $background-color_6: var(--color-darkgrey);
 	.nav {
 		display: inline-flex;
 		align-items: center;
-		flex-wrap: wrap;
+		// flex-wrap: wrap;
 		gap: 32px;
 		list-style: none;
 		margin: 0;
@@ -558,7 +558,7 @@ $background-color_6: var(--color-darkgrey);
 			.jekyll-head-menu {
 				.nav {
 					>li {
-						opacity: 0;
+						// opacity: 0;
 					}
 				}
 			}

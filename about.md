@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+menu_title: About
 description: Yoosuf, a full stack software engineer and entrepreneur. Love creating great User Experience for users.
 permalink: /about/
 on_nav: true

@@ -3,17 +3,15 @@ layout: default
 ---
 
 <main id="site-main" class="site-main">
-  <div class="inner">
-    <article class="article">
-      {% if page.title %}
-      <!-- jekyll-canvas -->
-      <header class="article-header">
-        <h1 class="article-title">{{ page.title | escape }}</h1>
-      </header>
-      {% endif %}
+  <article class="article">
+    {% if page.title %}
+    <!-- jekyll-canvas -->
+    <header class="article-header jekyll-canvas">
+      <h1 class="article-title">{{ page.title | escape }}</h1>
+    </header>
+    {% endif %}
 
-      <!-- jekyll-canvas -->
-      <section class="jekyll-content">{{ content }}</section>
-    </article>
-  </div>
+    <!-- jekyll-canvas -->
+    <section class="jekyll-content jekyll-canvas">{{ content }}</section>
+  </article>
 </main>

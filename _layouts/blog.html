@@ -2,17 +2,17 @@
 layout: default
 ---
 
-<main id="site-main" class="site-main outer">
-  <div class="inner article">
+<div id="site-main" class="site-main">
+  <div class="article">
     {% if page.title %}
-    <header class="article-header">
+    <header class="article-header jekyll-canvas">
       <h1 class="article-title">
         Stuff <span class="amp">&amp;</span> Nonsense
       </h1>
     </header>
     {% endif %} {{ content }} {% if site.posts.size > 0 %}
 
-    <div class="jekyll-content">
+    <div class="jekyll-content jekyll-canvas">
       {% for post in site.posts %} {% assign date_format =
       site.minima.date_format | default: "%b %-d, %Y" %}
 
@@ -32,4 +32,4 @@ layout: default
     </div>
     {% endif %}
   </div>
-</main>
+</div>

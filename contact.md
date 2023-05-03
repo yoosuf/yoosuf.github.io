@@ -1,6 +1,7 @@
 ---
 title: Contact
 layout: page
+menu_title: Contact
 permalink: /contact/
 nav_name: "Contact"
 on_nav: true

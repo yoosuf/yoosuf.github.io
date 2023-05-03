@@ -42,7 +42,7 @@
       href="{{ '/assets/css/main.css' | prepend: site.baseurl }}"
     />
   </head>
-  <body>
+  <body class="page-template page-about is-head-left-logo has-cover">
     <div class="viewport">
       <header id="jekyll-head" class="jekyll-head outer is-header-hidden">
         <div class="jekyll-head-inner inner">
@@ -66,7 +66,7 @@
                 endif
                 %}
               >
-                <a href="{{ item.url }}">{{ item.title }}</a>
+                <a href="{{ item.url }}">{{ item.menu_title }}</a>
               </li>
               {% endif %} {% endfor %}
             </ul>
@@ -74,7 +74,7 @@
         </div>
       </header>
 
-      <div class="site-content">{{content}}</div>
+      <main class="site-content">{{content}}</main>
 
       <footer class="site-footer outer">
         <div class="inner">

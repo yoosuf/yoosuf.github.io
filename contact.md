@@ -1,6 +1,7 @@
 ---
 title: Contact
 layout: page
+meta_title: "Contact ~ Yoosuf Mohamed"
 menu_title: Contact
 permalink: /contact/
 nav_name: "Contact"

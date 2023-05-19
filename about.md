@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+meta_title: "About ~ Yoosuf Mohamed"
 menu_title: About
 description: Yoosuf, a full stack software engineer and entrepreneur. Love creating great User Experience for users.
 permalink: /about/

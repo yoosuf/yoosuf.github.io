@@ -1,5 +1,5 @@
 ---
-title: Becoming a React expert
+title: Becoming a ReactJS expert
 author: Yoosuf Mohamed
 date: 2023-05-18 05:58:00
 excerpt: ""

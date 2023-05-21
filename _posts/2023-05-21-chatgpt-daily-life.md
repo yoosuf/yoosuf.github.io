@@ -1,7 +1,7 @@
 ---
 title: How ChatGPT helps me on day to day life
 author: Yoosuf Mohamed
-date: 2023-05-18 05:58:00
+date: 2023-05-21 08:16:00
 excerpt: ""
 layout: post
 permalink: /blog/chatgpt-daily-life

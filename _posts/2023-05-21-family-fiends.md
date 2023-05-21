@@ -1,10 +1,10 @@
 ---
-title: "The Hard Truth: The Disadvantages of Lending Money to Friends and Family"
+title: "The Hard Truth: Lending Money to Friends and Family"
 author: Yoosuf Mohamed
 date: 2023-05-21 07:50:00
 excerpt: ""
 layout: post
-permalink: /blog/hard-truth-lending-money-experience
+permalink: /blog/lending-money-experience
 published: true
 ---
 

@@ -14,13 +14,13 @@ I started by creating a budget and tracking my spending. I was surprised to see 
 
 I started cooking more meals at home and packing my lunch for work. I also started shopping at thrift stores and garage sales instead of new stores. I even started using coupons and discounts whenever possible.
 
-It wasn't always easy, but after a few months, I started to see a difference in my bank account. I was saving more money and I was less stressed about my finances. I also had more time and energy to spend on the things that I really enjoyed.
+It wasn't always easy, but after a few months, I started to see how little i have to spend to live a financially minimal lifestyle. I was saving more money and I was less stressed about my finances. I also had more time and energy to spend on the things that I really enjoyed.
 
 Here are some of the things that I did to live frugally in 2022-2023:
 
 - **Managed every penny:** Created a budget and tracked my spending. This was the first step in my journey to frugal living. It helped me to see where my money was going and where I could cut back.
 - **Deleted the Uber Eats app:** Cooked more meals at home and packed my lunch for work. This saved me a lot of money on eating out. I also found that I enjoyed cooking more when I had the time to do it.
-- **Unsubscribed from Netflix and PeoTV:** Be creative with my entertainment. There are many free or low-cost activities that you can enjoy, such as going for walks, reading books from the library, or visiting museums on free admission days.
+- **Unsubscribed from Netflix and PeoTV:** There are many free or low-cost activities that you can enjoy, such as going for walks, reading books from the library, or travelling via bus and more...
 - **Chased everyone who owed me money:** This was the hardest one, followup everyone who owe me money (couldn't recover every penny, hence it wasn't a 100% success ). Some really got pissed with me and some stopped replying for my calls. But I felt it was worth it, because it should be done at some point.
 - **Stopped Expensive hobbies:** stopped the marine aquarium, because it was a cash burn, without a return. after selling the equipment's what usd for the Marine aquarium I got back only 20% of the full spending.
 

@@ -133,7 +133,7 @@ except for when immediately preceeded by a heading */
 		}
 	}
 	display: grid;
-	grid-template-columns: [full-start] minmax(max(4%, 20px), auto) [wide-start] minmax(auto, 240px) [main-start] min(720px, calc(100% - max(8%, 40px))) [main-end] minmax(auto, 240px) [wide-end] minmax(max(4px, 20px), auto) [full-end];
+	grid-template-columns: [full-start] minmax(max(4%, 20px), auto) [wide-start] minmax(auto, 240px) [main-start] min(720px, calc(100% - max(8%, 40px))) [main-end] minmax(auto, 240px) [wide-end] minmax(max(4%, 20px), auto) [full-end];
 	>* {
 		grid-column: main-start / main-end;
 	}

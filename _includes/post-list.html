@@ -1,0 +1,20 @@
+<div class="section">
+  <div class="jekyll-content jekyll-canvas">
+    <h2 class="section-title">Recent Posts.</h2>
+
+    {% for post in site.posts limit:5 %}
+    <div class="post-card">
+      <div class="post-feed">
+        <span class="post-card-meta">
+          {{ post.date | date: "%b %-d, %Y" }}</span
+        >
+        <h3 class="post-card-title">
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">
+            {{ post.title }}
+          </a>
+        </h3>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

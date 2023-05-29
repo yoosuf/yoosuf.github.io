@@ -294,6 +294,7 @@ $background-color_6: var(--color-darkgrey);
 	align-items: center;
 	margin-top: 1px;
 	font-weight: 500;
+	margin-left: 250px;
 	.nav {
 		display: inline-flex;
 		align-items: center;
@@ -503,7 +504,7 @@ $background-color_6: var(--color-darkgrey);
 	.is-head-left-logo {
 		.jekyll-head-menu {
 			margin-right: 64px;
-			margin-left: 16px;
+			margin-left: 250px;
 		}
 	}
 	.is-head-middle-logo {

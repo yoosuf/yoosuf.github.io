@@ -37,3 +37,5 @@ If you are looking to save money and live a more fulfilling life, I encourage yo
 - Shop at thrift stores and garage sales. This is a great way to find gently used items at a fraction of the price of new items.
 
 Frugal living can be a great way to save money and live a more fulfilling life. If you are willing to make some changes, you can see a big difference in your finances and your overall well-being.
+
+I will continue living this lifestyle, at least to become a millionaire.

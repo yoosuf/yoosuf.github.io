@@ -19,7 +19,7 @@ On the day of your fast, you should start by drinking plenty of water. You shoul
 
 During your fast, it is important to listen to your body. If you start to feel lightheaded, dizzy, or nauseous, you should break your fast. You should also break your fast if you have any medical problems.
 
-Once you have completed your fast, it is important to slowly reintroduce food into your diet. This will help to prevent your body from going into shock. You should start by eating small, healthy meals. You should also avoid eating processed foods, sugary drinks, and alcohol.
+Once you have completed your fast, it is important to slowly reintroduce food into your diet. This will help to prevent your body from going into shock. You should start by eating small, healthy meals. You should also avoid eating processed foods and any drinks that contain sugary.
 
 Water fasting can be a great way to improve your health. However, it is important to do it safely and under the supervision of a doctor. If you are considering water fasting, talk to your doctor first to make sure that it is right for you.
 
@@ -35,8 +35,6 @@ In addition to water, there are a few other liquids that I consume during water 
 - Green tea
 
 I avoid drinking any liquids that contain calories, sugar, or artificial sweeteners. These liquids can break your fast and make it more difficult to lose weight.
-
-I also avoid drinking alcohol during water fasting. Alcohol is a toxin that can damage your liver and kidneys. It can also make it more difficult to lose weight.
 
 If you are considering water fasting, it is important to choose liquids that are safe and healthy. Water, unsweetened tea, and unsweetened coffee are all good choices.
 

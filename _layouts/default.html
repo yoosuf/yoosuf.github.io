@@ -28,7 +28,10 @@
 
           <nav class="jekyll-head-menu">
             <ul class="nav">
-              {% for item in site.pages %} {% if item.on_nav %}
+              {% for item in site.data.navigation %}
+              <a href="{{ item.link }}">{{item.name}}</a>
+              {% endfor %}
+              <!-- {% for item in site.pages %} {% if item.on_nav %}
 
               <li
                 {%
@@ -43,7 +46,7 @@
               >
                 <a href="{{ item.url }}">{{ item.menu_title }}</a>
               </li>
-              {% endif %} {% endfor %}
+              {% endif %} {% endfor %} -->
             </ul>
           </nav>
         </div>

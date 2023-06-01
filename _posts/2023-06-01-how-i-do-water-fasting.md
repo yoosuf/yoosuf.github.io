@@ -38,4 +38,4 @@ I avoid drinking any liquids that contain calories, sugar, or artificial sweeten
 
 If you are considering water fasting, it is important to choose liquids that are safe and healthy. Water, unsweetened tea, and unsweetened coffee are all good choices.
 
-I hope you found this article interesting. If you have any questions or comments, please feel free to contact me. And if you found this article helpful, please consider subscribing to [my YouTube channel](https://www.youtube.com/@yoosufmo) for more fitness and heath related video content.
+I hope you found this article interesting. If you have any questions or comments, please feel free to contact me. And if you found this article helpful, please consider subscribing to [my YouTube channel](https://www.youtube.com/@yoosufmo) for more fitness and health related video content.

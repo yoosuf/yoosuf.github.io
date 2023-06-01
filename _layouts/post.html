@@ -32,6 +32,12 @@ layout: default
         </div>
       </div>
     </header>
-    <section class="jekyll-content jekyll-canvas">{{ content }}</section>
+    <section class="jekyll-content jekyll-canvas">
+      {% if page.subtitle %}
+      <p id="page-subtitle" class="article-excerpt" itemprop="headline">
+        {{ page.subtitle }}
+      </p>
+      {% endif %} {{ content }}
+    </section>
   </article>
 </main>

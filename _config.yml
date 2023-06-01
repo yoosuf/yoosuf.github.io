@@ -1,4 +1,5 @@
 lang: en
+locale: en_US
 default_color: auto
 
 title: Yoosuf Mohamed
@@ -6,9 +7,31 @@ email: mayoosuf@gmail.com
 description: >
   Yoosuf is with  decade of experience in programming, application development and maintenance. Comprehensive knowledge of Object-Oriented Design and Analysis with extensive experience in the full life cycle of the software design process including requirements definition, prototyping, proof of concepts, design, interface implementation, testing and maintenance.
 baseurl: ""
-url: "/"
+url: "https://yoosuf.co"
 twitter_username: aitchdie
 github_username: yoosuf
+
+twitter:
+  username: aitchdei
+  card: summary
+
+social:
+  name: Yoosuf Mohamed
+  links:
+    - https://twitter.com/aitchdei
+    - https://www.facebook.com/aitchdei
+    - https://www.linkedin.com/in/yoosufmo
+    - https://github.com/yoosuf
+    - https://www.instagram.com/aitchdei/
+    - https://www.youtube.com/@YoosufMo
+
+webmaster_verifications:
+  google:
+  bing:
+  alexa:
+  yandex:
+  baidu:
+  facebook:
 
 sass:
   sass_dir: _sass

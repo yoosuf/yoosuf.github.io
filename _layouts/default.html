@@ -11,30 +11,6 @@
     endif %} {% endif %} {% include twitter-card.html %} {% include
     facebook-opengraph.html %}
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org/",
-        "@type": "Person",
-        "name": "Yoosuf Mohamed",
-        "url": "https://yoosuf.co",
-        "image": "",
-        "sameAs": [
-          "https://www.facebook.com/aitchdei",
-          "https://twitter.com/aitchdei",
-          "https://www.instagram.com/aitchdei",
-          "https://www.youtube.com/@aitchdei",
-          "https://www.linkedin.com/in/aitchdei/",
-          "https://github.com/yoosuf",
-          "https://yoosuf.co"
-        ],
-        "jobTitle": "Software Engineer",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Crew Digital"
-        }
-      }
-    </script>
-
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link
       rel="stylesheet"
@@ -52,7 +28,7 @@
 
           <nav class="jekyll-head-menu">
             <ul class="nav">
-              {% for item in site.pages limit:4 %} {% if item.on_nav %}
+              {% for item in site.pages %} {% if item.on_nav %}
 
               <li
                 {%

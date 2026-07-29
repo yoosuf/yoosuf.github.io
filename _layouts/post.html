@@ -9,25 +9,27 @@ layout: default
     </h1>
     <div class="article-byline">
       <div class="article-byline-content">
-        {% if page.author %}
-        <span
-          class="author-name"
-          itemprop="author"
-          itemscope
-          itemtype="https://schema.org/Person"
-        >
-          <span itemprop="name">{{ page.author }}</span>
-        </span>
-        {% endif %}
+        <div class="article-byline-meta">
+          {% if page.author %}
+          <span
+            class="author-name"
+            itemprop="author"
+            itemscope
+            itemtype="https://schema.org/Person"
+          >
+            <span itemprop="name">{{ page.author }}</span>
+          </span>
+          {% endif %}
 
-        <time
-          class="byline-meta-date"
-          datetime="{{ page.date | date_to_xmlschema }}"
-          itemprop="datePublished"
-        >
-          {% assign date_format = site.minima.date_format | default: "%b %-d,
-          %Y" %} {{ page.date | date: date_format }}
-        </time>
+          <time
+            class="byline-meta-date"
+            datetime="{{ page.date | date_to_xmlschema }}"
+            itemprop="datePublished"
+          >
+            {% assign date_format = site.minima.date_format | default: "%b %-d,
+            %Y" %} {{ page.date | date: date_format }}
+          </time>
+        </div>
       </div>
     </div>
   </header>

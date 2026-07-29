@@ -1,12 +1,12 @@
 # Yoosuf Mohamed
 
-> Full-stack software engineer based in Colombo, Sri Lanka, with over a decade of experience building web applications for small and large companies worldwide. Specialises in TypeScript, React, Node.js, Ruby on Rails, AWS, ElasticSearch, Redis, GraphQL, and Microservices. Passionate about web standards, semantics, accessibility, and clean code.
+> Systems Architect helping startups and enterprises build AI automation and AI-first products that scale. Specialises in LLM, RAG, Go, Elixir, FastAPI, Node, NestJS, NextJS, ReactJS, Flutter, AWS, and systems architecture. Based in Colombo, Sri Lanka with over a decade of experience.
 
 ## Pages
 
-- [Home](https://yoosuf.me/): Personal site and introduction
-- [About](https://yoosuf.me/about/): Background, skills, and professional experience
-- [Blog](https://yoosuf.me/blog/): Articles on software development, design, and personal topics
+- [Home](https://yoosuf.me/): Personal site — AI automation, systems architecture, and AI-first products
+- [About](https://yoosuf.me/about/): Background, skills, and architectural philosophy
+- [Blog](https://yoosuf.me/blog/): Articles on AI, systems architecture, software engineering, and personal topics
 - [Contact](https://yoosuf.me/contact/): Ways to get in touch or book an appointment
 
 ## Blog Posts

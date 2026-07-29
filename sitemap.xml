@@ -16,7 +16,14 @@ layout: null
   <url>
     <loc>{{ site.url }}{{ page.url }}</loc>
     <changefreq>monthly</changefreq>
+    {% if page.url == "/" %}
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+    {% elsif page.url contains "/about" or page.url contains "/contact" %}
+    <priority>0.8</priority>
+    {% else %}
     <priority>0.5</priority>
+    {% endif %}
   </url>
   {% endif %}
   {% endfor %}

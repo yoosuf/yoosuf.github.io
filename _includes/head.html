@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ site.lang | default: 'en' }}">
   <head>
     {% seo %} {% if jekyll.environment == 'production' %} {% if
     site.tag_manager_id %} {% include google_tag_manager.html %} {% elsif
@@ -12,13 +12,17 @@
     <meta name="description" content="{{ page.description }}" />
     {% endif %}
 
+    <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}" />
+    <meta name="author" content="{{ site.title }}" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
     <script type="application/ld+json">
       {
-        "@context": "https://schema.org/",
+        "@context": "https://schema.org",
         "@type": "Person",
         "name": "Yoosuf Mohamed",
         "url": "https://yoosuf.me",
-        "image": "",
+        "image": "https://yoosuf.me/assets/images/yoosuf.jpg",
         "sameAs": [
           "https://www.facebook.com/aitchdei",
           "https://twitter.com/aitchdei",
@@ -28,11 +32,8 @@
           "https://github.com/yoosuf",
           "https://yoosuf.me"
         ],
-        "jobTitle": "Software Engineer",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Crew Digital"
-        }
+        "jobTitle": "Systems Architect",
+        "knowsAbout": ["AI Automation", "LLM", "RAG", "Go", "Elixir", "FastAPI", "Node.js", "NestJS", "Next.js", "React", "Flutter", "AWS", "ElasticSearch", "Redis", "GraphQL"]
       }
     </script>
 
@@ -46,6 +47,8 @@
   </head>
 
   <body>
+    <a class="skip-to-content" href="#site-main">Skip to main content</a>
+
     {% if site.tag_manager_id and jekyll.environment == 'production' %}
     <!-- Google Tag Manager (noscript) -->
     <noscript
@@ -59,6 +62,8 @@
     <!-- End Google Tag Manager (noscript) -->
     {% endif %}
 
-    <div class="container"></div>
+    <div class="container">
+      <main id="site-main"></main>
+    </div>
   </body>
 </html>

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}" />
     {% seo %} {% if jekyll.environment == 'production' %} {% if
     site.tag_manager_id %} {% include google_tag_manager.html %} {% elsif
     site.google_analytics_tracking_id %} {% include google_analytics.html %} {%
@@ -34,11 +35,14 @@
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": "{{ site.url }}{{ page.url }}"
-        }
+        },
+        "image": {{ page.image | default: '/assets/images/yoosuf.jpg' | prepend: site.url | jsonify }}
       }
     </script>
     {% endif %}
 
+    <meta name="author" content="{{ site.title }}" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link
       rel="stylesheet"
@@ -46,11 +50,13 @@
     />
   </head>
   <body class="page-template page-about is-head-left-logo has-cover">
+    <a class="skip-to-content" href="#site-main">Skip to main content</a>
+
     <div class="viewport">
       <header id="jekyll-head" class="jekyll-head outer is-header-hidden">
         <div class="jekyll-head-inner inner">
           <div class="jekyll-head-brand">
-            <a class="jekyll-head-logo" href="{{site.url}}"> {{site.title}} </a>
+            <a class="jekyll-head-logo" href="{{site.url}}" aria-label="{{site.title}} — Home"> {{site.title}} </a>
             <button
               class="jekyll-burger"
               type="button"
@@ -67,42 +73,31 @@
           >
             <ul class="nav">
               {% for item in site.data.navigation %}
-              <li><a href="{{ item.link }}">{{item.name}}</a></li>
-              {% endfor %}
-              <!-- {% for item in site.pages %} {% if item.on_nav %}
-
-              <li
-                {%
-                if
-                page.url
-                contains
-                item.url
-                %}class="nav-current"
-                {%
-                endif
-                %}
-              >
-                <a href="{{ item.url }}">{{ item.menu_title }}</a>
+              <li>
+                <a
+                  href="{{ item.link }}"
+                  {% if page.url == item.link %}aria-current="page"{% endif %}
+                >{{item.name}}</a>
               </li>
-              {% endif %} {% endfor %} -->
+              {% endfor %}
             </ul>
           </nav>
         </div>
       </header>
 
-      <main class="site-content">{{content}}</main>
+      <main id="site-main" class="site-content">{{content}}</main>
 
-      <footer class="site-footer outer">
+      <footer class="site-footer outer" role="contentinfo">
         <div class="inner">
           <section class="copyright">
             &copy; 2007-{{ 'now' | date: "%Y" }}
             <a href="{{ site.url}}">{{site.title}}</a>.
           </section>
-          <div class="jekyll-powered-by">
+          <nav class="jekyll-powered-by" aria-label="Footer">
             <a href="https://jekyllrb.com/" target="_blank" rel="noopener"
               >Powered by Jekyll</a
             >
-          </div>
+          </nav>
         </div>
       </footer>
     </div>
@@ -119,6 +114,7 @@
           document.body.classList.toggle("jekyll-head-open", isOpen);
           burger.setAttribute("aria-expanded", String(isOpen));
           burger.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+          if (!isOpen) burger.focus();
         };
 
         const syncMenuForViewport = () => {
@@ -147,7 +143,6 @@
           if (!document.body.classList.contains("jekyll-head-open")) return;
           setMenuState(false);
           syncMenuForViewport();
-          burger.focus();
         });
 
         menuBreakpoint.addEventListener("change", syncMenuForViewport);

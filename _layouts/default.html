@@ -51,13 +51,23 @@
         <div class="jekyll-head-inner inner">
           <div class="jekyll-head-brand">
             <a class="jekyll-head-logo" href="{{site.url}}"> {{site.title}} </a>
-            <button class="jekyll-burger"></button>
+            <button
+              class="jekyll-burger"
+              type="button"
+              aria-label="Open menu"
+              aria-expanded="false"
+              aria-controls="primary-navigation"
+            ></button>
           </div>
 
-          <nav class="jekyll-head-menu">
+          <nav
+            id="primary-navigation"
+            class="jekyll-head-menu"
+            aria-label="Primary"
+          >
             <ul class="nav">
               {% for item in site.data.navigation %}
-              <a href="{{ item.link }}">{{item.name}}</a>
+              <li><a href="{{ item.link }}">{{item.name}}</a></li>
               {% endfor %}
               <!-- {% for item in site.pages %} {% if item.on_nav %}
 
@@ -96,5 +106,53 @@
         </div>
       </footer>
     </div>
+    <script>
+      (() => {
+        const menuBreakpoint = window.matchMedia("(max-width: 767px)");
+        const header = document.getElementById("jekyll-head");
+        const burger = header?.querySelector(".jekyll-burger");
+        const nav = document.getElementById("primary-navigation");
+
+        if (!header || !burger || !nav) return;
+
+        const setMenuState = (isOpen) => {
+          document.body.classList.toggle("jekyll-head-open", isOpen);
+          burger.setAttribute("aria-expanded", String(isOpen));
+          burger.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+        };
+
+        const syncMenuForViewport = () => {
+          const isMobile = menuBreakpoint.matches;
+          const isOpen = document.body.classList.contains("jekyll-head-open");
+          nav.hidden = isMobile && !isOpen;
+          if (!isMobile) setMenuState(false);
+        };
+
+        burger.addEventListener("click", () => {
+          const isOpen = !document.body.classList.contains("jekyll-head-open");
+          setMenuState(isOpen);
+          syncMenuForViewport();
+        });
+
+        nav.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            if (!menuBreakpoint.matches) return;
+            setMenuState(false);
+            syncMenuForViewport();
+          });
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key !== "Escape") return;
+          if (!document.body.classList.contains("jekyll-head-open")) return;
+          setMenuState(false);
+          syncMenuForViewport();
+          burger.focus();
+        });
+
+        menuBreakpoint.addEventListener("change", syncMenuForViewport);
+        syncMenuForViewport();
+      })();
+    </script>
   </body>
 </html>

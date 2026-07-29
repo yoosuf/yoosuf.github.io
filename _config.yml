@@ -36,7 +36,7 @@ webmaster_verifications:
 sass:
   sass_dir: _sass
 
-google_analytics_tracking_id: UA-73725836-1
+google_analytics_tracking_id: G-SJQ1MBM1PF
 
 # Build settings
 markdown: kramdown

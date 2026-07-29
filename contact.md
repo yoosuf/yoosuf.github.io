@@ -15,7 +15,8 @@ If you have an ambitious project in mind and a reasonable budget, I'd love to di
 
 ## Book an appointment
 
-- [Schedule a Call](https://cal.com/yoosuf/30min?user=yoosuf)
+
+- [Schedule a Call](https://cal.com/yoosuf)
 - [E-mail Me](mailto:mayoosuf@gmail.com)
 - [Reach me on Twitter](https://twitter.com/aitchdei)
 - [Reach me on LinkedIn](https://linkedin.com/in/yoosufmo)

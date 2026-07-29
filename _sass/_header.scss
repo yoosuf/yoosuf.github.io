@@ -1,41 +1,6 @@
-$color_1: #0f0f0f;
-$color_2: var(--color-darkgrey);
-$color_3: #fff;
-$color_4: var(--color-secondary-text);
-$color_5: inherit;
-$color_6: #15171a;
-$font-family_1: var(--font-serif);
-$background-color_1: var(--jekyll-accent-color);
-$background-color_2: #fff;
-$background-color_3: transparent;
-$background-color_4: var(--color-lightgrey);
-$background-color_5: rgba(255, 255, 255, 0.2);
-$background-color_6: var(--color-darkgrey);
-
-/* 3. Site Header
-/* ---------------------------------------------------------- */
-/* 4. Site Navigation
-/* ---------------------------------------------------------- */
-/* Header styles
-/* ---------------------------------------------------------- */
-/* Brand
-/* ---------------------------------------------------------- */
-/* Primary Navigation
-/* ---------------------------------------------------------- */
-/* Dropdown
-/* ---------------------------------------------------------- */
-/* Secondary Navigation
-/* ---------------------------------------------------------- */
-/* Search
-/* ---------------------------------------------------------- */
-/* Mobile Menu Trigger
-/* ---------------------------------------------------------- */
-/* Mobile Menu
-/* ---------------------------------------------------------- */
-/* IDs needed to ensure sufficient specificity */
 .site-header {
 	position: relative;
-	color: $color_1;
+	color: #0f0f0f;
 	background: var(--jekyll-accent-color);
 }
 .site-header-cover {
@@ -56,13 +21,13 @@ $background-color_6: var(--color-darkgrey);
 	padding-top: calc(19% + 44px);
 	padding-bottom: 19%;
 	text-align: center;
-	color: $color_2;
+	color: var(--color-darkgrey);
 }
 .has-cover {
 	.site-header-content {
 		min-height: 560px;
-		background-color: $background-color_1;
-		color: $color_3;
+		background-color: var(--jekyll-accent-color);
+		color: #fff;
 	}
 	.site-header-content.left-aligned {
 		align-items: flex-end;
@@ -79,30 +44,30 @@ $background-color_6: var(--color-darkgrey);
 	}
 	.site-description {
 		letter-spacing: -0.005em;
-		color: $color_3;
+		color: #fff;
 	}
 	:is(.site-logo) {
 		font-size: 2.4rem;
 	}
 	:not(.home-template) {
 		.jekyll-head {
-			background-color: $background-color_1;
-			color: $color_3;
+			background-color: var(--jekyll-accent-color);
+			color: #fff;
 		}
 	}
 	.jekyll-head-logo {
-		color: $color_3;
+		color: #fff;
 	}
 	.jekyll-head-button {
-		color: $color_2;
+		color: var(--color-darkgrey);
 		background: #fff;
 	}
 	.jekyll-burger {
 		&::before {
-			background-color: $background-color_2;
+			background-color: #fff;
 		}
 		&::after {
-			background-color: $background-color_2;
+			background-color: #fff;
 		}
 	}
 }
@@ -146,13 +111,13 @@ $background-color_6: var(--color-darkgrey);
 	font-weight: 800;
 	+ {
 		.site-description {
-			color: $color_4;
+			color: var(--color-secondary-text);
 		}
 	}
 }
 .has-serif-title {
 	.site-title {
-		font-family: $font-family_1;
+		font-family: var(--font-serif);
 	}
 }
 .site-description {
@@ -184,10 +149,13 @@ $background-color_6: var(--color-darkgrey);
 	}
 }
 .jekyll-head {
-	height: 88px;
-	font-size: 1.6rem;
+	height: 72px;
+	font-size: 1.5rem;
 	line-height: 1.3em;
-	background-color: $background-color_2;
+	background: rgba(255, 255, 255, 0.8);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	border-bottom: 1px solid rgba(226, 232, 240, 0.5);
 	z-index: 150;
 	a {
 		text-decoration: none;
@@ -199,13 +167,18 @@ $background-color_6: var(--color-darkgrey);
 	}
 }
 :is(.home-template) {
-	position: absolute;
-	top: 0;
-	right: 0;
-	left: 0;
-	z-index: 2000;
-	background-color: $background-color_3;
-	color: $color_3;
+	.jekyll-head {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		z-index: 2000;
+		background: transparent;
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+		border-bottom: none;
+		color: #fff;
+	}
 }
 .paged {
 	&:not(.tag-template) {
@@ -216,8 +189,8 @@ $background-color_6: var(--color-darkgrey);
 				right: 0;
 				left: 0;
 				z-index: 2000;
-				background-color: $background-color_3;
-				color: $color_3;
+				background-color: transparent;
+				color: #fff;
 			}
 		}
 	}
@@ -282,10 +255,10 @@ $background-color_6: var(--color-darkgrey);
 }
 .jekyll-head-logo {
 	display: block;
-	font-weight: 800;
-	font-size: 2.6rem;
+	font-weight: 700;
+	font-size: 2rem;
 	letter-spacing: -0.02em;
-	color: $color_5;
+	color: inherit;
 	white-space: nowrap;
 	img {
 		max-height: 40px;
@@ -303,8 +276,7 @@ $background-color_6: var(--color-darkgrey);
 	.nav {
 		display: inline-flex;
 		align-items: center;
-		// flex-wrap: wrap;
-		gap: 32px;
+		gap: 8px;
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -314,10 +286,16 @@ $background-color_6: var(--color-darkgrey);
 		}
 		a {
 			display: inline-block;
-			line-height: 1.7;
-			color: $color_5;
+			padding: 8px 16px;
+			border-radius: 8px;
+			line-height: 1.5;
+			color: inherit;
+			font-weight: 500;
+			transition: background 0.2s ease, color 0.2s ease;
 			&:hover {
-				opacity: 0.9;
+				background: rgba(59, 130, 246, 0.08);
+				color: var(--jekyll-accent-color);
+				opacity: 1;
 			}
 		}
 	}
@@ -328,7 +306,7 @@ $background-color_6: var(--color-darkgrey);
 		margin: 0 -6px;
 		padding: 0;
 		font-size: inherit;
-		background-color: $background-color_3;
+		background-color: transparent;
 		text-transform: inherit;
 		svg {
 			width: 24px;
@@ -340,7 +318,7 @@ $background-color_6: var(--color-darkgrey);
 			a {
 				display: block;
 				padding: 6px 20px;
-				color: $color_6;
+				color: #15171a;
 			}
 		}
 	}
@@ -356,7 +334,7 @@ $background-color_6: var(--color-darkgrey);
 	opacity: 0;
 	visibility: hidden;
 	text-align: left;
-	background-color: $background-color_2;
+	background-color: #fff;
 	border-radius: 5px;
 	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 7px 20px -5px rgba(0, 0, 0, 0.15);
 	transform: translate3d(0, 6px, 0);
@@ -391,7 +369,7 @@ $background-color_6: var(--color-darkgrey);
 }
 .jekyll-social-link {
 	line-height: 0;
-	color: $color_5;
+	color: inherit;
 	&:hover {
 		opacity: 0.9;
 	}
@@ -418,7 +396,7 @@ $background-color_6: var(--color-darkgrey);
 }
 .jekyll-head-link {
 	font-weight: 500;
-	color: $color_5;
+	color: inherit;
 }
 .jekyll-head-button {
 	display: inline-flex;
@@ -430,7 +408,7 @@ $background-color_6: var(--color-darkgrey);
 	letter-spacing: -0.005em;
 	font-size: 1.6rem;
 	border-radius: 48px;
-	color: $color_3;
+	color: #fff;
 	background: var(--jekyll-accent-color);
 }
 .jekyll-search {
@@ -441,7 +419,7 @@ $background-color_6: var(--color-darkgrey);
 	height: 32px;
 	padding: 0;
 	cursor: pointer;
-	background-color: $background-color_3;
+	background-color: transparent;
 	border: 0;
 	outline: none;
 	&:hover {
@@ -456,16 +434,17 @@ $background-color_6: var(--color-darkgrey);
 	padding: 0;
 	margin-right: -3px;
 	cursor: pointer;
-	background-color: $background-color_3;
+	background-color: transparent;
 	border: 0;
 	appearance: none;
 	&::before {
 		position: absolute;
 		left: 3px;
 		width: 24px;
-		height: 1px;
+		height: 2px;
 		content: "";
-		background-color: $background-color_6;
+		background-color: var(--color-darkgrey);
+		border-radius: 2px;
 		transition: all 0.2s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
 		top: 11px;
 	}
@@ -473,9 +452,10 @@ $background-color_6: var(--color-darkgrey);
 		position: absolute;
 		left: 3px;
 		width: 24px;
-		height: 1px;
+		height: 2px;
 		content: "";
-		background-color: $background-color_6;
+		background-color: var(--color-darkgrey);
+		border-radius: 2px;
 		transition: all 0.2s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
 		bottom: 11px;
 	}
@@ -499,10 +479,10 @@ $background-color_6: var(--color-darkgrey);
 		}
 		.jekyll-head-menu {
 			&::before {
-				background-color: $background-color_5;
+				background-color: rgba(255, 255, 255, 0.2);
 			}
 			&::after {
-				background-color: $background-color_5;
+				background-color: rgba(255, 255, 255, 0.2);
 			}
 		}
 	}
@@ -540,7 +520,7 @@ $background-color_6: var(--color-darkgrey);
 				width: 100%;
 				height: 1px;
 				content: "";
-				background-color: $background-color_4;
+				background-color: var(--color-lightgrey);
 			}
 			&::after {
 				position: absolute;
@@ -549,7 +529,7 @@ $background-color_6: var(--color-darkgrey);
 				width: 100%;
 				height: 1px;
 				content: "";
-				background-color: $background-color_4;
+				background-color: var(--color-lightgrey);
 				top: 136px;
 			}
 		}
@@ -557,17 +537,6 @@ $background-color_6: var(--color-darkgrey);
 			grid-row-start: 1;
 			grid-column: 1 / 4;
 			justify-content: space-between;
-		}
-	}
-	body {
-		&:not(.is-dropdown-loaded) {
-			.jekyll-head-menu {
-				.nav {
-					>li {
-						// opacity: 0;
-					}
-				}
-			}
 		}
 	}
 }
@@ -603,6 +572,12 @@ $background-color_6: var(--color-darkgrey);
 	}
 	.site-description {
 		font-size: 2.2rem !important;
+	}
+	.jekyll-head {
+		background: #fff;
+	}
+	:is(.home-template) .jekyll-head {
+		background: transparent;
 	}
 	.jekyll-head-members {
 		flex-direction: column-reverse;
@@ -657,9 +632,10 @@ $background-color_6: var(--color-darkgrey);
 			align-items: center;
 			line-height: 1.4;
 			a {
-				font-size: 2.6rem;
+				font-size: 2.4rem;
 				font-weight: 600;
 				text-transform: none;
+				padding: 12px 16px;
 			}
 			li {
 				opacity: 0;
@@ -694,6 +670,7 @@ $background-color_6: var(--color-darkgrey);
 			height: 100%;
 			overflow-y: scroll;
 			-webkit-overflow-scrolling: touch;
+			background: #fff;
 			.jekyll-head-menu {
 				position: static;
 				visibility: visible;
@@ -712,7 +689,7 @@ $background-color_6: var(--color-darkgrey);
 				gap: 12px;
 				align-items: center;
 				padding: max(4px, 20px) 0 max(4px, 28px);
-				background-color: $background-color_2;
+				background-color: #fff;
 			}
 			.nav {
 				display: flex;
@@ -736,11 +713,14 @@ $background-color_6: var(--color-darkgrey);
 	}
 	.jekyll-head-open.has-cover {
 		#jekyll-head {
-			background-color: $background-color_1;
+			background-color: var(--jekyll-accent-color);
 			.jekyll-head-actions {
-				background-color: $background-color_1;
+				background-color: var(--jekyll-accent-color);
 			}
 		}
+	}
+	:is(.home-template) .jekyll-head-open #jekyll-head {
+		background: var(--color-darkgrey);
 	}
 }
 @media (min-width: 768px) {

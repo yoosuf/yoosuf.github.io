@@ -1,63 +1,3 @@
-$color_1: var(--color-secondary-text);
-$color_2: var(--color-darkgrey);
-$color_3: var(--jekyll-accent-color);
-$color_4: #15171A;
-$color_5: var(--color-wash);
-$color_6: var(--color-midgrey);
-$color_7: color-mod(var(--color-darkgrey) l(-5%));
-$color_8: rgba(0,0,0,0.5);
-$color_9: rgba(0,0,0,0.8);
-$color_10: #fff;
-$font-family_1: var(--font-serif);
-$font-family_2: var(--font-sans);
-$background-color_1: color-mod(var(--color-wash) l(+4%));
-$background-color_2: var(--color-border);
-$border-color_1: color-mod(var(--color-border) l(-12%));
-
-/* 6. Single Post
-/* ---------------------------------------------------------- */
-/* -------- */
-/* Content grid
-/* ---------------------------------------------------------- */
-/* Canvas creates a multi-column, centered grid which the post
-is laid out on top of. Canvas just defines the grid, we don't
-use it for applying any other styles. */
-/* Content
-/* ---------------------------------------------------------- */
-/* Content refers to styling all page and post content that is
-created within the Ghost editor. The main content handles
-headings, text, images and lists. We deal with cards lower down. */
-/* Default vertical spacing */
-/* [id] represents all headings h1-h6, reset all margins */
-/* Add back a top margin to all headings, unless a heading
-is the very first element in the post content */
-/* Add a small margin between a heading and anything after it */
-/* A larger margin before/after HRs and blockquotes */
-/* Now the content typography styles */
-/* Cards
-/* ---------------------------------------------------------- */
-/* Cards are dynamic blocks of content which appear within Ghost
-posts, for example: embedded videos, tweets, galleries, or
-specially styled bookmark links. We add extra styling here to
-make sure they look good, and are given a bit of extra spacing. */
-/* Add extra margin before/after any cards,
-except for when immediately preceeded by a heading */
-/* This keeps small embeds centered */
-/* This keeps small iamges centered */
-/* Captions */
-/* Highly specific styles for traditional Instagram embeds */
-/* Card captions
-/* ---------------------------------------------------------- */
-/* -----old------ */
-/* Tables */
-/* 6.1. Post Byline
-/* ---------------------------------------------------------- */
-/* 6.2. Subscribe
-/* ---------------------------------------------------------- */
-/* 6.3. Read more
-/* ---------------------------------------------------------- */
-/* 6.4. Comments
-/* ---------------------------------------------------------- */
 .article {
 	padding: max(12px, 56px) 0 max(12px, 80px);
 	word-break: break-word;
@@ -80,37 +20,38 @@ except for when immediately preceeded by a heading */
 	margin-bottom: 16px;
 	font-size: 1.6rem;
 	a {
-		color: $color_1;
+		color: var(--color-secondary-text);
 	}
 }
 .article-title {
 	margin-bottom: 0;
 	font-size: clamp(3.2rem, 5vw, 5.2rem);
 	font-weight: 800;
-	line-height: 1.05;
-	color: $color_2;
+	line-height: 1.1;
+	letter-spacing: -0.025em;
+	color: var(--color-darkgrey);
 }
 .has-serif-title {
 	.article-title {
-		font-family: $font-family_1;
+		font-family: var(--font-serif);
 	}
 	.jekyll-content {
 		>[id] {
-			font-family: $font-family_1;
+			font-family: var(--font-serif);
 		}
 	}
 	.kg-toggle-card {
 		.kg-toggle-heading-text {
-			font-family: $font-family_1;
+			font-family: var(--font-serif);
 		}
 	}
 	.kg-header-card {
 		h2.kg-header-card-header {
-			font-family: $font-family_1;
+			font-family: var(--font-serif);
 		}
 	}
 	.footer-cta-title {
-		font-family: $font-family_1;
+		font-family: var(--font-serif);
 	}
 }
 .article-excerpt {
@@ -118,7 +59,7 @@ except for when immediately preceeded by a heading */
 	max-width: 760px;
 	font-size: 2rem;
 	line-height: 1.45;
-	color: $color_2;
+	color: var(--color-darkgrey);
 }
 .jekyll-canvas {
 	.article-image {
@@ -168,7 +109,7 @@ except for when immediately preceeded by a heading */
 	}
 	>[id] {
 		margin: 0;
-		color: $color_2;
+		color: var(--color-darkgrey);
 		&:not(:first-child) {
 			margin: 2.5em 0 0;
 		}
@@ -196,59 +137,67 @@ except for when immediately preceeded by a heading */
 			}
 		}
 		&:not([class]) {
-			font-family: $font-family_1;
+			font-family: var(--font-serif);
 			font-weight: 400;
 			font-size: 2rem;
-			line-height: 1.6em;
+			line-height: 1.7em;
 			position: relative;
 			font-style: italic;
 			padding: 0;
+			color: var(--color-midgrey);
 			&::before {
 				content: "";
 				position: absolute;
 				left: -1.5em;
 				top: 0;
 				bottom: 0;
-				width: 0.3rem;
+				width: 3px;
 				background: var(--jekyll-accent-color);
+				border-radius: 2px;
 			}
 		}
 	}
 	a {
-		color: $color_3;
-		text-decoration: underline;
+		color: var(--jekyll-accent-color);
+		text-decoration: none;
 		word-break: break-word;
+		transition: color 0.2s ease;
+		&:hover {
+			color: #6366f1;
+			text-decoration: underline;
+			text-underline-offset: 2px;
+		}
 	}
 	>ol {
-		font-family: $font-family_1;
+		font-family: var(--font-serif);
 		font-weight: 400;
 		font-size: 2rem;
 		line-height: 1.7;
 		padding-left: 2em;
 	}
 	>ul {
-		font-family: $font-family_1;
+		font-family: var(--font-serif);
 		font-weight: 400;
 		font-size: 2rem;
 		line-height: 1.7;
 		padding-left: 2em;
 	}
 	>dl {
-		font-family: $font-family_1;
+		font-family: var(--font-serif);
 		font-weight: 400;
 		font-size: 2rem;
 		line-height: 1.7;
 		padding-left: 2em;
 	}
 	>p {
-		font-family: $font-family_1;
+		font-family: var(--font-serif);
 		font-weight: 400;
 		font-size: 2rem;
 		line-height: 1.7;
 	}
 	.kg-callout-card {
 		.kg-callout-text {
-			font-family: $font-family_1;
+			font-family: var(--font-serif);
 			font-weight: 400;
 			font-size: 1.9rem;
 			line-height: 1.6em;
@@ -261,21 +210,21 @@ except for when immediately preceeded by a heading */
 	.kg-toggle-card {
 		.kg-toggle-content {
 			>ol {
-				font-family: $font-family_1;
+				font-family: var(--font-serif);
 				font-weight: 400;
 				font-size: 1.9rem;
 				line-height: 1.6em;
 				padding-left: 1.9em;
 			}
 			>ul {
-				font-family: $font-family_1;
+				font-family: var(--font-serif);
 				font-weight: 400;
 				font-size: 1.9rem;
 				line-height: 1.6em;
 				padding-left: 1.9em;
 			}
 			>p {
-				font-family: $font-family_1;
+				font-family: var(--font-serif);
 				font-weight: 400;
 				font-size: 1.9rem;
 				line-height: 1.6em;
@@ -311,7 +260,7 @@ except for when immediately preceeded by a heading */
 			font-weight: 400 !important;
 			font-size: 0.9em;
 			line-height: 1em;
-			color: $color_4;
+			color: #15171A;
 			background: #f0f6f9;
 			border-radius: 0.25em;
 		}
@@ -319,11 +268,11 @@ except for when immediately preceeded by a heading */
 	pre {
 		overflow: auto;
 		padding: 16px 20px;
-		color: $color_5;
+		color: var(--color-wash);
 		font-size: 1.4rem;
 		line-height: 1.5em;
 		background: var(--color-darkgrey);
-		border-radius: 5px;
+		border-radius: 8px;
 		box-shadow: 0 2px 6px -2px rgba(0,0,0,.1), 0 0 1px rgba(0,0,0,.4);
 	}
 	&:not(.kg-card) {
@@ -346,7 +295,10 @@ except for when immediately preceeded by a heading */
 	}
 	.kg-callout-card-accent {
 		a {
-			text-decoration: underline;
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 	}
 	table {
@@ -358,7 +310,7 @@ except for when immediately preceeded by a heading */
 				width: auto;
 				border-spacing: 0;
 				border-collapse: collapse;
-				font-family: $font-family_2;
+				font-family: var(--font-sans);
 				font-size: 1.6rem;
 				white-space: nowrap;
 				vertical-align: top;
@@ -383,13 +335,13 @@ except for when immediately preceeded by a heading */
 					border: color-mod(var(--color-wash) l(-1%) s(-5%)) 1px solid;
 				}
 				th {
-					color: $color_2;
+					color: var(--color-darkgrey);
 					font-size: 1.2rem;
 					font-weight: 700;
 					letter-spacing: 0.2px;
 					text-align: left;
 					text-transform: uppercase;
-					background-color: $background-color_1;
+					background-color: color-mod(var(--color-wash) l(+4%));
 					padding: 6px 12px;
 					border: color-mod(var(--color-wash) l(-1%) s(-5%)) 1px solid;
 				}
@@ -400,41 +352,41 @@ except for when immediately preceeded by a heading */
 .has-sans-body {
 	.jekyll-content {
 		>blockquote {
-			font-family: $font-family_2;
+			font-family: var(--font-sans);
 		}
 		>ol {
-			font-family: $font-family_2;
+			font-family: var(--font-sans);
 		}
 		>ul {
-			font-family: $font-family_2;
+			font-family: var(--font-sans);
 		}
 		>dl {
-			font-family: $font-family_2;
+			font-family: var(--font-sans);
 		}
 		>p {
-			font-family: $font-family_2;
+			font-family: var(--font-sans);
 		}
 		.kg-callout-card {
 			.kg-callout-text {
-				font-family: $font-family_2;
+				font-family: var(--font-sans);
 			}
 		}
 		.kg-toggle-card {
 			.kg-toggle-content {
 				>ol {
-					font-family: $font-family_2;
+					font-family: var(--font-sans);
 				}
 				>ul {
-					font-family: $font-family_2;
+					font-family: var(--font-sans);
 				}
 				>p {
-					font-family: $font-family_2;
+					font-family: var(--font-sans);
 				}
 			}
 		}
 	}
 	.kg-blockquote-alt {
-		font-family: $font-family_2;
+		font-family: var(--font-sans);
 	}
 }
 .kg-embed-card {
@@ -449,28 +401,31 @@ except for when immediately preceeded by a heading */
 	}
 }
 .kg-blockquote-alt {
-	font-family: $font-family_1;
-	color: $color_6;
+	font-family: var(--font-serif);
+	color: var(--color-midgrey);
 }
 .kg-card.kg-header-card.kg-style-dark {
 	background: var(--color-darkgrey);
 }
 .kg-header-card.kg-style-light {
 	h2.kg-header-card-header {
-		color: $color_7;
+		color: color-mod(var(--color-darkgrey) l(-5%));
 	}
 }
 figcaption {
 	padding: 1.5rem 1.5rem 0;
 	text-align: center;
-	color: $color_8;
+	color: rgba(0,0,0,0.5);
 	font-size: 1.3rem;
 	line-height: 1.4em;
 	strong {
-		color: $color_9;
+		color: rgba(0,0,0,0.8);
 	}
 	a {
-		text-decoration: underline;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 }
 iframe.instagram-media {
@@ -530,13 +485,14 @@ iframe.instagram-media {
 	flex-grow: 1;
 	display: flex;
 	align-items: center;
+	gap: 16px;
 	.author-list {
 		justify-content: flex-start;
 		padding: 0 14px 0 0;
 	}
 }
 .article-byline-meta {
-	color: $color_1;
+	color: var(--color-secondary-text);
 	font-size: 1.4rem;
 	line-height: 1.2em;
 	.author-name {
@@ -558,7 +514,7 @@ iframe.instagram-media {
 	height: min(56px, 13.6%);
 	border: #fff 2px solid;
 	border-radius: 50%;
-	background-color: $background-color_2;
+	background-color: var(--color-border);
 }
 .footer-cta {
 	position: relative;
@@ -583,18 +539,18 @@ iframe.instagram-media {
 	max-width: 500px;
 	padding: 5px 5px 5px 15px;
 	font-size: 1.7rem;
-	color: $color_1;
+	color: var(--color-secondary-text);
 	background: #fff;
 	border: 1px solid var(--color-border);
 	border-radius: 8px;
 	transition: border-color 0.2s;
 	&:hover {
-		border-color: $border-color_1;
+		border-color: color-mod(var(--color-border) l(-12%));
 	}
 	span {
 		display: inline-block;
 		padding: 9px 15px;
-		color: $color_10;
+		color: #fff;
 		font-size: 1.6rem;
 		font-weight: 600;
 		letter-spacing: -0.005em;
@@ -625,7 +581,7 @@ iframe.instagram-media {
 		font-size: 3.4rem;
 	}
 	.comment-count {
-		color: $color_6;
+		color: var(--color-midgrey);
 		font-weight: 600;
 		white-space: nowrap;
 	}

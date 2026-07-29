@@ -1,0 +1,64 @@
+# Yoosuf Mohamed
+
+> Full-stack software engineer based in Colombo, Sri Lanka, with over a decade of experience building web applications for small and large companies worldwide. Specialises in TypeScript, React, Node.js, Ruby on Rails, AWS, ElasticSearch, Redis, GraphQL, and Microservices. Passionate about web standards, semantics, accessibility, and clean code.
+
+## Pages
+
+- [Home](https://yoosuf.me/): Personal site and introduction
+- [About](https://yoosuf.me/about/): Background, skills, and professional experience
+- [Blog](https://yoosuf.me/blog/): Articles on software development, design, and personal topics
+- [Contact](https://yoosuf.me/contact/): Ways to get in touch or book an appointment
+
+## Blog Posts
+
+### Software Engineering & Web Development
+
+- [Setting Up a Legacy Rails 4.2.6 Project with Docker in 2024](https://yoosuf.me/blog/setting-up-legacy-rails-project-in-2024): Maintaining legacy Rails apps with Docker
+- [Becoming a ReactJS Expert](https://yoosuf.me/blog/become-a-reactjs-expert): Guide to mastering React and becoming an expert
+- [HTTP2 for Front-End Web Developers](https://yoosuf.me/blog/http2-for-front-end-web-developers): Performance improvements with HTTP/2
+- [Component-based Architectures in Ruby and Rails](https://yoosuf.me/blog/component-based-architectures-ruby-rails): Architectural patterns in Rails applications
+- [Performance Checklist for the Mobile Web](https://yoosuf.me/blog/performance-checklist-for-the-mobile-web): Mobile performance best practices
+- [CSS3: text-shadow](https://yoosuf.me/blog/css3-text-shadow): CSS3 text-shadow techniques
+- [Rails Apps: Rails Application Composer](https://yoosuf.me/blog/rails-apps-rails-application-composer): Building Rails apps with Application Composer
+- [Ruby 2](https://yoosuf.me/blog/ruby-2): Thoughts on Ruby 2 release
+- [Menus/Navigation handlers in mobile](https://yoosuf.me/blog/menus-navigation-handlers-in-mobile): Mobile navigation patterns
+- [A Better Way to Show WordPress Database Errors](https://yoosuf.me/blog/a-better-way-to-show-wordpress-database-errors): WordPress debugging tips
+- [WordPress: How to trigger the Post publish event](https://yoosuf.me/blog/wordpress-how-to-trigger-the-post-publish-event): WordPress hooks and events
+- [Trigger and Shoot – Slim WordPress plugin](https://yoosuf.me/blog/trigger-shoot-slim-wordpress-plugin): A lightweight WordPress plugin
+
+### AI & Technology
+
+- [How ChatGPT helps me on day to day life](https://yoosuf.me/blog/chatgpt-daily-life): Practical uses of AI tools in daily workflows
+
+### Personal & Lifestyle
+
+- [How I managed a year by living a frugal lifestyle](https://yoosuf.me/blog/frugal-lifestyle): Personal finance and frugal living
+- [Why I am practising 24-hour water fasting 2 days a week](https://yoosuf.me/blog/24-hours-water-fasting): Intermittent fasting experience
+- [How I do water fasting](https://yoosuf.me/blog/how-to-water-fasting): Water fasting guide and methodology
+- [I don't use Tea bags for my pot of Tea](https://yoosuf.me/blog/i-dont-use-tea-bags): Loose-leaf tea brewing
+- [Good Product Manager, Bad Product Manager](https://yoosuf.me/blog/good-product-manager-bad-product-manager): Product management insights
+- [The Secret to Making Money by starting a small business](https://yoosuf.me/blog/the-secret-to-making-money-by-starting-a-small-business): Entrepreneurship and small business
+- [Respect people with less power than you](https://yoosuf.me/blog/respect-people-with-less-power-than-you): Leadership and interpersonal values
+- [Just do it](https://yoosuf.me/blog/just-do-it): Motivation and taking action
+- [Stand Against Racism](https://yoosuf.me/blog/stand-against-racism): Thoughts on racism and equality
+- [The Setup](https://yoosuf.me/blog/the-setup): Developer tools and workspace setup
+- [Going back to Sri Lanka](https://yoosuf.me/blog/going-back-to-sri-lanka): Personal reflections on returning home
+- [What happened to my .me domain](https://yoosuf.me/blog/what-happened-to-my-dot-me-domain): Domain management story
+- [Now I am on Github as Yoosuf](https://yoosuf.me/blog/now-i-am-on-github-as-yoosuf): Joining GitHub
+- [Work – Beaufort House Chelsea – Redesign](https://yoosuf.me/blog/beaufort-house-chelsea-redesign): Website redesign project
+
+### Photography
+
+- [Photography with iPhone 5](https://yoosuf.me/blog/photography-with-iphone-5): iPhone photography techniques
+- [Photography, My second passion](https://yoosuf.me/blog/photography-my-second-passion): Personal love for photography
+- [Yoosuf's iPhone Photography](https://yoosuf.me/blog/yoosuf-iphone-photography): iPhone photography collection
+- [Hello you!](https://yoosuf.me/blog/hello-you/): First blog post from 2007
+
+## Social Profiles
+
+- GitHub: https://github.com/yoosuf
+- LinkedIn: https://www.linkedin.com/in/yoosufmo
+- Twitter/X: https://twitter.com/aitchdei
+- Instagram: https://www.instagram.com/aitchdei
+- YouTube: https://www.youtube.com/@YoosufMo
+- Facebook: https://www.facebook.com/aitchdei

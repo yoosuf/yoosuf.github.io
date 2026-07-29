@@ -1,26 +1,10 @@
-
-/* 8. Tag Template
-/* ---------------------------------------------------------- */
 .tag-template {
-	.post-card-large {
-		.post-card-image-link {
-			grid-column: 2 / span 2;
-			order: 2;
-		}
-		.post-card-content {
-			order: 1;
-		}
+	.tag-header {
+		margin-bottom: 48px;
 	}
-}
-@media (min-width: 1001px) {
-	.tag-template {
-		.post-card-large {
-			.post-card-content {
-				&:only-child {
-					grid-column: span 2;
-					max-width: 640px;
-				}
-			}
-		}
+	.tag-title {
+		font-size: 3.6rem;
+		font-weight: 800;
+		letter-spacing: -0.02em;
 	}
 }

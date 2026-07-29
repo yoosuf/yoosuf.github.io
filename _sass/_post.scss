@@ -1,29 +1,9 @@
-$color_1: #fff;
-$color_2: var(--color-darkgrey);
-$color_3: var(--color-secondary-text);
-$color_4: var(--jekyll-accent-color);
-$font-family_1: var(--font-serif);
-$font-family_2: var(--font-sans);
-$background-color_1: rgba(0, 0, 0, 0.5);
-$background-color_2: var(--color-secondary-text);
-
-/* 5. Post Feed
-/* ---------------------------------------------------------- */
-/* Special Styling for home page grid (below):
-
-The first post in the list is styled to be bigger than the others and take over
-the full width of the grid to give it more emphasis. Wrapped in a media query to
-make sure this only happens on large viewports / desktop-ish devices.
-
-*/
-/* Pagination
-/* ---------------------------------------------------------- */
 .post-feed {
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	gap: 0;
-	padding: 0;
+	gap: 16px;
+	padding: max(5px, 10px) 0 0;
 	.no-image {
 		.post-card-content-link {
 			padding: 0;
@@ -46,14 +26,12 @@ make sure this only happens on large viewports / desktop-ish devices.
 	position: relative;
 	display: flex;
 	flex-direction: column;
+	background: #fff;
 	background-size: cover;
 	word-break: break-word;
 	padding: 16px 0;
-	border-bottom: 1px solid var(--color-border);
+	border-radius: 0;
 	transition: opacity 0.2s ease;
-	&:last-child {
-		border-bottom: none;
-	}
 	&:not(.post-card-large) {
 		&:not(.post-card-full) {
 			&:not(.dynamic) {
@@ -80,7 +58,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 .post-card[class*="post-access-"] {
 	.post-card-image-link {
 		&::after {
-			background-color: $background-color_1;
+			background-color: rgba(0, 0, 0, 0.5);
 			backdrop-filter: blur(3px);
 		}
 	}
@@ -126,7 +104,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 	gap: 4px;
 	font-size: 1.5rem;
 	font-weight: 600;
-	color: $color_1;
+	color: #fff;
 }
 .post-card:hover {
 	opacity: 0.75;
@@ -135,11 +113,11 @@ make sure this only happens on large viewports / desktop-ish devices.
 .post-card-content-link {
 	position: relative;
 	display: block;
-	color: $color_2;
+	color: var(--color-darkgrey);
 	&:hover {
 		text-decoration: none;
 		.post-card-title {
-			opacity: 0.9;
+			color: var(--jekyll-accent-color);
 		}
 	}
 }
@@ -156,7 +134,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 	align-items: center;
 	gap: 12px;
 	margin: 0 0 10px;
-	color: $color_3;
+	color: var(--color-secondary-text);
 	font-size: 1.4rem;
 	font-weight: 600;
 	letter-spacing: -0.005em;
@@ -168,7 +146,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 	align-items: center;
 	gap: 3px;
 	padding-left: 18px;
-	color: $color_4;
+	color: var(--jekyll-accent-color);
 	svg {
 		position: absolute;
 		left: 0;
@@ -179,6 +157,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 		font-size: 2rem;
 		font-weight: 700;
 		line-height: 1.3;
+		transition: color 0.2s ease;
 		svg {
 			margin-top: -3px;
 			margin-left: -1px;
@@ -186,7 +165,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 	}
 .has-serif-title {
 	.post-card-title {
-		font-family: $font-family_1;
+		font-family: var(--font-serif);
 		letter-spacing: -0.005em;
 	}
 }
@@ -202,13 +181,14 @@ make sure this only happens on large viewports / desktop-ish devices.
 	max-width: 720px;
 	font-size: 1.6rem;
 	line-height: 1.5;
+	color: var(--color-midgrey);
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 	word-break: break-word;
 }
 .has-sans-body {
 	.post-card-excerpt {
-		font-family: $font-family_2;
+		font-family: var(--font-sans);
 	}
 }
 .post-card-meta {
@@ -219,7 +199,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 	margin-bottom: 8px;
 	padding: 0;
 	font-size: 1.3rem;
-	color: $color_3;
+	color: var(--color-secondary-text);
 	>* {
 		display: flex;
 		align-items: center;
@@ -231,7 +211,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 						width: 2px;
 						height: 2px;
 						content: "";
-						background-color: $background-color_2;
+						background-color: var(--color-secondary-text);
 						border-radius: 50%;
 					}
 				}
@@ -274,7 +254,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 	}
 	.page-number {
 		grid-column-start: 2;
-		color: $color_3;
+		color: var(--color-secondary-text);
 	}
 	.older-posts {
 		grid-column-start: 3;
@@ -286,8 +266,20 @@ html.no-infinite-scroll {
 		display: grid;
 	}
 }
+@media (prefers-color-scheme: dark) {
+	html.auto-color .post-card {
+		background: transparent;
+	}
+}
+
+html.dark-mode .post-card {
+	background: transparent;
+}
 
 @media (max-width: 767px) {
+	.post-feed {
+		gap: 12px;
+	}
 	.post-card {
 		padding: 12px 0;
 	}

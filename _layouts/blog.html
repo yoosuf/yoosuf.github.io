@@ -18,7 +18,7 @@ layout: default
         <div class="post-card">
           <span class="post-card-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time></span>
           <h3 class="post-card-title">
-            <a class="post-link" href="{{ post.url }}">{{ post.title | escape }}</a>
+            <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a>
           </h3>
         </div>
         {% endfor %}

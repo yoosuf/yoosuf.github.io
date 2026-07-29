@@ -1,0 +1,25 @@
+# Yoosuf Mohamed
+
+> Full-stack software engineer based in Colombo, Sri Lanka, with over a decade of experience building web applications. Specialises in TypeScript, React, Node.js, Ruby on Rails, AWS, ElasticSearch, Redis, GraphQL, and Microservices.
+
+## Pages
+
+- [Home](https://yoosuf.me/): Personal site and introduction
+- [About](https://yoosuf.me/about/): Background, skills, and professional experience
+- [Blog](https://yoosuf.me/blog/): Articles on software development, design, and personal topics
+- [Contact](https://yoosuf.me/contact/): Ways to get in touch or book an appointment
+
+## Blog Posts
+
+- [Become a ReactJS Expert](https://yoosuf.me/become-a-reactjs-expert/): Guide to mastering React
+- [ChatGPT in Daily Life](https://yoosuf.me/chatgpt-daily-life/): Practical uses of AI tools
+- [Working on Rails 4.2.6 in 2024](https://yoosuf.me/working-on-rails-4-2-6-in-2024/): Maintaining legacy Rails apps
+- [HTTP/2 for Front-End Web Developers](https://yoosuf.me/http2-for-front-end-web-developers/): Performance improvements with HTTP/2
+- [Component-Based Architectures with Ruby on Rails](https://yoosuf.me/component-based-architectures-ruby-rails/): Architectural patterns in Rails
+- [Performance Checklist for the Mobile Web](https://yoosuf.me/performance-checklist-for-the-mobile-web/): Mobile performance best practices
+
+## Social Profiles
+
+- GitHub: https://github.com/yoosuf
+- LinkedIn: https://www.linkedin.com/in/yoosufmo
+- Twitter/X: https://twitter.com/aitchdei

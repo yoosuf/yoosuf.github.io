@@ -192,6 +192,11 @@ $background-color_6: var(--color-darkgrey);
 	a {
 		text-decoration: none;
 	}
+	a:focus-visible,
+	button:focus-visible {
+		outline: 2px solid currentColor;
+		outline-offset: 3px;
+	}
 }
 :is(.home-template) {
 	position: absolute;
@@ -219,7 +224,7 @@ $background-color_6: var(--color-darkgrey);
 }
 .jekyll-head-inner {
 	display: grid;
-	column-gap: 40px;
+	column-gap: 24px;
 	grid-template-columns: auto 1fr auto;
 	grid-auto-flow: row dense;
 	align-items: center;
@@ -294,7 +299,7 @@ $background-color_6: var(--color-darkgrey);
 	align-items: center;
 	margin-top: 1px;
 	font-weight: 500;
-	margin-left: 250px;
+	margin-left: auto;
 	.nav {
 		display: inline-flex;
 		align-items: center;
@@ -504,7 +509,7 @@ $background-color_6: var(--color-darkgrey);
 	.is-head-left-logo {
 		.jekyll-head-menu {
 			margin-right: 0px;
-			margin-left: 250px;
+			margin-left: auto;
 		}
 	}
 	.is-head-middle-logo {

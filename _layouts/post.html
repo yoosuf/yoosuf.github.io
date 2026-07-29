@@ -2,42 +2,40 @@
 layout: default
 ---
 
-<main id="site-main" class="site-main">
-  <article class="article post">
-    <header class="article-header jekyll-canvas">
-      <h1 class="article-title" itemprop="name headline">
-        {{ page.title | escape }}
-      </h1>
-      <div class="article-byline">
-        <div class="article-byline-content">
-          {% if page.author %}
-          <span
-            class="author-name"
-            itemprop="author"
-            itemscope
-            itemtype="http://schema.org/Person"
-          >
-            <span itemprop="name">{{ page.author }}</span>
-          </span>
-          {% endif %}
+<article class="article post">
+  <header class="article-header jekyll-canvas">
+    <h1 class="article-title" itemprop="name headline">
+      {{ page.title | escape }}
+    </h1>
+    <div class="article-byline">
+      <div class="article-byline-content">
+        {% if page.author %}
+        <span
+          class="author-name"
+          itemprop="author"
+          itemscope
+          itemtype="https://schema.org/Person"
+        >
+          <span itemprop="name">{{ page.author }}</span>
+        </span>
+        {% endif %}
 
-          <time
-            class="byline-meta-date"
-            datetime="{{ page.date | date_to_xmlschema }}"
-            itemprop="datePublished"
-          >
-            {% assign date_format = site.minima.date_format | default: "%b %-d,
-            %Y" %} {{ page.date | date: date_format }}
-          </time>
-        </div>
+        <time
+          class="byline-meta-date"
+          datetime="{{ page.date | date_to_xmlschema }}"
+          itemprop="datePublished"
+        >
+          {% assign date_format = site.minima.date_format | default: "%b %-d,
+          %Y" %} {{ page.date | date: date_format }}
+        </time>
       </div>
-    </header>
-    <section class="jekyll-content jekyll-canvas">
-      {% if page.subtitle %}
-      <p id="page-subtitle" class="article-excerpt" itemprop="headline">
-        {{ page.subtitle }}
-      </p>
-      {% endif %} {{ content }}
-    </section>
-  </article>
-</main>
+    </div>
+  </header>
+  <section class="jekyll-content jekyll-canvas">
+    {% if page.subtitle %}
+    <p id="page-subtitle" class="article-excerpt" itemprop="headline">
+      {{ page.subtitle }}
+    </p>
+    {% endif %} {{ content }}
+  </section>
+</article>

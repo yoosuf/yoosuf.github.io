@@ -49,6 +49,8 @@ make sure this only happens on large viewports / desktop-ish devices.
 	flex-direction: column;
 	background-size: cover;
 	word-break: break-word;
+	padding-bottom: 24px;
+	margin-bottom: 8px;
 	&:not(.post-card-large) {
 		&:not(.post-card-full) {
 			&:not(.dynamic) {

@@ -52,7 +52,6 @@ make sure this only happens on large viewports / desktop-ish devices.
 	border: 1px solid var(--color-border);
 	border-radius: 8px;
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
 	&:not(.post-card-large) {
 		&:not(.post-card-full) {
 			&:not(.dynamic) {

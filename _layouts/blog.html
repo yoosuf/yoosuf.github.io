@@ -2,34 +2,34 @@
 layout: default
 ---
 
-<div id="site-main" class="site-main">
-  <div class="article">
+<div class="site-main">
+  <article class="article">
     {% if page.title %}
     <header class="article-header jekyll-canvas">
       <h1 class="article-title">
-        Stuff <span class="amp">&amp;</span> Nonsense
+        {{ page.title | default: "Blog" }}
       </h1>
     </header>
     {% endif %} {{ content }} {% if site.posts.size > 0 %}
 
-    <div class="jekyll-content jekyll-canvas">
+    <section class="jekyll-content jekyll-canvas" aria-label="Blog posts">
       {% for post in site.posts %} {% assign date_format =
       site.minima.date_format | default: "%b %-d, %Y" %}
 
-      <div class="post-card">
+      <article class="post-card">
         <div class="post-feed">
           <span class="post-card-meta"
-            >{{ post.date | date: date_format }}</span
+            ><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time></span
           >
-          <h3 class="post-card-title">
+          <h2 class="post-card-title">
             <a class="post-link" href="{{ post.url }}"
               >{{ post.title | escape }}</a
             >
-          </h3>
+          </h2>
         </div>
-      </div>
+      </article>
       {% endfor %}
-    </div>
+    </section>
     {% endif %}
-  </div>
+  </article>
 </div>

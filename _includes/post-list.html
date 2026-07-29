@@ -1,20 +1,22 @@
-<div class="section">
+{% if site.posts.size > 0 %}
+<section class="section" aria-labelledby="recent-posts-heading">
   <div class="jekyll-content jekyll-canvas">
-    <h2 class="section-title">Recent Posts.</h2>
+    <h2 id="recent-posts-heading" class="section-title">Recent Posts</h2>
 
     {% for post in site.posts limit:5 %}
-    <div class="post-card">
+    <article class="post-card">
       <div class="post-feed">
         <span class="post-card-meta">
-          {{ post.date | date: "%b %-d, %Y" }}</span
-        >
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+        </span>
         <h3 class="post-card-title">
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}" aria-label="Read {{ post.title }}">
             {{ post.title }}
           </a>
         </h3>
       </div>
-    </div>
+    </article>
     {% endfor %}
   </div>
-</div>
+</section>
+{% endif %}

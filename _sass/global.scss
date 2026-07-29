@@ -29,6 +29,7 @@ html {
 	-webkit-text-size-adjust: 100%;
 	font-size: 62.5%;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	scroll-behavior: smooth;
 	input[type="button"] {
 		cursor: pointer;
 		-webkit-appearance: button;
@@ -987,5 +988,37 @@ hr {
 	}
 	h4 {
 		font-size: 1.7rem;
+	}
+}
+
+.skip-to-content {
+	position: absolute;
+	top: -100%;
+	left: 0;
+	z-index: 10000;
+	padding: 12px 24px;
+	font-size: 1.6rem;
+	font-weight: 600;
+	color: #fff;
+	background: var(--jekyll-accent-color);
+	text-decoration: none;
+	&:focus {
+		top: 0;
+		outline: 3px solid var(--jekyll-accent-color);
+		outline-offset: 2px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
 	}
 }

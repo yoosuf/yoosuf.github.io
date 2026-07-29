@@ -1,22 +1,21 @@
 ---
 title: Contact
 layout: page
-meta_title: "Contact ~ Yoosuf Mohamed"
+meta_title: "Contact ~ Yoosuf Mohamed — Systems Architect"
 menu_title: Contact
 permalink: /contact/
 nav_name: "Contact"
 on_nav: true
+description: "Get in touch with Yoosuf Mohamed, a Systems Architect helping startups and enterprises build AI automation and AI-first products. Book a call or connect on social media."
 ---
 
-Hello there! I'm glad you're interested in reaching out to me. While I only accept a limited number of projects, I am always open to hearing about new and exciting opportunities that align with my expertise.
+Hello there! I'm glad you're interested in reaching out. I help startups and enterprises build AI automation and AI-first products that scale — from LLM-powered applications and RAG pipelines to full-stack systems architecture.
 
-If you have a user-focused solution in mind and a reasonable healthy budget, I would love to discuss how I can help bring your vision to life.
-
-Please feel free to use any of the contact methods listed below to get in touch with me. I look forward to hearing from you and exploring how we can work together to achieve your goals.
+If you have an ambitious project in mind and a reasonable budget, I'd love to discuss how I can help bring your vision to life.
 
 ## Book an appointment
 
-- [Schedule a Call](http://calendly.com/yoosuf/talk-with-yoosuf)
+- [Schedule a Call](https://calendly.com/yoosuf/talk-with-yoosuf)
 - [E-mail Me](mailto:mayoosuf@gmail.com)
-- [Reach me on Twitter](http://twitter.com/aitchdei)
-- [Reach me on LinkedIn](http://linkedin.com/in/yoosufmo)
+- [Reach me on Twitter](https://twitter.com/aitchdei)
+- [Reach me on LinkedIn](https://linkedin.com/in/yoosufmo)

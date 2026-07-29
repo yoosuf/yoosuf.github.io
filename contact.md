@@ -14,9 +14,21 @@ If you have a user-focused solution in mind and a reasonable healthy budget, I w
 
 Please feel free to use any of the contact methods listed below to get in touch with me. I look forward to hearing from you and exploring how we can work together to achieve your goals.
 
-## Book an appointment
-
-- [Schedule a Call](http://calendly.com/yoosuf/talk-with-yoosuf)
-- [E-mail Me](mailto:mayoosuf@gmail.com)
-- [Reach me on Twitter](http://twitter.com/aitchdei)
-- [Reach me on LinkedIn](http://linkedin.com/in/yoosufmo)
+<div class="contact-links">
+  <a href="http://calendly.com/yoosuf/talk-with-yoosuf" class="contact-button" target="_blank" rel="noopener">
+    <span class="contact-button-icon">📅</span>
+    Schedule a Call
+  </a>
+  <a href="mailto:mayoosuf@gmail.com" class="contact-button contact-button--secondary">
+    <span class="contact-button-icon">✉️</span>
+    Email Me
+  </a>
+  <a href="http://twitter.com/aitchdei" class="contact-button contact-button--secondary" target="_blank" rel="noopener">
+    <span class="contact-button-icon">🐦</span>
+    Reach me on Twitter
+  </a>
+  <a href="http://linkedin.com/in/yoosufmo" class="contact-button contact-button--secondary" target="_blank" rel="noopener">
+    <span class="contact-button-icon">💼</span>
+    Reach me on LinkedIn
+  </a>
+</div>

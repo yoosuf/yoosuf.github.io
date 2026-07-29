@@ -2,9 +2,9 @@
   <div class="jekyll-content jekyll-canvas">
     <h2 class="section-title">Recent Posts.</h2>
 
-    {% for post in site.posts limit:5 %}
-    <div class="post-card">
-      <div class="post-feed">
+    <div class="post-feed">
+      {% for post in site.posts limit:5 %}
+      <div class="post-card">
         <span class="post-card-meta">
           {{ post.date | date: "%b %-d, %Y" }}</span
         >
@@ -14,7 +14,7 @@
           </a>
         </h3>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
 </div>

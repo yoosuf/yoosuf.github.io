@@ -6,29 +6,23 @@ layout: default
   <div class="article">
     {% if page.title %}
     <header class="article-header jekyll-canvas">
-      <h1 class="article-title">
-        Stuff <span class="amp">&amp;</span> Nonsense
-      </h1>
+      <h1 class="article-title">{{ page.title | escape }}</h1>
     </header>
-    {% endif %} {{ content }} {% if site.posts.size > 0 %}
+    {% endif %}
 
+    {% if site.posts.size > 0 %}
     <div class="jekyll-content jekyll-canvas">
-      {% for post in site.posts %} {% assign date_format =
-      site.minima.date_format | default: "%b %-d, %Y" %}
-
-      <div class="post-card">
-        <div class="post-feed">
-          <span class="post-card-meta"
-            >{{ post.date | date: date_format }}</span
-          >
+      <div class="post-feed">
+        {% for post in site.posts %}
+        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+        <div class="post-card">
+          <span class="post-card-meta">{{ post.date | date: date_format }}</span>
           <h3 class="post-card-title">
-            <a class="post-link" href="{{ post.url }}"
-              >{{ post.title | escape }}</a
-            >
+            <a class="post-link" href="{{ post.url }}">{{ post.title | escape }}</a>
           </h3>
         </div>
+        {% endfor %}
       </div>
-      {% endfor %}
     </div>
     {% endif %}
   </div>

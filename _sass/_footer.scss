@@ -25,26 +25,26 @@ $border-top-color_1: color-mod(var(--color-darkmode) l(+8%));
 	position: relative;
 	margin: max(12px, 64px) 0 0 0;
 	padding-top: 48px;
-	padding-bottom: 140px;
+	padding-bottom: 64px;
 	background: color-mod(var(--color-darkgrey) l(-5%));
 	text-align: center;
 	.inner {
-		// display: grid;
-		// grid-gap: 40px;
-		// grid-template-columns: auto 1fr auto;
-		font-size: 1.3rem;
+		font-size: 1.4rem;
 		text-align: center;
+		color: rgba(255, 255, 255, 0.6);
 	}
 	.copyright {
 		a {
 			letter-spacing: -0.015em;
 			font-weight: 500;
+			color: rgba(255, 255, 255, 0.8);
 		}
 	}
 	a {
-		color: $color_1;
+		color: rgba(255, 255, 255, 0.6);
+		transition: color 0.2s ease;
 		&:hover {
-			color: $color_2;
+			color: #fff;
 			text-decoration: none;
 		}
 	}
@@ -287,19 +287,17 @@ textarea {
 }
 @media (max-width: 767px) {
 	.site-footer {
+		padding-top: 32px;
+		padding-bottom: 40px;
 		.inner {
 			max-width: 500px;
-			grid-template-columns: 1fr;
-			grid-gap: 0;
 			text-align: center;
 		}
 		.copyright {
-			color: $color_3;
-			font-size: 1.5rem;
-			margin-bottom: 16px;
+			font-size: 1.4rem;
+			margin-bottom: 8px;
 			a {
-				color: $color_3;
-				font-size: 1.5rem;
+				font-size: 1.4rem;
 			}
 		}
 	}

@@ -299,7 +299,7 @@ $background-color_6: var(--color-darkgrey);
 	align-items: center;
 	margin-top: 1px;
 	font-weight: 500;
-	margin-left: 250px;
+	margin-left: auto;
 	.nav {
 		display: inline-flex;
 		align-items: center;
@@ -509,7 +509,7 @@ $background-color_6: var(--color-darkgrey);
 	.is-head-left-logo {
 		.jekyll-head-menu {
 			margin-right: 0px;
-			margin-left: 250px;
+			margin-left: auto;
 		}
 	}
 	.is-head-middle-logo {

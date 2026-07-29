@@ -29,6 +29,7 @@ html {
 	-webkit-text-size-adjust: 100%;
 	font-size: 62.5%;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	scroll-behavior: smooth;
 	input[type="button"] {
 		cursor: pointer;
 		-webkit-appearance: button;
@@ -58,7 +59,7 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	-moz-font-feature-settings: "liga" on;
 }
-div {
+article, aside, details, div, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -66,134 +67,60 @@ div {
 	font-size: 100%;
 	vertical-align: baseline;
 }
-span {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-applet {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-object {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
+
 iframe {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
 	vertical-align: middle;
 }
 h1 {
 	margin: 0;
 	padding: 0;
-	border: 0;
 	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	margin: 0.67em 0;
-	font-size: 2em;
-	margin-top: 0;
-	line-height: 1.15;
-	font-weight: 600;
-	text-rendering: optimizeLegibility;
-	letter-spacing: -0.01em;
-	margin: 0 0 0.5em 0;
 	font-size: 4.8rem;
 	font-weight: 700;
+	line-height: 1.15;
 	letter-spacing: -0.015em;
+	text-rendering: optimizeLegibility;
+	margin: 0 0 0.5em 0;
 }
 h2 {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	margin-top: 0;
-	line-height: 1.15;
-	font-weight: 600;
-	text-rendering: optimizeLegibility;
-	letter-spacing: -0.01em;
 	margin: 1.5em 0 0.5em 0;
+	padding: 0;
+	font: inherit;
 	font-size: 2.8rem;
 	font-weight: 700;
+	line-height: 1.15;
+	letter-spacing: -0.01em;
+	text-rendering: optimizeLegibility;
 }
 h3 {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	margin-top: 0;
-	line-height: 1.15;
-	font-weight: 600;
-	text-rendering: optimizeLegibility;
-	letter-spacing: -0.01em;
 	margin: 1.5em 0 0.5em 0;
+	padding: 0;
+	font: inherit;
 	font-size: 2.4rem;
 	font-weight: 600;
-}
-h4 {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	margin-top: 0;
 	line-height: 1.15;
-	font-weight: 600;
-	text-rendering: optimizeLegibility;
 	letter-spacing: -0.01em;
-	margin: 1.5em 0 0.5em 0;
-	font-size: 2rem;
+	text-rendering: optimizeLegibility;
 }
-h5 {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	margin-top: 0;
-	line-height: 1.15;
-	font-weight: 600;
-	text-rendering: optimizeLegibility;
-	letter-spacing: -0.01em;
+h4, h5 {
 	margin: 1.5em 0 0.5em 0;
+	padding: 0;
+	font: inherit;
 	font-size: 2rem;
+	font-weight: 600;
+	line-height: 1.15;
+	letter-spacing: -0.01em;
+	text-rendering: optimizeLegibility;
 }
 h6 {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	margin-top: 0;
-	line-height: 1.15;
-	font-weight: 600;
-	text-rendering: optimizeLegibility;
-	letter-spacing: -0.01em;
 	margin: 1.5em 0 0.5em 0;
+	padding: 0;
+	font: inherit;
 	font-size: 1.8rem;
+	font-weight: 600;
+	line-height: 1.15;
+	letter-spacing: -0.01em;
+	text-rendering: optimizeLegibility;
 }
 p {
 	margin: 0;
@@ -204,16 +131,10 @@ p {
 	vertical-align: baseline;
 }
 blockquote {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
 	quotes: none;
 	margin: 1.5em 0;
 	padding: 0 1.6em 0 1.6em;
-	border-left: #daf2fd;
+	border-left: 4px solid #daf2fd;
 	&:before {
 		content: "";
 		content: none;
@@ -258,14 +179,16 @@ a {
 	background-color: $background-color_1;
 	color: $color_4;
 	text-decoration: none;
+	transition: opacity 0.2s ease;
 	&:active {
 		outline: 0;
 	}
 	&:hover {
 		outline: 0;
+		opacity: 0.8;
 	}
 }
-abbr {
+abbr, acronym, address, big, cite {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -273,570 +196,146 @@ abbr {
 	font-size: 100%;
 	vertical-align: baseline;
 }
-acronym {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-address {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-big {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-cite {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
+
 code {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
 	font-family: $font-family_2;
 	font-size: 1em;
 }
-del {
+del, s, strike, ins, u {
 	margin: 0;
 	padding: 0;
-	border: 0;
 	font: inherit;
 	font-size: 100%;
 	vertical-align: baseline;
 }
-dfn {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	font-style: italic;
-}
-em {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
+
+dfn, em, i {
 	font-style: italic;
 }
 img {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
 	display: block;
 	max-width: 100%;
 	height: auto;
-	border: 0;
 	vertical-align: middle;
 }
-ins {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
 kbd {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	font-family: $font-family_2;
-	font-size: 1em;
-	padding: 3px 5px;
 	font-family: $font-family_3;
 	font-size: 1.5rem;
+	padding: 3px 5px;
 	background: #f6f8fa;
 	border: 1px solid rgba(124, 139, 154, 0.25);
 	border-radius: 6px;
 	box-shadow: inset 0 -1px 0 rgba(124, 139, 154, 0.25);
 }
+
 q {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
 	quotes: none;
-	&:before {
-		content: "";
-		content: none;
-	}
-	&:after {
+	&:before, &:after {
 		content: "";
 		content: none;
 	}
 }
-s {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-samp {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
+
+samp, tt, var, code, pre {
 	font-family: $font-family_2;
 	font-size: 1em;
 }
+
 small {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
 	font-size: 80%;
 }
-strike {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-strong {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
+
+strong, b {
 	font-weight: bold;
 }
+
 sub {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
 	position: relative;
 	font-size: 75%;
 	line-height: 0;
-	vertical-align: baseline;
 	bottom: -0.25em;
 }
+
 sup {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
 	position: relative;
 	font-size: 75%;
 	line-height: 0;
-	vertical-align: baseline;
 	top: -0.5em;
 }
-tt {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-var {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-dl {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
+
 dt {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
 	float: left;
 	margin: 0 20px 0 0;
 	width: 120px;
-	color: $color_3;
+	color: var(--color-midgrey);
 	font-weight: 500;
 	text-align: right;
 }
+
 dd {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
 	margin: 0 0 5px 0;
 	text-align: left;
 }
+
+ol, ul {
+	padding-left: 1.3em;
+	padding-right: 1.5em;
+	max-width: 100%;
+	ol, ul {
+		margin: 0.5em 0 1em;
+	}
+}
+
 ol {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	list-style: none;
-	padding-left: 1.3em;
-	padding-right: 1.5em;
 	list-style: decimal;
-	max-width: 100%;
-	ol {
-		margin: 0.5em 0 1em;
-	}
-	ul {
-		margin: 0.5em 0 1em;
-	}
 }
+
 ul {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	list-style: none;
-	padding-left: 1.3em;
-	padding-right: 1.5em;
 	list-style: disc;
-	max-width: 100%;
-	ul {
-		margin: 0.5em 0 1em;
-	}
-	ol {
-		margin: 0.5em 0 1em;
-	}
 }
+
 li {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
 	padding-left: 0.3em;
 	line-height: 1.6em;
-	+ {
-		li {
-			margin-top: 0.5em;
-		}
+	+ li {
+		margin-top: 0.5em;
 	}
 }
+
+table {
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 0;
+}
+
+canvas, audio, video {
+	vertical-align: middle;
+}
+
+mark {
+	background-color: $background-color_2;
+}
+
 fieldset {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	margin: 0;
-	padding: 0;
-	border: 0;
 }
-form {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-label {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
+
 legend {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
 	padding: 0;
 	border: 0;
 }
-table {
+
+embed, output, ruby, time {
 	margin: 0;
 	padding: 0;
-	border: 0;
 	font: inherit;
 	font-size: 100%;
 	vertical-align: baseline;
-	border-spacing: 0;
-	border-collapse: collapse;
-	border-spacing: 0;
-	border-collapse: collapse;
-}
-caption {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-tbody {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-tfoot {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-thead {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-tr {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-th {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	padding: 0;
-}
-td {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	padding: 0;
-}
-article {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-aside {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-canvas {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	vertical-align: middle;
-}
-details {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-embed {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-figure {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-figcaption {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-footer {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-header {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-hgroup {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-menu {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-nav {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-output {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-ruby {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-section {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-summary {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-time {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-mark {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	background-color: $background-color_2;
-}
-audio {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	vertical-align: middle;
-}
-video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	vertical-align: middle;
 }
 * {
 	box-sizing: inherit;
@@ -955,22 +454,16 @@ hr {
 	border: 0;
 	border-top: 1px solid #f0f0f0;
 }
-::not(.jekyll-content) {
-	p {
-		margin: 0 0 1.5em 0;
-	}
-	ul {
-		margin: 0 0 1.5em 0;
-	}
-	ol {
-		margin: 0 0 1.5em 0;
-	}
-	dl {
-		margin: 0 0 1.5em 0;
-	}
-	blockquote {
-		margin: 0 0 1.5em 0;
-	}
+p {
+	margin: 0 0 1.5em;
+}
+
+ul, ol, dl {
+	margin: 0 0 1.5em;
+}
+
+blockquote {
+	margin: 0 0 1.5em;
 }
 @media (max-width: 600px) {
 	kbd {

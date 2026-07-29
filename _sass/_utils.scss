@@ -1,14 +1,126 @@
 .hero {
-    margin-bottom: 48px;
+	padding: 40px 0 20px;
 }
 
 .section {
-    margin-top: 48px;
+	margin-top: 48px;
 
-    .section-title {
-        margin: 0 0 24px 0;
-        font-size: 2.6rem;
-        font-weight: 800;
-        line-height: 1.2;
-    }
+	.section-title {
+		margin: 0 0 24px;
+		font-size: 2.6rem;
+		font-weight: 800;
+		line-height: 1.2;
+	}
+}
+
+.site-action {
+	margin-top: 24px;
+	font-size: 1.8rem;
+}
+
+.site-excerpt {
+	font-family: var(--font-serif);
+	font-size: 2rem;
+	line-height: 1.6;
+	color: var(--color-midgrey);
+}
+
+.site-excerpt a,
+.site-action a {
+	color: var(--jekyll-accent-color);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	transition: opacity 0.2s ease;
+}
+
+.site-excerpt a:hover,
+.site-action a:hover {
+	opacity: 0.7;
+}
+
+.contact-links {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin-top: 32px;
+}
+
+.contact-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	padding: 16px 24px;
+	font-size: 1.8rem;
+	font-weight: 600;
+	color: #fff;
+	background: var(--jekyll-accent-color);
+	border-radius: 8px;
+	text-decoration: none;
+	transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+	max-width: 320px;
+}
+
+.contact-button:hover {
+	opacity: 0.9;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(42, 13, 207, 0.3);
+}
+
+.contact-button--secondary {
+	background: transparent;
+	color: var(--color-darkgrey);
+	border: 2px solid var(--color-border);
+}
+
+.contact-button--secondary:hover {
+	opacity: 1;
+	border-color: var(--color-midgrey);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+	background: var(--color-lightgrey);
+}
+
+.contact-button-icon {
+	font-size: 2rem;
+	line-height: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+	html.auto-color .contact-button--secondary {
+		color: rgba(255, 255, 255, 0.85);
+		border-color: rgba(255, 255, 255, 0.2);
+	}
+	html.auto-color .contact-button--secondary:hover {
+		background: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.3);
+	}
+}
+
+html.dark-mode .contact-button--secondary {
+	color: rgba(255, 255, 255, 0.85);
+	border-color: rgba(255, 255, 255, 0.2);
+}
+
+html.dark-mode .contact-button--secondary:hover {
+	background: rgba(255, 255, 255, 0.1);
+	border-color: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 767px) {
+	.hero {
+		padding: 24px 0 12px;
+	}
+
+	.site-excerpt {
+		font-size: 1.8rem;
+	}
+
+	.site-action {
+		font-size: 1.6rem;
+	}
+
+	.contact-button {
+		max-width: 100%;
+		font-size: 1.6rem;
+		padding: 14px 20px;
+	}
 }

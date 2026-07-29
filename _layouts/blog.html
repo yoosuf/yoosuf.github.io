@@ -6,30 +6,24 @@ layout: default
   <article class="article">
     {% if page.title %}
     <header class="article-header jekyll-canvas">
-      <h1 class="article-title">
-        {{ page.title | default: "Blog" }}
-      </h1>
+      <h1 class="article-title">{{ page.title | default: "Blog" | escape }}</h1>
     </header>
-    {% endif %} {{ content }} {% if site.posts.size > 0 %}
+    {% endif %}
 
-    <section class="jekyll-content jekyll-canvas" aria-label="Blog posts">
-      {% for post in site.posts %} {% assign date_format =
-      site.minima.date_format | default: "%b %-d, %Y" %}
-
-      <article class="post-card">
-        <div class="post-feed">
-          <span class="post-card-meta"
-            ><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time></span
-          >
-          <h2 class="post-card-title">
-            <a class="post-link" href="{{ post.url }}"
-              >{{ post.title | escape }}</a
-            >
-          </h2>
+    {% if site.posts.size > 0 %}
+    <div class="jekyll-content jekyll-canvas">
+      <div class="post-feed">
+        {% for post in site.posts %}
+        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+        <div class="post-card">
+          <span class="post-card-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time></span>
+          <h3 class="post-card-title">
+            <a class="post-link" href="{{ post.url }}">{{ post.title | escape }}</a>
+          </h3>
         </div>
-      </article>
-      {% endfor %}
-    </section>
+        {% endfor %}
+      </div>
+    </div>
     {% endif %}
   </article>
 </div>

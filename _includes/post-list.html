@@ -3,9 +3,9 @@
   <div class="jekyll-content jekyll-canvas">
     <h2 id="recent-posts-heading" class="section-title">Recent Posts</h2>
 
-    {% for post in site.posts limit:5 %}
-    <article class="post-card">
-      <div class="post-feed">
+    <div class="post-feed">
+      {% for post in site.posts limit:5 %}
+      <div class="post-card">
         <span class="post-card-meta">
           <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
         </span>
@@ -15,8 +15,8 @@
           </a>
         </h3>
       </div>
-    </article>
-    {% endfor %}
+      {% endfor %}
+    </div>
   </div>
 </section>
 {% endif %}

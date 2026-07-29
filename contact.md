@@ -13,10 +13,21 @@ Hello there! I'm glad you're interested in reaching out. I help startups and ent
 
 If you have an ambitious project in mind and a reasonable budget, I'd love to discuss how I can help bring your vision to life.
 
-## Book an appointment
-
-
-- [Schedule a Call](https://cal.com/yoosuf)
-- [E-mail Me](mailto:mayoosuf@gmail.com)
-- [Reach me on Twitter](https://twitter.com/aitchdei)
-- [Reach me on LinkedIn](https://linkedin.com/in/yoosufmo)
+<div class="contact-links">
+  <a href="https://cal.com/yoosuf" class="contact-button" target="_blank" rel="noopener">
+    <span class="contact-button-icon">📅</span>
+    Schedule a Call
+  </a>
+  <a href="mailto:mayoosuf@gmail.com" class="contact-button contact-button--secondary">
+    <span class="contact-button-icon">✉️</span>
+    Email Me
+  </a>
+  <a href="https://twitter.com/aitchdei" class="contact-button contact-button--secondary" target="_blank" rel="noopener">
+    <span class="contact-button-icon">🐦</span>
+    Reach me on Twitter
+  </a>
+  <a href="https://linkedin.com/in/yoosufmo" class="contact-button contact-button--secondary" target="_blank" rel="noopener">
+    <span class="contact-button-icon">💼</span>
+    Reach me on LinkedIn
+  </a>
+</div>

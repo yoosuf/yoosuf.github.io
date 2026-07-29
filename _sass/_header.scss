@@ -192,6 +192,11 @@ $background-color_6: var(--color-darkgrey);
 	a {
 		text-decoration: none;
 	}
+	a:focus-visible,
+	button:focus-visible {
+		outline: 2px solid currentColor;
+		outline-offset: 3px;
+	}
 }
 :is(.home-template) {
 	position: absolute;

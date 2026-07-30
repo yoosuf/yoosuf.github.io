@@ -6,6 +6,9 @@ excerpt: ""
 layout: post
 permalink: /blog/chatgpt-daily-life
 published: true
+description: "How ChatGPT helps Yoosuf Mohamed in day-to-day life, from quick research to everyday problem solving."
+categories: ["AI & Tech"]
+tags: ["ChatGPT", "AI Tools", "Productivity", "Artificial Intelligence"]
 ---
 
 In today's digital age, the ability to communicate effectively and craft compelling content is more important than ever. As a writer, marketer, and programmer, I've always sought tools and techniques to enhance my skills and streamline my workflow. Recently, I discovered the power of Chat GPT, an AI language model developed by OpenAI. In this article, I will share my personal experience of how Chat GPT has transformed my content writing, email composition, and coding abilities. By leveraging this innovative tool, I've achieved remarkable improvements in efficiency, creativity, and overall quality.

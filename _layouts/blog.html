@@ -14,9 +14,21 @@ layout: default
     <div class="jekyll-content jekyll-canvas">
       <div class="post-feed">
         {% for post in site.posts %}
-        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+        {% assign date_format = site.minima.date_format | default: "%-d %b, %Y" %}
         <div class="post-card">
-          <span class="post-card-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time></span>
+          {% if post.categories.size > 0 %}
+          <ul class="chip-list" aria-label="Categories">
+            {% for category in post.categories %}
+            <li class="chip">{{ category }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          <span class="post-card-meta">
+            <span>
+              <svg class="byline-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time>
+            </span>
+          </span>
           <h3 class="post-card-title">
             <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a>
           </h3>

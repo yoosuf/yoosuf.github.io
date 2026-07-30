@@ -7,6 +7,9 @@ excerpt: ""
 layout: post
 permalink: /blog/respect-people-with-less-power-than-you/
 published: true
+description: "Why treating people with less power than you with respect is a real test of character and leadership."
+categories: ["Personal"]
+tags: ["Leadership", "Respect", "Personal Values"]
 ---
 
 http://www.youtube.com/watch?v=yoEezZD71sc

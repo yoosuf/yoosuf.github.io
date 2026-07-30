@@ -297,6 +297,11 @@
 				color: var(--jekyll-accent-color);
 				opacity: 1;
 			}
+			&[aria-current="page"] {
+				color: var(--jekyll-accent-color);
+				font-weight: 700;
+				background: rgba(59, 130, 246, 0.08);
+			}
 		}
 	}
 	.nav-more-toggle {
@@ -429,45 +434,45 @@
 .jekyll-burger {
 	position: relative;
 	display: none;
-	width: 30px;
-	height: 30px;
+	width: 44px;
+	height: 44px;
 	padding: 0;
-	margin-right: -3px;
+	margin-right: -10px;
 	cursor: pointer;
 	background-color: transparent;
 	border: 0;
 	appearance: none;
 	&::before {
 		position: absolute;
-		left: 3px;
+		left: 10px;
 		width: 24px;
 		height: 2px;
 		content: "";
 		background-color: var(--color-darkgrey);
 		border-radius: 2px;
 		transition: all 0.2s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
-		top: 11px;
+		top: 18px;
 	}
 	&::after {
 		position: absolute;
-		left: 3px;
+		left: 10px;
 		width: 24px;
 		height: 2px;
 		content: "";
 		background-color: var(--color-darkgrey);
 		border-radius: 2px;
 		transition: all 0.2s cubic-bezier(0.04, 0.04, 0.12, 0.96) 0.1008s;
-		bottom: 11px;
+		bottom: 18px;
 	}
 }
 .jekyll-head-open {
 	.jekyll-burger {
 		&::before {
-			top: 15px;
+			top: 21px;
 			transform: rotate(45deg);
 		}
 		&::after {
-			bottom: 14px;
+			bottom: 21px;
 			transform: rotate(-45deg);
 		}
 	}
@@ -614,6 +619,7 @@
 		}
 		.jekyll-head-menu {
 			position: fixed;
+			inset: 0;
 			justify-content: center;
 			visibility: hidden;
 			opacity: 0;
@@ -623,6 +629,7 @@
 		}
 		.jekyll-head-actions {
 			position: fixed;
+			inset: 0;
 			justify-content: center;
 			visibility: hidden;
 			opacity: 0;

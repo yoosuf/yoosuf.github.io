@@ -7,6 +7,9 @@ excerpt: ""
 layout: post
 permalink: /blog/yoosuf-iphone-photography/
 published: true
+description: "A collection of iPhone photography by Yoosuf Mohamed, capturing everyday moments and scenes."
+categories: ["Photography"]
+tags: ["iPhone Photography", "Photo Collection", "Mobile Photography"]
 ---
 
 After becoming a iPhone user I've been capturing photographs very often, random pictures and more often various type pictures, iPhone has been a great tool to capture photographs for me and here are some of the best photographs I am sharing. I believe you will love it.

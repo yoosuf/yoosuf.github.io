@@ -7,6 +7,9 @@ excerpt: ""
 layout: post
 permalink: /blog/wordpress-how-to-trigger-the-post-publish-event/
 published: true
+description: "How to hook into and trigger the WordPress post-publish event for custom automation."
+categories: ["Engineering"]
+tags: ["WordPress", "WordPress Hooks", "PHP", "Automation"]
 ---
 
 These days I am working with a News publishing App and I am involved with the Back-end API of it. Since now we are very last stage of the development we started adding the push notifications for the App, hence I had to come up with a solution when a WordPress post published then and there to trigger and event to send push notifications for the Android and iOS devices. Then while experimenting WordPress functions I came up with this solution, which is very handy and I believe it will be useful for anyone wants carry out features as such.

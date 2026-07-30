@@ -7,6 +7,9 @@ excerpt: ""
 layout: post
 permalink: /blog/a-better-way-to-show-wordpress-database-errors/
 published: true
+description: "A cleaner approach to displaying WordPress database errors for easier debugging during development."
+categories: ["Engineering"]
+tags: ["WordPress", "Debugging", "PHP", "Database Errors"]
 ---
 
 If you visit this website often, you may see some downtime issues (due to the Amazon Cloud server issues). and so many times i felt terrible with that message and finally thought of overriding the WordPress Database Error message and give a better look and feel for the user. to achieve this I followed a <a href="http://digwp.com/2009/11/custom-database-error-page/">blog post</a> of <a title="@perishable" href="http://twitter.com/perishable">Jeff Starr</a> and luckily it worked.

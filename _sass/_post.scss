@@ -10,6 +10,11 @@
 		}
 	}
 }
+.post-card {
+	.chip-list {
+		margin-bottom: 8px;
+	}
+}
 :is(.tag-template) {
 	margin-top: 4%;
 	margin-top: 6px;

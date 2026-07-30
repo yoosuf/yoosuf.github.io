@@ -6,6 +6,9 @@ excerpt: ""
 layout: post
 permalink: /blog/become-a-reactjs-expert
 published: true
+description: "A practical guide to leveling up in React, from core concepts to becoming a confident, expert-level developer."
+categories: ["Engineering"]
+tags: ["React", "ReactJS", "JavaScript", "Frontend Development"]
 ---
 
 Becoming a React expert requires time, practice, and a strong dedication to learning. Here are some steps you can follow to enhance your React skills and become an expert:

@@ -21,7 +21,7 @@ Tea bags are a staple in many households, but they may not be the healthiest or 
 
 ### Lower quality tea leaves
 
-Tea bags are often made from lower quality tea leaves than loose leaf tea. This is because the tea leaves used in tea bags are often broken, crushed, or dust. These lower quality tea leaves do not have the same flavor or health benefits as whole leaf tea.
+Tea bags are often made from lower-quality tea leaves than loose leaf tea, because the leaves used in tea bags tend to be broken, crushed, or reduced to dust. These lower-quality leaves don't offer the same flavor or health benefits as whole leaf tea.
 
 ### Microplastics
 
@@ -31,7 +31,7 @@ Tea bags can release microplastics and other harmful chemicals into your tea. Mi
 
 Tea bags are not as sustainable as loose leaf tea. This is because tea bags are typically made from plastic, which is a non-renewable resource. Loose leaf tea, on the other hand, can be stored in a reusable container and brewed multiple times. This makes loose leaf tea a more sustainable option.
 
-If you are looking for a healthier and more sustainable way to enjoy a cup of tea, I recommend switching to loose leaf tea. Loose leaf tea is made from higher quality tea leaves, does not release microplastics, and is more sustainable than tea bags.
+If you're looking for a healthier and more sustainable way to enjoy a cup of tea, I'd recommend switching to loose leaf. It's made from higher-quality leaves, doesn't shed microplastics, and is the more sustainable choice.
 
 Here are some of the benefits of buying loose tea:
 

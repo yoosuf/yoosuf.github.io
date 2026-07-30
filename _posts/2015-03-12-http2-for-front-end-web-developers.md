@@ -12,4 +12,4 @@ categories: ["Engineering"]
 tags: ["HTTP/2", "Web Performance", "Frontend", "Networking"]
 ---
 
-HTTP2 will mean a change in how we should build websites. The best practices of HTTP1 are harmful in a HTTP2 world. [Read more](https://mattwilcox.net/web-development/http2-for-front-end-web-developers)
+HTTP/2 means a real change in how we should build websites — many of the best practices from the HTTP/1 world actually work against you in an HTTP/2 world. [Read more](https://mattwilcox.net/web-development/http2-for-front-end-web-developers)

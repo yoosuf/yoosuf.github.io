@@ -14,7 +14,7 @@ tags: ["Leadership", "Respect", "Personal Values"]
 
 http://www.youtube.com/watch?v=yoEezZD71sc
 
-An inspirational speech by Tim Minchin
+An inspirational speech by Tim Minchin
 
 1. You don't have to have a dream.
 2. Don't seek happiness.
@@ -26,4 +26,4 @@ An inspirational speech by Tim Minchin
 8. Respect people with less power than you.
 9. Don't rush.
 
-I found them as an amazing tips, and believe it will help you too.
+I found these to be amazing tips, and I believe they'll help you too.

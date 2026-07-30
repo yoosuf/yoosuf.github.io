@@ -12,4 +12,4 @@ categories: ["Personal"]
 tags: ["Sri Lanka", "Personal Life", "Relocation"]
 ---
 
-I visited the UK to do the MSc and to get a better future. Meantime the immigration rules has been changed and many other restrictions brought to international students. Hence with little disappointment I am moving back to Sri Lanka. Let's see what is going to happen. Additionally I am planing to set up a small team in Sri Lanka, with my experience and ability looking forward to carry on with my passion, "Making things". Probably looking forward to come back to the United Kingdom very soon. Wish me luck.
+I came to the UK to do my MSc and build a better future. In the meantime, the immigration rules changed, bringing many new restrictions for international students. So, with a little disappointment, I'm moving back to Sri Lanka. Let's see what happens next. I'm also planning to set up a small team there, where I hope to put my experience and ability to work and keep pursuing my passion: making things. I'm hoping to return to the United Kingdom before too long. Wish me luck.

@@ -12,4 +12,4 @@ categories: ["Engineering"]
 tags: ["Ruby on Rails", "Rails Application Composer", "Scaffolding", "Ruby"]
 ---
 
-Recently I came across the [Ruby on Rails application templates](https://github.com/RailsApps) (Rails Composer), if you want to quick start the application development  the Rails Composer gives wide range of options. so far I've used it in my local development environment,  but I will consider using it in the future.
+Recently I came across [Ruby on Rails application templates](https://github.com/RailsApps) (Rails Composer). If you want to quick-start application development, Rails Composer offers a wide range of options. So far I've only used it in my local development environment, but I'll consider using it more broadly in the future.

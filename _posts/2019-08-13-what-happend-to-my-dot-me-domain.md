@@ -11,8 +11,8 @@ categories: ["Personal"]
 tags: ["Domain Names", ".me Domain", "Web Hosting"]
 ---
 
-Recently I lost access towards my .me domain, due to a card issue and simply GoDaddy perhaps has made an opportunity with that domain to do auctioning to make more money?
+Recently I lost access to my .me domain because of a card issue, and it seems GoDaddy may have seen an opportunity to auction it off and make some extra money.
 
-My previous .me domain was seven years old, which was very personal and was used to host exact same content via .me as that was the domain used by several others to host their personal blog or a portfolio.
+My old .me domain was seven years old and very personal to me. Like many others, I used it to host my personal blog and portfolio.
 
-I believe probably GoDaddy is trying to make out of old domains to make quick bucks, but not sure what they will going to do with my .me domain :)
+I suspect GoDaddy is trying to squeeze quick money out of aging domains, though I'm not sure exactly what they'll do with mine now :)

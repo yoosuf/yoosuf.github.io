@@ -12,7 +12,7 @@ categories: ["Photography"]
 tags: ["iPhone Photography", "Mobile Photography", "Photography Tips"]
 ---
 
-To do some things, you need to be sounded by some great people, after a long time, got a chance to use the iPhone to capture some great photos (BTW I am not new to the iPhone 5). This time I am using the iPhone 5. I am seeing lots of enhancement in the phone's camera and it works pretty faster than earlier version of iPhones. If you are not an iPhone user, you should give it a shot (at least go to an Apple Store to experience it ;) ) have a look and leave your comments and share your love in Facebook, twitter and wherever it's possible to share. Additionally you can view [my prvious iPhone photography](http://yoosuf.co/blog/yoosuf-iphone-photography) post.
+After a long while, I finally got the chance to capture some great photos on the iPhone 5. I'm noticing a lot of improvements in the camera, and it's noticeably faster than earlier iPhone models. If you're not an iPhone user, I'd encourage you to give it a shot — at the very least, visit an Apple Store to try it out. Have a look at the photos below, leave a comment, and share the love on Facebook, Twitter, or wherever else you like to share. You can also check out [my previous iPhone photography](https://yoosuf.me/blog/yoosuf-iphone-photography) post.
 
 ![Galleface - a sunset view, Photos by Yoosuf Mo](http://s3.amazonaws.com/yoosuf.me/wp-content/uploads/2013/06/20130620-211548-1024x768.jpg)
 
@@ -26,4 +26,4 @@ To do some things, you need to be sounded by some great people, after a long tim
 
 ![Kids stuff at Galleface, Photos by Yoosuf Mo](http://s3.amazonaws.com/yoosuf.me/wp-content/uploads/2013/06/20130620-211444-1024x768.jpg)
 
-[^​1]: All above photos were captured with iPhone 5
+[^​1]: All photos above were captured with the iPhone 5.

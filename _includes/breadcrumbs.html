@@ -1,0 +1,55 @@
+{% comment %}
+  Renders a visible breadcrumb trail plus a matching BreadcrumbList JSON-LD block.
+  Expects `page` in scope. Trail is: Home > [Blog >] Current.
+{% endcomment %}
+{%- assign crumbs = "" | split: "" -%}
+{%- assign home_crumb = "Home|" | append: site.url | append: "/" -%}
+{%- assign crumbs = crumbs | push: home_crumb -%}
+
+{%- if page.collection == "posts" -%}
+  {%- assign blog_crumb = "Blog|" | append: site.url | append: "/blog/" -%}
+  {%- assign crumbs = crumbs | push: blog_crumb -%}
+  {%- assign crumbs = crumbs | push: page.title -%}
+{%- elsif page.url == "/blog/" -%}
+  {%- assign current_title = page.title | default: "Blog" -%}
+  {%- assign crumbs = crumbs | push: current_title -%}
+{%- else -%}
+  {%- assign crumbs = crumbs | push: page.title -%}
+{%- endif -%}
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    {%- for crumb in crumbs -%}
+    {%- assign parts = crumb | split: "|" -%}
+    {%- assign label = parts[0] -%}
+    {%- assign crumb_url = parts[1] -%}
+    <li class="breadcrumb-item">
+      {%- if crumb_url -%}
+      <a href="{{ crumb_url }}">{{ label }}</a>
+      {%- else -%}
+      <span aria-current="page">{{ label }}</span>
+      {%- endif %}
+    </li>
+    {%- endfor %}
+  </ol>
+</nav>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {%- for crumb in crumbs -%}
+      {%- assign parts = crumb | split: "|" -%}
+      {%- assign label = parts[0] -%}
+      {%- assign crumb_url = parts[1] -%}
+      {
+        "@type": "ListItem",
+        "position": {{ forloop.index }},
+        "name": {{ label | jsonify }}{% if crumb_url %},
+        "item": {{ crumb_url | jsonify }}{% endif %}
+      }{% unless forloop.last %},{% endunless %}
+      {%- endfor %}
+    ]
+  }
+</script>

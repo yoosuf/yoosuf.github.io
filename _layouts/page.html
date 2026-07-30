@@ -3,7 +3,9 @@ layout: default
 ---
 
 <article class="article">
-  {% include breadcrumbs.html %}
+  <div class="jekyll-canvas">
+    {% include breadcrumbs.html %}
+  </div>
   {% if page.title %}
   <header class="article-header jekyll-canvas">
     <h1 class="article-title">{{ page.title | escape }}</h1>

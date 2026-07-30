@@ -3,8 +3,8 @@ layout: default
 ---
 
 <article class="article post">
-  {% include breadcrumbs.html %}
   <header class="article-header jekyll-canvas">
+    {% include breadcrumbs.html %}
     {% if page.categories.size > 0 %}
     <ul class="chip-list" aria-label="Categories">
       {% for category in page.categories %}

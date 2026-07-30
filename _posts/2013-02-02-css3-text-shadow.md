@@ -7,6 +7,9 @@ excerpt: ""
 layout: post
 permalink: /blog/css3-text-shadow/
 published: true
+description: "A practical look at the CSS3 text-shadow property and how to use it to add depth to web typography."
+categories: ["Engineering"]
+tags: ["CSS3", "Text Shadow", "Web Design", "Frontend"]
 ---
 
 Recently I got an opportunity to work with a Game startup company's website and they wanted a modern website with all the modern fancy features. I decided to use as much as the CSS3 and jQuery interactions for it, as part of it I did  searched for creative CSS3 Text-shadow effects to make the website typography more cleaner and readable. Following are some of the experiments I came across the Internet, I am publishing them as Fiddles. play around with it and share yours.

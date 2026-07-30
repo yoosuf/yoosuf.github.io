@@ -7,6 +7,9 @@ excerpt: ""
 layout: post
 permalink: /blog/good-product-manager-bad-product-manager/
 published: true
+description: "Notes and insights on what separates a good product manager from a bad one."
+categories: ["Personal"]
+tags: ["Product Management", "Leadership", "Career"]
 ---
 
 Good product managers know the market, the product, the product line and the competition extremely well and operate from a strong basis of knowledge and confidence. A good product manager is the CEO of the product. Good product managers take full responsibility and measure themselves in terms of the success of the product. They are responsible for right product/right time and all that entails. A good product manager knows the context going in (the company, our revenue funding, competition, etc.), and they take responsibility for devising and executing a winning plan (no excuses).

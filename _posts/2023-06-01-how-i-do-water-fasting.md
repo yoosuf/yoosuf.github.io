@@ -7,6 +7,8 @@ excerpt: ""
 layout: post
 permalink: /blog/how-to-water-fasting
 published: true
+categories: ["Personal"]
+tags: ["Water Fasting", "Health", "Fasting Guide"]
 ---
 
 There are many different ways to do water fasting. Some people choose to fast for a specific number of days, while others fast until they reach a certain weight goal. There is no right or wrong way to do water fasting, as long as you are safe and comfortable.

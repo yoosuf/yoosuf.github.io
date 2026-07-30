@@ -3,17 +3,18 @@ locale: en_US
 default_color: auto
 
 title: Yoosuf Mohamed
+author: Yoosuf Mohamed
 email: mayoosuf@gmail.com
 description: >
   Helping startups and enterprises build AI automation and AI-first products that scale. Systems Architect specializing in LLM, RAG, Go, Elixir, FastAPI, Node, NestJS, NextJS, ReactJS, and Flutter.
 baseurl: ""
 url: "https://yoosuf.me"
-twitter_username: aitchdie
+twitter_username: aitchdei
 github_username: yoosuf
 
 twitter:
   username: aitchdei
-  card: summary
+  card: summary_large_image
 
 social:
   name: Yoosuf Mohamed
@@ -27,6 +28,12 @@ social:
 
 logo: /assets/images/yoosuf.jpg
 image: /assets/images/yoosuf.jpg
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/images/yoosuf.jpg
 
 webmaster_verifications:
   google:

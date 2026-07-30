@@ -7,6 +7,9 @@ excerpt: ""
 layout: post
 permalink: /blog/component-based-architectures-ruby-rails/
 published: true
+description: "An overview of component-based architecture patterns for building maintainable Ruby on Rails applications."
+categories: ["Engineering"]
+tags: ["Ruby on Rails", "Component Architecture", "Software Architecture", "Ruby"]
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-54SDanDC00" frameborder="0" allowfullscreen></iframe>

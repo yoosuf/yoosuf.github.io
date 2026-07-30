@@ -7,6 +7,9 @@ excerpt: ""
 layout: post
 permalink: /blog/menus-navigation-handlers-in-mobile/
 published: true
+description: "A look at common menu and navigation patterns for mobile web and app interfaces."
+categories: ["Engineering"]
+tags: ["Mobile UX", "Navigation Patterns", "Mobile Web", "UI Design"]
 ---
 
 Navigation / Menu handlers are the important element when it comes to the mobile apps and mobile websites.  following is the study i went trough my latest iPhone and I came to a conclusion. here is the un standardized navigation handler among the apps.

@@ -7,6 +7,9 @@ excerpt: ""
 layout: post
 permalink: /blog/photography-my-second-passion/
 published: true
+description: "Yoosuf Mohamed on photography as a second passion alongside software engineering, with sample shots."
+categories: ["Photography"]
+tags: ["Photography", "Personal Passion", "Sri Lanka"]
 ---
 
 It's being a year or so, I am playing around with a semi professional DSLR (Nikon D7000) Camera and exploring the photography and learning new way to capture photographs each day. The photography has become actually my second passion after my work what I do. Each time when I learn and get great shots I do really enjoy and getting great positive feedback from my friends and family.

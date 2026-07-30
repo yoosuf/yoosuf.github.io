@@ -7,6 +7,9 @@ excerpt: ""
 layout: post
 permalink: /blog/performance-checklist-for-the-mobile-web/
 published: true
+description: "A practical checklist for improving performance on the mobile web, from asset loading to rendering."
+categories: ["Engineering"]
+tags: ["Mobile Web", "Performance", "Web Optimization", "Frontend"]
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/0UNWi7FA36M" frameborder="0" allowfullscreen></iframe>

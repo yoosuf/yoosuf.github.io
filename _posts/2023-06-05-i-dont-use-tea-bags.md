@@ -12,6 +12,9 @@ excerpt: ""
 layout: post
 permalink: /blog/i-dont-use-tea-bags
 published: true
+description: "Why loose-leaf tea beats tea bags: better quality leaves, no microplastics, and a more sustainable cup of tea."
+categories: ["Personal"]
+tags: ["Tea", "Loose Leaf Tea", "Sustainability"]
 ---
 
 Tea bags are a staple in many households, but they may not be the healthiest or most sustainable option. Here are some reasons why you might want to avoid tea bags and switch to loose leaf tea instead:

@@ -74,27 +74,49 @@
 
 @media (max-width: 767px) {
 	.hero {
-		padding: 40px 0 40px;
+		padding: 24px 0 32px;
 	}
 
-	.hero-name,
 	.hero-greeting,
+	.hero-name,
 	.hero-role {
-		font-size: 2rem;
+		font-size: clamp(2.4rem, 8vw, 3.4rem);
+	}
+
+	.hero-greeting {
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--color-midgrey);
 	}
 
 	.hero-tagline {
-		gap: 0.2em;
-		margin-bottom: 16px;
+		row-gap: 4px;
+		column-gap: 0.3em;
+		margin-bottom: 20px;
 	}
 
 	.hero-description {
 		font-size: 1.7rem;
+		line-height: 1.6;
 		max-width: 100%;
 	}
 
+	.hero-action {
+		margin-top: 24px;
+	}
+
 	.hero-action a {
-		font-size: 1.5rem;
-		padding: 12px 24px;
+		display: inline-block;
+		font-size: 1.6rem;
+		padding: 10px 0;
+	}
+
+	.section {
+		margin-top: 32px;
+	}
+
+	.section-title {
+		margin-bottom: 16px;
+		font-size: 2.2rem;
 	}
 }

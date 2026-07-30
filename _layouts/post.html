@@ -4,6 +4,13 @@ layout: default
 
 <article class="article post">
   <header class="article-header jekyll-canvas">
+    {% if page.categories.size > 0 %}
+    <ul class="chip-list" aria-label="Categories">
+      {% for category in page.categories %}
+      <li class="chip">{{ category }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
     <h1 class="article-title" itemprop="name headline">
       {{ page.title | escape }}
     </h1>
@@ -40,4 +47,13 @@ layout: default
     </p>
     {% endif %} {{ content }}
   </section>
+  {% if page.tags.size > 0 %}
+  <footer class="article-tags jekyll-canvas">
+    <ul class="chip-list" aria-label="Tags">
+      {% for tag in page.tags %}
+      <li class="chip chip-tag" itemprop="keywords">{{ tag }}</li>
+      {% endfor %}
+    </ul>
+  </footer>
+  {% endif %}
 </article>

@@ -7,6 +7,9 @@ excerpt: ""
 layout: post
 permalink: /blog/now-i-am-on-github-as-yoosuf/
 published: true
+description: "A quick note on joining GitHub under the username Yoosuf and starting to share code publicly."
+categories: ["Personal"]
+tags: ["GitHub", "Open Source", "Developer Life"]
 ---
 
 ![Github](https://assets-cdn.github.com/images/modules/open_graph/github-mark.png)

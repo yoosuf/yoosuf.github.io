@@ -6,6 +6,9 @@ excerpt: ""
 layout: post
 permalink: /blog/24-hours-water-fasting
 published: true
+description: "Why Yoosuf Mohamed practises 24-hour water fasting two days a week, and the effects he's noticed."
+categories: ["Personal"]
+tags: ["Intermittent Fasting", "Water Fasting", "Health"]
 ---
 
 Fasting has been practiced for centuries for its many health benefits. In recent years, there has been a growing interest in intermittent fasting, a type of fasting that involves alternating periods of eating and fasting. One popular form of intermittent fasting is 24-hour water fasting 2 days a week.

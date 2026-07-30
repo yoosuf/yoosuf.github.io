@@ -6,6 +6,9 @@ excerpt: ""
 layout: post
 permalink: /blog/what-happened-to-my-dot-me-domain
 published: true
+description: "The story of what happened to Yoosuf Mohamed's .me domain and the lessons learned about domain management."
+categories: ["Personal"]
+tags: ["Domain Names", ".me Domain", "Web Hosting"]
 ---
 
 Recently I lost access towards my .me domain, due to a card issue and simply GoDaddy perhaps has made an opportunity with that domain to do auctioning to make more money?

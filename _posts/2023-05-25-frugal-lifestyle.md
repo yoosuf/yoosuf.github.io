@@ -6,6 +6,9 @@ excerpt: ""
 layout: post
 permalink: /blog/frugal-lifestyle
 published: true
+description: "How Yoosuf Mohamed managed a full year by living a deliberately frugal lifestyle, and what he learned."
+categories: ["Personal"]
+tags: ["Frugal Living", "Personal Finance", "Minimalism"]
 ---
 
 I've always been a bit of a frugal person, but I decided to take it to the next level in 2022. I was inspired by Dave Ramsey's book, The Total Money Makeover, and I wanted to see if I could live on a budget and still enjoy my life.

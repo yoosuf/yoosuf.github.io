@@ -7,6 +7,9 @@ excerpt: ""
 layout: post
 permalink: /blog/beaufort-house-chelsea-redesign/
 published: true
+description: "A case study on redesigning the Beaufort House Chelsea website."
+categories: ["Personal"]
+tags: ["Web Design", "Redesign", "Case Study"]
 ---
 
 Recently got a chance to work with a UK based restaurant website. Which was came to me via [AVM, London](http://animalvegetablemineral.tv/?utm_source=yoosuf.me&utm_medium=beaufort_house_chelsea&utm_campaign=work) a UK based Content Development Agency based in London.

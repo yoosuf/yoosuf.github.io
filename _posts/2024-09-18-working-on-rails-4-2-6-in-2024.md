@@ -6,6 +6,9 @@ excerpt: ""
 layout: post
 permalink: /blog/setting-up-legacy-rails-project-in-2024
 published: true
+description: "How to set up and run a legacy Rails 4.2.6 project in 2024 using Docker to isolate outdated dependencies."
+categories: ["Engineering"]
+tags: ["Ruby on Rails", "Docker", "Legacy Systems", "DevOps"]
 ---
 
 Working on a legacy Rails 4.2.6 project in 2024 can be challenging due to outdated dependencies and potential compatibility issues. Setting up the environment with Docker is a good approach, as it can help isolate dependencies and ensure consistency across development environments. Here's how you can proceed:

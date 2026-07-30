@@ -14,4 +14,4 @@ tags: ["Mobile Web", "Performance", "Web Optimization", "Frontend"]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/0UNWi7FA36M" frameborder="0" allowfullscreen></iframe>
 
-Colt McAnlis [(@duhroach](https://twitter.com/duhroach)), a developer advocate at Google, talks that web performance is more than just how fast a page loads. It is also the experience a user has while using your apps.
+Colt McAnlis [(@duhroach](https://twitter.com/duhroach)), a developer advocate at Google, makes the point that web performance is about more than how fast a page loads — it's also about the experience a user has while using your app.

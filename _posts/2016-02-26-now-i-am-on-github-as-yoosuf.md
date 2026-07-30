@@ -14,6 +14,6 @@ tags: ["GitHub", "Open Source", "Developer Life"]
 
 ![Github](https://assets-cdn.github.com/images/modules/open_graph/github-mark.png)
 
-Well, now it is 2016, I wanted to be on my name in this universe, so decided to claim name [Yoosuf](https://github.com/yoosuf) form Github yesterday, indeed which wasn't a hard process at all, Github has done the migration process so simple and yet redirects the projects to the new URL without even making me to worry about adding redirect URL's.
+Well, it's 2016 now, and I wanted my own name to be mine across the internet, so yesterday I decided to claim [Yoosuf](https://github.com/yoosuf) on GitHub. It really wasn't a hard process at all — GitHub made the migration so simple that it redirects my old projects to the new URL without me having to worry about setting up redirects myself.
 
-Recently I tried to clam the username on twitter, and seems some one who is inactive has registered the name in 2009, and who hasn't even posted a single tweet (which is absolutely no sense at all).  I really wish the social media should release such accounts for new users.
+I also recently tried to claim the same username on Twitter, but it looks like someone inactive registered it back in 2009 and has never posted a single tweet since, which makes no sense to me at all. I really wish social media platforms would release accounts like that back to new users.

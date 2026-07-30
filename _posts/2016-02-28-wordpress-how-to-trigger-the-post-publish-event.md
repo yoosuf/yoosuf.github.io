@@ -12,12 +12,10 @@ categories: ["Engineering"]
 tags: ["WordPress", "WordPress Hooks", "PHP", "Automation"]
 ---
 
-These days I am working with a News publishing App and I am involved with the Back-end API of it. Since now we are very last stage of the development we started adding the push notifications for the App, hence I had to come up with a solution when a WordPress post published then and there to trigger and event to send push notifications for the Android and iOS devices. Then while experimenting WordPress functions I came up with this solution, which is very handy and I believe it will be useful for anyone wants carry out features as such.
+These days I'm working on a news publishing app, focused on its back-end API. Now that we're in the final stage of development, we've started adding push notifications, so I needed a way to trigger an event the moment a WordPress post is published, in order to send push notifications to Android and iOS devices. While experimenting with WordPress functions, I came up with this solution, which is handy, and I believe it'll be useful for anyone wanting to build a similar feature.
 
-BTW, If you think there are better way to handle this, please let me know. Always improvements are great for the apps which deals with million users right?
+By the way, if you know a better way to handle this, please let me know. Improvements are always welcome for apps dealing with millions of users, right?
 
 <script src="https://gist.github.com/yoosuf/3890f3789754afe65525.js"></script>
 
-Please find the gist from <a href="https://gist.github.com/yoosuf/3890f3789754afe65525">https://gist.github.com/yoosuf/3890f3789754afe65525</a>
-
-&nbsp;
+You can find the gist at <a href="https://gist.github.com/yoosuf/3890f3789754afe65525">https://gist.github.com/yoosuf/3890f3789754afe65525</a>.

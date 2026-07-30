@@ -12,6 +12,6 @@ categories: ["Engineering"]
 tags: ["WordPress", "WordPress Plugin", "PHP"]
 ---
 
-Whenever WordPress post is created I just wanted to send the information to a different service, which is totally in a different server. I tried several things and came up with this simple solution. Try and play around with it, if you find any issues please do let me know.
+Whenever a WordPress post is created, I wanted to send that information to a separate service running on a different server. I tried several approaches and landed on this simple solution. Try it out and play around with it, and if you run into any issues, please let me know.
 
 <script src="https://gist.github.com/yoosuf/991e4165c51ba0eb6a6e.js"></script>

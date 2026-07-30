@@ -21,7 +21,7 @@ On the day of your fast, you should start by drinking plenty of water. You shoul
 
 During your fast, it is important to listen to your body. If you start to feel lightheaded, dizzy, or nauseous, you should break your fast. You should also break your fast if you have any medical problems.
 
-Once you have completed your fast, it is important to slowly reintroduce food into your diet. This will help to prevent your body from going into shock. You should start by eating small, healthy meals. You should also avoid eating processed foods and any drinks that contain sugary.
+Once you have completed your fast, it is important to slowly reintroduce food into your diet. This will help to prevent your body from going into shock. You should start by eating small, healthy meals. You should also avoid processed foods and any drinks that contain sugar.
 
 Water fasting can be a great way to improve your health. However, it is important to do it safely and under the supervision of a doctor. If you are considering water fasting, talk to your doctor first to make sure that it is right for you.
 
@@ -30,9 +30,9 @@ Water fasting can be a great way to improve your health. However, it is importan
 In addition to water, there are a few other liquids that I consume during water fasting. These include:
 
 - Unsweetened tea
-- Unsweetened coffee (Black Coffee)
-- before in taking Water, having a pinch of salt (if you got any chronic disease, would not recommend this)
-- Lemon/Lime water
+- Unsweetened coffee (black coffee)
+- Water with a pinch of salt added before drinking (not recommended if you have any chronic health condition)
+- Lemon or lime water
 - Herbal tea
 - Green tea
 

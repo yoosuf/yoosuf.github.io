@@ -14,4 +14,4 @@ tags: ["Entrepreneurship", "Small Business", "Money"]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/aMIESSL6W60" frameborder="0" allowfullscreen></iframe>
 
-The great stuff should be shared, and i found this video as a great and informative about starting a business with small amount of money, to start a right business you should get right advisor to find out your potential.
+Good stuff is worth sharing, and I found this video to be a great, informative watch on starting a business with a small amount of money. To start the right business, you need the right advisor to help you find your potential.

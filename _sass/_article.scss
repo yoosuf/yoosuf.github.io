@@ -550,7 +550,7 @@ iframe.instagram-media {
 	font-size: 1.4rem;
 	line-height: 1.2em;
 	.author-name {
-		margin: 0 0 6px;
+		margin: 0;
 		font-size: 1.7rem;
 		font-weight: 700;
 		letter-spacing: 0;
@@ -559,6 +559,13 @@ iframe.instagram-media {
 		display: inline-block;
 		margin: 0 2px;
 	}
+}
+.byline-meta-date {
+	display: block;
+	margin-top: 2px;
+	font-size: 1.3rem;
+	font-weight: 400;
+	color: var(--color-midgrey);
 }
 .author-avatar {
 	display: block;
@@ -675,7 +682,7 @@ iframe.instagram-media {
 	}
 	.article-byline-meta {
 		.author-name {
-			margin-bottom: 4px;
+			margin-bottom: 2px;
 		}
 	}
 }

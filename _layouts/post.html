@@ -17,46 +17,34 @@ layout: default
     </h1>
     <div class="article-byline">
       <div class="article-byline-content">
-        <img
-          class="article-byline-avatar"
-          src="{{ '/assets/images/yoosuf.jpg' | prepend: site.baseurl }}"
-          alt=""
-          width="48"
-          height="48"
-        />
-        <div class="article-byline-meta">
-          {% if page.author %}
-          <span
-            class="author-name"
-            itemprop="author"
-            itemscope
-            itemtype="https://schema.org/Person"
-          >
-            <span itemprop="name">{{ page.author }}</span>
-          </span>
-          {% endif %}
+        {% if page.author %}
+        <span
+          class="author-name"
+          itemprop="author"
+          itemscope
+          itemtype="https://schema.org/Person"
+        >
+          <svg class="byline-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span itemprop="name">{{ page.author }}</span>
+        </span>
+        {% endif %}
 
-          <time
-            class="byline-meta-date"
-            datetime="{{ page.date | date_to_xmlschema }}"
-            itemprop="datePublished"
-          >
-            {% assign date_format = site.minima.date_format | default: "%-d %b,
-            %Y" %} {{ page.date | date: date_format }}
-          </time>
-
-          <span class="byline-meta-reading">
-            {% include reading-time.html content=page.content %}
-          </span>
-        </div>
+        <time
+          class="byline-meta-date"
+          datetime="{{ page.date | date_to_xmlschema }}"
+          itemprop="datePublished"
+        >
+          <svg class="byline-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          {% assign date_format = site.minima.date_format | default: "%-d %b,
+          %Y" %} {{ page.date | date: date_format }}
+        </time>
       </div>
     </div>
   </header>
   <section class="jekyll-content jekyll-canvas">
-    {% assign article_subtitle = page.subTitle | default: page.subtitle %}
-    {% if article_subtitle %}
+    {% if page.subtitle %}
     <p id="page-subtitle" class="article-excerpt" itemprop="headline">
-      {{ article_subtitle }}
+      {{ page.subtitle }}
     </p>
     {% endif %} {{ content }}
   </section>

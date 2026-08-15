@@ -499,12 +499,6 @@ blockquote {
 	}
 }
 
-:is(a, button, summary, [tabindex]):focus-visible {
-	outline: 3px solid var(--jekyll-accent-color);
-	outline-offset: 3px;
-	border-radius: 2px;
-}
-
 @media (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;
@@ -517,8 +511,4 @@ blockquote {
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
 	}
-}
-
-[id] {
-	scroll-margin-top: 92px;
 }

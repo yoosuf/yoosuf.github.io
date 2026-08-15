@@ -1,0 +1,74 @@
+- name: "Architecture & Technical Consulting"
+  price: "$500"
+  description: "Architecture reviews, system design, technical strategy, performance analysis, technology decisions, and technical roadmaps."
+  includes:
+    - "Architecture review"
+    - "Technical recommendations"
+    - "System design"
+    - "Technology evaluation"
+    - "Technical roadmap"
+  duration: "1–5 days"
+  cta: "Discuss Architecture"
+  recommended: false
+
+- name: "Architecture & Performance Audit"
+  price: "$1,500"
+  description: "A deep technical assessment of an existing application to identify architectural, performance, scalability, security, and infrastructure issues."
+  includes:
+    - "Application architecture review"
+    - "Backend/API assessment"
+    - "Database analysis"
+    - "Frontend performance review"
+    - "Infrastructure review"
+    - "Scalability assessment"
+    - "Prioritized remediation roadmap"
+  duration: "1–2 weeks"
+  cta: "Request an Audit"
+  recommended: false
+
+- name: "AI Integration"
+  price: "$2,500"
+  description: "Add practical AI capabilities to an existing product without introducing unnecessary complexity."
+  includes:
+    - "LLM integration"
+    - "AI assistants"
+    - "RAG"
+    - "Document intelligence"
+    - "AI-powered search"
+    - "Workflow automation"
+    - "AI architecture"
+  duration: "2–6 weeks"
+  cta: "Discuss an AI Project"
+  recommended: false
+
+- name: "Product Development"
+  price: "$5,000"
+  description: "Build, modernize, or extend production software from architecture through deployment."
+  includes:
+    - "Technical discovery"
+    - "Architecture"
+    - "Backend development"
+    - "Frontend development"
+    - "API development"
+    - "Cloud infrastructure"
+    - "CI/CD"
+    - "Production deployment"
+  duration: "4–12+ weeks"
+  cta: "Start a Project"
+  recommended: true
+
+- name: "Fractional Tech Lead"
+  price: "$3,000"
+  price_unit: "/month"
+  description: "Ongoing technical leadership for startups and growing engineering teams that need senior technical direction without hiring a full-time CTO or engineering lead."
+  includes:
+    - "Architecture decisions"
+    - "Technical roadmap"
+    - "Engineering standards"
+    - "Code/PR reviews"
+    - "Technical mentoring"
+    - "Infrastructure decisions"
+    - "Engineering process improvement"
+  duration: "Monthly"
+  cta: "Discuss Fractional Leadership"
+  recommended: false

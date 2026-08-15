@@ -19,7 +19,7 @@ layout: null
     {% if page.url == "/" %}
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
-    {% elsif page.url contains "/about" or page.url contains "/contact" %}
+    {% elsif page.url contains "/about" or page.url contains "/services" or page.url contains "/contact" %}
     <priority>0.8</priority>
     {% else %}
     <priority>0.5</priority>

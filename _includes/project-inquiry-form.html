@@ -1,0 +1,144 @@
+<form
+  id="project-inquiry-form"
+  class="project-inquiry"
+  action="mailto:mayoosuf@gmail.com"
+  method="post"
+  enctype="text/plain"
+>
+  <h3 class="project-inquiry-title">Project inquiry</h3>
+  <p class="project-inquiry-intro">
+    A few quick details help me understand your project and respond with
+    something useful. Nothing here is required, but the more you share, the
+    better the first reply.
+  </p>
+
+  <div class="project-inquiry-grid">
+    <div class="field">
+      <label class="field-label" for="inquiry-name"
+        >Name <span class="field-optional">(optional)</span></label
+      >
+      <input
+        class="field-input"
+        type="text"
+        id="inquiry-name"
+        name="name"
+        autocomplete="name"
+        placeholder="Your name"
+      />
+    </div>
+
+    <div class="field">
+      <label class="field-label" for="inquiry-email"
+        >Email <span class="field-optional">(optional)</span></label
+      >
+      <input
+        class="field-input"
+        type="email"
+        id="inquiry-email"
+        name="email"
+        autocomplete="email"
+        placeholder="you@company.com"
+      />
+    </div>
+
+    <div class="field">
+      <label class="field-label" for="inquiry-type">Project type</label>
+      <select class="field-input" id="inquiry-type" name="project_type">
+        <option value="">Select a project type</option>
+        <option>Product Development</option>
+        <option>SaaS Development</option>
+        <option>Architecture &amp; Consulting</option>
+        <option>Technical Audit</option>
+        <option>AI Integration</option>
+        <option>Fractional Tech Leadership</option>
+        <option>Legacy Modernization</option>
+        <option>Performance &amp; Scalability</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="field-label" for="inquiry-budget">Estimated budget</label>
+      <select class="field-input" id="inquiry-budget" name="budget">
+        <option value="">Select a budget range</option>
+        <option>Under $2,500</option>
+        <option>$2,500 &ndash; $5,000</option>
+        <option>$5,000 &ndash; $15,000</option>
+        <option>$15,000 &ndash; $50,000</option>
+        <option>$50,000+</option>
+        <option>Not sure yet</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="field-label" for="inquiry-timeline">Timeline</label>
+      <select class="field-input" id="inquiry-timeline" name="timeline">
+        <option value="">Select a timeline</option>
+        <option>ASAP</option>
+        <option>Within 1 month</option>
+        <option>1&ndash;3 months</option>
+        <option>3&ndash;6 months</option>
+        <option>Flexible</option>
+      </select>
+    </div>
+
+    <div class="field field-full">
+      <label class="field-label" for="inquiry-description"
+        >Project description</label
+      >
+      <textarea
+        class="field-input"
+        id="inquiry-description"
+        name="description"
+        rows="6"
+        placeholder="Tell me about the product, technical problem, or business challenge you're trying to solve."
+      ></textarea>
+    </div>
+  </div>
+
+  <button class="project-inquiry-submit" type="submit">
+    Start a Project &rarr;
+  </button>
+  <p class="project-inquiry-note">
+    Submitting opens your email client with the details pre-filled and sends
+    directly to me. Prefer a call instead? Book a slot on
+    <a href="https://cal.com/yoosuf" target="_blank" rel="noopener">Cal.com</a>.
+  </p>
+
+  <script>
+    (() => {
+      const form = document.getElementById("project-inquiry-form");
+      if (!form) return;
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const data = new FormData(form);
+        const labels = {
+          name: "Name",
+          email: "Email",
+          project_type: "Project type",
+          budget: "Estimated budget",
+          timeline: "Timeline",
+        };
+        const lines = [];
+        for (const [key, value] of data) {
+          const text = typeof value === "string" ? value.trim() : "";
+          if (!text) continue;
+          if (key === "description") {
+            lines.push("Project description:\n" + text);
+          } else if (labels[key]) {
+            lines.push(labels[key] + ": " + text);
+          }
+        }
+        const type = (data.get("project_type") || "").trim();
+        const subject = type ? "Project Inquiry — " + type : "Project Inquiry";
+        const body = lines.join("\n\n");
+        window.location.href =
+          "mailto:mayoosuf@gmail.com?subject=" +
+          encodeURIComponent(subject) +
+          "&body=" +
+          encodeURIComponent(body);
+      });
+    })();
+  </script>
+</form>

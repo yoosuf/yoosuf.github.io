@@ -14,6 +14,8 @@
         class="ep-tablist"
         role="tablist"
         aria-label="Engagement options"
+        aria-orientation="horizontal"
+        tabindex="0"
       >
         {% for service in site.data.services %}
         <button
@@ -112,7 +114,11 @@
           tab.tabIndex = isSelected ? 0 : -1;
           panels[i].hidden = !isSelected;
         });
-        if (moveFocus) tabs[index].focus();
+        if (moveFocus) {
+          const tab = tabs[index];
+          tab.focus();
+          tab.scrollIntoView({ block: "nearest", inline: "nearest" });
+        }
       };
 
       let current = tabs.findIndex(

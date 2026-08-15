@@ -6,6 +6,8 @@ html {
 	font-size: 100%;
 	vertical-align: baseline;
 	box-sizing: border-box;
+	max-width: 100%;
+	overflow-x: hidden;
 	font-family: sans-serif;
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
@@ -40,6 +42,14 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-moz-font-feature-settings: "liga" on;
+	max-width: 100%;
+	overflow-x: hidden;
+}
+@supports (overflow-x: clip) {
+	html,
+	body {
+		overflow-x: clip;
+	}
 }
 article, aside, details, div, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
 	margin: 0;

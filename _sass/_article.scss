@@ -523,12 +523,69 @@ iframe.instagram-media {
 }
 .article-byline-content {
 	flex-grow: 1;
+	min-width: 0;
 	display: flex;
 	align-items: center;
 	gap: 16px;
 	.author-list {
 		justify-content: flex-start;
 		padding: 0 14px 0 0;
+	}
+}
+.article-share {
+	flex-shrink: 0;
+	align-self: flex-start;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-height: 44px;
+	margin: 0 0 0 16px;
+	padding: 9px 18px;
+	font-size: 1.4rem;
+	font-weight: 600;
+	letter-spacing: -0.005em;
+	line-height: 1;
+	color: var(--jekyll-accent-strong);
+	background: color-mix(in srgb, var(--jekyll-accent-color) 10%, transparent);
+	border: 1px solid var(--color-border);
+	border-radius: 999px;
+	transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+	svg {
+		flex-shrink: 0;
+		width: 16px;
+		height: 16px;
+	}
+	&:hover {
+		border-color: color-mix(in srgb, var(--jekyll-accent-color) 35%, var(--color-border));
+		background: color-mix(in srgb, var(--jekyll-accent-color) 16%, transparent);
+	}
+	.article-share-check {
+		display: none;
+	}
+	&.is-copied {
+		color: #15803d;
+		border-color: color-mix(in srgb, #15803d 35%, transparent);
+		background: color-mix(in srgb, #15803d 10%, transparent);
+		.article-share-icon {
+			display: none;
+		}
+		.article-share-check {
+			display: block;
+		}
+	}
+	&[hidden] {
+		display: none;
+	}
+}
+:where(html.dark-mode) .article-share {
+	color: #93c5fd;
+	border-color: rgba(255, 255, 255, 0.12);
+	background: color-mix(in srgb, var(--jekyll-accent-color) 22%, transparent);
+	&.is-copied {
+		color: #86efac;
+		border-color: rgba(134, 239, 172, 0.35);
+		background: color-mix(in srgb, #4ade80 16%, transparent);
 	}
 }
 .article-byline-avatar {
@@ -732,6 +789,10 @@ iframe.instagram-media {
 		.author-name {
 			margin-bottom: 2px;
 		}
+	}
+	.article-share {
+		margin-left: 10px;
+		padding: 8px 14px;
 	}
 }
 @media (max-width: 650px) {

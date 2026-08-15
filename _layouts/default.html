@@ -255,5 +255,85 @@
         });
       })();
     </script>
+
+    <script>
+      (() => {
+        const btn = document.getElementById("article-share");
+        if (!btn) return;
+
+        const label = btn.querySelector(".article-share-label");
+        const labelText = label ? label.textContent.trim() : "Share";
+        const url = window.location.href;
+        const description =
+          document.querySelector('meta[name="description"]')?.content || "";
+        const shareData = { title: document.title, url };
+        if (description) shareData.text = description;
+
+        const canNativeShare =
+          typeof navigator.share === "function" &&
+          (typeof navigator.canShare !== "function" ||
+            navigator.canShare(shareData) === true);
+        const canClipboard =
+          typeof navigator.clipboard?.writeText === "function" ||
+          document.queryCommandSupported?.("copy") === true;
+
+        if (!canNativeShare && !canClipboard) return;
+
+        let copiedTimer = null;
+
+        const showCopied = () => {
+          if (!label) return;
+          btn.classList.add("is-copied");
+          label.textContent = "Copied!";
+          window.clearTimeout(copiedTimer);
+          copiedTimer = window.setTimeout(() => {
+            btn.classList.remove("is-copied");
+            label.textContent = labelText;
+          }, 2000);
+        };
+
+        const copyUrl = async () => {
+          if (typeof navigator.clipboard?.writeText === "function") {
+            await navigator.clipboard.writeText(url);
+            return;
+          }
+          const input = document.createElement("textarea");
+          input.value = url;
+          input.setAttribute("readonly", "");
+          input.style.position = "absolute";
+          input.style.left = "-9999px";
+          document.body.appendChild(input);
+          input.select();
+          document.execCommand("copy");
+          document.body.removeChild(input);
+        };
+
+        btn.hidden = false;
+
+        btn.addEventListener("click", async () => {
+          try {
+            if (canNativeShare) {
+              await navigator.share(shareData);
+            } else {
+              await copyUrl();
+              showCopied();
+            }
+          } catch (err) {
+            if (err?.name === "AbortError") return;
+            try {
+              await copyUrl();
+              showCopied();
+            } catch {
+              if (label) {
+                label.textContent = "Couldn't copy";
+                window.setTimeout(() => {
+                  label.textContent = labelText;
+                }, 2000);
+              }
+            }
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

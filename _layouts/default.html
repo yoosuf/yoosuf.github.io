@@ -79,15 +79,53 @@
     <meta name="author" content="{{ site.title }}" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    {% include critical-css.html %}
+    {% assign css_url = '/assets/css/main.css' | prepend: site.baseurl %}
+    {% assign css_version = site.time | date: '%Y%m%d%H%M%S' %}
+    <link rel="preload" as="style" href="{{ css_url }}?v={{ css_version }}" />
     <link
       rel="stylesheet"
-      href="{{ '/assets/css/main.css' | prepend: site.baseurl }}?v={{ site.time | date: '%Y%m%d%H%M%S' }}"
+      href="{{ css_url }}?v={{ css_version }}"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link rel="stylesheet" href="{{ css_url }}?v={{ css_version }}" />
+    </noscript>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="https://fonts.gstatic.com/s/hankengrotesk/v12/ieVl2YZDLWuGJpnzaiwFXS9tYtpY19-7DQk6YvNkeg.woff2"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+    <link rel="dns-prefetch" href="https://cal.com" />
+    <link rel="dns-prefetch" href="https://twitter.com" />
+    <link rel="dns-prefetch" href="https://github.com" />
+    <link rel="dns-prefetch" href="https://www.linkedin.com" />
+    <link rel="dns-prefetch" href="https://jekyllrb.com" />
   </head>
   <body class="page-template page-about is-head-left-logo has-serif-title">
+    <noscript>
+      <div class="noscript-banner" role="status">
+        JavaScript is required for this site to work properly. Please enable it
+        or use a recent browser that supports JavaScript.
+      </div>
+    </noscript>
     <a class="skip-to-content" href="#site-main">Skip to main content</a>
 
     <div class="viewport">
@@ -348,6 +386,32 @@
               announce("Couldn't copy the link");
             }
           }
+        });
+      })();
+    </script>
+    <script>
+      (() => {
+        const siteOrigin = "{{ site.url }}";
+        const currentOrigin = window.location.origin;
+        document.querySelectorAll("a[href]").forEach((link) => {
+          if (link.target) return;
+          let url;
+          try {
+            url = new URL(link.getAttribute("href"), window.location.href);
+          } catch {
+            return;
+          }
+          if (!/^https?:$/.test(url.protocol)) return;
+          if (url.origin === currentOrigin || url.origin === siteOrigin) return;
+          link.target = "_blank";
+          link.setAttribute(
+            "rel",
+            [link.rel, "noopener"].filter(Boolean).join(" ")
+          );
+          const note = document.createElement("span");
+          note.className = "visually-hidden";
+          note.textContent = " (opens in new tab)";
+          link.appendChild(note);
         });
       })();
     </script>

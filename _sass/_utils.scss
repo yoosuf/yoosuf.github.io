@@ -39,23 +39,33 @@
 .hero-description {
 	font-family: var(--font-serif);
 	font-size: 2rem;
-	line-height: 1.7;
+	line-height: 1.65;
 	color: var(--color-midgrey);
-	max-width: 600px;
+	max-width: 620px;
 }
 
 .hero-action {
 	margin-top: 36px;
 	a {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 12px 24px;
 		font-weight: 600;
-		font-size: 1.8rem;
-		color: var(--jekyll-accent-color);
+		font-size: 1.6rem;
+		color: #fff;
+		background: var(--jekyll-accent-color);
+		border-radius: 999px;
 		text-decoration: none;
-		transition: opacity 0.2s ease;
+		box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+		transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 		&:hover {
-			text-decoration: underline;
-			text-underline-offset: 3px;
-			opacity: 0.8;
+			color: #fff;
+			background: var(--jekyll-accent-strong);
+			transform: translateY(-2px);
+			box-shadow: 0 12px 26px rgba(37, 99, 235, 0.35);
+			text-decoration: none;
+			opacity: 1;
 		}
 	}
 }

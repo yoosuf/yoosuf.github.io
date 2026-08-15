@@ -1,5 +1,8 @@
-<section class="engagement-pricing">
+<section class="engagement-pricing" aria-labelledby="ep-engagement-heading">
   <div class="ep-inner">
+    <h2 id="ep-engagement-heading" class="visually-hidden">
+      Engagement and pricing
+    </h2>
     <p class="ep-lead">
       Senior architecture, engineering, and AI leadership for startups and
       enterprises. Select an engagement to see the scope and starting price.
@@ -8,15 +11,18 @@
     <div class="ep-accordion" id="ep-accordion">
       {% for service in site.data.services %}
       <details
+        id="ep-item-{{ forloop.index }}"
         class="ep-item{% if service.recommended %} ep-item-recommended{% endif %}"
         {% if forloop.first %}open{% endif %}
       >
-        <summary class="ep-summary">
+        <summary
+          id="ep-summary-{{ forloop.index }}"
+          class="ep-summary"
+          aria-controls="ep-panel-{{ forloop.index }}"
+          aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}"
+        >
           <span class="ep-summary-main">
             <span class="ep-summary-title-row">
-              {% if service.recommended %}
-              <span class="ep-badge">Most Popular</span>
-              {% endif %}
               <span class="ep-summary-name">{{ service.name }}</span>
             </span>
           </span>
@@ -43,7 +49,12 @@
           </span>
         </summary>
 
-        <div class="ep-body">
+        <div
+          id="ep-panel-{{ forloop.index }}"
+          class="ep-body"
+          role="region"
+          aria-labelledby="ep-summary-{{ forloop.index }}"
+        >
           <div class="ep-body-inner">
             <p class="ep-summary-desc">{{ service.description }}</p>
             <p class="ep-includes-label">What's included</p>
@@ -72,8 +83,14 @@
                 <span>Typical engagement:</span>
                 <strong>{{ service.duration }}</strong>
               </p>
-              <a class="ep-cta" href="/contact/">
+              <a
+                class="ep-cta"
+                href="https://cal.com/yoosuf"
+                target="_blank"
+                rel="noopener"
+              >
                 {{ service.cta }}
+                <span class="visually-hidden"> (opens in new tab)</span>
                 <svg
                   width="14"
                   height="14"
@@ -114,8 +131,15 @@
         "(prefers-reduced-motion: reduce)"
       ).matches;
 
+      const setExpanded = (item, expanded) => {
+        item
+          .querySelector("summary")
+          ?.setAttribute("aria-expanded", String(expanded));
+      };
+
       const openItem = (item) => {
         item.open = true;
+        setExpanded(item, true);
         if (reducedMotion) return;
         const body = item.querySelector(".ep-body");
         body.style.height = "0px";
@@ -130,6 +154,7 @@
       };
 
       const closeItem = (item) => {
+        setExpanded(item, false);
         if (reducedMotion) {
           item.open = false;
           return;

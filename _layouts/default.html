@@ -267,8 +267,6 @@
 
         const label = btn.querySelector(".article-share-label");
         const labelText = label ? label.textContent.trim() : "Share";
-        const icon = btn.querySelector(".article-share-icon");
-        const check = btn.querySelector(".article-share-check");
         const status = document.getElementById("article-share-status");
         const announce = (message) => {
           if (status) status.textContent = message;
@@ -294,15 +292,11 @@
         const showCopied = () => {
           if (!label) return;
           btn.classList.add("is-copied");
-          if (icon) icon.hidden = true;
-          if (check) check.hidden = false;
           label.textContent = "Copied!";
           announce("Link copied to clipboard");
           window.clearTimeout(copiedTimer);
           copiedTimer = window.setTimeout(() => {
             btn.classList.remove("is-copied");
-            if (icon) icon.hidden = false;
-            if (check) check.hidden = true;
             label.textContent = labelText;
           }, 2000);
         };

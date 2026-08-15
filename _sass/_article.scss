@@ -606,22 +606,9 @@ iframe.instagram-media {
 		color: #fff;
 		background: #15803d;
 		box-shadow: none;
-		.article-share-check {
-			animation: check-pop 0.3s cubic-bezier(0.2, 0.8, 0.4, 1);
-		}
 	}
 	&[hidden] {
 		display: none;
-	}
-}
-@keyframes check-pop {
-	from {
-		transform: scale(0.4);
-		opacity: 0;
-	}
-	to {
-		transform: scale(1);
-		opacity: 1;
 	}
 }
 :where(html.dark-mode) .article-share {

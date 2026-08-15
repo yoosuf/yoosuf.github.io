@@ -426,7 +426,7 @@ input[type="search"] {
 }
 ::selection {
 	text-shadow: none;
-	background: #bfdbfe;
+	background: color-mix(in srgb, var(--jekyll-accent-color) 22%, transparent);
 }
 hr {
 	position: relative;
@@ -521,4 +521,21 @@ blockquote {
 
 [id] {
 	scroll-margin-top: 92px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.article-title,
+.post-card-title,
+.section-title,
+.footer-cta-title,
+.tag-title {
+	text-wrap: balance;
+}
+p {
+	text-wrap: pretty;
 }

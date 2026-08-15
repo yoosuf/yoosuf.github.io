@@ -123,7 +123,7 @@
         </div>
       </header>
 
-      <main id="site-main" class="site-content">{{content}}</main>
+      <main id="site-main" class="site-content" tabindex="-1">{{content}}</main>
 
       <footer class="site-footer outer" role="contentinfo">
         <div class="inner">
@@ -220,7 +220,8 @@
       aria-label="Back to top"
       hidden
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+      <svg class="back-to-top-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+      <span class="back-to-top-label" aria-hidden="true">Back to top</span>
     </button>
     <script>
       (() => {
@@ -252,6 +253,9 @@
 
         topBtn?.addEventListener("click", () => {
           window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+          document.getElementById("site-main")?.focus({
+            preventScroll: true,
+          });
         });
       })();
     </script>
@@ -263,6 +267,12 @@
 
         const label = btn.querySelector(".article-share-label");
         const labelText = label ? label.textContent.trim() : "Share";
+        const icon = btn.querySelector(".article-share-icon");
+        const check = btn.querySelector(".article-share-check");
+        const status = document.getElementById("article-share-status");
+        const announce = (message) => {
+          if (status) status.textContent = message;
+        };
         const url = window.location.href;
         const description =
           document.querySelector('meta[name="description"]')?.content || "";
@@ -284,10 +294,15 @@
         const showCopied = () => {
           if (!label) return;
           btn.classList.add("is-copied");
+          if (icon) icon.hidden = true;
+          if (check) check.hidden = false;
           label.textContent = "Copied!";
+          announce("Link copied to clipboard");
           window.clearTimeout(copiedTimer);
           copiedTimer = window.setTimeout(() => {
             btn.classList.remove("is-copied");
+            if (icon) icon.hidden = false;
+            if (check) check.hidden = true;
             label.textContent = labelText;
           }, 2000);
         };
@@ -330,6 +345,7 @@
                   label.textContent = labelText;
                 }, 2000);
               }
+              announce("Couldn't copy the link");
             }
           }
         });

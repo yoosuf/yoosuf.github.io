@@ -98,9 +98,8 @@
 }
 
 .ep-panel-recommended {
-	background: color-mix(in srgb, var(--jekyll-accent-color) 3%, #fff);
 	border-color: var(--jekyll-accent-color);
-	box-shadow: 0 8px 30px rgba(37, 99, 235, 0.1);
+	box-shadow: 0 8px 30px rgba(37, 99, 235, 0.12);
 }
 
 .ep-panel-head {
@@ -116,10 +115,18 @@
 	min-width: 0;
 }
 
+.ep-panel-title-row {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin: 0 0 12px;
+}
+
 .ep-badge {
 	display: inline-block;
-	margin: 0 0 14px;
-	padding: 4px 12px;
+	margin: 0;
+	padding: 5px 12px;
 	font-size: 1.2rem;
 	font-weight: 700;
 	letter-spacing: 0.04em;
@@ -131,7 +138,7 @@
 }
 
 .ep-panel-title {
-	margin: 0 0 12px;
+	margin: 0;
 	font-size: 2.6rem;
 	font-weight: 700;
 	line-height: 1.2;
@@ -336,7 +343,6 @@
 		box-shadow: none;
 	}
 	.ep-panel-recommended {
-		background: color-mix(in srgb, var(--jekyll-accent-color) 12%, var(--color-darkmode));
 		border-color: var(--jekyll-accent-color);
 		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 	}

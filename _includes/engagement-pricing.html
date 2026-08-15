@@ -37,10 +37,12 @@
       >
         <div class="ep-panel-head">
           <div class="ep-panel-heading">
-            {% if service.recommended %}
-            <p class="ep-badge">Most Popular</p>
-            {% endif %}
-            <h3 class="ep-panel-title">{{ service.name }}</h3>
+            <div class="ep-panel-title-row">
+              {% if service.recommended %}
+              <p class="ep-badge">Most Popular</p>
+              {% endif %}
+              <h3 class="ep-panel-title">{{ service.name }}</h3>
+            </div>
             <p class="ep-panel-desc">{{ service.description }}</p>
           </div>
           <p class="ep-price">

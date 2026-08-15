@@ -18,6 +18,17 @@
 			color: var(--color-darkgrey);
 			transition: color 0.2s ease;
 		}
+		.footer-legal {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			margin-left: 12px;
+			font-size: 1.3rem;
+			a {
+				font-weight: 500;
+				color: var(--color-midgrey);
+			}
+		}
 	}
 	a {
 		color: var(--color-midgrey);

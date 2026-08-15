@@ -223,12 +223,26 @@
 /* ===== Pricing note ===== */
 
 .ep-note {
-	margin: 24px auto 0;
-	max-width: 640px;
+	margin: 28px auto 0;
+	max-width: 680px;
+	padding: 16px 24px;
 	text-align: center;
-	font-size: 1.3rem;
+	font-size: 1.35rem;
 	line-height: 1.6;
-	color: var(--color-secondary-text);
+	color: var(--color-midgrey);
+	background: var(--color-lightgrey);
+	border: 1px solid var(--color-border);
+	border-radius: 12px;
+
+	strong {
+		display: block;
+		margin-bottom: 6px;
+		font-size: 1.2rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--color-darkgrey);
+	}
 }
 
 /* ===== Dark mode ===== */
@@ -251,6 +265,14 @@
 	.ep-includes-label,
 	.ep-note {
 		color: rgba(255, 255, 255, 0.55);
+	}
+	.ep-note {
+		background: rgba(255, 255, 255, 0.05);
+		border-color: rgba(255, 255, 255, 0.1);
+
+		strong {
+			color: #f8fafc;
+		}
 	}
 	.ep-item {
 		background: color-mix(in srgb, #fff 4%, var(--color-darkmode));

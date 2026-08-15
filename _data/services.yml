@@ -10,7 +10,6 @@
     - "Technical roadmap"
   duration: "1–5 days"
   cta: "Discuss Architecture"
-  recommended: false
 
 - name: "Architecture & Performance Audit"
   tab: "Performance Audit"
@@ -26,7 +25,6 @@
     - "Prioritized remediation roadmap"
   duration: "1–2 weeks"
   cta: "Request an Audit"
-  recommended: false
 
 - name: "AI Integration"
   tab: "AI Integration"
@@ -42,7 +40,6 @@
     - "AI architecture"
   duration: "2–6 weeks"
   cta: "Discuss an AI Project"
-  recommended: false
 
 - name: "Product Development"
   tab: "Product Development"
@@ -59,7 +56,6 @@
     - "Production deployment"
   duration: "4–12+ weeks"
   cta: "Start a Project"
-  recommended: true
 
 - name: "Fractional Tech Lead"
   tab: "Fractional Tech Lead"
@@ -76,4 +72,3 @@
     - "Engineering process improvement"
   duration: "Monthly"
   cta: "Discuss Fractional Leadership"
-  recommended: false

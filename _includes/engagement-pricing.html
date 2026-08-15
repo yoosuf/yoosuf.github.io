@@ -12,7 +12,7 @@
       {% for service in site.data.services %}
       <details
         id="ep-item-{{ forloop.index }}"
-        class="ep-item{% if service.recommended %} ep-item-recommended{% endif %}"
+        class="ep-item"
         {% if forloop.first %}open{% endif %}
       >
         <summary

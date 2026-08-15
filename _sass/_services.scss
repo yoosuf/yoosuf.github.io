@@ -30,11 +30,6 @@
 	overflow: hidden;
 }
 
-.ep-item-recommended {
-	border-color: var(--jekyll-accent-color);
-	box-shadow: 0 8px 30px rgba(37, 99, 235, 0.12);
-}
-
 .ep-item * {
 	box-sizing: border-box;
 }
@@ -266,10 +261,6 @@
 		&:hover {
 			background: rgba(255, 255, 255, 0.04);
 		}
-	}
-	.ep-item-recommended {
-		border-color: var(--jekyll-accent-color);
-		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 	}
 	.ep-include svg {
 		color: #93c5fd;

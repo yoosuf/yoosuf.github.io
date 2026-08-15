@@ -56,42 +56,6 @@
 		background: var(--color-lightgrey);
 	}
 }
-.site-footer-nav {
-	ul {
-		display: flex;
-		justify-content: center;
-		flex-wrap: wrap;
-		margin: 0 0 20px;
-		padding: 0;
-		list-style: none;
-	}
-	li {
-		display: inline-flex;
-		align-items: center;
-		padding: 0;
-		margin: 0;
-		line-height: 2em;
-		&:not(:first-child) {
-			a {
-				&:before {
-					content: "";
-					display: block;
-					width: 2px;
-					height: 2px;
-					margin: 0 10px 0 0;
-					background: var(--color-midgrey);
-					border-radius: 100%;
-				}
-			}
-		}
-	}
-	a {
-		position: relative;
-		display: inline-flex;
-		align-items: center;
-		margin-left: 10px;
-	}
-}
 html.dark-mode {
 	body {
 		color: rgba(255, 255, 255, 0.75);
@@ -116,11 +80,6 @@ html.dark-mode {
 		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 		color: #fff;
 	}
-	:is(.home-template) .jekyll-head {
-		background: transparent;
-		backdrop-filter: none;
-		border-bottom: none;
-	}
 	.jekyll-burger {
 		&::before {
 			background-color: #fff;
@@ -129,39 +88,11 @@ html.dark-mode {
 			background-color: #fff;
 		}
 	}
-	.site-header-content {
-		color: #fff;
-	}
-	.post-card-image {
-		background: var(--color-darkmode);
-	}
-	&:is(.post-card-tags) {
-		color: color-mod(var(--color-secondary-text) l(-22%));
-	}
-	.post-card-featured {
-		color: #fff;
-	}
 	.post-card-title {
 		color: rgba(255, 255, 255, 0.9);
 	}
 	.post-card-excerpt {
 		color: var(--color-secondary-text);
-	}
-	.post-card-content-link:hover .post-card-title {
-		color: var(--jekyll-accent-color);
-	}
-	.pagination {
-		a {
-			color: #fff;
-		}
-	}
-	.author-profile-location {
-		color: #fff;
-	}
-	.author-profile-social-link {
-		&:hover {
-			color: #fff;
-		}
 	}
 	.article-title {
 		color: rgba(255, 255, 255, 0.9);
@@ -169,30 +100,10 @@ html.dark-mode {
 	.article-excerpt {
 		color: var(--color-secondary-text);
 	}
-	.post-full-image {
-		background-color: color-mod(var(--color-darkmode) l(+8%));
-	}
-	.author-avatar {
-		border-color: var(--color-darkmode);
-		background-color: color-mod(var(--color-darkmode) l(+8%));
-	}
-	.author-profile-image {
-		opacity: 1;
-		path {
-			fill: var(--color-darkmode);
-		}
-	}
 	.article-byline-meta {
 		.author-name {
 			a {
 				color: #fff;
-			}
-		}
-	}
-	.no-image {
-		.author-social-link {
-			a {
-				color: rgba(255, 255, 255, 0.75);
 			}
 		}
 	}
@@ -253,29 +164,6 @@ html.dark-mode {
 	hr {
 		border-top-color: color-mod(var(--color-darkmode) l(+8%));
 	}
-	.site-archive-header {
-		.no-image {
-			color: rgba(255, 255, 255, 0.9);
-			background: var(--color-darkmode);
-		}
-	}
-	.kg-header-card.kg-style-dark {
-		background: color-mod(var(--color-darkgrey) l(-5%));
-	}
-	.kg-header-card.kg-style-light {
-		background: color-mod(var(--color-darkgrey) l(+5%));
-	}
-	.kg-header-card {
-		h2.kg-header-card-header {
-			color: #fff;
-		}
-		h3.kg-header-card-subheader {
-			color: #fff;
-		}
-	}
-	.footer-cta-title {
-		color: #fff;
-	}
 	.site-footer {
 		border-top-color: rgba(255, 255, 255, 0.08);
 		.inner {
@@ -304,19 +192,6 @@ html.dark-mode {
 }
 .post-card-meta {
 	color: color-mod(var(--color-secondary-text) l(-22%));
-}
-.article-tag {
-	a {
-		color: color-mod(var(--color-secondary-text) l(-22%));
-	}
-}
-.byline-meta-content {
-	color: color-mod(var(--color-secondary-text) l(-22%));
-}
-.pagination {
-	.page-number {
-		color: color-mod(var(--color-secondary-text) l(-22%));
-	}
 }
 :where(html.dark-mode) {
 	.jekyll-content {
@@ -374,11 +249,6 @@ textarea {
 			border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 			color: #fff;
 		}
-		:is(.home-template) .jekyll-head {
-			background: transparent;
-			backdrop-filter: none;
-			border-bottom: none;
-		}
 		.jekyll-burger {
 			&::before {
 				background-color: #fff;
@@ -387,36 +257,11 @@ textarea {
 				background-color: #fff;
 			}
 		}
-		.site-header-content {
-			color: #fff;
-		}
-		.post-card-image {
-			background: var(--color-darkmode);
-		}
-		&:is(.post-card-tags) {
-			color: color-mod(var(--color-secondary-text) l(-22%));
-		}
-		.post-card-featured {
-			color: #fff;
-		}
 		.post-card-title {
 			color: rgba(255, 255, 255, 0.9);
 		}
 		.post-card-excerpt {
 			color: var(--color-secondary-text);
-		}
-		.pagination {
-			a {
-				color: #fff;
-			}
-		}
-		.author-profile-location {
-			color: #fff;
-		}
-		.author-profile-social-link {
-			&:hover {
-				color: #fff;
-			}
 		}
 		.article-title {
 			color: rgba(255, 255, 255, 0.9);
@@ -424,30 +269,10 @@ textarea {
 		.article-excerpt {
 			color: var(--color-secondary-text);
 		}
-		.post-full-image {
-			background-color: color-mod(var(--color-darkmode) l(+8%));
-		}
-		.author-avatar {
-			border-color: var(--color-darkmode);
-			background-color: color-mod(var(--color-darkmode) l(+8%));
-		}
-		.author-profile-image {
-			opacity: 1;
-			path {
-				fill: var(--color-darkmode);
-			}
-		}
 		.article-byline-meta {
 			.author-name {
 				a {
 					color: #fff;
-				}
-			}
-		}
-		.no-image {
-			.author-social-link {
-				a {
-					color: rgba(255, 255, 255, 0.75);
 				}
 			}
 		}
@@ -508,29 +333,6 @@ textarea {
 		hr {
 			border-top-color: color-mod(var(--color-darkmode) l(+8%));
 		}
-		.site-archive-header {
-			.no-image {
-				color: rgba(255, 255, 255, 0.9);
-				background: var(--color-darkmode);
-			}
-		}
-		.kg-header-card.kg-style-dark {
-			background: color-mod(var(--color-darkgrey) l(-5%));
-		}
-		.kg-header-card.kg-style-light {
-			background: color-mod(var(--color-darkgrey) l(+5%));
-		}
-		.kg-header-card {
-			h2.kg-header-card-header {
-				color: #fff;
-			}
-			h3.kg-header-card-subheader {
-				color: #fff;
-			}
-		}
-		.footer-cta-title {
-			color: #fff;
-		}
 		.site-footer {
 			border-top-color: rgba(255, 255, 255, 0.08);
 			.inner {
@@ -559,19 +361,6 @@ textarea {
 	}
 	.post-card-meta {
 		color: color-mod(var(--color-secondary-text) l(-22%));
-	}
-	.article-tag {
-		a {
-			color: color-mod(var(--color-secondary-text) l(-22%));
-		}
-	}
-	.byline-meta-content {
-		color: color-mod(var(--color-secondary-text) l(-22%));
-	}
-	.pagination {
-		.page-number {
-			color: color-mod(var(--color-secondary-text) l(-22%));
-		}
 	}
 	:where(html.auto-color) {
 		.jekyll-content {

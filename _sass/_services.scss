@@ -10,58 +10,41 @@
 	padding: 0;
 }
 
+.ep-lead {
+	margin: 0 0 24px;
+	font-family: var(--font-serif);
+	font-size: 1.8rem;
+	line-height: 1.6;
+	color: var(--color-midgrey);
+	max-width: 620px;
+}
+
 /* ===== Tabs ===== */
 
 .ep-tablist {
 	display: flex;
-	flex-wrap: nowrap;
-	gap: 4px;
-	margin: 0 0 20px;
-	padding: 4px;
-	overflow-x: auto;
-	-webkit-overflow-scrolling: touch;
-	overscroll-behavior-x: contain;
-	scrollbar-width: thin;
-	scrollbar-color: var(--color-border) transparent;
-	-webkit-mask-image: linear-gradient(
-		to right,
-		#000 0,
-		#000 calc(100% - 24px),
-		transparent 100%
-	);
-	mask-image: linear-gradient(
-		to right,
-		#000 0,
-		#000 calc(100% - 24px),
-		transparent 100%
-	);
-	&::-webkit-scrollbar {
-		height: 6px;
-	}
-	&::-webkit-scrollbar-thumb {
-		background: var(--color-border);
-		border-radius: 999px;
-	}
-	&::-webkit-scrollbar-track {
-		background: transparent;
-	}
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 6px;
+	margin: 0 0 24px;
+	padding: 6px;
 	background: var(--color-lightgrey);
 	border: 1px solid var(--color-border);
 	border-radius: 12px;
 }
 
 .ep-tab {
-	flex: 0 0 auto;
+	flex: 0 1 auto;
 	white-space: nowrap;
-	padding: 12px 20px;
-	font-size: 1.45rem;
+	padding: 11px 16px;
+	font-size: 1.35rem;
 	font-weight: 600;
 	line-height: 1.2;
 	letter-spacing: -0.005em;
 	color: var(--color-midgrey);
 	background: transparent;
 	border: 0;
-	border-radius: 8px;
+	border-radius: 10px;
 	cursor: pointer;
 	transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 	&:hover,
@@ -91,6 +74,27 @@
 
 .ep-panel[hidden] {
 	display: none;
+}
+
+@keyframes ep-panel-in {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+.ep-panel:not([hidden]) {
+	animation: ep-panel-in 0.28s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ep-panel:not([hidden]) {
+		animation: none;
+	}
 }
 
 .ep-panel-recommended {
@@ -146,13 +150,14 @@
 .ep-price {
 	display: flex;
 	flex-direction: column;
+	flex: 0 0 auto;
 	align-items: flex-end;
 	gap: 4px;
 	margin: 0;
-	padding: 14px 20px;
+	padding: 16px 22px;
 	background: color-mix(in srgb, var(--jekyll-accent-color) 6%, transparent);
 	border: 1px solid color-mix(in srgb, var(--jekyll-accent-color) 18%, transparent);
-	border-radius: 14px;
+	border-radius: 16px;
 }
 
 .ep-price-label {
@@ -164,7 +169,7 @@
 }
 
 .ep-price-value {
-	font-size: 3.8rem;
+	font-size: 4rem;
 	font-weight: 800;
 	line-height: 1;
 	letter-spacing: -0.03em;
@@ -194,7 +199,7 @@
 .ep-includes {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	gap: 8px 24px;
+	gap: 8px 20px;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -289,7 +294,8 @@
 		color: rgba(255, 255, 255, 0.9);
 	}
 	.ep-panel-desc,
-	.ep-include {
+	.ep-include,
+	.ep-lead {
 		color: rgba(255, 255, 255, 0.62);
 	}
 	.ep-price-label,
@@ -306,10 +312,6 @@
 	.ep-tablist {
 		background: color-mix(in srgb, #fff 4%, var(--color-darkmode));
 		border-color: rgba(255, 255, 255, 0.08);
-		scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
-		&::-webkit-scrollbar-thumb {
-			background: rgba(255, 255, 255, 0.2);
-		}
 	}
 	.ep-tab {
 		color: rgba(255, 255, 255, 0.6);
@@ -364,15 +366,35 @@ html.dark-mode {
 /* ===== Responsive ===== */
 
 @media (max-width: 767px) {
+	.ep-lead {
+		font-size: 1.6rem;
+	}
 	.ep-tablist {
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		overscroll-behavior-x: contain;
 		scrollbar-width: none;
+		-webkit-mask-image: linear-gradient(
+			to right,
+			#000 0,
+			#000 calc(100% - 24px),
+			transparent 100%
+		);
+		mask-image: linear-gradient(
+			to right,
+			#000 0,
+			#000 calc(100% - 24px),
+			transparent 100%
+		);
 		&::-webkit-scrollbar {
 			display: none;
 		}
 	}
 	.ep-tab {
+		flex: 0 0 auto;
 		padding: 12px 18px;
-		font-size: 1.35rem;
 	}
 	.ep-panel {
 		padding: 24px;

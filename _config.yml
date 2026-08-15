@@ -27,13 +27,13 @@ social:
     - https://www.youtube.com/@YoosufMo
 
 logo: /assets/images/yoosuf.jpg
-image: /assets/images/yoosuf.jpg
+image: /assets/images/social-card.png
 
 defaults:
   - scope:
       path: ""
     values:
-      image: /assets/images/yoosuf.jpg
+      image: /assets/images/social-card.png
 
 webmaster_verifications:
   google:

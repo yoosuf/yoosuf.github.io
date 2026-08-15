@@ -5,7 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}" />
+    <link
+      rel="icon"
+      href="{{ '/assets/images/favicon.svg' | prepend: site.baseurl }}"
+      type="image/svg+xml"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{{ '/assets/images/favicon-32x32.png' | prepend: site.baseurl }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="{{ '/assets/images/icon-192.png' | prepend: site.baseurl }}"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{{ '/assets/images/apple-touch-icon.png' | prepend: site.baseurl }}"
+    />
+    <link
+      rel="manifest"
+      href="{{ '/site.webmanifest' | prepend: site.baseurl }}"
+    />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1e1b4b" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Yoosuf" />
+    <meta name="application-name" content="Yoosuf Mohamed" />
+    <meta name="msapplication-TileColor" content="#1e1b4b" />
+    <meta name="msapplication-config" content="{{ '/browserconfig.xml' | prepend: site.baseurl }}" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="{{ site.title }} — RSS"
+      href="{{ '/feed.xml' | prepend: site.baseurl }}"
+    />
     {% seo %} {% if jekyll.environment == 'production' %} {% if
     site.tag_manager_id %} {% include google_tag_manager.html %} {% elsif
     site.google_analytics_tracking_id %} {% include google_analytics.html %} {%
@@ -45,9 +85,9 @@
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   </head>
-  <body class="page-template page-about is-head-left-logo">
+  <body class="page-template page-about is-head-left-logo has-serif-title">
     <a class="skip-to-content" href="#site-main">Skip to main content</a>
 
     <div class="viewport">
@@ -167,6 +207,52 @@
 
         menuBreakpoint.addEventListener("change", syncMenuForViewport);
         syncMenuForViewport();
+      })();
+    </script>
+
+    {% if page.layout == 'post' %}
+    <div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
+    {% endif %}
+    <button
+      id="back-to-top"
+      class="back-to-top"
+      type="button"
+      aria-label="Back to top"
+      hidden
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+    </button>
+    <script>
+      (() => {
+        const topBtn = document.getElementById("back-to-top");
+        const progress = document.getElementById("reading-progress");
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let ticking = false;
+
+        const onScroll = () => {
+          const y = window.scrollY;
+          if (topBtn) topBtn.hidden = y < 600;
+          if (progress) {
+            const total =
+              document.documentElement.scrollHeight - window.innerHeight;
+            progress.style.width =
+              (total > 0 ? Math.min(100, (y / total) * 100) : 0) + "%";
+          }
+          ticking = false;
+        };
+
+        const requestScroll = () => {
+          if (ticking) return;
+          ticking = true;
+          window.requestAnimationFrame(onScroll);
+        };
+
+        window.addEventListener("scroll", requestScroll, { passive: true });
+        onScroll();
+
+        topBtn?.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+        });
       })();
     </script>
   </body>

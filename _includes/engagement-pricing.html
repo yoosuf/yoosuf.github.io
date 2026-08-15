@@ -9,49 +9,81 @@
       </p>
     </header>
 
-    <div class="ep-grid">
-      {% for service in site.data.services %}
-      <article
-        class="ep-card{% if service.recommended %} ep-card-recommended{% endif %}"
+    <div class="ep-tabs" id="ep-tabs">
+      <div
+        class="ep-tablist"
+        role="tablist"
+        aria-label="Engagement options"
       >
-        {% if service.recommended %}
-        <p class="ep-badge">Most Popular</p>
-        {% endif %}
-        <h3 class="ep-card-title">{{ service.name }}</h3>
-        <p class="ep-price">
-          <span class="ep-price-label">Starting at</span>
-          <span class="ep-price-value">{{ service.price }}</span>
-          {% if service.price_unit %}
-          <span class="ep-price-unit">{{ service.price_unit }}</span>
-          {% endif %}
-        </p>
-        <p class="ep-card-desc">{{ service.description }}</p>
-        <ul class="ep-includes">
-          {% for item in service.includes %}
-          <li class="ep-include">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-            <span>{{ item }}</span>
-          </li>
-          {% endfor %}
-        </ul>
-        <p class="ep-duration">
-          <span>Typical engagement:</span>
-          <strong>{{ service.duration }}</strong>
-        </p>
-        <a class="ep-cta" href="/contact/#project-inquiry-form">{{ service.cta }}</a>
-      </article>
+        {% for service in site.data.services %}
+        <button
+          id="ep-tab-{{ forloop.index }}"
+          class="ep-tab"
+          type="button"
+          role="tab"
+          aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+          aria-controls="ep-panel-{{ forloop.index }}"
+        >
+          {{ service.tab }}
+        </button>
+        {% endfor %}
+      </div>
+
+      {% for service in site.data.services %}
+      <div
+        id="ep-panel-{{ forloop.index }}"
+        class="ep-panel{% if service.recommended %} ep-panel-recommended{% endif %}"
+        role="tabpanel"
+        aria-labelledby="ep-tab-{{ forloop.index }}"
+        tabindex="0"
+      >
+        <div class="ep-panel-head">
+          <div class="ep-panel-heading">
+            {% if service.recommended %}
+            <p class="ep-badge">Most Popular</p>
+            {% endif %}
+            <h3 class="ep-panel-title">{{ service.name }}</h3>
+            <p class="ep-panel-desc">{{ service.description }}</p>
+          </div>
+          <p class="ep-price">
+            <span class="ep-price-label">Starting at</span>
+            <span class="ep-price-value">{{ service.price }}</span>
+            {% if service.price_unit %}
+            <span class="ep-price-unit">{{ service.price_unit }}</span>
+            {% endif %}
+          </p>
+        </div>
+
+        <div class="ep-panel-grid">
+          <ul class="ep-includes">
+            {% for item in service.includes %}
+            <li class="ep-include">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>{{ item }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+          <div class="ep-panel-aside">
+            <p class="ep-duration">
+              <span>Typical engagement:</span>
+              <strong>{{ service.duration }}</strong>
+            </p>
+            <a class="ep-cta" href="/contact/">{{ service.cta }}</a>
+          </div>
+        </div>
+      </div>
       {% endfor %}
     </div>
 
@@ -62,7 +94,7 @@
         products, complex architectures, enterprise systems, and long-term
         engagements, I provide a custom proposal based on your requirements.
       </p>
-      <a class="ep-custom-cta" href="/contact/#project-inquiry-form"
+      <a class="ep-custom-cta" href="/contact/"
         >Tell Me About Your Project &rarr;</a
       >
       <p class="ep-custom-sub">
@@ -85,9 +117,61 @@
         engineering team that needs technical direction? Tell me what
         you&rsquo;re working on.
       </p>
-      <a class="ep-final-cta-btn" href="/contact/#project-inquiry-form"
+      <a class="ep-final-cta-btn" href="/contact/"
         >Start a Project &rarr;</a
       >
     </section>
   </div>
+
+  <script>
+    (() => {
+      const tabsEl = document.getElementById("ep-tabs");
+      if (!tabsEl) return;
+
+      const tablist = tabsEl.querySelector('[role="tablist"]');
+      const tabs = Array.from(tabsEl.querySelectorAll('[role="tab"]'));
+      const panels = tabs.map((tab) =>
+        document.getElementById(tab.getAttribute("aria-controls"))
+      );
+      if (!tablist || !tabs.length || panels.some((panel) => !panel)) return;
+
+      const selectTab = (index, moveFocus) => {
+        tabs.forEach((tab, i) => {
+          const isSelected = i === index;
+          tab.setAttribute("aria-selected", String(isSelected));
+          tab.tabIndex = isSelected ? 0 : -1;
+          panels[i].hidden = !isSelected;
+        });
+        if (moveFocus) tabs[index].focus();
+      };
+
+      let current = tabs.findIndex(
+        (tab) => tab.getAttribute("aria-selected") === "true"
+      );
+      if (current < 0) current = 0;
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => selectTab(index, false));
+
+        tab.addEventListener("keydown", (event) => {
+          const count = tabs.length;
+          let next = null;
+          if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+            next = (index + 1) % count;
+          } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+            next = (index - 1 + count) % count;
+          } else if (event.key === "Home") {
+            next = 0;
+          } else if (event.key === "End") {
+            next = count - 1;
+          }
+          if (next === null) return;
+          event.preventDefault();
+          selectTab(next, true);
+        });
+      });
+
+      selectTab(current, false);
+    })();
+  </script>
 </section>

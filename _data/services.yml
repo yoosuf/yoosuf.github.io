@@ -1,4 +1,5 @@
 - name: "Architecture & Technical Consulting"
+  tab: "Consulting"
   price: "$500"
   description: "Architecture reviews, system design, technical strategy, performance analysis, technology decisions, and technical roadmaps."
   includes:
@@ -12,6 +13,7 @@
   recommended: false
 
 - name: "Architecture & Performance Audit"
+  tab: "Performance Audit"
   price: "$1,500"
   description: "A deep technical assessment of an existing application to identify architectural, performance, scalability, security, and infrastructure issues."
   includes:
@@ -27,6 +29,7 @@
   recommended: false
 
 - name: "AI Integration"
+  tab: "AI Integration"
   price: "$2,500"
   description: "Add practical AI capabilities to an existing product without introducing unnecessary complexity."
   includes:
@@ -42,6 +45,7 @@
   recommended: false
 
 - name: "Product Development"
+  tab: "Product Development"
   price: "$5,000"
   description: "Build, modernize, or extend production software from architecture through deployment."
   includes:
@@ -58,6 +62,7 @@
   recommended: true
 
 - name: "Fractional Tech Lead"
+  tab: "Fractional Tech Lead"
   price: "$3,000"
   price_unit: "/month"
   description: "Ongoing technical leadership for startups and growing engineering teams that need senior technical direction without hiring a full-time CTO or engineering lead."

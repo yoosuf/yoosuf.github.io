@@ -534,7 +534,7 @@ iframe.instagram-media {
 }
 .article-share {
 	flex-shrink: 0;
-	align-self: flex-start;
+	align-self: center;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -633,6 +633,16 @@ iframe.instagram-media {
 		margin: 0 2px;
 	}
 }
+.byline-meta-details {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-top: 2px;
+	font-size: 1.3rem;
+	line-height: 1.4;
+	color: var(--color-midgrey);
+}
 .byline-meta-reading {
 	display: inline-flex;
 	align-items: center;
@@ -684,11 +694,9 @@ iframe.instagram-media {
 	}
 }
 .byline-meta-date {
-	display: block;
-	margin-top: 2px;
 	font-size: 1.3rem;
 	font-weight: 400;
-	color: var(--color-midgrey);
+	color: inherit;
 }
 .author-avatar {
 	display: block;

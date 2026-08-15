@@ -36,18 +36,20 @@ layout: default
           </span>
           {% endif %}
 
-          <time
-            class="byline-meta-date"
-            datetime="{{ page.date | date_to_xmlschema }}"
-            itemprop="datePublished"
-          >
-            {% assign date_format = site.minima.date_format | default: "%-d %b,
-            %Y" %} {{ page.date | date: date_format }}
-          </time>
+          <div class="byline-meta-details">
+            <time
+              class="byline-meta-date"
+              datetime="{{ page.date | date_to_xmlschema }}"
+              itemprop="datePublished"
+            >
+              {% assign date_format = site.minima.date_format | default: "%-d %b,
+              %Y" %} {{ page.date | date: date_format }}
+            </time>
 
-          <span class="byline-meta-reading">
-            {% include reading-time.html content=page.content %}
-          </span>
+            <span class="byline-meta-reading">
+              {% include reading-time.html content=page.content %}
+            </span>
+          </div>
         </div>
       </div>
       <button

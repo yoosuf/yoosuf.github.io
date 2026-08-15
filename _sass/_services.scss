@@ -1,53 +1,38 @@
 /* ===== Engagement & Pricing ===== */
 
 .engagement-pricing {
-	grid-column: full-start / full-end;
 	margin-top: 0;
 }
 
 .ep-inner {
-	max-width: 1140px;
+	max-width: 720px;
 	margin: 0 auto;
-	padding: 0 max(24px, 5%);
-}
-
-.ep-header {
-	max-width: 760px;
-	margin: 0 0 max(24px, 4%);
-}
-
-.ep-title {
-	margin: 0 0 12px;
-	font-size: clamp(2.8rem, 4vw, 4rem);
-	font-weight: 800;
-	line-height: 1.1;
-	letter-spacing: -0.025em;
-	color: var(--color-darkgrey);
-}
-
-.ep-subtitle {
-	margin: 0;
-	max-width: 640px;
-	font-size: 1.9rem;
-	line-height: 1.6;
-	color: var(--color-midgrey);
+	padding: 0;
 }
 
 /* ===== Tabs ===== */
 
 .ep-tablist {
 	display: flex;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 	gap: 4px;
 	margin: 0 0 20px;
 	padding: 4px;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	overscroll-behavior-x: contain;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
 	background: var(--color-lightgrey);
 	border: 1px solid var(--color-border);
 	border-radius: 12px;
 }
 
 .ep-tab {
-	flex: 1 1 auto;
+	flex: 0 0 auto;
+	white-space: nowrap;
 	padding: 10px 18px;
 	font-size: 1.4rem;
 	font-weight: 600;
@@ -169,9 +154,6 @@
 }
 
 .ep-panel-grid {
-	display: grid;
-	grid-template-columns: 1fr minmax(220px, auto);
-	gap: 32px;
 	padding-top: 24px;
 	border-top: 1px solid var(--color-border);
 }
@@ -200,13 +182,13 @@
 	}
 }
 
-.ep-panel-aside {
+.ep-panel-foot {
 	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 24px;
-	padding-left: 32px;
-	border-left: 1px solid var(--color-border);
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px 24px;
+	margin-top: 24px;
 }
 
 .ep-duration {
@@ -260,13 +242,11 @@
 /* ===== Dark mode ===== */
 
 @mixin ep-dark-mode {
-	.ep-title,
 	.ep-panel-title,
 	.ep-price-value,
 	.ep-duration strong {
 		color: rgba(255, 255, 255, 0.9);
 	}
-	.ep-subtitle,
 	.ep-panel-desc,
 	.ep-include {
 		color: rgba(255, 255, 255, 0.62);
@@ -319,9 +299,6 @@
 	.ep-panel-grid {
 		border-top-color: rgba(255, 255, 255, 0.08);
 	}
-	.ep-panel-aside {
-		border-left-color: rgba(255, 255, 255, 0.08);
-	}
 }
 
 html.dark-mode {
@@ -337,22 +314,7 @@ html.dark-mode {
 /* ===== Responsive ===== */
 
 @media (max-width: 767px) {
-	.ep-subtitle {
-		font-size: 1.7rem;
-	}
-	.ep-tablist {
-		flex-wrap: nowrap;
-		overflow-x: auto;
-		-webkit-overflow-scrolling: touch;
-		overscroll-behavior-x: contain;
-		scrollbar-width: none;
-		&::-webkit-scrollbar {
-			display: none;
-		}
-	}
 	.ep-tab {
-		flex: 0 0 auto;
-		white-space: nowrap;
 		padding: 9px 16px;
 		font-size: 1.3rem;
 	}
@@ -367,14 +329,10 @@ html.dark-mode {
 		justify-content: flex-start;
 		text-align: left;
 	}
-	.ep-panel-grid {
-		grid-template-columns: 1fr;
-		gap: 24px;
-	}
-	.ep-panel-aside {
+	.ep-panel-foot {
+		flex-direction: column;
+		align-items: flex-start;
 		gap: 16px;
-		padding-left: 0;
-		border-left: 0;
 	}
 	.ep-includes {
 		grid-template-columns: 1fr;

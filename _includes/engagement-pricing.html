@@ -48,6 +48,7 @@
         </div>
 
         <div class="ep-panel-grid">
+          <p class="ep-includes-label">What's included</p>
           <ul class="ep-includes">
             {% for item in service.includes %}
             <li class="ep-include">
@@ -73,7 +74,23 @@
               <span>Typical engagement:</span>
               <strong>{{ service.duration }}</strong>
             </p>
-            <a class="ep-cta" href="/contact/">{{ service.cta }}</a>
+            <a class="ep-cta" href="/contact/">
+              {{ service.cta }}
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14" />
+                <path d="m13 5 7 7-7 7" />
+              </svg>
+            </a>
           </div>
         </div>
       </div>

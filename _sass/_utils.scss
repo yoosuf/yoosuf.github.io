@@ -76,27 +76,6 @@
 			}
 		}
 	}
-	.hero-action-secondary {
-		margin: 16px 0 0;
-		a {
-			display: inline-flex;
-			align-items: center;
-			gap: 4px;
-			font-size: 1.5rem;
-			font-weight: 600;
-			color: var(--jekyll-accent-strong);
-			text-decoration: underline;
-			text-decoration-color: color-mix(in srgb, var(--jekyll-accent-color) 35%, transparent);
-			text-underline-offset: 3px;
-			transition: color 0.2s ease, text-decoration-color 0.2s ease;
-			&:hover,
-			&:focus-visible {
-				color: var(--jekyll-accent-color);
-				text-decoration-color: var(--jekyll-accent-color);
-				text-decoration: underline;
-			}
-		}
-	}
 }
 
 html.dark-mode,

@@ -5,7 +5,7 @@
 
     <div class="post-feed">
       {% for post in site.posts limit:5 %}
-      <div class="post-card">
+      <article class="post-card">
         {% if post.categories.size > 0 %}
         <ul class="chip-list" aria-label="Categories">
           {% for category in post.categories %}
@@ -30,7 +30,7 @@
         {% if post.description %}
         <p class="post-card-excerpt">{{ post.description | strip_html }}</p>
         {% endif %}
-      </div>
+      </article>
       {% endfor %}
     </div>
 

@@ -18,7 +18,7 @@ layout: default
       <div class="post-feed">
         {% for post in site.posts %}
         {% assign date_format = site.minima.date_format | default: "%-d %b, %Y" %}
-        <div class="post-card">
+        <article class="post-card">
           {% if post.categories.size > 0 %}
           <ul class="chip-list" aria-label="Categories">
             {% for category in post.categories %}
@@ -35,13 +35,13 @@ layout: default
               {% include reading-time.html content=post.content %}
             </span>
           </span>
-          <h3 class="post-card-title">
+          <h2 class="post-card-title">
             <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a>
-          </h3>
+          </h2>
           {% if post.description %}
           <p class="post-card-excerpt">{{ post.description | strip_html }}</p>
           {% endif %}
-        </div>
+        </article>
         {% endfor %}
       </div>
     </div>

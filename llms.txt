@@ -6,7 +6,7 @@
 
 - [Home](https://yoosuf.me/): Personal site — AI automation, systems architecture, and AI-first products
 - [About](https://yoosuf.me/about/): Background, skills, and architectural philosophy
-- [Services & Pricing](https://yoosuf.me/services/): Engagement models and starting prices — architecture consulting, performance audits, AI integration, product development, and fractional tech leadership
+- [Services](https://yoosuf.me/services/): Engagement models and starting prices — architecture consulting, performance audits, AI integration, product development, and fractional tech leadership
 - [Terms & Payments](https://yoosuf.me/terms-payments/): Full details on pricing, quotes, deposits, milestone payments, invoicing, taxes, refunds, and termination
 - [Blog](https://yoosuf.me/blog/): Articles on AI, systems architecture, software engineering, and personal topics
 - [Contact](https://yoosuf.me/contact/): Ways to get in touch or book an appointment

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Services & Pricing
+title: Services
 meta_title: "Engagement & Pricing ~ Yoosuf Mohamed — Software Architect & Technical Consultant"
 menu_title: Services
 permalink: /services/

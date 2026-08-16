@@ -117,17 +117,6 @@
 	color: var(--color-darkgrey);
 }
 
-.ep-summary-price {
-	display: flex;
-	align-items: baseline;
-	flex-wrap: wrap;
-	justify-content: flex-end;
-	gap: 4px 8px;
-	margin-left: auto;
-	flex-shrink: 0;
-	white-space: nowrap;
-}
-
 .ep-price-label {
 	font-size: 1.2rem;
 	font-weight: 600;
@@ -587,21 +576,11 @@ html.dark-mode {
 		font-size: 1rem;
 		padding: 2px 9px;
 	}
-	.ep-summary-price {
-		order: 3;
-		flex-basis: 100%;
-		justify-content: flex-start;
-		padding-left: 52px;
-		margin-left: 0;
-	}
 	.ep-chevron {
 		order: 2;
 	}
 	.faq-question {
 		max-width: calc(100% - 28px);
-	}
-	.ep-price-value {
-		font-size: 2.4rem;
 	}
 	.ep-body-inner {
 		padding: 2px 18px 20px;

@@ -5,7 +5,9 @@
     </h2>
     <p class="ep-lead">
       Senior architecture, engineering, and AI leadership for startups and
-      enterprises. Select an engagement to see the scope and starting price.
+      enterprises. Work is scoped in writing, priced up front, and delivered by
+      me directly — no handoffs to a junior team. Open an engagement to see
+      what's included and the starting price.
     </p>
 
     <div class="ep-accordion" id="ep-accordion">
@@ -22,7 +24,24 @@
           aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}"
         >
           <span class="ep-summary-main">
-            <span class="ep-summary-title-row">
+            <span class="ep-icon" aria-hidden="true">
+              {% case service.tab %}
+                {% when "Consulting" %}
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"/></svg>
+                {% when "Performance Audit" %}
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+                {% when "AI Integration" %}
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+                {% when "Product Development" %}
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                {% when "Fractional Tech Lead" %}
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                {% else %}
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+              {% endcase %}
+            </span>
+            <span class="ep-summary-text">
+              <span class="ep-tab">{{ service.tab }}</span>
               <span class="ep-summary-name">{{ service.name }}</span>
             </span>
           </span>
@@ -80,6 +99,7 @@
             </ul>
             <div class="ep-panel-foot">
               <p class="ep-duration">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 <span>Typical engagement:</span>
                 <strong>{{ service.duration }}</strong>
               </p>
@@ -122,6 +142,161 @@
       defines deliverables, milestones, and payment terms, safeguarding the
       interests of both parties.
     </p>
+
+    <section class="ep-process" aria-labelledby="ep-process-heading">
+      <h3 class="ep-section-title" id="ep-process-heading">
+        How engagements work
+      </h3>
+      <p class="ep-section-sub">
+        A simple, predictable path from first call to handover.
+      </p>
+      <ol class="ep-steps">
+        <li class="ep-step">
+          <span class="ep-step-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <span class="ep-step-text">
+            <span class="ep-step-name">Discovery call</span>
+            <span class="ep-step-desc">
+              A free 30-minute call to understand your goals, constraints, and
+              what success looks like.
+            </span>
+          </span>
+        </li>
+        <li class="ep-step">
+          <span class="ep-step-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </span>
+          <span class="ep-step-text">
+            <span class="ep-step-name">Scope &amp; proposal</span>
+            <span class="ep-step-desc">
+              You get a written scope with deliverables, a timeline, and a fixed
+              price. No surprises, no scope creep.
+            </span>
+          </span>
+        </li>
+        <li class="ep-step">
+          <span class="ep-step-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </span>
+          <span class="ep-step-text">
+            <span class="ep-step-name">Delivery</span>
+            <span class="ep-step-desc">
+              We work in short cycles with regular check-ins, so you see real
+              progress as it happens.
+            </span>
+          </span>
+        </li>
+        <li class="ep-step">
+          <span class="ep-step-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          </span>
+          <span class="ep-step-text">
+            <span class="ep-step-name">Handoff &amp; support</span>
+            <span class="ep-step-desc">
+              Code, docs, and knowledge transfer — plus optional ongoing support
+              when you need it.
+            </span>
+          </span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="ep-faq" aria-labelledby="ep-faq-heading">
+      <h3 class="ep-section-title" id="ep-faq-heading">Common questions</h3>
+      <div class="faq-list">
+        <details class="ep-item faq-item">
+          <summary class="ep-summary faq-summary">
+            <span class="faq-question">Do you work with startups or only enterprises?</span>
+            <span class="ep-chevron" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </span>
+          </summary>
+          <div class="ep-body">
+            <div class="ep-body-inner faq-answer">
+              <p>Both. Most of my work is with startups scaling past an MVP, but I regularly take on enterprise engagements for AI, modernization, and performance work.</p>
+            </div>
+          </div>
+        </details>
+        <details class="ep-item faq-item">
+          <summary class="ep-summary faq-summary">
+            <span class="faq-question">How is pricing determined?</span>
+            <span class="ep-chevron" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </span>
+          </summary>
+          <div class="ep-body">
+            <div class="ep-body-inner faq-answer">
+              <p>Every engagement starts at the price shown, but the final quote depends on scope, complexity, and timeline. You always get a written proposal before any work begins.</p>
+            </div>
+          </div>
+        </details>
+        <details class="ep-item faq-item">
+          <summary class="ep-summary faq-summary">
+            <span class="faq-question">Do you work alongside my existing team?</span>
+            <span class="ep-chevron" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </span>
+          </summary>
+          <div class="ep-body">
+            <div class="ep-body-inner faq-answer">
+              <p>Usually, yes — that's the point. I can lead, review, mentor, or just be the senior engineer your team is missing, working inside your existing stack and workflow.</p>
+            </div>
+          </div>
+        </details>
+        <details class="ep-item faq-item">
+          <summary class="ep-summary faq-summary">
+            <span class="faq-question">What happens when the engagement ends?</span>
+            <span class="ep-chevron" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </span>
+          </summary>
+          <div class="ep-body">
+            <div class="ep-body-inner faq-answer">
+              <p>You own everything we build. Delivery includes documentation and a proper handover, and most clients keep me on a lighter retainer or move to a fractional arrangement.</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <aside class="ep-help" aria-labelledby="ep-help-heading">
+      <h3 class="ep-help-title" id="ep-help-heading">
+        Not sure which engagement fits?
+      </h3>
+      <p class="ep-help-text">
+        Book a free 30-minute call and we'll figure it out together. No pitch,
+        no pressure — just a straight answer on whether and how I can help.
+      </p>
+      <div class="ep-help-actions">
+        <a
+          class="ep-cta"
+          href="https://cal.com/yoosuf"
+          target="_blank"
+          rel="noopener"
+        >
+          Book a call
+          <span class="visually-hidden"> (opens in new tab)</span>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14" />
+            <path d="m13 5 7 7-7 7" />
+          </svg>
+        </a>
+        <a class="ep-cta ep-cta-ghost" href="mailto:mayoosuf@gmail.com">
+          Email me instead
+        </a>
+      </div>
+    </aside>
   </div>
 
   <script>

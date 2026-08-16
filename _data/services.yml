@@ -1,7 +1,7 @@
 - name: "Architecture & Technical Consulting"
   tab: "Consulting"
   price: "$2,500"
-  description: "Architecture reviews, system design, technical strategy, performance analysis, technology decisions, and technical roadmaps."
+  description: "A focused working session on your hardest technical decisions. We dig into your architecture, weigh the trade-offs, and you walk away with a clear, prioritized plan you can actually execute."
   includes:
     - "Architecture review"
     - "Technical recommendations"
@@ -14,7 +14,7 @@
 - name: "Architecture & Performance Audit"
   tab: "Performance Audit"
   price: "$7,500"
-  description: "A deep technical assessment of an existing application to identify architectural, performance, scalability, security, and infrastructure issues."
+  description: "A full teardown of your application by someone who has seen a lot of production systems. You get a prioritized list of what's actually worth fixing — performance, architecture, security, infrastructure — and a roadmap to get there."
   includes:
     - "Application architecture review"
     - "Backend/API assessment"
@@ -29,7 +29,7 @@
 - name: "AI Integration"
   tab: "AI Integration"
   price: "$15,000"
-  description: "Add practical AI capabilities to an existing product without introducing unnecessary complexity."
+  description: "Add LLM-powered features to a product you already ship, without bolting on complexity. Practical AI — assistants, RAG, document intelligence, and workflow automation that fit your existing stack."
   includes:
     - "LLM integration"
     - "AI assistants"
@@ -44,7 +44,7 @@
 - name: "Product Development"
   tab: "Product Development"
   price: "$25,000"
-  description: "Build, modernize, or extend production software from architecture through deployment."
+  description: "From architecture to production deployment, I build, modernize, or extend your software end to end. Senior, hands-on delivery — not a handoff to a junior team."
   includes:
     - "Technical discovery"
     - "Architecture"
@@ -61,7 +61,7 @@
   tab: "Fractional Tech Lead"
   price: "$8,500"
   price_unit: "/month"
-  description: "Ongoing technical leadership for startups and growing engineering teams that need senior technical direction without hiring a full-time CTO or engineering lead."
+  description: "Senior technical direction for teams that have outgrown guesswork. Architecture decisions, engineering standards, code reviews, and mentoring — real leadership without the full-time cost."
   includes:
     - "Architecture decisions"
     - "Technical roadmap"

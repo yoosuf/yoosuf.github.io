@@ -22,12 +22,27 @@
 /* ===== Accordion ===== */
 
 .ep-item {
+	position: relative;
 	margin: 0 0 14px;
 	background: #fff;
 	border: 1px solid var(--color-border);
 	border-radius: 14px;
 	box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 	overflow: hidden;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	&[open] {
+		border-color: color-mix(in srgb, var(--jekyll-accent-color) 35%, var(--color-border));
+		box-shadow: 0 6px 20px -8px color-mix(in srgb, var(--jekyll-accent-color) 28%, transparent);
+	}
+	&[open]::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: 3px;
+		background: linear-gradient(180deg, var(--jekyll-accent-color), var(--jekyll-accent-strong));
+	}
 }
 
 .ep-item * {
@@ -38,35 +53,73 @@
 	display: flex;
 	align-items: center;
 	gap: 16px;
-	padding: 20px 24px;
+	padding: 18px 24px;
 	cursor: pointer;
 	list-style: none;
+	transition: background 0.2s ease;
 	&::-webkit-details-marker {
 		display: none;
 	}
 	&:hover {
 		background: color-mix(in srgb, var(--color-lightgrey) 55%, #fff);
 	}
+	&:focus-visible {
+		background: color-mix(in srgb, var(--color-lightgrey) 75%, #fff);
+	}
+}
+
+.ep-item[open] > .ep-summary {
+	background: color-mix(in srgb, var(--jekyll-accent-color) 4%, #fff);
+}
+
+.ep-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 46px;
+	height: 46px;
+	border-radius: 12px;
+	color: var(--jekyll-accent-color);
+	background: color-mix(in srgb, var(--jekyll-accent-color) 10%, transparent);
+	svg {
+		width: 22px;
+		height: 22px;
+	}
 }
 
 .ep-summary-main {
 	display: flex;
 	align-items: center;
-	gap: 12px;
+	gap: 14px;
 	flex: 1 1 auto;
 	min-width: 0;
 }
 
-.ep-summary-title-row {
+.ep-summary-text {
 	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	gap: 10px;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 6px;
 	min-width: 0;
 }
 
+.ep-tab {
+	display: inline-flex;
+	align-items: center;
+	padding: 2px 10px;
+	border-radius: 999px;
+	font-size: 1.1rem;
+	font-weight: 700;
+	line-height: 1.7;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--jekyll-accent-strong);
+	background: color-mix(in srgb, var(--jekyll-accent-color) 10%, transparent);
+}
+
 .ep-summary-name {
-	font-size: 1.8rem;
+	font-size: 2rem;
 	font-weight: 700;
 	line-height: 1.3;
 	letter-spacing: -0.015em;
@@ -178,11 +231,17 @@
 .ep-duration {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: baseline;
-	gap: 4px;
+	align-items: center;
+	gap: 4px 8px;
 	margin: 0;
 	font-size: 1.4rem;
 	color: var(--color-secondary-text);
+	svg {
+		flex-shrink: 0;
+		width: 14px;
+		height: 14px;
+		color: var(--jekyll-accent-color);
+	}
 	strong {
 		font-weight: 600;
 		color: var(--color-darkgrey);
@@ -245,6 +304,166 @@
 	}
 }
 
+/* ===== How engagements work ===== */
+
+.ep-process {
+	margin-top: 48px;
+}
+
+.ep-section-title {
+	margin: 0 0 8px;
+	font-size: 2.4rem;
+	font-weight: 800;
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+	color: var(--color-darkgrey);
+}
+
+.ep-section-sub {
+	margin: 0 0 20px;
+	max-width: 620px;
+	font-size: 1.5rem;
+	line-height: 1.6;
+	color: var(--color-midgrey);
+}
+
+.ep-steps {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 12px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.ep-step {
+	display: flex;
+	align-items: flex-start;
+	gap: 14px;
+	padding: 18px 20px;
+	background: #fff;
+	border: 1px solid var(--color-border);
+	border-radius: 14px;
+	box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.ep-step-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 40px;
+	height: 40px;
+	border-radius: 10px;
+	color: var(--jekyll-accent-color);
+	background: color-mix(in srgb, var(--jekyll-accent-color) 10%, transparent);
+	svg {
+		width: 20px;
+		height: 20px;
+	}
+}
+
+.ep-step-text {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	min-width: 0;
+}
+
+.ep-step-name {
+	font-size: 1.6rem;
+	font-weight: 700;
+	line-height: 1.3;
+	color: var(--color-darkgrey);
+}
+
+.ep-step-desc {
+	font-size: 1.4rem;
+	line-height: 1.55;
+	color: var(--color-midgrey);
+}
+
+/* ===== FAQ ===== */
+
+.ep-faq {
+	margin-top: 48px;
+}
+
+.faq-item {
+	margin-bottom: 10px;
+	.ep-summary {
+		padding: 14px 24px;
+	}
+}
+
+.faq-question {
+	flex: 1 1 auto;
+	min-width: 0;
+	font-size: 1.6rem;
+	font-weight: 600;
+	line-height: 1.35;
+	color: var(--color-darkgrey);
+}
+
+.faq-answer {
+	font-size: 1.5rem;
+	line-height: 1.6;
+	color: var(--color-midgrey);
+	p {
+		margin: 0;
+	}
+}
+
+/* ===== Closing CTA ===== */
+
+.ep-help {
+	margin-top: 48px;
+	padding: 32px;
+	text-align: center;
+	background: color-mix(in srgb, var(--jekyll-accent-color) 6%, #fff);
+	border: 1px solid color-mix(in srgb, var(--jekyll-accent-color) 18%, var(--color-border));
+	border-radius: 16px;
+}
+
+.ep-help-title {
+	margin: 0 0 10px;
+	font-size: 2.2rem;
+	font-weight: 800;
+	line-height: 1.25;
+	letter-spacing: -0.02em;
+	color: var(--color-darkgrey);
+}
+
+.ep-help-text {
+	margin: 0 auto 24px;
+	max-width: 560px;
+	font-size: 1.5rem;
+	line-height: 1.6;
+	color: var(--color-midgrey);
+}
+
+.ep-help-actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 12px;
+}
+
+.jekyll-content a.ep-cta.ep-cta-ghost {
+	color: var(--jekyll-accent-strong);
+	background: #fff;
+	border: 1px solid color-mix(in srgb, var(--jekyll-accent-color) 35%, var(--color-border));
+	box-shadow: none;
+	&:hover,
+	&:focus-visible {
+		color: var(--jekyll-accent-strong);
+		background: color-mix(in srgb, var(--jekyll-accent-color) 6%, #fff);
+		border-color: color-mix(in srgb, var(--jekyll-accent-color) 45%, var(--color-border));
+		box-shadow: none;
+		transform: translateY(-1px);
+	}
+}
+
 /* ===== Dark mode ===== */
 
 @mixin ep-dark-mode {
@@ -278,14 +497,74 @@
 		background: color-mix(in srgb, #fff 4%, var(--color-darkmode));
 		border-color: rgba(255, 255, 255, 0.08);
 		box-shadow: none;
+		&[open] {
+			border-color: color-mix(in srgb, #93c5fd 32%, rgba(255, 255, 255, 0.08));
+			box-shadow: none;
+			> .ep-summary {
+				background: rgba(255, 255, 255, 0.04);
+			}
+			&::before {
+				background: linear-gradient(180deg, #93c5fd, #60a5fa);
+			}
+		}
 	}
 	.ep-summary {
 		&:hover {
 			background: rgba(255, 255, 255, 0.04);
 		}
+		&:focus-visible {
+			background: rgba(255, 255, 255, 0.06);
+		}
+	}
+	.ep-icon {
+		color: #93c5fd;
+		background: rgba(255, 255, 255, 0.08);
+	}
+	.ep-tab {
+		color: #93c5fd;
+		background: rgba(255, 255, 255, 0.1);
 	}
 	.ep-include svg {
 		color: #93c5fd;
+	}
+	.ep-duration svg {
+		color: #93c5fd;
+	}
+	.ep-section-title,
+	.ep-step-name,
+	.ep-help-title,
+	.faq-question {
+		color: rgba(255, 255, 255, 0.9);
+	}
+	.ep-section-sub,
+	.ep-step-desc,
+	.ep-help-text,
+	.faq-answer {
+		color: rgba(255, 255, 255, 0.62);
+	}
+	.ep-step {
+		background: color-mix(in srgb, #fff 4%, var(--color-darkmode));
+		border-color: rgba(255, 255, 255, 0.08);
+		box-shadow: none;
+	}
+	.ep-step-icon {
+		color: #93c5fd;
+		background: rgba(255, 255, 255, 0.08);
+	}
+	.ep-help {
+		background: rgba(255, 255, 255, 0.04);
+		border-color: rgba(255, 255, 255, 0.1);
+	}
+	.jekyll-content a.ep-cta.ep-cta-ghost {
+		color: #93c5fd;
+		background: transparent;
+		border-color: rgba(255, 255, 255, 0.18);
+		&:hover,
+		&:focus-visible {
+			color: #bfdbfe;
+			background: rgba(255, 255, 255, 0.06);
+			border-color: rgba(255, 255, 255, 0.28);
+		}
 	}
 	.ep-panel-foot {
 		border-top-color: rgba(255, 255, 255, 0.08);
@@ -309,17 +588,41 @@ html.dark-mode {
 		font-size: 1.6rem;
 	}
 	.ep-summary {
+		flex-wrap: wrap;
 		gap: 12px;
-		padding: 18px 20px;
+		padding: 16px 18px;
+	}
+	.ep-summary-main {
+		flex: 1 1 auto;
+		gap: 12px;
+	}
+	.ep-icon {
+		width: 40px;
+		height: 40px;
+		border-radius: 10px;
 	}
 	.ep-summary-name {
 		font-size: 1.6rem;
+	}
+	.ep-tab {
+		font-size: 1rem;
+		padding: 2px 9px;
+	}
+	.ep-summary-price {
+		order: 2;
+		flex-basis: 100%;
+		justify-content: flex-start;
+		padding-left: 52px;
+		margin-left: 0;
+	}
+	.ep-chevron {
+		order: 3;
 	}
 	.ep-price-value {
 		font-size: 2.4rem;
 	}
 	.ep-body-inner {
-		padding: 2px 20px 20px;
+		padding: 2px 18px 20px;
 	}
 	.ep-includes {
 		grid-template-columns: 1fr;
@@ -331,5 +634,22 @@ html.dark-mode {
 	}
 	.ep-cta {
 		width: 100%;
+	}
+	.ep-section-title {
+		font-size: 2rem;
+	}
+	.ep-process,
+	.ep-faq,
+	.ep-help {
+		margin-top: 36px;
+	}
+	.ep-steps {
+		grid-template-columns: 1fr;
+	}
+	.ep-help {
+		padding: 24px 20px;
+	}
+	.ep-help-actions {
+		flex-direction: column;
 	}
 }

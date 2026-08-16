@@ -204,6 +204,8 @@
             <nav class="footer-legal" aria-label="Legal">
               <a href="/terms/">Terms of Service</a>
               <span aria-hidden="true">&middot;</span>
+              <a href="/terms-payments/">Terms &amp; Payments</a>
+              <span aria-hidden="true">&middot;</span>
               <a href="/privacy/">Privacy Policy</a>
             </nav>
           </section>
@@ -244,6 +246,9 @@
           const isOpen = !document.body.classList.contains("jekyll-head-open");
           setMenuState(isOpen);
           syncMenuForViewport();
+          if (isOpen && menuBreakpoint.matches) {
+            nav.querySelector("a")?.focus();
+          }
         });
 
         nav.querySelectorAll("a").forEach((link) => {

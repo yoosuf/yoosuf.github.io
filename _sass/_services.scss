@@ -34,15 +34,6 @@
 		border-color: color-mix(in srgb, var(--jekyll-accent-color) 35%, var(--color-border));
 		box-shadow: 0 6px 20px -8px color-mix(in srgb, var(--jekyll-accent-color) 28%, transparent);
 	}
-	&[open]::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		width: 3px;
-		background: linear-gradient(180deg, var(--jekyll-accent-color), var(--jekyll-accent-strong));
-	}
 }
 
 .ep-item * {
@@ -302,6 +293,14 @@
 		text-transform: uppercase;
 		color: var(--color-darkgrey);
 	}
+
+	.ep-note-link {
+		display: inline-block;
+		margin-top: 6px;
+		font-weight: 600;
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
 }
 
 /* ===== How engagements work ===== */
@@ -502,9 +501,6 @@
 			box-shadow: none;
 			> .ep-summary {
 				background: rgba(255, 255, 255, 0.04);
-			}
-			&::before {
-				background: linear-gradient(180deg, #93c5fd, #60a5fa);
 			}
 		}
 	}

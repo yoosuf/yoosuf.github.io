@@ -72,10 +72,14 @@ p { text-wrap: pretty; }
 .jekyll-canvas { display: grid; grid-template-columns: [full-start] minmax(max(5%, 24px), auto) [wide-start] minmax(auto, 240px) [main-start] min(740px, 100% - max(10%, 48px)) [main-end] minmax(auto, 240px) [wide-end] minmax(max(5%, 24px), auto) [full-end]; }
 .jekyll-canvas > * { grid-column: main-start/main-end; }
 .jekyll-content { max-width: 100%; overflow-wrap: anywhere; word-break: break-word; }
-.jekyll-content > * + * { margin-top: 32px; margin-bottom: 0; }
-.jekyll-content > [id] { margin: 0; color: var(--color-darkgrey); }
-.jekyll-content > [id]:not(:first-child) { margin: 2.5em 0 0; }
-.jekyll-content > [id] + * { margin-top: 1.5rem !important; }
+.jekyll-content > * + * { margin-top: 36px; margin-bottom: 0; }
+.jekyll-content > h1, .jekyll-content > h2, .jekyll-content > h3, .jekyll-content > h4, .jekyll-content > h5, .jekyll-content > h6 { margin: 0; color: var(--color-darkgrey); }
+.jekyll-content > h1:first-child, .jekyll-content > h2:first-child, .jekyll-content > h3:first-child, .jekyll-content > h4:first-child, .jekyll-content > h5:first-child, .jekyll-content > h6:first-child { margin-top: 0; }
+.jekyll-content > h2 { margin-top: 70px; }
+.jekyll-content > h3 { margin-top: 56px; }
+.jekyll-content > h4 { margin-top: 44px; }
+.jekyll-content > h5, .jekyll-content > h6 { margin-top: 36px; }
+.jekyll-content > h2 + :not([id]), .jekyll-content > h3 + :not([id]), .jekyll-content > h4 + :not([id]), .jekyll-content > h5 + :not([id]), .jekyll-content > h6 + :not([id]) { margin-top: 24px; }
 .jekyll-content > p { margin: 0; }
 .jekyll-content a { color: var(--jekyll-accent-color); }
 

@@ -98,11 +98,21 @@
               {% endfor %}
             </ul>
             <div class="ep-panel-foot">
-              <p class="ep-duration">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>Typical engagement:</span>
-                <strong>{{ service.duration }}</strong>
-              </p>
+              <div class="ep-foot-info">
+                <p class="ep-price">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                  <span class="ep-price-label">Starting at</span>
+                  <strong class="ep-price-value">{{ service.price }}</strong>
+                  {% if service.price_unit %}
+                  <span class="ep-price-unit">{{ service.price_unit }}</span>
+                  {% endif %}
+                </p>
+                <p class="ep-duration">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span>Typical engagement:</span>
+                  <strong>{{ service.duration }}</strong>
+                </p>
+              </div>
               <a
                 class="ep-cta"
                 href="https://cal.com/yoosuf"

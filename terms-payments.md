@@ -42,7 +42,7 @@ Work on the project does not proceed while an invoice is outstanding.
 
 ## Payment methods
 
-Payments are accepted via bank transfer and, where applicable, the card or payment method stated in the engagement agreement. Receipts are provided for every payment.
+Payments are accepted via [Wise.com](https://wise.com/) (recommended for fast, low-cost international transfers) or by direct bank transfer. Bank and Wise account details are provided on the invoice. Receipts are provided for every payment.
 
 ## Taxes
 

@@ -312,43 +312,35 @@
     <script>
       (() => {
         const btn = document.getElementById("article-share");
-        if (!btn) return;
+        const modal = document.getElementById("share-modal");
+        if (!btn || !modal) return;
 
-        const label = btn.querySelector(".article-share-label");
-        const labelText = label ? label.textContent.trim() : "Share";
         const status = document.getElementById("article-share-status");
         const announce = (message) => {
           if (status) status.textContent = message;
         };
+
         const url = window.location.href;
-        const description =
-          document.querySelector('meta[name="description"]')?.content || "";
-        const shareData = { title: document.title, url };
-        if (description) shareData.text = description;
+        const title = document.title;
 
-        const canNativeShare =
-          typeof navigator.share === "function" &&
-          (typeof navigator.canShare !== "function" ||
-            navigator.canShare(shareData) === true);
-        const canClipboard =
-          typeof navigator.clipboard?.writeText === "function" ||
-          document.queryCommandSupported?.("copy") === true;
-
-        if (!canNativeShare && !canClipboard) return;
-
-        let copiedTimer = null;
-
-        const showCopied = () => {
-          if (!label) return;
-          btn.classList.add("is-copied");
-          label.textContent = "Copied!";
-          announce("Link copied to clipboard");
-          window.clearTimeout(copiedTimer);
-          copiedTimer = window.setTimeout(() => {
-            btn.classList.remove("is-copied");
-            label.textContent = labelText;
-          }, 2000);
+        const channels = {
+          x: `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`,
+          linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+          facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+          whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(`${title}\n${url}`)}`,
+          email: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`${title}\n${url}`)}`,
         };
+
+        Object.entries(channels).forEach(([key, href]) => {
+          const el = modal.querySelector(`[data-share="${key}"]`);
+          if (!el) return;
+          el.href = href;
+          el.target = "_blank";
+          el.rel = "noopener";
+        });
+
+        const urlInput = document.getElementById("share-url-input");
+        if (urlInput) urlInput.value = url;
 
         const copyUrl = async () => {
           if (typeof navigator.clipboard?.writeText === "function") {
@@ -366,31 +358,74 @@
           document.body.removeChild(input);
         };
 
-        btn.hidden = false;
+        const dialog = modal.querySelector(".share-modal-dialog");
+        const focusables = () =>
+          Array.from(
+            modal.querySelectorAll("a[href], button:not([disabled]), input")
+          );
 
-        btn.addEventListener("click", async () => {
-          try {
-            if (canNativeShare) {
-              await navigator.share(shareData);
-            } else {
-              await copyUrl();
-              showCopied();
-            }
-          } catch (err) {
-            if (err?.name === "AbortError") return;
+        let lastFocused = null;
+
+        const openModal = () => {
+          lastFocused = document.activeElement;
+          modal.hidden = false;
+          modal.setAttribute("aria-hidden", "false");
+          document.body.classList.add("share-modal-open");
+          if (dialog) dialog.focus();
+        };
+
+        const closeModal = () => {
+          modal.hidden = true;
+          modal.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("share-modal-open");
+          if (lastFocused instanceof HTMLElement) lastFocused.focus();
+        };
+
+        btn.addEventListener("click", openModal);
+
+        modal.addEventListener("click", (event) => {
+          if (event.target.closest("[data-share-close]")) closeModal();
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key !== "Escape" || modal.hidden) return;
+          closeModal();
+        });
+
+        modal.addEventListener("keydown", (event) => {
+          if (event.key !== "Tab") return;
+          const items = focusables();
+          if (items.length < 2) return;
+          const first = items[0];
+          const last = items[items.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        });
+
+        const copyButtons = modal.querySelectorAll('[data-share="copy"]');
+        copyButtons.forEach((copyBtn) => {
+          copyBtn.addEventListener("click", async () => {
+            const label =
+              copyBtn.querySelector(".share-option-label") || copyBtn;
+            const labelText = label.textContent.trim();
             try {
               await copyUrl();
-              showCopied();
+              copyBtn.classList.add("is-copied");
+              label.textContent = "Copied!";
+              announce("Link copied to clipboard");
+              window.setTimeout(() => {
+                copyBtn.classList.remove("is-copied");
+                label.textContent = labelText;
+              }, 2000);
             } catch {
-              if (label) {
-                label.textContent = "Couldn't copy";
-                window.setTimeout(() => {
-                  label.textContent = labelText;
-                }, 2000);
-              }
               announce("Couldn't copy the link");
             }
-          }
+          });
         });
       })();
     </script>

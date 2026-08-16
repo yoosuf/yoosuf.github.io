@@ -60,7 +60,6 @@
 - name: "Fractional Tech Lead"
   tab: "Fractional Tech Lead"
   price: "$8,500"
-  price_unit: "/month"
   description: "Senior technical direction for teams that have outgrown guesswork. Architecture decisions, engineering standards, code reviews, and mentoring — real leadership without the full-time cost."
   includes:
     - "Architecture decisions"

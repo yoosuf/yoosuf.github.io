@@ -106,6 +106,40 @@
 	object {
 		max-width: 100%;
 	}
+	>pre,
+	>table,
+	>figure,
+	>img {
+		margin-top: max(6px, 40px);
+		+ * {
+			margin-top: max(6px, 40px);
+		}
+	}
+	>img {
+		display: block;
+		max-width: 100%;
+		height: auto;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	>table {
+		width: 100%;
+		border-collapse: collapse;
+		th,
+		td {
+			padding: 10px 14px;
+			text-align: left;
+			border: 1px solid var(--color-border);
+		}
+		th {
+			font-weight: 700;
+			color: var(--color-darkgrey);
+			background: var(--color-lightgrey);
+		}
+		td {
+			color: var(--color-midgrey);
+		}
+	}
 	>h1,
 	>h2,
 	>h3,
@@ -196,6 +230,9 @@
 				border-radius: 999px;
 			}
 		}
+		p + p {
+			margin-top: 1em;
+		}
 	}
 	a {
 		color: var(--jekyll-accent-strong);
@@ -236,6 +273,20 @@
 		font-weight: 400;
 		font-size: 2rem;
 		line-height: 1.7;
+	}
+	>ul,
+	>ol {
+		li > ul,
+		li > ol {
+			margin-top: 0.5em;
+			margin-bottom: 0.5em;
+		}
+		li > p {
+			margin: 0;
+			+ p {
+				margin-top: 0.5em;
+			}
+		}
 	}
 	&:not(pre) {
 		>code {
@@ -533,6 +584,12 @@ figcaption {
 		>h5,
 		>h6 {
 			margin-top: 3rem;
+		}
+		>table {
+			display: block;
+			width: 100%;
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
 		}
 		pre {
 			white-space: pre-wrap;
@@ -866,6 +923,32 @@ body.share-modal-open {
 @media (prefers-color-scheme: dark) {
 	:where(html.auto-color) {
 		@include share-modal-dark-mode;
+	}
+}
+
+@mixin content-table-dark-mode {
+	.jekyll-content > table {
+		th,
+		td {
+			border-color: rgba(255, 255, 255, 0.12);
+		}
+		th {
+			color: rgba(255, 255, 255, 0.9);
+			background: rgba(255, 255, 255, 0.05);
+		}
+		td {
+			color: rgba(255, 255, 255, 0.7);
+		}
+	}
+}
+
+:where(html.dark-mode) {
+	@include content-table-dark-mode;
+}
+
+@media (prefers-color-scheme: dark) {
+	:where(html.auto-color) {
+		@include content-table-dark-mode;
 	}
 }
 

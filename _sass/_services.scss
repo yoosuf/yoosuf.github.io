@@ -270,39 +270,6 @@
 	}
 }
 
-/* ===== Pricing note ===== */
-
-.ep-note {
-	margin: 28px auto 0;
-	max-width: 680px;
-	padding: 16px 24px;
-	text-align: center;
-	font-size: 1.35rem;
-	line-height: 1.6;
-	color: var(--color-midgrey);
-	background: var(--color-lightgrey);
-	border: 1px solid var(--color-border);
-	border-radius: 12px;
-
-	strong {
-		display: block;
-		margin-bottom: 6px;
-		font-size: 1.2rem;
-		font-weight: 700;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--color-darkgrey);
-	}
-
-	.ep-note-link {
-		display: inline-block;
-		margin-top: 6px;
-		font-weight: 600;
-		text-decoration: underline;
-		text-underline-offset: 3px;
-	}
-}
-
 /* ===== How engagements work ===== */
 
 .ep-process {
@@ -480,17 +447,8 @@
 	.ep-price-unit,
 	.ep-chevron,
 	.ep-duration,
-	.ep-includes-label,
-	.ep-note {
+	.ep-includes-label {
 		color: rgba(255, 255, 255, 0.55);
-	}
-	.ep-note {
-		background: rgba(255, 255, 255, 0.05);
-		border-color: rgba(255, 255, 255, 0.1);
-
-		strong {
-			color: #f8fafc;
-		}
 	}
 	.ep-item {
 		background: color-mix(in srgb, #fff 4%, var(--color-darkmode));
@@ -591,6 +549,7 @@ html.dark-mode {
 	.ep-summary-main {
 		flex: 1 1 auto;
 		gap: 12px;
+		max-width: calc(100% - 30px);
 	}
 	.ep-icon {
 		width: 40px;
@@ -605,14 +564,17 @@ html.dark-mode {
 		padding: 2px 9px;
 	}
 	.ep-summary-price {
-		order: 2;
+		order: 3;
 		flex-basis: 100%;
 		justify-content: flex-start;
 		padding-left: 52px;
 		margin-left: 0;
 	}
 	.ep-chevron {
-		order: 3;
+		order: 2;
+	}
+	.faq-question {
+		max-width: calc(100% - 28px);
 	}
 	.ep-price-value {
 		font-size: 2.4rem;

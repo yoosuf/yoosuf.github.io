@@ -67,6 +67,13 @@ Don't:
 ## Markdown notes
 
 - kramdown is the parser; tables, blockquotes, fenced code blocks, and nested lists all work.
+- **Bold-label sequences must be bulleted lists.** When several consecutive lines follow the same `**Label**` pattern (e.g. `**Month 0** — ...`, `**Risk:** / **Signal:** / **Trigger:**`, `**Weak evidence** → ...`), prefix each with `- `. In kramdown, consecutive lines without blank lines merge into a single paragraph, so unbulleted runs render as one wall of text. Example:
+
+  ```markdown
+  - **Product:** customers activate within 7 days of signing up.
+  - **Customer:** mid-sized businesses have a problem painful enough to pay for this.
+  ```
+
 - Don't duplicate social/meta tags — they're already wired into `_layouts/default.html` and `_includes/`.
 
 ## Verification workflow (always do this)

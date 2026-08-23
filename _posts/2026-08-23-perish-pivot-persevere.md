@@ -38,11 +38,11 @@ Notice what changes. Suddenly you're not arguing about whether the product feels
 
 Before launching anything serious, write down the assumptions you're betting on, with numbers attached. Something like:
 
-**Product:** customers activate within 7 days of signing up.
-**Customer:** mid-sized businesses have a problem painful enough to pay for this.
-**Commercial:** we can acquire a customer for less than $500.
-**Retention:** at least 70% of qualified customers are still active after three months.
-**Revenue:** $50,000 MRR within 12 months.
+- **Product:** customers activate within 7 days of signing up.
+- **Customer:** mid-sized businesses have a problem painful enough to pay for this.
+- **Commercial:** we can acquire a customer for less than $500.
+- **Retention:** at least 70% of qualified customers are still active after three months.
+- **Revenue:** $50,000 MRR within 12 months.
 
 None of these are promises. They're hypotheses. And here's the part everyone skips: deciding *now* what happens if they don't hold.
 
@@ -103,11 +103,11 @@ Now the company has six months to reinvent itself. Hiring takes months. Enterpri
 
 Compare that to a team that plans its decision points up front:
 
-**Month 0** — define the hypotheses.
-**Month 3** — review the leading indicators.
-**Month 6** — make the first major strategic decision.
-**Month 9** — if the evidence isn't there, execute the pivot you already scoped.
-**Month 12** — decide whether the new strategy deserves more capital.
+- **Month 0** — define the hypotheses.
+- **Month 3** — review the leading indicators.
+- **Month 6** — make the first major strategic decision.
+- **Month 9** — if the evidence isn't there, execute the pivot you already scoped.
+- **Month 12** — decide whether the new strategy deserves more capital.
 
 The exact timeline varies by company. The principle doesn't: **never allow your runway to become your decision-making mechanism.** If you only act when the bank account forces you to, you're not doing strategy. You're negotiating with bankruptcy.
 
@@ -180,11 +180,11 @@ I wrote recently about how so many corporate failures get blamed on technology w
 
 Here's a rule worth stealing:
 
-**Weak evidence** → investigate.
-**Mixed evidence** → experiment.
-**Strong positive evidence** → invest.
-**Strong negative evidence** → change direction.
-**Repeated negative evidence** → stop.
+- **Weak evidence** → investigate.
+- **Mixed evidence** → experiment.
+- **Strong positive evidence** → invest.
+- **Strong negative evidence** → change direction.
+- **Repeated negative evidence** → stop.
 
 The mistake many companies make is treating every situation as though it requires another meeting. Sometimes the evidence is already overwhelming, and the only thing missing is the nerve to act on it. A leadership team's job, past a certain point, isn't to deliberate more. It's to move.
 
@@ -200,9 +200,9 @@ The answers tend to sound like this: wrong customer. Sales cycle too long. Custo
 
 Now — and this is the step that separates theater from risk management — convert each risk into a measurable signal and a trigger. For instance:
 
-**Risk:** the enterprise sales cycle is too long.
-**Signal:** average deal cycle exceeds six months.
-**Trigger:** if three consecutive quarters show no improvement, we reconsider enterprise as our primary segment.
+- **Risk:** the enterprise sales cycle is too long.
+- **Signal:** average deal cycle exceeds six months.
+- **Trigger:** if three consecutive quarters show no improvement, we reconsider enterprise as our primary segment.
 
 That's it. Risk named, signal measured, trigger agreed. Now nobody has to summon courage in month fourteen — the courage was spent on day one.
 

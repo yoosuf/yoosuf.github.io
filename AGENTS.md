@@ -52,6 +52,7 @@ See the `jekyll-blog` skill for the full voice guide and workflow.
 - `robots.txt` explicitly allows AI crawlers; do not remove them.
 - Update `llms.txt` when adding a notable post.
 - Markdown is kramdown; tables, blockquotes, fenced code blocks all work.
+- Runs of consecutive `**Label**` lines (timelines like `**Month 0** — ...`, `**Risk:** / **Signal:** / **Trigger:**, etc.) must be bulleted lists (`- ` prefix) — without it kramdown merges them into one paragraph.
 - Only commit when explicitly asked.
 
 ## Config files

@@ -75,11 +75,27 @@
 	}
 }
 .article-excerpt {
-	margin-top: 20px;
+	margin-top: 24px;
 	max-width: 720px;
-	font-size: 2rem;
-	line-height: 1.5;
-	color: var(--color-darkgrey);
+	font-size: 2.1rem;
+	line-height: 1.55;
+	letter-spacing: -0.005em;
+	font-weight: 500;
+	color: var(--color-secondary-text);
+
+	&::before {
+		content: "";
+		display: block;
+		width: 44px;
+		height: 3px;
+		margin-bottom: 12px;
+		border-radius: 999px;
+		background: linear-gradient(
+			90deg,
+			var(--jekyll-accent-color),
+			var(--jekyll-accent-strong)
+		);
+	}
 }
 .jekyll-canvas {
 	display: grid;
@@ -215,26 +231,32 @@
 		}
 		&:not([class]) {
 			font-family: var(--font-serif);
-			font-weight: 400;
+			font-weight: 500;
 			font-size: 2rem;
-			line-height: 1.7em;
-			position: relative;
-			font-style: italic;
-			padding: 0;
-			color: var(--color-midgrey);
+			line-height: 1.65;
+			font-style: normal;
+			padding: 22px 28px;
+			border: 0;
+			border-radius: 12px;
+			background: linear-gradient(
+				135deg,
+				color-mix(in srgb, var(--jekyll-accent-color) 8%, transparent),
+				color-mix(in srgb, var(--jekyll-accent-color) 2%, transparent)
+			);
+			color: inherit;
 			&::before {
 				content: "";
 				position: absolute;
-				left: -1.5em;
-				top: 0;
-				bottom: 0;
-				width: 3px;
+				left: 0;
+				top: 14px;
+				bottom: 14px;
+				width: 4px;
+				border-radius: 999px;
 				background: linear-gradient(
 					180deg,
 					var(--jekyll-accent-color),
 					var(--jekyll-accent-strong)
 				);
-				border-radius: 999px;
 			}
 		}
 		p + p {
@@ -556,8 +578,13 @@ figcaption {
 		padding-bottom: max(12px, 48px);
 	}
 	.article-excerpt {
-		margin-top: 14px;
-		font-size: 1.7rem;
+		margin-top: 16px;
+		font-size: 1.8rem;
+
+		&::before {
+			width: 36px;
+			margin-bottom: 10px;
+		}
 	}
 	.article-byline-meta {
 		.author-name {
@@ -625,6 +652,11 @@ figcaption {
 		>blockquote {
 			&:not([class]) {
 				font-size: 1.8rem;
+				padding: 18px 20px;
+				&::before {
+					top: 10px;
+					bottom: 10px;
+				}
 			}
 		}
 		>ol {
@@ -638,13 +670,6 @@ figcaption {
 		}
 		>p {
 			font-size: 1.8rem;
-		}
-		blockquote {
-			&:not([class]) {
-				&::before {
-					left: min(-4px, -20px);
-				}
-			}
 		}
 	}
 }

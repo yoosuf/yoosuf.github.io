@@ -227,12 +227,12 @@ If those questions can't be answered yet, the company isn't necessarily ready to
 
 One practical habit ties all of this together: formal review points, written down, non-negotiable.
 
-**Monthly:** operational metrics.
-**Quarterly:** product and market assumptions.
-**Every six months:** strategy and resource allocation.
-**Before major hiring:** capability gap analysis.
-**Before major investment:** evidence review.
-**Before extending runway:** an honest probability-of-success assessment.
+- **Monthly:** operational metrics.
+- **Quarterly:** product and market assumptions.
+- **Every six months:** strategy and resource allocation.
+- **Before major hiring:** capability gap analysis.
+- **Before major investment:** evidence review.
+- **Before extending runway:** an honest probability-of-success assessment.
 
 The calendar matters because it removes mood from the loop. Strategy decided in reaction to the latest bad week isn't strategy — it's anxiety with a slide deck.
 

@@ -123,8 +123,8 @@ This is also the hardest judgment in product management: separating "not working
 
 Look at two companies:
 
-Company A: 10 customers, then 18, then 31, then 47, then 72.
-Company B: 100 customers, then 98, then 91, then 83, then 71.
+- Company A: 10 customers, then 18, then 31, then 47, then 72.
+- Company B: 100 customers, then 98, then 91, then 83, then 71.
 
 In any single screenshot, B looks twice the company A is. But B is dying, and A is compounding. Direction matters more than snapshots. Any investor, board member or founder who reads a metric without reading its slope is decorating, not analyzing.
 

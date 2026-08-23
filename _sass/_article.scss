@@ -374,7 +374,6 @@
 						background-repeat: no-repeat;
 					}
 					padding: 6px 12px;
-					border: color-mod(var(--color-wash) l(-1%) s(-5%)) 1px solid;
 				}
 				th {
 					color: var(--color-darkgrey);
@@ -383,9 +382,7 @@
 					letter-spacing: 0.2px;
 					text-align: left;
 					text-transform: uppercase;
-					background-color: color-mod(var(--color-wash) l(+4%));
 					padding: 6px 12px;
-					border: color-mod(var(--color-wash) l(-1%) s(-5%)) 1px solid;
 				}
 			}
 		}
@@ -463,21 +460,7 @@ figcaption {
 	&[hidden] {
 		display: none;
 	}
-}
-:where(html.dark-mode) .article-share {
-	color: #fff;
-	background: var(--jekyll-accent-color);
-	&:hover,
-	&:focus-visible {
-		color: #fff;
-		background: var(--jekyll-accent-strong);
-	}
-	&.is-copied {
-		color: #fff;
-		background: #16a34a;
-	}
-}
-.article-byline-avatar {
+}.article-byline-avatar {
 	flex-shrink: 0;
 	width: 48px;
 	height: 48px;
@@ -906,88 +889,6 @@ body.share-modal-open {
 	}
 	&.is-copied {
 		background: #15803d;
-	}
-}
-
-@mixin share-modal-dark-mode {
-	.share-modal-scrim {
-		background: rgba(0, 0, 0, 0.6);
-	}
-	.share-modal-dialog {
-		background: #111a2e;
-		color: rgba(255, 255, 255, 0.9);
-	}
-	.share-modal-title {
-		color: rgba(255, 255, 255, 0.9);
-	}
-	.share-modal-header {
-		border-bottom-color: rgba(255, 255, 255, 0.08);
-	}
-	.share-modal-subtitle {
-		color: rgba(255, 255, 255, 0.6);
-	}
-	.share-modal-close {
-		color: rgba(255, 255, 255, 0.6);
-		&:hover,
-		&:focus-visible {
-			color: #fff;
-			background: rgba(255, 255, 255, 0.1);
-		}
-	}
-	.share-option {
-		color: rgba(255, 255, 255, 0.6);
-		&:hover,
-		&:focus-visible {
-			.share-option-label {
-				color: #fff;
-			}
-		}
-	}
-	.share-url-field {
-		background: rgba(255, 255, 255, 0.05);
-		border-color: rgba(255, 255, 255, 0.12);
-	}
-	.share-url-icon {
-		color: rgba(255, 255, 255, 0.5);
-	}
-	.share-url-input {
-		color: rgba(255, 255, 255, 0.7);
-	}
-}
-
-:where(html.dark-mode) {
-	@include share-modal-dark-mode;
-}
-
-@media (prefers-color-scheme: dark) {
-	:where(html.auto-color) {
-		@include share-modal-dark-mode;
-	}
-}
-
-@mixin content-table-dark-mode {
-	.jekyll-content > table {
-		th,
-		td {
-			border-color: rgba(255, 255, 255, 0.12);
-		}
-		th {
-			color: rgba(255, 255, 255, 0.9);
-			background: rgba(255, 255, 255, 0.05);
-		}
-		td {
-			color: rgba(255, 255, 255, 0.7);
-		}
-	}
-}
-
-:where(html.dark-mode) {
-	@include content-table-dark-mode;
-}
-
-@media (prefers-color-scheme: dark) {
-	:where(html.auto-color) {
-		@include content-table-dark-mode;
 	}
 }
 

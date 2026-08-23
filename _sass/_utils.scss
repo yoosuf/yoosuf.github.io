@@ -73,17 +73,6 @@
 	}
 }
 
-html.dark-mode,
-html.auto-color {
-	.hero {
-		.hero-action a,
-		.hero-action a:hover,
-		.hero-action a:focus-visible {
-			color: #fff;
-		}
-	}
-}
-
 .section {
 	margin-top: 24px;
 	.section-title {
@@ -214,14 +203,6 @@ html.auto-color {
 	}
 	&[hidden] {
 		display: none;
-	}
-}
-
-:where(html.dark-mode) .back-to-top-label {
-	background: #1e293b;
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	&::after {
-		border-left-color: #1e293b;
 	}
 }
 

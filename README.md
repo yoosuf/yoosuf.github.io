@@ -32,12 +32,12 @@ The generated site goes into `_site/` (gitignored).
 | `_posts/*.md`        | Blog posts. Filename: `YYYY-MM-DD-slug.md`                         |
 | `_layouts/*.html`    | Layouts: `default`, `home`, `blog`, `page`, `post`                 |
 | `_includes/*.html`   | Reusable partials (nav, footer, breadcrumbs, social cards, etc.)   |
-| `_data/`             | YAML data: `navigation.yml`, `authors.yml`                         |
+| `_data/`             | YAML data: `navigation.yml`                                        |
 | `_sass/`             | SCSS partials + `screen.scss`                                     |
 | `assets/css/main.scss` | Entry point that imports the `_sass` partials                    |
 | `blog.md`            | Blog index page (renders all posts via `_layouts/blog.html`)       |
 | `about.md`, `contact.md` | Static pages                                                   |
-| `index.md`/`index.html` | Home page                                                       |
+| `index.md`           | Home page                                                          |
 | `llms.txt`           | LLM-friendly index of the site's pages and posts                   |
 | `sitemap.xml`        | Sitemap                                                           |
 | `robots.txt`         | Robots rules; AI crawlers are explicitly allowed                   |

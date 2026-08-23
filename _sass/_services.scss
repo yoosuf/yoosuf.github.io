@@ -117,28 +117,6 @@
 	color: var(--color-darkgrey);
 }
 
-.ep-price-label {
-	font-size: 1.2rem;
-	font-weight: 600;
-	letter-spacing: 0.05em;
-	text-transform: uppercase;
-	color: var(--color-secondary-text);
-}
-
-.ep-price-value {
-	font-size: 2.8rem;
-	font-weight: 800;
-	line-height: 1;
-	letter-spacing: -0.03em;
-	color: var(--color-darkgrey);
-}
-
-.ep-price-unit {
-	font-size: 1.4rem;
-	font-weight: 600;
-	color: var(--color-secondary-text);
-}
-
 .ep-chevron {
 	display: inline-flex;
 	flex-shrink: 0;
@@ -212,24 +190,6 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-}
-
-.ep-price {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: baseline;
-	gap: 4px 8px;
-	margin: 0;
-	svg {
-		flex-shrink: 0;
-		align-self: center;
-		width: 14px;
-		height: 14px;
-		color: var(--jekyll-accent-color);
-	}
-	.ep-price-value {
-		font-size: 2.2rem;
-	}
 }
 
 .ep-duration {
@@ -443,111 +403,6 @@
 	}
 }
 
-/* ===== Dark mode ===== */
-
-@mixin ep-dark-mode {
-	.ep-summary-name,
-	.ep-price-value,
-	.ep-duration strong {
-		color: rgba(255, 255, 255, 0.9);
-	}
-	.ep-summary-desc,
-	.ep-include,
-	.ep-lead {
-		color: rgba(255, 255, 255, 0.62);
-	}
-	.ep-price-label,
-	.ep-price-unit,
-	.ep-chevron,
-	.ep-duration,
-	.ep-includes-label {
-		color: rgba(255, 255, 255, 0.55);
-	}
-	.ep-item {
-		background: color-mix(in srgb, #fff 4%, var(--color-darkmode));
-		border-color: rgba(255, 255, 255, 0.08);
-		box-shadow: none;
-		&[open] {
-			border-color: color-mix(in srgb, #93c5fd 32%, rgba(255, 255, 255, 0.08));
-			box-shadow: none;
-			> .ep-summary {
-				background: rgba(255, 255, 255, 0.04);
-			}
-		}
-	}
-	.ep-summary {
-		&:hover {
-			background: rgba(255, 255, 255, 0.04);
-		}
-		&:focus-visible {
-			background: rgba(255, 255, 255, 0.06);
-		}
-	}
-	.ep-icon {
-		color: #93c5fd;
-		background: rgba(255, 255, 255, 0.08);
-	}
-	.ep-tab {
-		color: #93c5fd;
-		background: rgba(255, 255, 255, 0.1);
-	}
-	.ep-include svg {
-		color: #93c5fd;
-	}
-	.ep-duration svg {
-		color: #93c5fd;
-	}
-	.ep-section-title,
-	.ep-step-name,
-	.ep-help-title,
-	.faq-question {
-		color: rgba(255, 255, 255, 0.9);
-	}
-	.ep-section-sub,
-	.ep-step-desc,
-	.ep-help-text,
-	.faq-answer {
-		color: rgba(255, 255, 255, 0.62);
-	}
-	.ep-step {
-		background: color-mix(in srgb, #fff 4%, var(--color-darkmode));
-		border-color: rgba(255, 255, 255, 0.08);
-		box-shadow: none;
-	}
-	.ep-step-icon {
-		color: #93c5fd;
-		background: rgba(255, 255, 255, 0.08);
-	}
-	.ep-help {
-		background: rgba(255, 255, 255, 0.04);
-		border-color: rgba(255, 255, 255, 0.1);
-	}
-	.jekyll-content a.ep-cta.ep-cta-ghost {
-		color: #93c5fd;
-		background: transparent;
-		border-color: rgba(255, 255, 255, 0.18);
-		&:hover,
-		&:focus-visible {
-			color: #bfdbfe;
-			background: rgba(255, 255, 255, 0.06);
-			border-color: rgba(255, 255, 255, 0.28);
-		}
-	}
-	.ep-panel-foot {
-		border-top-color: rgba(255, 255, 255, 0.08);
-	}
-}
-
-html.dark-mode {
-	@include ep-dark-mode;
-}
-
-@media (prefers-color-scheme: dark) {
-	html.auto-color {
-		@include ep-dark-mode;
-	}
-}
-
 /* ===== Responsive ===== */
 
 @media (max-width: 767px) {
@@ -595,11 +450,7 @@ html.dark-mode {
 	}
 	.ep-foot-info {
 		gap: 12px;
-	}
-	.ep-price .ep-price-value {
-		font-size: 2rem;
-	}
-	.ep-cta {
+	}	.ep-cta {
 		width: 100%;
 	}
 	.ep-section-title {

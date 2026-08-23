@@ -20,7 +20,7 @@ Always run `bundle exec jekyll build` after editing posts, layouts, includes, or
 - `_posts/*.md` — blog posts, named `YYYY-MM-DD-slug.md`
 - `_layouts/` — `default.html` (shell, nav, footer, GA), `post.html`, `blog.html`, `home.html`, `page.html`
 - `_includes/` — partials (breadcrumbs, post-list, social cards, analytics)
-- `_data/navigation.yml` — nav links; `_data/authors.yml` — author info
+- `_data/navigation.yml` — nav links
 - `_sass/` + `assets/css/main.scss` — styling
 - `blog.md` — blog index; `about.md`, `contact.md` — pages; `llms.txt` — LLM index
 

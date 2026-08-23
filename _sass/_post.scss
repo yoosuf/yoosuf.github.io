@@ -98,16 +98,6 @@
 	}
 }
 
-@media (prefers-color-scheme: dark) {
-	html.auto-color .post-card {
-		background: transparent;
-	}
-}
-
-html.dark-mode .post-card {
-	background: transparent;
-}
-
 @media (max-width: 767px) {
 	.post-feed {
 		gap: 12px;

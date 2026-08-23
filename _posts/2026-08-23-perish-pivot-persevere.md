@@ -46,7 +46,34 @@ Before launching anything serious, write down the assumptions you're betting on,
 
 None of these are promises. They're hypotheses. And here's the part everyone skips: deciding *now* what happens if they don't hold.
 
-Because if you don't decide now, you'll decide later — when you're eight months in, tired, defensive, and emotionally invested in being right. Nobody makes their best decisions in that state. I've certainly never seen anyone do it.
+Because if you don't decide now, you'll decide later — when you're eight months in, tired, defensive, and emotionally invested in being right. Few people make their best decisions in that state. I've certainly never seen anyone do it.
+
+## Turn every hypothesis into a trigger
+
+If you take one idea from this article, make it this one — it's the mechanism underneath everything else, so let me spell it out.
+
+For every hypothesis you write down, attach three things:
+
+**Signal** — the leading indicator that tests it. Activation rate for the product hypothesis, acquisition cost for the commercial one, 90-day retention for the retention one.
+
+**Threshold** — the number *and* the date that would count as evidence against you. Not "retention should be decent" but "below 70% after three months." The date matters as much as the number: a metric that might get there eventually is not the same as a metric that gets there by June.
+
+**Pre-agreed move** — what you commit to doing if the threshold trips. Investigate. Run an experiment. Change the plan. Stop.
+
+Signal, threshold, move. A hypothesis without a threshold isn't a hypothesis — it's a hope with a spreadsheet attached.
+
+A few examples built on the assumptions above:
+
+| Hypothesis | Signal | Threshold | Pre-agreed move |
+| --- | --- | --- | --- |
+| Customers activate within 7 days | Activation rate | Below 40% by week 6 | Investigate onboarding; run experiments before touching strategy |
+| We can acquire customers for under $500 | Blended CAC | Above $500 for two consecutive months | Pause paid spend; test channels and positioning |
+| 70% of qualified customers stay active at month 3 | Cohort retention | Under 70% for two consecutive cohorts | Open the pivot conversation while runway allows choices |
+| $50K MRR within 12 months | MRR growth rate | Off track at month 9 review | Reassess pricing and segment before spending further |
+
+Two rules make this work in practice. First, set the move while you're still optimistic. The whole point is that you're choosing with clear eyes now rather than negotiating with yourself later. Second, write the triggers where you'll actually see them — the metrics dashboard, the quarterly review agenda — not buried in a doc nobody opens. An unread trigger is just a wish.
+
+You'll notice this pattern repeats through the rest of the article, because it genuinely is the load-bearing piece: the decision matrix below pairs signals into triggers, the runway calendar puts them on a schedule, and the premortem converts imagined failures into new ones.
 
 ## A decision matrix beats the loudest voice in the room
 
@@ -64,7 +91,7 @@ So pre-commit to some decision rules. For example:
 | Strong demand + execution problems | Market exists, team struggles | Upgrade leadership/team |
 | No meaningful customer pain | Core hypothesis wrong | Pivot or stop |
 
-This table isn't sacred and yours won't look exactly like mine. That's fine. What matters is what it gives you: **pre-agreed decision criteria**. When the moment comes, the argument is about execution, not about whether the rules exist. That difference saves companies.
+This table isn't sacred and yours won't look exactly like mine. That's fine. What matters is what it gives you: **pre-agreed decision criteria**. When the moment comes, the argument is about execution, not about whether the rules exist. That difference has saved plenty of companies.
 
 ## Don't let your runway make the decision
 
@@ -111,7 +138,7 @@ Every major product initiative eventually falls into one of three buckets. Decid
 
 **Perish.** Boardrooms usually reach for a blunter four-letter word, but the substance is the same: there isn't enough evidence of a viable business, and continuing would destroy more resources than it could reasonably create. Stopping isn't failure. Sometimes stopping early is the single best capital-allocation decision available to you — a founder who retires a product with twelve months of runway intact still has the ability to try again. A founder who burns to zero has nothing left but the lesson.
 
-If you think killing is rare, consider that CB Insights' well-known analysis of startup post-mortems puts "no market need" at the very top of reasons companies die. Not technology failing. Market judgment arriving too late.
+If you think letting products perish is rare, look at CB Insights' March 2026 analysis of 431 venture-backed startups that shut down since 2023. The most-cited cause of death was running out of capital — 70% of them — but CB Insights flags that as the final symptom, not the root. The leading root causes were poor product-market fit at 43%, bad timing at 29%, and unit economics that never worked at 19%. Not technology failing. Market judgment arriving too late, with the cash running out as the coroner's report.
 
 ## Company-level decisions, not ego-level ones
 
@@ -119,11 +146,15 @@ Founders get emotionally welded to their products. Of course they do — years o
 
 But the market does not care about the founder's emotional investment. A product should survive because customers value it, not because shutting it down would be embarrassing.
 
-There's a famous version of this question from Intel's history. In the mid-eighties, Andy Grove and Gordon Moore were watching their memory-chip business — the business Intel was *known for* — get crushed by Japanese competitors. Grove asked Moore a question that has outlived the crisis: "If we got kicked out and the board brought in a new CEO, what do you think he would do?" Moore's answer: get us out of memory. Grove's reply: why shouldn't you and I walk out the door, come back, and do it ourselves?
+There's a famous version of this question from Intel's history — and the way it's usually told is tidier than what actually happened, which is exactly why it's worth retelling properly.
 
-They did. Intel walked away from the product that defined its identity and became a microprocessor company. Same people. Same facts. Different perspective.
+In the mid-eighties, Andy Grove and Gordon Moore were watching the memory-chip business — the product Intel was *known for* — get crushed by Japanese competitors. In mid-1985, Grove asked Moore a question that has outlived the crisis: "If we got kicked out and the board brought in a new CEO, what do you think he would do?" Moore's answer: get us out of memory. Grove's reply: why shouldn't you and I walk out the door, come back, and do it ourselves?
 
-Which means the most valuable question a founder can ask is embarrassingly simple: **if I weren't already invested in this company, would I invest in it today?** If the honest answer is no, that answer deserves attention, not a follow-up meeting.
+That's the legend. Here's the part it usually leaves out. By then, Intel's middle managers had been quietly reallocating fab capacity away from memory and toward microprocessors for a long while — the organization had effectively voted with its capacity before leadership formally agreed. And even after the famous conversation, the actual exit took roughly another year of painful winding down. Grove himself admitted in hindsight that the clean narrative was cleaner than the reality.
+
+Notice what that does to the story. It wasn't one heroic afternoon where two brilliant men saw the truth; it was evidence accumulating until perspective finally caught up with it. Which is precisely the case for pre-agreed triggers: if the signal had been written down years earlier — "memory share below X, margin below Y" — the decision would likely have arrived a year sooner and cost less anguish.
+
+Still, the heart of the lesson stands. Same people. Same facts. Different question. The most valuable thing Grove did was step outside his own investment: **if I weren't already invested in this company, would I invest in it today?** If your honest answer is no, that answer deserves attention, not a follow-up meeting.
 
 ## Don't make employees the last line of defense
 
@@ -131,7 +162,7 @@ When leadership delays hard decisions, the team feels it first.
 
 The engineers and support folks and account managers figure out "this isn't working" months before anyone says it officially. Meanwhile management keeps repeating "we just need another quarter." Then another. Then another.
 
-What follows is organizational fatigue, and I can describe it precisely because the sequence never changes. The best people leave first — they always have options. The people who stay get less confident. Morale calcifies into quiet cynicism. And eventually leadership points at the departures and treats them as *another* problem, when the departures were actually a symptom of the original one: decisions that arrived too late.
+What follows is organizational fatigue, and I can describe it precisely because the sequence is remarkably consistent. The best people tend to leave first — they're usually the ones with the most options elsewhere. The people who stay get less confident. Morale calcifies into quiet cynicism. And eventually leadership points at the departures and treats them as *another* problem, when the departures were actually a symptom of the original one: decisions that arrived too late.
 
 Honest reporting needs psychological safety — people have to be able to bring bad news early without getting punished for it. If your team learned that flagging a dead product is career-limiting, you didn't just lose information. You lost your earliest warning system.
 
@@ -141,7 +172,7 @@ There's also a point where the issue stops being the plan and starts being the p
 
 You've seen the shape of it. Clear strategy, real customer demand, big enough market, adequate capital — and yet engineering repeatedly misses commitments. Requirements are mush. Production incidents climb. Customer complaints go nowhere. And the leader responsible keeps making the same mistakes with total confidence.
 
-In that situation, hiring more engineers usually makes things worse. You cannot fix a leadership bottleneck by adding people underneath it. Sometimes the correct, brutal move is changing the person responsible for the system — and the same logic applies to sales, product, marketing and operations, not just engineering.
+In that situation, hiring more engineers usually makes things worse. A leadership bottleneck is rarely fixed by adding people underneath it — more often it just widens the traffic jam. Sometimes the correct, brutal move is changing the person responsible for the system — and the same logic applies to sales, product, marketing and operations, not just engineering.
 
 I wrote recently about how so many corporate failures get blamed on technology when the real culprit is delayed, defensive management. This is the same disease at product scale: the market was never the blocker. The blocker was allowed to stay.
 

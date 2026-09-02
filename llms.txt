@@ -30,6 +30,7 @@
 
 ### AI & Technology
 
+- [Introducing Pine Mail](https://yoosuf.me/blog/introducing-pinemail): A tiny SMTP mail catcher in Rust with REST API and MCP server for automated testing and AI agents
 - [How ChatGPT helps me on day to day life](https://yoosuf.me/blog/chatgpt-daily-life): Practical uses of AI tools in daily workflows
 - [Make the Hard Decision Before the Product Fails](https://yoosuf.me/blog/perish-pivot-persevere): Perish, pivot, or persevere — deciding with evidence before failure becomes undeniable
 

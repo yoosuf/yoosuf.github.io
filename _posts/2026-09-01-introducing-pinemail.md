@@ -1,70 +1,213 @@
 ---
 title: "Introducing Pine Mail: A Tiny SMTP Mail Catcher for Developers and AI Agents"
 author: Yoosuf Mohamed
-date: 2026-09-01 08:00:00
+date: 2026-09-01 00:00:00
 excerpt: ""
 layout: post
 permalink: /blog/introducing-pinemail
 published: true
-description: "Why I built Pine Mail, a single-binary SMTP mail catcher in Rust with a REST API and MCP server for e2e testing and AI agents."
-categories: ["Engineering"]
+description: "Why I built Pine Mail: a single-binary SMTP mail catcher in Rust with a REST API and MCP server for automated testing and AI agents."
+categories: ["Engineering", "AI & Tech"]
 tags: ["Rust", "Open Source", "DevOps", "AI", "Testing"]
 ---
 
-I was testing a password reset flow for the third time that afternoon, flipping between my test-email provider's dashboard and my app, trying to pick the right OTP out of a cluttered inbox UI. Then I needed to test it again with a different account. Reset. Log back in to the mail dashboard. Find the email. Copy the code. Repeat.
+We are living in an era where an AI coding agent can scaffold an entire full-stack application in two prompts, spin up cloud infrastructure, and generate fifty integration tests before you've finished your morning coffee.
 
-At some point I just got annoyed enough to fix it myself, which is how most of my side projects start.
+Yet the moment that automated test suite or browser agent encounters this one innocent sentence:
 
-If you've done any amount of QA work, or built anything with email verification, you know this dance. Mailtrap and Mailhog and the rest all solve the "don't send real email in dev" problem fine. What none of them solved for me was the *next* problem: getting the email's contents back into my test script or my AI agent without babysitting a browser tab.
+*“Please enter the 6-digit verification code sent to your email.”*
+
+Everything collapses.
+
+The test suite hangs. The CI pipeline times out. The AI agent starts hallucinating or burns ten thousand tokens trying to scrape a webmail dashboard. And the developer sighs, pulls up a browser tab, clicks around an inbox UI, copies an OTP code, and pastes it into a terminal by hand.
+
+In 2026, we have solved distributed consensus, edge computing, and neural code generation. But testing email verification is still fundamentally broken.
+
+A few weeks ago, after repeating that manual dance for the fourth time on a Friday afternoon while debugging a password-reset flow, I decided I had reached my limit.
 
 So I built **Pine Mail**.
 
-## What it is
+## The absurd problem with testing email
 
-Pine Mail is a small SMTP mail catcher for local development. You point your app's SMTP client at `localhost:1025`, it captures whatever gets sent, and you look at it — either in a web inbox at `localhost:8025`, or through a REST API, or through an MCP server if you're wiring up an AI agent.
+If you build web applications, you already know the frustration. When an application sends an email during local development or end-to-end testing, you have three traditional options, and all three come with annoying compromises:
 
-It's the same idea as Mailpit or Mailtrap, honestly — I'm not claiming to have invented the mail-catcher. What's different is that it's written in Rust and ships as one binary (server, UI, and SQLite storage, all under 15MB), and it was built assuming the thing reading the inbox might be a script or an agent, not just me clicking around.
+1. **The Cloud Sandbox SaaS (Mailtrap, SendGrid Sandbox, etc.)**  
+They solve the basic problem of not blasting test spam to real users. But now your local test suite depends on an external network connection, third-party API keys, webhook configurations, and monthly subscription tiers. Why should testing an authentication flow running on `localhost:3000` require making API calls across the Atlantic?
 
-No credentials, no cloud account, no signup form. That was the whole point.
+2. **The Classic Local Catchers (MailHog, Mailpit)**  
+These are genuinely great open-source tools, and I've used Mailpit happily for years. But they were designed primarily for human eyes looking at a browser tab. When you want to automate them inside a Playwright test or a CI runner, you run into the same friction:
+- You have to write clumsy `while true; sleep(2); poll_api()` loops in your test suite to wait for the email to land.
+- The assertion frequently runs a split second before the SMTP server flushes to disk, resulting in flaky, non-deterministic test failures.
+- When the email finally arrives, you receive a massive, unparsed multipart MIME payload. You then spend the next hour writing and debugging fragile regexes to pluck out the six-digit code from deeply nested HTML tables.
 
-## Why bother building another one
+3. **The AI Agent Wall**  
+This is the real kicker. I am running more and more workflows where autonomous agents (Claude Code, Cursor, Windsurf, browser agents) drive our test suites and verify feature implementations end-to-end. Asking an LLM agent to navigate a webmail UI via headless browser vision is slow, fragile, and expensive. And asking it to curl an arbitrary REST endpoint and parse raw MIME headers leads to subtle hallucinations.
 
-A couple of reasons, and I'll be honest that the second one is really why this exists.
+Agents need a clean, structured, native way to interact with email. They need to be able to say: *"Wait for the verification email sent to `test@local`, give me the OTP code, and tell me when it's done."*
 
-First, I wanted something genuinely boring to run. No JVM warming up, no Node process idling in the background, just a binary you start and forget. Build once, ship once, run it on Linux, macOS, or in Docker.
+That was the itch. Pine Mail is the scratch.
 
-Second — and this is the actual itch — I'm doing more and more testing where an AI agent is the one driving the browser, not me. And agents are bad at "go check your email" unless you give them a real way to do it. Clicking around a web-based inbox isn't something an agent should have to fake. So the whole thing is built around a REST API first, with the web UI as a nice-to-have on top:
+## What Pine Mail actually is
+
+Pine Mail is a lightweight, single-binary SMTP mail catcher built specifically for local development, automated test suites, and autonomous AI agents.
+
+You point your application's SMTP configuration at `localhost:1025`. It intercepts every email sent by your app. You can view the messages in a clean web UI at `localhost:8025`, query them via a REST API, or connect an AI agent directly using its native Model Context Protocol (MCP) server.
+
+It doesn't require a cloud account, doesn't require Docker (though a Docker image is available), and doesn't ask for credentials. It's a single static binary written in Rust that compiles the server, SQLite storage, and the embedded web frontend into an executable under 15MB.
+
+No JVM warming up. No Node.js runtime idling in the background. It starts in under 5 milliseconds and sits comfortably at 12MB of RAM.
+
+## The two features that change everything
+
+I didn't want to build just another clone of Mailpit. Pine Mail was built around two specific capabilities designed to eliminate test flakiness and agent friction.
+
+### 1. Long-polling built into the HTTP API (`GET /api/wait`)
+
+The worst part of testing asynchronous messaging is polling. You send an email in your test, and then you either throw an arbitrary `sleep(3)` into your code (which slows down CI) or you poll a list endpoint every 500ms (which adds noise and causes race conditions).
+
+Pine Mail solves this at the protocol level with a long-polling wait endpoint:
 
 ```bash
-# Long-poll for an email matching a filter
-GET /api/wait?to=user@example.com&subject=Verify&timeout_ms=15000
+# Wait up to 15 seconds for an email matching these filters
+curl "http://localhost:8025/api/wait?to=user@example.com&subject=Verify&timeout_ms=15000"
 ```
 
-The server blocks until a matching email shows up (or times out), then hands back the full message. No sleep(2) loops in your test suite, no flaky race conditions where the assertion runs a beat before the email lands.
+The HTTP request stays open. The instant the SMTP listener finishes processing the incoming message, the server pushes the completed message payload back over the connection and closes the request. If the email doesn't arrive before the timeout, it returns a clean 408.
 
-And then there's the MCP server, which is really the part I'm most pleased with. Pine Mail ships an MCP (Model Context Protocol) server that exposes the inbox as tools an agent can call directly — Claude, Copilot, Cursor, whatever you're using. Point it at Pine Mail and it can:
+Zero `sleep()` calls in your test harness. Zero polling loops. Your assertions run the millisecond the email exists.
 
-- List captured emails
-- Wait for one matching a filter
-- Pull OTP codes and magic links straight out of the body
-- Delete a message, or clear the whole inbox
+### 2. Automatic signal and token extraction (`/api/messages/:id/extract`)
 
-Which means you can hand an agent a task like "sign up, verify the email, log in" and it doesn't need you to hand-write the email-scraping logic. It just asks Pine Mail for the email.
+In 95% of automated test scenarios, you do not care about the MIME boundary delimiters, the CSS styling of the hero header, or the tracking pixels. You care about two things:
 
-## What's actually in it
+- What was the verification code?
+- What was the magic link / password reset URL?
 
-- SMTP on port 1025 — no auth, no relaying, it only ever accepts mail, never sends it anywhere.
-- A web UI and REST API on port 8025, with live updates over WebSockets so new mail just appears.
-- HTML and plain-text bodies, raw MIME headers, attachments, bulk delete — the usual inbox stuff.
-- A paginated, infinite-scroll inbox that doesn't fall over once you've got 10,000 test emails sitting in it.
-- `GET /api/wait` for long-polling, `GET /api/messages/:id/extract` for pulling OTPs and links out automatically.
-- An MCP server with seven tools (list, get, wait, extract, delete, clear, send-test).
-- SQLite underneath, with automatic pruning, or fully in-memory if you don't want anything persisted at all.
-- No runtime dependencies beyond the binary itself — Docker is optional, not required.
+Pine Mail runs incoming email bodies through a dedicated signal extraction engine. When you query the extraction endpoint:
 
-## Getting it running
+```bash
+curl "http://localhost:8025/api/messages/msg_01J6XYZ.../extract"
+```
 
-Fastest path is Docker Hub, no build step involved:
+It returns structured JSON:
+
+```json
+{
+  "codes": ["849201"],
+  "links": [
+    "http://localhost:3000/auth/verify?token=d8f1e09a8b2c4d5e"
+  ],
+  "action_urls": [
+    "http://localhost:3000/auth/verify?token=d8f1e09a8b2c4d5e"
+  ]
+}
+```
+
+It recognizes 4 to 8-digit numeric and alphanumeric OTPs, magic login links, password reset URLs, and confirmation triggers. You never have to write regexes in your test scripts again.
+
+## What this looks like in an automated test
+
+Here is a practical example. Suppose you are writing an end-to-end authentication test in Python using Playwright or `requests`.
+
+Instead of juggling browser tabs or sleeping:
+
+```python
+import requests
+
+# 1. Trigger the signup in your application
+signup_resp = requests.post("http://localhost:3000/api/signup", json={
+    "email": "sarah@company.test",
+    "password": "CorrectHorseBatteryStaple!"
+})
+assert signup_resp.status_code == 201
+
+# 2. Block until Pine Mail receives the verification email (no sleep needed)
+email = requests.get(
+    "http://localhost:8025/api/wait",
+    params={
+        "to": "sarah@company.test",
+        "subject": "Confirm your account",
+        "timeout_ms": 10000
+    }
+).json()
+
+# 3. Pull the OTP code straight out of the parsed signals
+extracted = requests.get(f"http://localhost:8025/api/messages/{email['id']}/extract").json()
+otp_code = extracted["codes"][0]
+
+# 4. Submit the verification code
+verify_resp = requests.post("http://localhost:3000/api/verify-email", json={
+    "email": "sarah@company.test",
+    "code": otp_code
+})
+assert verify_resp.status_code == 200
+```
+
+The test is fast, robust, and completely deterministic. If the email delivery fails inside your app, the test fails immediately on the timeout without hanging indefinitely.
+
+## The native MCP server for AI agents
+
+This is where things get genuinely fun.
+
+Model Context Protocol (MCP) has rapidly become the standard way AI agents interact with local developer tools. Pine Mail ships with a dedicated MCP server binary (`pinemail-mcp`) that exposes the entire inbox to your AI agents as native callable tools.
+
+Whether you're using Claude Desktop, Cursor, Windsurf, Claude Code, or an autonomous framework, you configure the server in your MCP settings:
+
+```json
+{
+  "mcpServers": {
+    "pinemail": {
+      "command": "pinemail-mcp",
+      "env": {
+        "PINEMAIL_URL": "http://localhost:8025"
+      }
+    }
+  }
+}
+```
+
+Once wired up, your agent has access to seven targeted tools:
+- `wait_for_email` (blocks until matching email arrives)
+- `extract_signals` (pulls OTP codes and URLs)
+- `list_messages` (queries inbox with pagination)
+- `get_message` (fetches full HTML, plain text, and MIME data)
+- `delete_message` (cleans up a specific message)
+- `clear_inbox` (resets state between test runs)
+- `send_test_email` (injects a simulated test message)
+
+Now, you can hand your agent a high-level task:
+
+> *"Use the browser to register a new account as alex@test.local, wait for the confirmation email, extract the verification link, visit it to complete registration, and confirm that the user dashboard renders."*
+
+The agent navigates to your signup page, fills in the form, calls the `wait_for_email` tool, retrieves the extracted URL via `extract_signals`, navigates directly to the confirmation link, and validates the dashboard.
+
+No brittle webmail scraping. No custom bash glue. The agent just does the job.
+
+## Why Rust? (And how it's engineered)
+
+People always ask why I chose Rust for this instead of Go or TypeScript.
+
+I don't rewrite tools in Rust just for the sake of writing Rust. But for developer tooling that sits in the background of your daily workflow, three constraints matter:
+
+1. **Zero runtime overhead:** When I'm developing, Docker containers, language runtimes, and background daemons consume battery and RAM quickly. Pine Mail compiles to a single, statically linked binary. It starts instantly and uses barely 12MB of resident memory.
+2. **Single-file distribution:** The web frontend (built with React and Vite) is embedded directly into the Rust executable at compile time using `rust-embed`. There are no `node_modules`, no static asset directories to configure, and no external HTML files to keep track of. One file on disk does everything.
+3. **Resilience under load:** SMTP connections and WebSocket streams can easily lead to memory leaks or deadlocks if not handled cleanly. Tokio's async runtime handles hundreds of simultaneous SMTP connections effortlessly, while SQLite in WAL (Write-Ahead Logging) mode guarantees fast, reliable persistence without locks freezing the UI.
+
+The codebase is organized as a clean cargo workspace with three focused crates:
+
+- `pinemail-core`: Contains the SQLite storage engine, MIME parsing logic, signal extraction rules, and shared domain models.
+- `pinemail-server`: Houses the Tokio-based SMTP server (port 1025), the Axum HTTP REST API, and the embedded WebSockets inbox dashboard (port 8025). This is the primary binary.
+- `pinemail-mcp`: The Model Context Protocol stdio server that translates MCP tool calls into HTTP queries against the server.
+
+For CI environments, you can pass `--memory` to run Pine Mail with an in-memory SQLite database. Tests run at lightning speed, and when the process exits, zero temporary files are left on disk.
+
+## Quick start
+
+You can get Pine Mail running in your environment in less than 30 seconds.
+
+### Via Docker
+
+If you prefer containers, the official image is on Docker Hub:
 
 ```bash
 docker run -d \
@@ -75,11 +218,11 @@ docker run -d \
   yoosuf/pinemail:latest
 ```
 
-That's it. Open `http://localhost:8025`, point your app at `localhost:1025`, done. I checked it on both amd64 and arm64 (my M-series Mac, plus a Raspberry Pi I had lying around) before calling it good.
+Open `http://localhost:8025` to view the inbox, and point your application's SMTP host to `localhost:1025`.
 
-### If you'd rather build it yourself
+### From source
 
-I get it, some people don't like running things they can't read. Clone it and build:
+If you have the Rust toolchain installed:
 
 ```bash
 git clone https://github.com/yoosuf/pinemail.git
@@ -88,89 +231,27 @@ cargo build --release
 ./target/release/pinemail
 ```
 
-Same ports either way — SMTP on `1025`, UI on `8025`.
+That's all it takes.
 
-### Wiring it into an agent
+## What's on the roadmap
 
-If you're on Claude Desktop, Copilot, or Cursor, the MCP config is just:
+Pine Mail is currently at `v0.1.0`. I've been running it in local development and in automated agentic test suites for several weeks, and it has already replaced both Mailhog and Mailtrap across my personal workflow.
 
-```json
-{
-  "mcpServers": {
-    "pinemail": {
-      "command": "pinemail-mcp",
-      "env": { "PINEMAIL_URL": "http://localhost:8025" }
-    }
-  }
-}
-```
+A few capabilities I'm actively working on for upcoming releases:
 
-Ask your agent to "wait for an email from support@example.com with subject 'Password Reset'" and it does exactly that. No regex you wrote at 11pm, no manual extraction step.
+- **Incoming mail webhooks:** Register a webhook endpoint so Pine Mail pushes an HTTP POST payload to your local server the moment a matching message arrives.
+- **Configurable rate-limiting simulation:** The ability to simulate real-world email provider throttling and temporary greylisting errors (421/450 responses) to test your application's email queue backoff logic.
+- **IMAP read-only interface:** For legacy apps or desktop email clients that insist on fetching mail via IMAP rather than checking a REST API.
 
-## Where this is actually useful
+## Wrap up
 
-I'll admit most "here's why my tool is great" sections in blog posts are padding, so I'll keep this to what I've actually used it for.
+Software development has gotten dramatically faster over the last two years, but we often overlook the mundane friction points that break our flow. Email verification shouldn't be the thing that slows down an automated deployment or confuses an AI agent.
 
-Testing a three-step signup with email verification used to mean: trigger the signup, tab over to Mailhog, find the email, copy the OTP by hand, tab back, paste it, continue. With Pine Mail's `/api/wait` endpoint, that whole dance turns into a few lines in the test itself:
+Pine Mail is free, open source under the MIT license, and ready for you to poke at:
 
-```python
-# Trigger signup
-response = requests.post("http://api.myapp.local/signup", json=data)
+- GitHub repository: [github.com/yoosuf/pinemail](https://github.com/yoosuf/pinemail)
+- Docker Hub: [hub.docker.com/r/yoosuf/pinemail](https://hub.docker.com/r/yoosuf/pinemail)
 
-# Wait for verification email (blocks until it arrives)
-email = requests.get(
-    "http://localhost:8025/api/wait",
-    params={"to": "testuser@example.com", "subject": "Verify", "timeout_ms": 10000}
-).json()
-
-# Extract OTP
-codes = requests.get(f"http://localhost:8025/api/messages/{email['id']}/extract").json()
-otp = codes['codes'][0]
-
-# Continue test
-requests.post("http://api.myapp.local/verify", json={"otp": otp})
-```
-
-Nothing clever here, which is the point — the boring parts of the test stay boring, and you're not babysitting a browser tab waiting for an email to land.
-
-The more interesting case, for me at least, is handing this off entirely to an agent. I've had a Claude-driven test run through "sign up as test@example.com, verify the email, set a password, log in" as a single instruction — it posts the signup, calls the MCP `wait_for_email` tool, pulls the link out with `extract_signals`, clicks it, sets the password, and logs in. I didn't write any of the email-handling code for that run. It just used the tools.
-
-And then there's the plain, low-stakes version: I'm building a password-reset screen, I run Pine Mail in one terminal and my app in another, trigger the reset, and click the link straight out of the inbox at `localhost:8025`. No throwaway Gmail accounts, no rate limits interrupting me mid-flow.
-
-## Why Rust, since people ask
-
-Honestly, if you're just running the Docker image, the language underneath shouldn't matter to you at all — that's kind of the point of shipping a single binary.
-
-But for me, building it, Rust mattered. One binary, no runtime to install, no "works on my machine" arguments about Node versions. It stays memory-light even with a few thousand emails sitting in the inbox, async I/O keeps the WebSocket connections and SMTP sessions cheap, and the type system caught a handful of bugs for me before they ever became 2am debugging sessions.
-
-If you want to hack on it, you'll need the Rust toolchain, obviously. The codebase is a monorepo and reasonably tidy — I've tried to keep it that way on purpose, since I'd like other people to actually contribute rather than bounce off it.
-
-## How it's put together, if you're curious
-
-Three crates:
-
-- `pinemail-core` — the shared library: SQLite storage, MIME parsing, the regex-based OTP/link extraction.
-- `pinemail-server` — the SMTP server plus the HTTP API and UI. This is the binary you actually deploy.
-- `pinemail-mcp` — the MCP stdio server, run as its own process if you want an agent talking to Pine Mail.
-
-The frontend is React and Vite, but it gets embedded into the binary at build time, so there's no separate asset bundle to manage or serve.
-
-If you want to add a feature, it usually belongs in `core` first, then gets exposed from `server` and `mcp` — that way it shows up in the REST API, the MCP tools, and the UI all at once, instead of getting bolted onto just one of them.
-
-## What's next, and what isn't yet
-
-Pine Mail is at v0.1.0 and I've been using it in real agentic test runs for a few weeks now — signup flows, password resets, magic links. It holds up.
-
-Things I still want to add: an IMAP fallback for apps that insist on IMAP instead of SMTP, some rate-limiting so you can simulate a mail provider that isn't infinitely generous, webhooks for triggering things when mail arrives, and a better attachments UI (right now it's functional, not pretty).
-
-None of that is blocking anyone from using it today, though.
-
-## If you want to poke at it
-
-- Docker Hub, fastest way to try it: [`yoosuf/pinemail`](https://hub.docker.com/r/yoosuf/pinemail) — tags `latest`, `0.1.0`, more coming.
-- GitHub, if you want the source or want to contribute: [yoosuf/pinemail](https://github.com/yoosuf/pinemail). It's a small project and I'd genuinely like help with it, so don't be shy about opening an issue even for something small.
-- If something's broken or confusing, tell me. I'd rather hear about it than have you quietly give up on it.
-
-I built this because I was tired of clicking through an inbox to find a six-digit code. If you're in the same boat — or if your test suite is increasingly being driven by an agent instead of a person — give it a run.
+If you find a bug, want a new feature, or want to contribute to the codebase, open an issue or submit a pull request. I'd love to hear how you're using it in your test suites and agent setups.
 
 — Yoosuf

@@ -7,6 +7,7 @@
 - [Pine Mail](https://yoosuf.me/pinemail/): A tiny, open-source, single-binary SMTP mail catcher in Rust for local development, automated test suites, and AI agents. Long-polling wait API, automatic OTP/signal extraction, and a native MCP server. Point your app at localhost:1025. (MIT license)
   - GitHub: https://github.com/yoosuf/pinemail
   - Docker Hub: https://hub.docker.com/r/yoosuf/pinemail
+  - Product Hunt: https://www.producthunt.com/products/pinemail
   - [Announcement post](https://yoosuf.me/blog/introducing-pinemail): Why I built Pine Mail and how it works
   - Detailed docs: [llms-pinemail.txt](https://yoosuf.me/llms-pinemail.txt)
 

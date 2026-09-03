@@ -1,0 +1,94 @@
+# Pine Mail
+
+> A tiny, open-source, single-binary SMTP mail catcher for local development, automated test suites, and autonomous AI agents. Written in Rust. MIT license.
+
+- Product page: https://yoosuf.me/pinemail/
+- GitHub: https://github.com/yoosuf/pinemail
+- Docker Hub: https://hub.docker.com/r/yoosuf/pinemail
+- Announcement post: https://yoosuf.me/blog/introducing-pinemail
+- Author: Yoosuf Mohamed (https://yoosuf.me/)
+
+## What it does
+
+Pine Mail intercepts every email your application sends during local development or end-to-end testing. Point your app's SMTP config at `localhost:1025`, view messages in a web UI at `localhost:8025`, query them via a REST API, or connect an AI agent using its native Model Context Protocol (MCP) server.
+
+It is a single static binary written in Rust that compiles the server, SQLite storage, and an embedded React web frontend into an executable under 15MB. It starts in under 5ms and uses ~12MB of RAM. No cloud account, no API keys, no Docker required (though a Docker image is available).
+
+## Why it exists
+
+The problem it solves: testing email verification (OTPs, magic links, password resets) is flaky, slow, and painful for both humans and AI agents. Cloud sandboxes add network/API dependencies, classic catchers (MailHog, Mailpit) are built for humans watching a browser tab, and AI agents have no clean native way to read email.
+
+## Key features
+
+### 1. Long-polling wait endpoint (`GET /api/wait`)
+
+The HTTP request stays open and resolves the instant a matching email lands — no `sleep()`, no polling loops.
+
+```
+curl "http://localhost:8025/api/wait?to=user@example.com&subject=Verify&timeout_ms=15000"
+```
+
+Returns the message payload on arrival, or a clean 408 on timeout.
+
+### 2. Automatic signal extraction (`GET /api/messages/:id/extract`)
+
+Extracts verification codes, magic links, and password reset URLs into structured JSON, so you never write MIME-parsing regexes:
+
+```json
+{
+  "codes": ["849201"],
+  "links": ["http://localhost:3000/auth/verify?token=d8f1e09a8b2c4d5e"],
+  "action_urls": ["http://localhost:3000/auth/verify?token=d8f1e09a8b2c4d5e"]
+}
+```
+
+Recognizes 4–8 digit numeric and alphanumeric OTPs, magic login links, password reset URLs, and confirmation triggers.
+
+### 3. Native MCP server (`pinemail-mcp`)
+
+Exposes the entire inbox to AI agents as native callable tools, configurable in your MCP settings via `PINEMAIL_URL`. Seven tools are available:
+
+- `wait_for_email` — blocks until a matching email arrives
+- `extract_signals` — pulls OTP codes and URLs
+- `list_messages` — queries the inbox with pagination
+- `get_message` — fetches full HTML, plain text, and MIME data
+- `delete_message` — cleans up a specific message
+- `clear_inbox` — resets state between test runs
+- `send_test_email` — injects a simulated test message
+
+Compatible with Claude Desktop, Cursor, Windsurf, Claude Code, and any MCP-capable framework.
+
+## Quick start
+
+Docker:
+
+```
+docker run -d --name pinemail -p 1025:1025 -p 8025:8025 -v pinemail-data:/data yoosuf/pinemail:latest
+```
+
+From source:
+
+```
+git clone https://github.com/yoosuf/pinemail.git
+cd pinemail
+cargo build --release
+./target/release/pinemail
+```
+
+## Engineering
+
+- **Language:** Rust. Tokio async runtime for the SMTP server, Axum for the HTTP API.
+- **Workspace:** three crates — `pinemail-core` (SQLite storage, MIME parsing, signal extraction), `pinemail-server` (SMTP + HTTP API + embedded dashboard), `pinemail-mcp` (MCP stdio server).
+- **Storage:** SQLite in WAL (Write-Ahead Logging) mode. Pass `--memory` for an in-memory database in CI — no temp files left on disk.
+- **Frontend:** React + Vite, embedded into the binary at compile time via `rust-embed`.
+
+## Status & roadmap
+
+- Current version: v0.1.0
+- Incoming mail webhooks (HTTP POST on matching message)
+- Configurable rate-limiting / greylisting simulation (421/450 responses)
+- Read-only IMAP interface for legacy clients
+
+## License
+
+MIT License. Free and open source.

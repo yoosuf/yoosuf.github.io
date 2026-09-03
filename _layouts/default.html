@@ -73,7 +73,9 @@
       }
     </script>
 
-    {% if page.tags.size > 0 %}
+    {% if page.keywords.size > 0 %}
+    <meta name="keywords" content="{{ page.keywords }}" />
+    {% elsif page.tags.size > 0 %}
     <meta name="keywords" content="{{ page.tags | join: ', ' }}" />
     {% endif %}
 

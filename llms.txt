@@ -2,6 +2,14 @@
 
 > Systems Architect helping startups and enterprises build AI automation and AI-first products that scale. Specialises in LLM, RAG, Go, Elixir, FastAPI, Node, NestJS, NextJS, ReactJS, Flutter, AWS, and systems architecture. Based in Colombo, Sri Lanka with over a decade of experience.
 
+## Products
+
+- [Pine Mail](https://yoosuf.me/pinemail/): A tiny, open-source, single-binary SMTP mail catcher in Rust for local development, automated test suites, and AI agents. Long-polling wait API, automatic OTP/signal extraction, and a native MCP server. Point your app at localhost:1025. (MIT license)
+  - GitHub: https://github.com/yoosuf/pinemail
+  - Docker Hub: https://hub.docker.com/r/yoosuf/pinemail
+  - [Announcement post](https://yoosuf.me/blog/introducing-pinemail): Why I built Pine Mail and how it works
+  - Detailed docs: [llms-pinemail.txt](https://yoosuf.me/llms-pinemail.txt)
+
 ## Pages
 
 - [Home](https://yoosuf.me/): Personal site — AI automation, systems architecture, and AI-first products
@@ -30,7 +38,7 @@
 
 ### AI & Technology
 
-- [Introducing Pine Mail](https://yoosuf.me/blog/introducing-pinemail): A tiny SMTP mail catcher in Rust with REST API and MCP server for automated testing and AI agents
+- [Introducing Pine Mail](https://yoosuf.me/blog/introducing-pinemail): A tiny SMTP mail catcher in Rust with REST API and MCP server for automated testing and AI agents ([product page](https://yoosuf.me/pinemail/))
 - [How ChatGPT helps me on day to day life](https://yoosuf.me/blog/chatgpt-daily-life): Practical uses of AI tools in daily workflows
 - [Make the Hard Decision Before the Product Fails](https://yoosuf.me/blog/perish-pivot-persevere): Perish, pivot, or persevere — deciding with evidence before failure becomes undeniable
 

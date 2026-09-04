@@ -1,23 +1,24 @@
 # Pine Mail
 
-> A tiny, open-source, single-binary SMTP mail catcher for local development, automated test suites, and autonomous AI agents. Written in Rust. MIT license.
+> A tiny, open-source, single-binary SMTP mail catcher AND SMS catcher for local development, automated test suites, and autonomous AI agents — a dual-channel auth testing hub. Written in Rust. MIT license.
 
 - Product page: https://yoosuf.me/pinemail/
 - GitHub: https://github.com/yoosuf/pinemail
 - Docker Hub: https://hub.docker.com/r/yoosuf/pinemail
 - Product Hunt: https://www.producthunt.com/products/pinemail
 - Announcement post: https://yoosuf.me/blog/introducing-pinemail
+- SMS & MCP analysis post: https://yoosuf.me/blog/pinemail-sms-mcp-analysis
 - Author: Yoosuf Mohamed (https://yoosuf.me/)
 
 ## What it does
 
-Pine Mail intercepts every email your application sends during local development or end-to-end testing. Point your app's SMTP config at `localhost:1025`, view messages in a web UI at `localhost:8025`, query them via a REST API, or connect an AI agent using its native Model Context Protocol (MCP) server.
+Pine Mail intercepts email AND SMS your application sends during local development or end-to-end testing. Point your app's SMTP config at `localhost:1025`, view messages in a web UI at `localhost:8025`, query them via a REST API, or connect an AI agent using its native Model Context Protocol (MCP) server. SMS lands either by direct REST POST to `/api/sms` or by pointing a Twilio webhook at `/api/sms/webhook`.
 
 It is a single static binary written in Rust that compiles the server, SQLite storage, and an embedded React web frontend into an executable under 15MB. It starts in under 5ms and uses ~12MB of RAM. No cloud account, no API keys, no Docker required (though a Docker image is available).
 
 ## Why it exists
 
-The problem it solves: testing email verification (OTPs, magic links, password resets) is flaky, slow, and painful for both humans and AI agents. Cloud sandboxes add network/API dependencies, classic catchers (MailHog, Mailpit) are built for humans watching a browser tab, and AI agents have no clean native way to read email.
+The problem it solves: testing authentication (email OTPs, magic links, password resets, and SMS 2FA codes via Twilio/AWS SNS/Vonage) is flaky, slow, and painful for both humans and AI agents. Cloud sandboxes add network/API dependencies, classic catchers (MailHog, Mailpit) are built for humans watching a browser tab, and AI agents have no clean native way to read email or SMS.
 
 ## Key features
 
@@ -47,17 +48,29 @@ Recognizes 4–8 digit numeric and alphanumeric OTPs, magic login links, passwor
 
 ### 3. Native MCP server (`pinemail-mcp`)
 
-Exposes the entire inbox to AI agents as native callable tools, configurable in your MCP settings via `PINEMAIL_URL`. Seven tools are available:
+Exposes the entire inbox to AI agents as native callable tools, configurable in your MCP settings via `PINEMAIL_URL`. Fourteen tools give full parity across both channels, so an agent can complete entire multi-factor auth flows end to end:
 
-- `wait_for_email` — blocks until a matching email arrives
-- `extract_signals` — pulls OTP codes and URLs
-- `list_messages` — queries the inbox with pagination
-- `get_message` — fetches full HTML, plain text, and MIME data
-- `delete_message` — cleans up a specific message
-- `clear_inbox` — resets state between test runs
-- `send_test_email` — injects a simulated test message
+- `list_emails` / `list_sms` — query inbox with pagination
+- `get_email` / `get_sms` — fetch a specific message
+- `wait_for_email` / `wait_for_sms` — block until a matching message arrives
+- `extract_signals` / `extract_sms_signals` — pull OTP codes and URLs
+- `send_test_email` / `send_test_sms` — inject a simulated test message
+- `delete_email` / `delete_sms` — clean up a specific message
+- `clear_inbox` / `clear_sms_inbox` — reset state between test runs
 
 Compatible with Claude Desktop, Cursor, Windsurf, Claude Code, and any MCP-capable framework.
+
+### 4. SMS catching (`/api/sms`)
+
+A dedicated SMS catcher alongside the SMTP engine. Capture SMS via `POST /api/sms` (structured JSON) or `POST /api/sms/webhook` (native Twilio `x-www-form-urlencoded` parsing of `From`, `To`, `Body`). Server-side SMS long-polling on `/api/sms/wait` and signal extraction on `/api/sms/:id/extract` both support the same `timeout_ms` and `since` parameters as email.
+
+### 5. Email analysis (`GET /api/messages/:id/analysis`)
+
+Litmus-style diagnostics on captured HTML email: an 11-factor compatibility check for legacy clients (Outlook, Gmail mobile, Apple Mail — missing `<!DOCTYPE>`, flexbox/grid vs tables, un-inlined styles, missing `alt`/dimensions, >102KB clipping) plus a SpamAssassin-style heuristic spam score. Assertable in CI before merge.
+
+### 6. Race-free `since` timestamp filtering
+
+Both `/api/wait` and `/api/sms/wait` accept an ISO-8601 `since` timestamp, eliminating the race between triggering an action and starting to wait. Bulk read/delete endpoints: `POST /api/messages/bulk-delete`, `POST /api/sms/bulk-delete`, `PATCH /api/messages/bulk-read`, `PATCH /api/sms/bulk-read`.
 
 ## Quick start
 
@@ -85,10 +98,17 @@ cargo build --release
 
 ## Status & roadmap
 
-- Current version: v0.1.0
+- Current version: v0.2.0
 - Incoming mail webhooks (HTTP POST on matching message)
 - Configurable rate-limiting / greylisting simulation (421/450 responses)
 - Read-only IMAP interface for legacy clients
+
+## Distribution
+
+- Docker Hub: `docker run -d -p 1025:1025 -p 8025:8025 yoosuf/pinemail:latest`
+- Homebrew: `brew tap yoosuf/tap && brew install pinemail` / `brew services start pinemail`
+- One-liner installers: curl|sh for macOS/Linux, PowerShell for Windows
+- Native packages: `.deb` (Debian/Ubuntu), `.rpm` (Fedora/RHEL), AUR, Scoop, Winget, Chocolatey
 
 ## License
 

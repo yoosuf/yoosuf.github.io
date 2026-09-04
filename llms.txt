@@ -40,6 +40,7 @@
 ### AI & Technology
 
 - [Introducing Pine Mail](https://yoosuf.me/blog/introducing-pinemail): A tiny SMTP mail catcher in Rust with REST API and MCP server for automated testing and AI agents ([product page](https://yoosuf.me/pinemail/))
+- [Beyond Email: SMS catching, 14 MCP tools, and email analysis in Pine Mail](https://yoosuf.me/blog/pinemail-sms-mcp-analysis): Pine Mail v0.2 adds dual-channel SMS catching with Twilio webhooks, 14 MCP tools for full MFA flows, and Litmus-style email analysis
 - [How ChatGPT helps me on day to day life](https://yoosuf.me/blog/chatgpt-daily-life): Practical uses of AI tools in daily workflows
 - [Make the Hard Decision Before the Product Fails](https://yoosuf.me/blog/perish-pivot-persevere): Perish, pivot, or persevere — deciding with evidence before failure becomes undeniable
 

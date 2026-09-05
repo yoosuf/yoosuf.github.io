@@ -521,7 +521,24 @@
 	gap: 8px 12px;
 	margin-bottom: 14px;
 	padding-bottom: 14px;
-	border-bottom: 1px dashed color-mix(in srgb, var(--pm-accent) 28%, var(--pm-border));
+
+	/* Animated flowing divider instead of a static dashed border */
+	border-bottom: none;
+	background-image: linear-gradient(
+		90deg,
+		color-mix(in srgb, var(--pm-accent) 50%, transparent) 50%,
+		transparent 50%
+	);
+	background-size: 16px 2px;
+	background-repeat: repeat-x;
+	background-position: 0 calc(100% - 1px);
+	animation: pm-flow-dash-core 1s linear infinite;
+}
+
+@keyframes pm-flow-dash-core {
+	to {
+		background-position: 16px calc(100% - 1px);
+	}
 }
 
 .pm-flow-core-title {
@@ -571,11 +588,26 @@
 	border-radius: 10px;
 	color: #fff;
 	background: var(--pm-accent-strong);
+	animation: pm-flow-glow 3s ease-in-out infinite;
 
 	svg {
 		width: 18px;
 		height: 18px;
 	}
+}
+
+@keyframes pm-flow-glow {
+	0%,
+	100% {
+		box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+	}
+	50% {
+		box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.22);
+	}
+}
+
+.pm-flow-channels .pm-flow-channel:last-child .pm-flow-channel-icon {
+	animation-delay: 1.4s;
 }
 
 .pm-flow-channel-text {
@@ -615,6 +647,7 @@
 
 /* Arrows */
 .pm-flow-arrow {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -624,7 +657,30 @@
 	padding: 4px 0;
 }
 
+/* Flowing "data" beam between nodes - static channel, packets do the moving */
+.pm-flow-arrow::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 72px;
+	height: 3px;
+	border-radius: 3px;
+	transform: translate(-50%, -50%);
+	background-image: linear-gradient(
+		90deg,
+		color-mix(in srgb, var(--pm-accent) 55%, transparent) 40%,
+		transparent 40%
+	);
+	background-size: 12px 3px;
+	background-repeat: repeat-x;
+	opacity: 0.55;
+	z-index: 0;
+}
+
 .pm-flow-arrow-icon {
+	position: relative;
+	z-index: 1;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -639,6 +695,142 @@
 	svg {
 		width: 20px;
 		height: 20px;
+	}
+}
+
+/* --- Event-driven simulation (WAAPI drives motion; this is the resting state) --- */
+
+/* Data packet: only visible while WAAPI animates it (base opacity 0) */
+.pm-flow-packet {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 10px;
+	height: 10px;
+	margin-left: -5px;
+	margin-top: -5px;
+	border-radius: 50%;
+	background: #fff;
+	box-shadow: 0 0 10px 3px var(--pm-accent-glow);
+	opacity: 0;
+	z-index: 2;
+	pointer-events: none;
+}
+
+/* Live status pills - single message, script updates the text */
+.pm-flow-status {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 24px;
+	padding: 2px 13px;
+	margin: 14px 0 0;
+	max-width: 100%;
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--pm-accent) 9%, #fff);
+	border: 1px solid color-mix(in srgb, var(--pm-accent) 18%, var(--pm-border));
+	font-size: 1.15rem;
+	font-weight: 700;
+	color: var(--pm-accent-deep);
+}
+
+.pm-flow-status-msg {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	white-space: nowrap;
+}
+
+.pm-flow-status-msg::before {
+	content: "";
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background: var(--pm-accent);
+	box-shadow: 0 0 6px 1px var(--pm-accent-glow);
+}
+
+/* Long-poll wait: the LED blinks softly while a consumer is connected */
+.pm-status-polling .pm-flow-status-msg::before {
+	animation: pm-poll-blink 2s ease-in-out infinite;
+}
+
+@keyframes pm-poll-blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.2;
+	}
+}
+
+/* Live activity log inside the Pine Mail node */
+.pm-flow-log-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	margin: 16px 0 6px;
+	font-size: 1.05rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--pm-ink-faint);
+}
+
+.pm-flow-log-count {
+	letter-spacing: 0;
+	text-transform: none;
+	font-variant-numeric: tabular-nums;
+	color: var(--pm-accent-strong);
+}
+
+.pm-flow-log {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	height: 126px;
+	overflow: hidden;
+	margin: 0;
+	padding: 10px 12px;
+	list-style: none;
+	background: var(--pm-term-bg);
+	border: 1px solid color-mix(in srgb, var(--pm-accent) 22%, var(--pm-border));
+	border-radius: 10px;
+}
+
+.pm-flow-log-line {
+	flex-shrink: 0;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 1.15rem;
+	line-height: 1.65;
+	color: #94a3b8;
+
+	time {
+		margin-right: 8px;
+		color: #64748b;
+	}
+}
+
+.pm-flow-log-line.pm-log-hit {
+	color: #34d399;
+
+	time {
+		color: #10b981;
+	}
+}
+
+/* Respect reduced-motion: static flow, no packets, static status text */
+@media (prefers-reduced-motion: reduce) {
+	.pm-flow,
+	.pm-flow *,
+	.pm-flow *::before,
+	.pm-flow *::after {
+		animation: none !important;
+	}
+	.pm-flow-packet {
+		display: none;
 	}
 }
 
@@ -1490,13 +1682,31 @@
 		justify-content: flex-start;
 		margin-left: 12px;
 	}
+
+	/* Vertical beam + rotate the circle (keeps the SVG drift animation intact) */
+	.pm-flow-arrow::before {
+		width: 3px;
+		height: 72px;
+		transform: translate(-50%, -50%);
+		background-image: linear-gradient(
+			180deg,
+			color-mix(in srgb, var(--pm-accent) 55%, transparent) 40%,
+			transparent 40%
+		);
+		background-size: 3px 12px;
+		animation-name: pm-flow-dash-v;
+	}
+
+	@keyframes pm-flow-dash-v {
+		to {
+			background-position: 0 12px;
+		}
+	}
+
 	.pm-flow-arrow-icon {
 		width: 32px;
 		height: 32px;
-
-		svg {
-			transform: rotate(90deg);
-		}
+		transform: rotate(90deg);
 	}
 }
 

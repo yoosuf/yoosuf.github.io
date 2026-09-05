@@ -3,3 +3,244 @@ layout: default
 ---
 
 <div class="pm-page">{{ content }}</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var mq = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+  if (mq && mq.matches) {
+    return;
+  }
+
+  var flow = document.querySelector(".pm-flow");
+  if (!flow) {
+    return;
+  }
+
+  var app = flow.querySelector(".pm-flow-app");
+  var core = flow.querySelector(".pm-flow-core");
+  var consume = flow.querySelector(".pm-flow-consume");
+  var outArrow = flow.querySelector(".pm-arrow-out");
+  var inArrow = flow.querySelector(".pm-arrow-in");
+  var appMsg = app.querySelector(".pm-flow-status-msg");
+  var coreMsg = core.querySelector(".pm-flow-status-msg");
+  var conMsg = consume.querySelector(".pm-flow-status-msg");
+  var conPill = consume.querySelector(".pm-flow-status");
+  var logEl = flow.querySelector(".pm-flow-log");
+  var countEl = flow.querySelector(".pm-flow-log-count");
+
+  var seq = 421;
+  var inbox = 0;
+  var active = 0;
+  var timer = null;
+  var vertical = window.matchMedia("(max-width: 979px)");
+  var styles = getComputedStyle(document.documentElement);
+  var bgSoft = styles.getPropertyValue("--pm-bg-soft").trim() || "#ecfdf5";
+
+  function pad(n) {
+    return n < 10 ? "0" + n : String(n);
+  }
+
+  function now() {
+    var d = new Date();
+    return pad(d.getHours()) + ":" + pad(d.getMinutes()) + ":" + pad(d.getSeconds());
+  }
+
+  function rand(a, b) {
+    return a + Math.random() * (b - a);
+  }
+
+  function logLine(text, hit) {
+    var li = document.createElement("li");
+    li.className = "pm-flow-log-line";
+    if (hit) {
+      li.classList.add("pm-log-hit");
+    }
+    var t = document.createElement("time");
+    t.textContent = now();
+    li.appendChild(t);
+    li.appendChild(document.createTextNode(" " + text));
+    logEl.appendChild(li);
+    while (logEl.children.length > 12) {
+      logEl.firstChild.remove();
+    }
+    li.animate(
+      [
+        { opacity: 0, transform: "translateY(8px)" },
+        { opacity: 1, transform: "translateY(0)" }
+      ],
+      {
+        duration: 450,
+        easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+        fill: "backwards"
+      }
+    );
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+
+  function setStatus(msg, text) {
+    msg.textContent = text;
+  }
+
+  function setPolling(on) {
+    conPill.classList.toggle("pm-status-polling", on);
+  }
+
+  // Node phase flash: background + ring handled as real keyframe animations.
+  function flash(node) {
+    var rest = getComputedStyle(node);
+    var restShadow = rest.boxShadow;
+    var restBg = rest.backgroundColor;
+    var ringBase = restShadow && restShadow !== "none" ? ", " + restShadow : "";
+    if (node._anim) {
+      node._anim.cancel();
+    }
+    node._anim = node.animate(
+      [
+        {
+          backgroundColor: bgSoft,
+          boxShadow: "0 0 0 5px rgba(16, 185, 129, 0.22)" + ringBase
+        },
+        {
+          backgroundColor: bgSoft,
+          boxShadow: "0 0 0 3px rgba(16, 185, 129, 0.12)" + ringBase,
+          offset: 0.7
+        },
+        { backgroundColor: restBg, boxShadow: restShadow }
+      ],
+      {
+        duration: 1500,
+        easing: "ease-out",
+        fill: "none"
+      }
+    );
+  }
+
+  // Packet flight on the beam + a small "gateway" pop on the arrow when it lands.
+  function runPacket(arrow, pop) {
+    var pkt = arrow.querySelector(".pm-flow-packet");
+    if (pkt._anim) {
+      pkt._anim.cancel();
+    }
+    var axis = vertical.matches ? "translateY" : "translateX";
+    pkt._anim = pkt.animate(
+      [
+        { transform: axis + "(-34px)", opacity: 1 },
+        { transform: axis + "(34px)", opacity: 1 }
+      ],
+      {
+        duration: 340,
+        easing: "cubic-bezier(0.33, 1, 0.68, 1)",
+        fill: "none"
+      }
+    );
+    pkt._anim.onfinish = function () {
+      if (pop) {
+        var svg = arrow.querySelector(".pm-flow-arrow-icon svg");
+        svg.animate(
+          [
+            { transform: "scale(1)" },
+            { transform: "scale(1.14)", offset: 0.4 },
+            { transform: "scale(1)" }
+          ],
+          { duration: 320, easing: "ease-out", fill: "none" }
+        );
+      }
+    };
+  }
+
+  function updateCount() {
+    countEl.textContent = "inbox " + inbox;
+  }
+
+  function send() {
+    active++;
+    var id = String(seq++);
+    var channel = Math.random() < 0.6 ? "SMTP" : "Twilio";
+    var otp = String(100000 + Math.floor(Math.random() * 900000));
+    var spam = (0.01 + Math.random() * 0.08).toFixed(2);
+    var agentNr = 7700 + Math.floor(Math.random() * 200);
+    var isLink = Math.random() < 0.35;
+
+    setStatus(appMsg, "sending " + id);
+    flash(app);
+    runPacket(outArrow, true);
+
+    setTimeout(function () {
+      setStatus(coreMsg, "storing");
+      flash(core);
+      logLine(channel + " " + id + " \u00b7 received");
+      inbox++;
+      updateCount();
+    }, 480);
+
+    setTimeout(function () {
+      setStatus(coreMsg, "parsing");
+      logLine("extract \u2192 " + (isLink ? "magic link /verify?t=" + otp.slice(0, 4) : "OTP " + otp), true);
+    }, 900);
+
+    setTimeout(function () {
+      logLine("analysis \u00b7 spam " + spam);
+      setStatus(coreMsg, "ready");
+    }, 1320);
+
+    setTimeout(function () {
+      runPacket(inArrow, true);
+      flash(consume);
+      setPolling(false);
+      setStatus(conMsg, "got " + id);
+      logLine("delivered \u2192 agent " + agentNr);
+      if (inbox > 0) {
+        inbox--;
+      }
+      updateCount();
+    }, 1680);
+
+    setTimeout(function () {
+      setPolling(true);
+      setStatus(conMsg, "long-polling\u2026");
+      active--;
+      if (active === 0) {
+        schedule();
+      }
+    }, 2380);
+  }
+
+  function burst() {
+    var n = 2 + Math.floor(Math.random() * 3);
+    for (var i = 0; i < n; i++) {
+      (function (d) {
+        setTimeout(send, d);
+      })(i * 320);
+    }
+  }
+
+  function schedule() {
+    var wait = rand(2400, 6200);
+    if (Math.random() < 0.25) {
+      wait = rand(700, 1500);
+    }
+    timer = setTimeout(function () {
+      if (Math.random() < 0.4) {
+        burst();
+      } else {
+        send();
+      }
+    }, wait);
+  }
+
+  setTimeout(send, 1200);
+
+  if (mq) {
+    var onChange = function (e) {
+      if (e.matches && timer) {
+        clearTimeout(timer);
+      }
+    };
+    if (mq.addEventListener) {
+      mq.addEventListener("change", onChange);
+    }
+  }
+})();
+</script>

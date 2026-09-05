@@ -190,7 +190,7 @@
     </p>
   </div>
   <div class="pm-container">
-<div class="pm-flow" role="img" aria-label="How Pine Mail works: your app sends email over SMTP on port 1025 and SMS via Twilio webhook or REST into Pine Mail. Pine Mail stores both channels in SQLite, runs long-polling and auto signal extraction. Your tests and agents then consume them through 14 MCP tools, the wait APIs, the web UI, or raw REST.">
+<div class="pm-flow" aria-label="How Pine Mail works: your app sends email over SMTP on port 1025 and SMS via Twilio webhook or REST into Pine Mail. Pine Mail stores both channels in SQLite, runs long-polling and auto signal extraction. Your tests and agents then consume them through 14 MCP tools, the wait APIs, the web UI, or raw REST.">
       <div class="pm-flow-node pm-flow-app">
         <span class="pm-flow-node-tag">Producer</span>
         <h3 class="pm-flow-node-title">Your app</h3>
@@ -214,12 +214,16 @@
             <span class="pm-flow-list-text"><code>REST &middot; POST /api/sms</code><span class="pm-flow-list-sub">direct push</span></span>
           </li>
         </ul>
+        <div class="pm-flow-status" aria-hidden="true">
+          <span class="pm-flow-status-msg">ready</span>
+        </div>
       </div>
 
-      <div class="pm-flow-arrow">
+      <div class="pm-flow-arrow pm-arrow-out">
         <span class="pm-flow-arrow-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
         </span>
+        <span class="pm-flow-packet" aria-hidden="true"></span>
         <span class="pm-flow-arrow-label">emails &amp; SMS</span>
       </div>
 
@@ -242,17 +246,27 @@
             <span class="pm-flow-channel-text"><span class="pm-flow-channel-name">SMS store</span><span class="pm-flow-channel-sub">JSON &amp; Twilio &middot; auto signal extraction</span></span>
           </li>
         </ul>
-        <div class="pm-flow-capabilities">
-          <span class="pm-flow-cap">Long-polling engine</span>
-          <span class="pm-flow-cap">OTP / link extractor</span>
-          <span class="pm-flow-cap">Email analysis</span>
+        <div class="pm-flow-log-head">
+          <span>activity</span>
+          <span class="pm-flow-log-count">inbox 0</span>
+        </div>
+        <ol class="pm-flow-log" role="log" aria-live="polite" aria-label="Recent Pine Mail activity">
+          <li class="pm-flow-log-line"><time>14:02:11</time>SMTP 0421 &middot; received</li>
+          <li class="pm-flow-log-line pm-log-hit"><time>14:02:12</time>extract &rarr; OTP 812904</li>
+          <li class="pm-flow-log-line"><time>14:02:12</time>analysis &middot; spam 0.02</li>
+          <li class="pm-flow-log-line"><time>14:02:13</time>delivered &rarr; agent 7712</li>
+          <li class="pm-flow-log-line"><time>14:02:14</time>mailbox idle &middot; 0 waiting</li>
+        </ol>
+        <div class="pm-flow-status" aria-hidden="true">
+          <span class="pm-flow-status-msg">ready</span>
         </div>
       </div>
 
-      <div class="pm-flow-arrow">
+      <div class="pm-flow-arrow pm-arrow-in">
         <span class="pm-flow-arrow-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
         </span>
+        <span class="pm-flow-packet" aria-hidden="true"></span>
         <span class="pm-flow-arrow-label">structured JSON</span>
       </div>
 
@@ -279,6 +293,9 @@
             <span class="pm-flow-list-text"><code>Web UI &middot; :8025</code><span class="pm-flow-list-sub">dual-tab dashboard</span></span>
           </li>
         </ul>
+        <div class="pm-flow-status pm-status-polling" aria-hidden="true">
+          <span class="pm-flow-status-msg">long-polling&hellip;</span>
+        </div>
       </div>
     </div>
     <ol class="pm-steps">

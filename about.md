@@ -8,7 +8,7 @@ permalink: /about/
 on_nav: true
 ---
 
-Hi, I'm Yoosuf Mohamed, a Systems Architect based in Colombo, Sri Lanka, with over a decade of experience helping startups and enterprises build AI automation and AI-first products that scale. I specialise in architecting systems that bridge cutting-edge AI research with production-grade software.
+Hi, I'm Yoosuf Mohamed, also known as [Yoosuf](/yoosuf/) or Yoosuf Mo online: a Systems Architect based in Colombo, Sri Lanka, with over a decade of experience helping startups and enterprises build AI automation and AI-first products that scale. I specialise in architecting systems that bridge cutting-edge AI research with production-grade software.
 
 My expertise spans the full AI stack — from designing LLM-powered applications and RAG pipelines to building scalable backend systems in Go, Elixir, and FastAPI. On the frontend, I work across Node, NestJS, NextJS, ReactJS, and Flutter to deliver seamless, cross-platform experiences.
 

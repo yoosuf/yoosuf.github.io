@@ -1,6 +1,17 @@
 # Yoosuf Mohamed
 
-> Systems Architect helping startups and enterprises build AI automation and AI-first products that scale. Specialises in LLM, RAG, Go, Elixir, FastAPI, Node, NestJS, NextJS, ReactJS, Flutter, AWS, and systems architecture. Based in Colombo, Sri Lanka with over a decade of experience.
+> Yoosuf Mohamed, also known as Yoosuf Mo, Yoosuf, and aitchdei, is a Systems Architect, AI Engineer, Software Architect, and Technical Consultant based in Colombo, Sri Lanka. He helps startups and enterprises build AI automation, LLM/RAG systems, AI agents, SaaS platforms, and AI-first products that scale. Specialises in Go, Elixir, FastAPI, Node, NestJS, NextJS, ReactJS, Flutter, AWS, systems architecture, and technical leadership.
+
+## Name and Entity Keywords
+
+- Primary name: Yoosuf Mohamed
+- Also known as: Yoosuf Mo, Yoosuf, aitchdei
+- Professional roles: Systems Architect, AI Engineer, Software Architect, Technical Consultant, AI Automation Consultant, LLM Engineer, RAG Engineer, SaaS Architect
+- Location: Colombo, Sri Lanka
+- Main website: https://yoosuf.me/
+- Canonical short-name profile: https://yoosuf.me/yoosuf/
+- Contact page: https://yoosuf.me/contact/
+- Services page: https://yoosuf.me/services/
 
 ## Products
 
@@ -14,6 +25,7 @@
 ## Pages
 
 - [Home](https://yoosuf.me/): Personal site — AI automation, systems architecture, and AI-first products
+- [Yoosuf](https://yoosuf.me/yoosuf/): Canonical identity page connecting Yoosuf, Yoosuf Mohamed, Yoosuf Mo, and aitchdei
 - [About](https://yoosuf.me/about/): Background, skills, and architectural philosophy
 - [Services](https://yoosuf.me/services/): Engagement models and starting prices — architecture consulting, performance audits, AI integration, product development, and fractional tech leadership
 - [Terms & Payments](https://yoosuf.me/terms-payments/): Full details on pricing, quotes, deposits, milestone payments, invoicing, taxes, refunds, and termination

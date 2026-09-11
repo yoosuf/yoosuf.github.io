@@ -1,6 +1,6 @@
 # Pine Mail
 
-> A tiny, open-source, single-binary SMTP mail catcher AND SMS catcher for local development, automated test suites, and autonomous AI agents — a dual-channel auth testing hub. Written in Rust. MIT license.
+> A tiny, open-source, single-binary local auth testing tool: SMTP mail catcher, SMS catcher, Twilio webhook receiver, OTP and magic-link extractor, long-polling API, and MCP server for Playwright tests, CI pipelines, and autonomous AI agents. Written in Rust. MIT license.
 
 - Product page: https://yoosuf.me/pinemail/
 - GitHub: https://github.com/yoosuf/pinemail
@@ -12,7 +12,7 @@
 
 ## What it does
 
-Pine Mail intercepts email AND SMS your application sends during local development or end-to-end testing. Point your app's SMTP config at `localhost:1025`, view messages in a web UI at `localhost:8025`, query them via a REST API, or connect an AI agent using its native Model Context Protocol (MCP) server. SMS lands either by direct REST POST to `/api/sms` or by pointing a Twilio webhook at `/api/sms/webhook`.
+Pine Mail intercepts email AND SMS your application sends during local development or end-to-end testing. It is designed for local auth testing: email OTPs, magic login links, email verification links, password resets, SMS 2FA, Twilio webhook capture, Playwright auth tests, CI pipelines, and AI-agent login flows. Point your app's SMTP config at `localhost:1025`, view messages in a web UI at `localhost:8025`, query them via a REST API, or connect an AI agent using its native Model Context Protocol (MCP) server. SMS lands either by direct REST POST to `/api/sms` or by pointing a Twilio webhook at `/api/sms/webhook`.
 
 It is a single static binary written in Rust that compiles the server, SQLite storage, and an embedded React web frontend into an executable under 15MB. It starts in under 5ms and uses ~12MB of RAM. No cloud account, no API keys, no Docker required (though a Docker image is available).
 
@@ -20,7 +20,20 @@ It is a single static binary written in Rust that compiles the server, SQLite st
 
 The problem it solves: testing authentication (email OTPs, magic links, password resets, and SMS 2FA codes via Twilio/AWS SNS/Vonage) is flaky, slow, and painful for both humans and AI agents. Cloud sandboxes add network/API dependencies, classic catchers (MailHog, Mailpit) are built for humans watching a browser tab, and AI agents have no clean native way to read email or SMS.
 
+Pine Mail is a MailHog alternative, Mailpit alternative, and Mailtrap alternative for teams that want local-first auth testing rather than a browser inbox or cloud sandbox. It keeps the useful SMTP-catching workflow, then adds SMS catching, Twilio webhook parsing, long-polling waits, signal extraction, email analysis, and MCP-native tools.
+
 ## Key features
+
+### 0. Local auth testing hub
+
+Pine Mail combines the jobs normally split across local mail catchers, temporary SMS plumbing, webhook mocks, and test helper scripts:
+
+- SMTP mail catching for transactional email tests
+- SMS catching for local 2FA and MFA tests
+- Twilio webhook receiver for realistic SMS callback payloads
+- OTP, magic-link, email verification, and password reset extraction
+- Race-free wait APIs for Playwright, Cypress, CI, and custom test suites
+- MCP tools so AI agents can complete auth flows without scraping webmail
 
 ### 1. Long-polling wait endpoint (`GET /api/wait`)
 

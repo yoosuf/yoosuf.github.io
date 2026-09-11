@@ -10,7 +10,7 @@
   "name": "Pine Mail",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Linux, macOS, Windows",
-  "description": "A tiny, single-binary SMTP & SMS catcher for local development, automated test suites, and autonomous AI agents. Long-polling API, automatic OTP and URL extraction, Twilio webhook ingestion, and a native MCP server with 14 tools.",
+  "description": "A free, open-source local auth testing tool for email OTPs, magic links, password resets, SMS 2FA, Playwright tests, CI pipelines, and autonomous AI agents. Single Rust binary with SMTP and SMS catching, Twilio webhook ingestion, long-polling APIs, automatic signal extraction, and a native MCP server with 14 tools.",
   "url": "https://yoosuf.me/pinemail/",
   "image": "https://yoosuf.me/assets/images/pinemail-og.png",
   "softwareVersion": "0.2.0",
@@ -23,6 +23,7 @@
   },
   "featureList": [
     "Dual-channel SMTP & SMS catching",
+    "Local auth testing for email OTPs, magic links, password resets, and SMS 2FA",
     "Email long-polling (GET /api/wait) and SMS long-polling (GET /api/sms/wait)",
     "Twilio webhook ingestion (POST /api/sms/webhook)",
     "Automatic OTP and URL extraction for email and SMS",
@@ -59,10 +60,11 @@
   <div class="pm-hero-grid">
     <div class="pm-hero-left">
       <span class="pm-hero-tag">Open Source &middot; MIT License &middot; Rust</span>
-      <h1 class="pm-hero-title">Catch every email &amp; SMS your app sends</h1>
+      <h1 class="pm-hero-title">Local auth testing without the flaky inbox dance</h1>
       <p class="pm-hero-sub">
-        Pine Mail is a tiny, single-binary SMTP &amp; SMS catcher for local development, automated tests, and AI agents.
-        Long-polling wait APIs, automatic OTP extraction, Twilio webhooks &mdash; no cloud, no containers, no API keys.
+        Pine Mail catches email OTPs, magic links, password resets, and SMS 2FA codes for local development,
+        Playwright tests, CI pipelines, and AI agents. One tiny Rust binary, long-polling wait APIs, Twilio webhooks,
+        and structured signal extraction &mdash; no cloud account, no API keys, no browser inbox.
       </p>
       <div class="pm-hero-actions">
         <a class="pm-cta" href="https://www.producthunt.com/products/pinemail?launch=pinemail" target="_blank" rel="noopener">
@@ -78,9 +80,9 @@
         </a>
       </div>
       <ul class="pm-hero-checks">
-        <li>Dual-channel: SMTP + SMS</li>
-        <li>14 native MCP tools</li>
-        <li>No account. No cloud. Ever.</li>
+        <li>SMTP mail catcher + SMS catcher</li>
+        <li>OTP and magic-link extraction</li>
+        <li>14 native MCP tools for agents</li>
       </ul>
     </div>
 
@@ -144,11 +146,48 @@
   </div>
 </section>
 
+<section class="pm-section pm-switch-section">
+  <div class="pm-container">
+    <h2 class="pm-section-title">Why developers switch to Pine Mail</h2>
+    <p class="pm-section-sub">
+      It replaces the messy parts of auth testing with one local tool: email testing, SMS 2FA testing,
+      webhook capture, OTP extraction, and agent-readable APIs in the same process.
+    </p>
+    <ul class="pm-switch-grid">
+      <li class="pm-switch-card">
+        <p class="pm-switch-kicker">For local dev</p>
+        <h3 class="pm-switch-title">A MailHog and Mailpit alternative that understands modern auth</h3>
+        <p class="pm-switch-desc">
+          Catch SMTP like the classic tools, then go further: parse verification codes, magic links,
+          reset URLs, and SMS messages without asking your app or your browser to pretend.
+        </p>
+      </li>
+      <li class="pm-switch-card">
+        <p class="pm-switch-kicker">For E2E and CI</p>
+        <h3 class="pm-switch-title">Deterministic Playwright auth tests with zero <code>sleep()</code></h3>
+        <p class="pm-switch-desc">
+          Long-polling waits return when the matching email or text arrives. Use <code>since</code>,
+          assert the extracted code, clean the inbox, and keep the pipeline boring.
+        </p>
+      </li>
+      <li class="pm-switch-card">
+        <p class="pm-switch-kicker">For AI agents</p>
+        <h3 class="pm-switch-title">MCP-native email and SMS tools for full MFA flows</h3>
+        <p class="pm-switch-desc">
+          Agents can wait for email, extract a link, wait for SMS, read the OTP, and finish login
+          through 14 structured MCP tools instead of screen-scraping webmail.
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+
 <section class="pm-section">
   <div class="pm-container">
-    <h2 class="pm-section-title">The problem: auth testing is still broken</h2>
+    <h2 class="pm-section-title">The problem: auth testing is still too fragile</h2>
     <p class="pm-section-sub">
-      Your test suite hands a user a signup form. The app sends an email, then an SMS 2FA code. And everything falls apart on a sleep(), a poll, or a webmail screen.
+      Your test suite signs up a user. The app sends an email verification code, then a text-message 2FA code.
+      The whole thing should take seconds, but it often turns into waits, retries, inbox scraping, and one very suspicious timeout.
     </p>
     <ul class="pm-problems">
       <li class="pm-problem">
@@ -157,7 +196,7 @@
         </div>
         <h3 class="pm-problem-name">Cloud sandboxes add coupling</h3>
         <p class="pm-problem-desc">
-          Mailtrap, SendGrid, and phone-verification SaaS fix the blast radius but chain your local suite to the network, API keys, and a pricing tier.
+          Mailtrap, SendGrid, and phone-verification SaaS reduce the blast radius, but your local suite still depends on the network, API keys, account state, and a pricing tier.
         </p>
       </li>
       <li class="pm-problem">
@@ -166,7 +205,7 @@
         </div>
         <h3 class="pm-problem-name">Classic catchers are email-only</h3>
         <p class="pm-problem-desc">
-          MailHog and Mailpit read email from a browser tab. They don't catch SMS, poll awkwardly, and leave unparsed MIME payloads for your test code to fight.
+          MailHog and Mailpit are great SMTP catchers, but they stop at email. Modern auth testing needs SMS, OTP extraction, magic links, and clean wait APIs too.
         </p>
       </li>
       <li class="pm-problem">
@@ -175,7 +214,7 @@
         </div>
         <h3 class="pm-problem-name">Agents hit a wall at OTPs</h3>
         <p class="pm-problem-desc">
-          An autonomous agent can't casually read a text message or browse webmail. It needs a native, structured channel &mdash; or it burns tokens hallucinating.
+          An autonomous agent can't casually read a phone or browse webmail like a patient human. It needs a native, structured channel for email and SMS.
         </p>
       </li>
     </ul>
@@ -322,7 +361,7 @@
   <div class="pm-container">
     <h2 class="pm-section-title">Everything you need, nothing you don't</h2>
     <p class="pm-section-sub">
-      Four capabilities that kill the flakiness, the polling loops, and the agent friction on real multi-factor flows.
+      Four capabilities that make Pine Mail feel boring in the best developer-product sense: predictable, local, scriptable, and easy to delete from your mental stack.
     </p>
     <div class="pm-features">
       <div class="pm-feature">
@@ -331,7 +370,7 @@
         </div>
         <h3 class="pm-feature-title">Long-polling wait API</h3>
         <p class="pm-feature-desc">
-          <code>/api/wait</code> and <code>/api/sms/wait</code> hold the request open until the matching message arrives. With a <code>since</code> timestamp so nothing slips through the gap.
+          <code>/api/wait</code> and <code>/api/sms/wait</code> hold the request open until the matching message arrives. Use <code>since</code> timestamps so fast delivery never slips through the gap.
         </p>
       </div>
       <div class="pm-feature">
@@ -340,7 +379,7 @@
         </div>
         <h3 class="pm-feature-title">Signal extraction</h3>
         <p class="pm-feature-desc">
-          Pulls OTP codes and magic links out of email bodies and SMS text. Structured JSON &mdash; no regex, no MIME debugging.
+          Pull OTP codes, email verification links, magic login links, and reset URLs out of email bodies and SMS text. Structured JSON &mdash; no regex, no MIME debugging.
         </p>
       </div>
       <div class="pm-feature">
@@ -349,7 +388,7 @@
         </div>
         <h3 class="pm-feature-title">SMS + Twilio webhooks</h3>
         <p class="pm-feature-desc">
-          Catch texts via JSON or a native Twilio webhook parser. Full 2FA flows locally &mdash; no phone, no SMS gateway.
+          Catch texts via JSON or a native Twilio webhook parser. Full SMS 2FA flows locally &mdash; no phone, no SMS gateway in your test path.
         </p>
       </div>
       <div class="pm-feature">
@@ -358,7 +397,7 @@
         </div>
         <h3 class="pm-feature-title">Email analysis</h3>
         <p class="pm-feature-desc">
-          11-factor compatibility check for legacy clients plus a SpamAssassin-style score. Assert template quality in CI.
+          Run an 11-factor HTML email compatibility check plus a SpamAssassin-style score. Assert template quality before a broken transactional email ships.
         </p>
       </div>
     </div>
@@ -513,9 +552,9 @@
 
 <section class="pm-section">
   <div class="pm-container">
-    <h2 class="pm-section-title">Pine Mail vs. the old ways</h2>
+    <h2 class="pm-section-title">Pine Mail vs. MailHog, Mailpit, and Mailtrap</h2>
     <p class="pm-section-sub">
-      Honest comparison. We're the new kid &mdash; but on the things that matter for tests and agents, we win.
+      Honest comparison. MailHog and Mailpit are still useful. Mailtrap is polished. Pine Mail is built for the local auth-testing jobs they were never quite designed to own.
     </p>
     <div class="pm-table-wrap">
       <table class="pm-compare">
@@ -523,7 +562,7 @@
           <tr>
             <th>Feature</th>
             <th class="pm-col-pine" scope="col">Pine Mail</th>
-            <th scope="col">Mailhog</th>
+            <th scope="col">MailHog</th>
             <th scope="col">Mailpit</th>
             <th scope="col">Mailtrap</th>
           </tr>
@@ -593,9 +632,9 @@
 
 <section class="pm-section">
   <div class="pm-container">
-    <h2 class="pm-section-title">Running in under 30 seconds</h2>
+    <h2 class="pm-section-title">Running locally in under 30 seconds</h2>
     <p class="pm-section-sub">
-      Same binary, one way or another. Pick your poison.
+      Same binary, several install paths. Start with Docker, Homebrew, Cargo, or the one-liner and point your app at <code>localhost:1025</code>.
     </p>
     <div class="pm-install-grid">
       <div class="pm-install-card">
@@ -629,8 +668,8 @@ yoosuf/pinemail/main/install.sh | sh</pre>
   <div class="pm-container">
     <h2 class="pm-section-title">Built for AI agents</h2>
     <p class="pm-section-sub">
-      A native Model Context Protocol (MCP) server exposes the whole inbox as 14 tools &mdash; 7 for email, 7 for SMS.
-      An agent can complete a full signup, email verification, and SMS 2FA login without ever touching a browser inbox.
+      A native Model Context Protocol (MCP) server exposes the whole local inbox as 14 tools &mdash; 7 for email, 7 for SMS.
+      An agent can complete signup, email verification, password reset, and SMS 2FA without touching a browser inbox.
     </p>
   </div>
   <div class="pm-container">
@@ -757,7 +796,7 @@ yoosuf/pinemail/main/install.sh | sh</pre>
   <div class="pm-container">
     <h2 class="pm-section-title">In your test suite</h2>
     <p class="pm-section-sub">
-      Deterministic, race-free, and fast. If delivery fails, the test fails on timeout &mdash; it never hangs.
+      Deterministic, race-free, and fast. If delivery fails, the test fails on a clean timeout &mdash; it never hangs and never waits on someone else's API.
     </p>
     <div class="pm-code-label">Node.js &middot; email verification</div>
     <pre class="pm-code-block">const since = new Date().toISOString();   // capture BEFORE triggering
@@ -813,8 +852,12 @@ console.log("verified with code", codes[0]);</pre>
     <h2 class="pm-section-title">Frequently asked questions</h2>
     <div class="pm-faq">
       <details class="pm-faq-item">
-        <summary>Does Pine Mail need Docker or a cloud account?</summary>
+        <summary>Does Pine Mail need Docker, Mailtrap, or a cloud account?</summary>
         <p>Neither. It's a single static binary with embedded SQLite and an embedded web UI. Docker is one convenient install option among several &mdash; Homebrew, one-liners, and Cargo all work too.</p>
+      </details>
+      <details class="pm-faq-item">
+        <summary>Is Pine Mail a MailHog or Mailpit alternative?</summary>
+        <p>Yes, if you want a local SMTP mail catcher with a sharper testing API. Pine Mail catches email like those tools, but also adds SMS catching, Twilio webhook parsing, OTP and magic-link extraction, race-free long-polling waits, email analysis, and MCP tools for agents.</p>
       </details>
       <details class="pm-faq-item">
         <summary>How does SMS catching actually work?</summary>
@@ -839,9 +882,9 @@ console.log("verified with code", codes[0]);</pre>
 <section class="pm-section">
   <div class="pm-container">
     <div class="pm-cta-box">
-      <h2 class="pm-cta-title">Stop fighting your test suite.</h2>
+      <h2 class="pm-cta-title">Make auth testing boring again.</h2>
       <p class="pm-cta-text">
-        Pine Mail catches your email and SMS &mdash; free, open source under the MIT license, running in under 30 seconds.
+        Pine Mail catches email OTPs, magic links, password resets, and SMS 2FA codes &mdash; free, open source under the MIT license, running locally in under 30 seconds.
       </p>
       <div class="pm-cta-actions">
         <a class="pm-cta" href="https://www.producthunt.com/products/pinemail?launch=pinemail" target="_blank" rel="noopener">

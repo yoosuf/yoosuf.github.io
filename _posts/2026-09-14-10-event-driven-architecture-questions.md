@@ -39,14 +39,33 @@ flowchart TD
     A[Broker delivers PaymentCaptured] --> B[Consumer processes it]
     B --> C{ACK reaches broker?}
     C -->|Yes| D[Done]
-    C -->|No — consumer crashes| E[Broker redelivers]
+    C -->|No - consumer crashes| E[Broker redelivers]
     E --> F[Same event processed again]
-    F --> G[Duplicate payment?]
-    F --> H[Duplicate invoice?]
-    F --> I[Duplicate email?]
+    F --> G[Duplicate invoice?]
+    F --> H[Duplicate email?]
+    F --> I[Incorrect inventory movement?]
 ```
 
-A consumer might store processed event IDs and check before processing. But idempotency can also exist at the business-operation level. "Set payment status for ORD-10042 to CAPTURED" is easier to make idempotent than "increase captured amount by $125."
+If the consumer blindly processes the event twice, you can end up with:
+
+- duplicate payments
+- duplicate invoices
+- duplicate emails
+- duplicated ledger entries
+- incorrect inventory movements
+
+That is why **idempotency** is a fundamental part of event-driven architecture. A consumer may store processed event IDs and check before processing:
+
+```mermaid
+flowchart TD
+    A[Event evt_98321 arrives] --> B{Already in processed_events?}
+    B -->|Yes| C[Ignore it]
+    B -->|No| D[Process the event]
+    D --> E[Record event ID]
+    E --> F[ACK to broker]
+```
+
+But idempotency can also exist at the business-operation level. "Set payment status for ORD-10042 to CAPTURED" is easier to make idempotent than "increase captured amount by $125."
 
 The architectural question is not "can duplicates happen?" — they can. The real question is: **can the system remain correct when they do?**
 
@@ -67,11 +86,40 @@ stateDiagram-v2
     Paid --> Cancelled
 ```
 
-That sequence makes sense. But distributed systems do not always deliver events exactly how humans expect them to arrive. A consumer might observe `OrderCreated → OrderShipped → OrderPaid`. Or worse: `OrderCancelled → OrderShipped`.
+That sequence makes sense. But distributed systems do not always deliver events exactly how humans expect them to arrive. A consumer might observe the events in a different order entirely:
+
+```mermaid
+flowchart LR
+    subgraph Expected["Expected arrival"]
+        E1[OrderCreated] --> E2[OrderPaid]
+        E2 --> E3[OrderPacked]
+        E3 --> E4[OrderShipped]
+    end
+    subgraph Observed["What a consumer might observe"]
+        O1[OrderCreated] --> O2[OrderShipped]
+        O2 --> O3[OrderPaid]
+    end
+```
+
+Or worse — a cancelled order shipped:
+
+```mermaid
+flowchart LR
+    C1[OrderCancelled] --> C2[OrderShipped]
+    style C1 fill:#f8d7da,stroke:#dc3545
+    style C2 fill:#f8d7da,stroke:#dc3545
+```
 
 Developers sometimes respond with: "Kafka guarantees ordering." That statement is incomplete. The correct question is: **ordering within what boundary?**
 
-Kafka can preserve ordering within a partition. That does not mean your entire distributed system has universal global ordering. You need to think about partition keys, aggregate boundaries, sequence numbers, entity versions, stale event detection, and state-machine validation.
+Kafka can preserve ordering within a partition. That does not mean your entire distributed system has universal global ordering. You therefore need to think about:
+
+- partition keys
+- aggregate boundaries
+- sequence numbers
+- entity versions
+- stale event detection
+- state-machine validation
 
 An event might include an aggregate version:
 
@@ -92,7 +140,7 @@ If the consumer has already processed version 18, version 17 may be stale and sa
 
 ## 3. What happens if the database succeeds but publishing the event fails?
 
-This is one of the most important failure scenarios in event-driven systems.
+This is one of the most important failure scenarios in event-driven systems. Without any safeguards, this is what happens:
 
 ```mermaid
 sequenceDiagram
@@ -101,13 +149,17 @@ sequenceDiagram
     participant Broker as Kafka / RabbitMQ
 
     App->>DB: UPDATE orders SET status = 'PAID'
-    DB-->>App: Committed ✓
+    DB-->>App: Committed successfully
     App->>Broker: Publish OrderPaid
-    Broker--xApp: Temporarily unavailable ✗
+    Broker--xApp: Temporarily unavailable
     Note over DB,Broker: Database says PAID.<br/>The rest of the system never hears about it.
 ```
 
-Maybe the inventory service never reserves stock. Maybe the fulfillment workflow never starts. Maybe the customer never receives confirmation. The database says one thing; the rest of the system believes another.
+The database says one thing; the rest of the system believes another. The consequences ripple outward:
+
+- the inventory service never reserves stock
+- the fulfillment workflow never starts
+- the customer never receives confirmation
 
 A common solution is the **Transactional Outbox Pattern**. Instead of updating the database and then publishing as separate steps, you perform both persistence operations inside the same database transaction:
 
@@ -140,13 +192,13 @@ Naming messages correctly matters more than it appears. Consider `SendInvoiceEma
 
 ```mermaid
 flowchart LR
-    subgraph Commands["Commands — intent"]
+    subgraph Commands["Commands - intent"]
         C1[CapturePayment]
         C2[GenerateInvoice]
         C3[ApproveClaim]
         C4[CancelOrder]
     end
-    subgraph Events["Events — fact"]
+    subgraph Events["Events - fact"]
         E1[PaymentCaptured]
         E2[InvoiceGenerated]
         E3[ClaimApproved]
@@ -158,15 +210,17 @@ This distinction matters because commands and events create different coupling m
 
 ```mermaid
 flowchart TD
-    subgraph Command["Command — tight coupling"]
+    subgraph Command["Command - tight coupling"]
         OS1[Order Service] -->|SendConfirmationEmail| NS1[Notification Service]
     end
-    subgraph Event["Event — loose coupling"]
+    subgraph Event["Event - loose coupling"]
         OS2[Order Service] -->|OrderConfirmed| BR[Broadcast]
         BR --> ES[Email Service]
         BR --> AS[Analytics Service]
     end
 ```
+
+With a command, the Order Service knows exactly what the Notification Service should do. With an event, the producer simply announces what happened and consumers independently decide whether they care.
 
 A useful test: if nobody consumes this message, has the business fact still happened? If yes, it is probably an event. If the system expects someone to perform an action because of the message, you may actually be dealing with a command.
 
@@ -180,7 +234,7 @@ Events become APIs. And just like APIs, they evolve.
 
 Suppose your original event looks like `{ "customerId": 1024, "name": "Yoosuf Mohamed" }`. Six months later, someone wants to split it into `firstName` and `lastName`. That looks like a harmless refactor. It may not be.
 
-There may already be a CRM service, marketing service, billing service, analytics service, notification service, and a data warehouse all consuming `name`. Changing an event schema can break systems you do not even deploy together.
+There may already be a CRM service, marketing service, billing service, analytics service, notification service, and a data warehouse all consuming `name`. Changing an event schema can break systems you do not even deploy together:
 
 ```mermaid
 flowchart TD
@@ -193,7 +247,18 @@ flowchart TD
     style Note1 fill:#fff3cd,stroke:#ffc107
 ```
 
-Architects need to think about backward compatibility, forward compatibility, schema evolution, additive changes, optional fields, semantic versioning, event ownership, deprecation windows, schema registries, and consumer contract testing.
+Architects need to think about:
+
+- backward compatibility
+- forward compatibility
+- schema evolution
+- additive changes
+- optional fields
+- semantic versioning
+- event ownership
+- deprecation windows
+- schema registries
+- consumer contract testing
 
 Instead of deleting fields immediately, you might temporarily evolve the event — include both `name` and `firstName`/`lastName` in version 2. Older consumers continue functioning. Newer consumers migrate. Eventually, the old field can be retired through an explicit compatibility process.
 
@@ -216,13 +281,20 @@ flowchart TD
     E -->|No| D
     E -->|Yes| F[Dead Letter Queue]
     F --> G{Operational response?}
-    G -->|Monitor + alert| H[Investigate]
+    G -->|Monitor and alert| H[Investigate]
     G -->|Ignore| I[Business operations quietly disappear]
-
     style I fill:#f8d7da,stroke:#dc3545
 ```
 
-But adding a DLQ does not solve the operational problem. You must still answer: who monitors it? When should alerts fire? Who investigates failures? How are messages corrected? How are messages replayed? Can reprocessing cause duplicate side effects?
+But adding a DLQ does not solve the operational problem. You must still answer:
+
+- Who monitors it?
+- When should alerts fire?
+- Who investigates failures?
+- How are messages corrected?
+- How are messages replayed?
+- What happens after replay?
+- Can reprocessing cause duplicate side effects?
 
 A dead-letter queue without operational ownership is simply a graveyard where business operations quietly disappear. Production EDA requires a failure strategy, not merely a failure destination.
 
@@ -240,7 +312,6 @@ flowchart TD
     B --> C[InventoryReservationFailed]
     C --> D[PaymentAuthorizationCancelled]
     D --> E[OrderCancelled]
-
     style C fill:#f8d7da,stroke:#dc3545
     style D fill:#fff3cd,stroke:#ffc107
     style E fill:#f8d7da,stroke:#dc3545
@@ -281,29 +352,44 @@ flowchart TD
 
 The orchestrator explicitly knows the workflow. This creates more centralized logic, but can significantly improve observability and control for complex business processes.
 
-Neither approach is universally correct. Architects choose between them based on workflow complexity, team ownership, compensation requirements, visibility, coupling, auditability, and operational requirements.
+Neither approach is universally correct. Architects choose between them based on:
+
+- workflow complexity
+- team ownership
+- compensation requirements
+- visibility
+- coupling
+- auditability
+- operational requirements
+
+The important thing is that distributed workflows need explicit failure semantics.
 
 ---
 
 ## 8. What is the source of truth?
 
-Once events enter an architecture, this question becomes critical. Where does truth live?
+Once events enter an architecture, this question becomes critical. Where does truth live? Is it:
 
-Is it PostgreSQL? Is it Kafka? Is it an Event Store? Is it a materialized projection? These are very different architectures.
+- PostgreSQL?
+- Kafka?
+- an Event Store?
+- a materialized projection?
+
+These are very different architectures.
 
 In many event-driven applications, the database is the source of truth and events are notifications about changes. In Event Sourcing, events are the source of truth and current state is derived by replaying historical events.
 
 ```mermaid
 flowchart LR
-    subgraph Traditional["Traditional"]
+    subgraph Traditional["Traditional - DB is the source of truth"]
         DB1[(Orders Table)] -->|Change| EV1[OrderPaid event]
         EV1 --> R1[Other services react]
     end
-    subgraph Sourcing["Event Sourcing"]
+    subgraph Sourcing["Event Sourcing - events are the source of truth"]
         E1[AccountOpened] --> E2[MoneyDeposited 1000]
         E2 --> E3[MoneyWithdrawn 200]
         E3 --> E4[MoneyDeposited 500]
-        E4 --> P[Projection: Balance = 1300]
+        E4 --> PR[Projection - Balance 1300]
     end
 ```
 
@@ -315,11 +401,16 @@ Event Sourcing can be extremely powerful for domains requiring complete audit hi
 
 ## 9. How do you debug a business transaction across ten services?
 
-In a synchronous application, debugging is relatively easy: one request, one trace, one response.
+In a synchronous application, debugging is relatively easy — one request, one trace, one response:
 
-An event-driven workflow may involve events across multiple services, several databases, different queues, multiple regions, and spans of minutes or hours. Now imagine customer support asks: "why was order 83492 never shipped?"
+```mermaid
+flowchart LR
+    REQ[HTTP Request] --> API[API] --> SRV[Service] --> DB[(Database)] --> RESP[Response]
+```
 
-Without proper observability, answering that question can become painful.
+An event-driven workflow may involve events across multiple services, several databases, different queues, multiple regions, and spans of minutes or hours. Now imagine customer support asks: "why was order 83492 never shipped?" Without proper observability, answering that question can become painful.
+
+Events should carry enough metadata to reconstruct causality:
 
 ```mermaid
 sequenceDiagram
@@ -329,16 +420,23 @@ sequenceDiagram
     participant S as Shipping Service
     participant N as Notification Service
 
-    Note over O,N: correlationId: checkout-772
-
+    Note over O,N: correlationId checkout-772
     O->>P: OrderCreated (evt-975)
     P->>I: PaymentAuthorized (evt-978)
     I->>S: InventoryReserved (evt-981)
     S--xN: ShipmentCreationFailed (evt-985)
-    Note over S,N: causationId: evt-981<br/>traceId: 01HXYZ...
+    Note over S,N: causationId evt-981 / traceId 01HXYZ
 ```
 
-Events should carry enough metadata to reconstruct causality — correlation IDs, causation IDs, trace IDs, event IDs. A mature platform should think about distributed tracing, structured logs, consumer lag dashboards, failed-message dashboards, and workflow state inspection.
+Now you can reconstruct the whole chain — correlation IDs, causation IDs, trace IDs, event IDs. A mature platform should think about:
+
+- distributed tracing
+- structured logs
+- correlation IDs
+- event IDs and causation IDs
+- metrics and consumer lag
+- failed-message dashboards
+- workflow state inspection
 
 Observability is not something you bolt onto an event-driven architecture later. It is part of the architecture itself.
 
@@ -348,21 +446,52 @@ Observability is not something you bolt onto an event-driven architecture later.
 
 This may be the most important question on the list. Engineers sometimes discover Kafka and suddenly every interaction becomes an event. That is usually a warning sign.
 
+Imagine you need customer details. This may be completely reasonable:
+
+```http
+GET /customers/123
+```
+
+You probably do not need this — a request, a broker round-trip, a response, another broker round-trip:
+
+```mermaid
+flowchart TD
+    C[CustomerRequested] --> K1[Kafka]
+    K1 --> L[CustomerLoaded]
+    L --> K2[Kafka]
+    K2 --> R[Response]
+    style K1 fill:#f8d7da,stroke:#dc3545
+    style K2 fill:#f8d7da,stroke:#dc3545
+```
+
 ```mermaid
 flowchart TD
     REQ[Incoming request] --> Q{Does the caller need<br/>an immediate response?}
-    Q -->|Yes| SYNC[Use synchronous: REST / gRPC / GraphQL]
-    Q -->|No| Q2{Is this a workflow,<br/>fan-out, or integration event?}
-    Q2 -->|Yes| ASYNC[Use asynchronous: Events / Queues]
+    Q -->|Yes| SYNC[Use synchronous - REST / gRPC / GraphQL]
+    Q -->|No| Q2{Is this a workflow,<br/>fan-out, or integration?}
+    Q2 -->|Yes| ASYNC[Use asynchronous - Events / Queues]
     Q2 -->|No| SYNC
-
     style SYNC fill:#d4edda,stroke:#28a745
     style ASYNC fill:#cce5ff,stroke:#004085
 ```
 
-Event-driven communication makes sense when you need asynchronous processing, temporal decoupling, fan-out, independent consumers, buffering, scalable processing, workflow propagation, integration events, or eventual consistency.
+Event-driven communication makes sense when you need:
 
-Synchronous communication is often better when the caller needs an immediate response, the interaction is request-response, strong consistency is required, failure must be returned immediately, or there is no meaningful reason to decouple the participants.
+- asynchronous processing
+- temporal decoupling
+- fan-out to independent consumers
+- buffering and scalable processing
+- workflow propagation
+- integration events
+- eventual consistency
+
+Synchronous communication is often better when:
+
+- the caller needs an immediate response
+- the interaction is request-response
+- strong consistency is required
+- failure must be returned immediately
+- there is no meaningful reason to decouple the participants
 
 Many mature architectures intentionally use both. The architectural skill is not knowing how to introduce Kafka — it is knowing **where Kafka does not belong**.
 
@@ -385,7 +514,19 @@ If I were interviewing for a system using event-driven architecture, I would ask
 
 If most of the answers involve tool names — Kafka, RabbitMQ, MassTransit, Spring Boot, NestJS, MediatR, NServiceBus, AWS EventBridge — then the discussion is still mostly about tools. Those tools are useful. But architecture happens one level above them.
 
-The stronger answers start talking about idempotency, delivery semantics, consistency boundaries, aggregate ordering, schema evolution, failure domains, temporal coupling, compensation, observability, replay, and recovery. That is where event-driven architecture becomes a distributed-systems problem rather than a framework configuration exercise.
+The stronger answers start talking about:
+
+- idempotency and delivery semantics
+- consistency boundaries
+- aggregate ordering
+- schema evolution
+- failure domains
+- temporal coupling
+- compensation
+- observability
+- replay and recovery
+
+That is where event-driven architecture becomes a distributed-systems problem rather than a framework configuration exercise.
 
 ---
 
@@ -398,16 +539,24 @@ flowchart TD
     R[Replay historical events] --> Q{Events trigger side effects?}
     Q -->|Yes| DANGER[50,000 emails resent<br/>10,000 payment requests rerun<br/>Inventory deducted twice]
     Q -->|No| SAFE[State rebuilt cleanly]
-
     DANGER --> NEED[Need to distinguish]
     NEED --> A[Rebuilding state]
     NEED --> B[Re-executing side effects]
-
     style DANGER fill:#f8d7da,stroke:#dc3545
     style SAFE fill:#d4edda,stroke:#28a745
 ```
 
-That distinction affects event replay, projections, idempotency, integration boundaries, consumer design, migration strategies, and disaster recovery. If a team cannot explain how replay works safely, the event-driven architecture probably is not as mature as the architecture diagram makes it look.
+That distinction affects:
+
+- event replay
+- projections
+- idempotency
+- integration boundaries
+- consumer design
+- migration strategies
+- disaster recovery
+
+If a team cannot explain how replay works safely, the event-driven architecture probably is not as mature as the architecture diagram makes it look.
 
 ---
 

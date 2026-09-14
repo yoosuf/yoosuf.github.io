@@ -36,6 +36,7 @@
 
 ### Software Engineering & Web Development
 
+- [10 Event-Driven Architecture Questions That Separate Architects from Framework Users](https://yoosuf.me/blog/10-event-driven-architecture-questions): Idempotency, ordering, consistency boundaries, schema evolution, sagas, observability, and knowing when NOT to use events
 - [Setting Up a Legacy Rails 4.2.6 Project with Docker in 2024](https://yoosuf.me/blog/setting-up-legacy-rails-project-in-2024): Maintaining legacy Rails apps with Docker
 - [Becoming a ReactJS Expert](https://yoosuf.me/blog/become-a-reactjs-expert): Guide to mastering React and becoming an expert
 - [HTTP2 for Front-End Web Developers](https://yoosuf.me/blog/http2-for-front-end-web-developers): Performance improvements with HTTP/2

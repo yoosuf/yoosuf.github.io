@@ -1,0 +1,106 @@
+---
+import '../styles/product.css'
+import { SITE } from '../config'
+import type { Product, ProductAction } from '../data/product'
+
+interface Props {
+  product: Product
+}
+
+const { product } = Astro.props
+
+const accentCss = product.accent
+  ? `--pm-accent: ${product.accent.accent ?? '#10b981'};` +
+    `--pm-accent-strong: ${product.accent.accentStrong ?? '#047857'};` +
+    `--pm-accent-deep: ${product.accent.accentDeep ?? '#065f46'};` +
+    `--pm-accent-soft: ${product.accent.accentSoft ?? '#d1fae5'};` +
+    `--pm-on-accent: ${product.accent.onAccent ?? '#ffffff'};`
+  : ''
+
+const brandUrl = new URL(product.homeHref, SITE.url).href
+
+function actionClass(action: ProductAction) {
+  return action.variant === 'ghost' ? 'pm-cta pm-cta-ghost' : 'pm-cta'
+}
+
+function actionProps(action: ProductAction) {
+  if (action.external) return { target: '_blank', rel: 'noopener noreferrer' }
+  return {}
+}
+---
+
+<div class="pm-page" style={accentCss}>
+  <nav class="pm-subnav" aria-label={`${product.name} sections`}>
+    <div class="pm-container">
+      <a class="pm-brand" href={brandUrl} aria-label={`${product.name} home`}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-hidden="true"><path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.6a1 1 0 0 1-.7-1.7L8 10h-.8a1 1 0 0 1-.7-1.6L11 5.5a1 1 0 0 1 1.4 0l4.5 2.9a1 1 0 0 1-.7 1.6H15l2.3 2.3a1 1 0 0 1-.7 1.7Z"/></svg>
+        <span>{product.name}</span>
+      </a>
+      <div class="pm-subnav-links">
+        {
+          product.navLinks.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))
+        }
+      </div>
+    </div>
+  </nav>
+
+  <section class="pm-hero">
+    <div class="pm-hero-grid">
+      <div class="pm-hero-left">
+        <span class="pm-hero-tag">{product.hero.tag}</span>
+        <h1 class="pm-hero-title">{product.hero.title}</h1>
+        <p class="pm-hero-sub">{product.hero.sub}</p>
+        <div class="pm-hero-actions">
+          {
+            product.hero.actions.map((action) => (
+              <a class={actionClass(action)} href={action.href} {...actionProps(action)}>
+                {action.icon === 'launch' && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 11 7-8 7 8"/><path d="M5 18h14"/><path d="M5 22h14"/></svg>
+                )}
+                {action.label}
+                {action.icon === 'arrow' && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg>
+                )}
+              </a>
+            ))
+          }
+        </div>
+        <ul class="pm-hero-checks">
+          {product.hero.checks.map((check) => <li>{check}</li>)}
+        </ul>
+      </div>
+
+      <div class="pm-hero-right">
+        <slot name="media" />
+      </div>
+    </div>
+  </section>
+
+  <slot />
+
+  <section class="pm-section">
+    <div class="pm-container">
+      <div class="pm-cta-box">
+        <h2 class="pm-cta-title">{product.cta.title}</h2>
+        <p class="pm-cta-text">{product.cta.text}</p>
+        <div class="pm-cta-actions">
+          {
+            product.cta.actions.map((action) => (
+              <a class={actionClass(action)} href={action.href} {...actionProps(action)}>
+                {action.icon === 'launch' && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 11 7-8 7 8"/><path d="M5 18h14"/><path d="M5 22h14"/></svg>
+                )}
+                {action.label}
+                {action.icon === 'arrow' && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></svg>
+                )}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

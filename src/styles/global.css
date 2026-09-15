@@ -1,0 +1,449 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* ---------------------------------------------------------------------------
+   Design system — simple, minimal, standard.
+   System fonts only (no webfont requests), two-tone neutrals on paper,
+   one restrained accent used for links and selection only.
+--------------------------------------------------------------------------- */
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  /* Light palette */
+  --color-ink: #1a1a1a;
+  --color-mid: #4a4a4a;
+  --color-sub: #7a7a7a;
+  --color-faint: #9e9e9e;
+  --color-line: #e5e5e5;
+  --color-wash: #f6f6f6;
+  --color-paper: #ffffff;
+  --color-accent: #2563eb;
+  --color-accent-strong: #1d4ed8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-ink: #e6e6e6;
+    --color-mid: #b0b0b0;
+    --color-sub: #858585;
+    --color-faint: #5f5f5f;
+    --color-line: #2b2b2b;
+    --color-wash: #171717;
+    --color-paper: #0e0e0e;
+    --color-accent: #8bb0ff;
+    --color-accent-strong: #a9c4ff;
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    color-scheme: light;
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+  }
+
+  :is(a, button, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    transition: color 0.15s ease;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    /* View transitions respect reduced motion too */
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      animation-duration: 0s !important;
+    }
+  }
+}
+
+@layer components {
+  /* Single canonical content width used by header, footer, and pages */
+  .site-container {
+    @apply mx-auto w-full max-w-[68rem] px-5 sm:px-8;
+  }
+
+  /* Skip link — hidden until focused */
+  .skip-link {
+    @apply fixed top-2 left-2 z-[10000] -translate-y-96 bg-accent px-4 py-2 text-sm font-semibold text-white no-underline transition-transform focus:translate-y-0;
+  }
+
+  /* Homepage hero wash — plain CSS gradients painted on a zero-overflow,
+     inset-0 layer, so the glow never clips, never spills, and stays laid
+     out correctly on every viewport (no absolute off-canvas tricks). */
+  .hero-glow {
+    display: none;
+  }
+
+  /* Article content typesetting */
+  .prose {
+    @apply max-w-none;
+  }
+  .prose :where(a) {
+    color: var(--color-accent);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  .prose :where(a:hover) {
+    color: var(--color-accent-strong);
+    text-decoration-thickness: 2px;
+  }
+  .prose :where(blockquote) {
+    @apply border-l-2 border-line pl-6;
+    border-left-color: var(--color-line);
+    color: var(--color-mid);
+    font-style: normal;
+  }
+  .prose :where(code):not(:where(pre code)) {
+    background-color: var(--color-wash);
+    color: var(--color-ink);
+    border: 1px solid color-mix(in srgb, var(--color-line) 80%, transparent);
+    border-radius: 4px;
+    padding: 0.1em 0.35em;
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+  }
+  .prose :where(pre) {
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+  .prose :where(pre code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    line-height: 1.7;
+  }
+  .prose :where(hr) {
+    border-color: var(--color-line);
+  }
+  .prose :where(table) {
+    font-size: 0.95em;
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+  }
+  .prose :where(th) {
+    background-color: var(--color-wash);
+    font-weight: 600;
+  }
+  .prose :where(kbd) {
+    font-family: var(--font-mono);
+  }
+
+  /* Shiki dual themes: Astro emits --shiki-dark vars only; apply them here. */
+  @media (prefers-color-scheme: dark) {
+    .prose pre.astro-code {
+      background-color: var(--shiki-dark-bg, #24292e) !important;
+      color: var(--shiki-dark, #e1e4e8) !important;
+    }
+    .prose pre.astro-code span {
+      color: var(--shiki-dark) !important;
+    }
+  }
+
+  /* Mermaid diagrams */
+  .prose .mermaid {
+    margin: 1.5em 0;
+    overflow-x: auto;
+  }
+  .prose .mermaid svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Smooth open/close for services <details> panels (progressive:
+     unsupported browsers simply skip the animation). */
+  details.ep-item::details-content {
+    display: block;
+    overflow: clip;
+    opacity: 0;
+    scale: 1 0;
+    transform-origin: top;
+    transition:
+      opacity 0.28s ease,
+      scale 0.28s ease;
+  }
+  details.ep-item[open]::details-content {
+    opacity: 1;
+    scale: 1 1;
+  }
+
+  /* React services accordion (see ServicesAccordion.tsx) */
+  .svc-item {
+    border: 1px solid var(--color-line);
+    border-radius: 0.9rem;
+    background-color: var(--color-paper);
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+  /* `:where()` keeps the neutral hover at the same specificity as the open
+     state, so the open card below always shows its accent border. */
+  .svc-item:where(:hover) {
+    border-color: color-mix(in srgb, var(--color-line) 55%, var(--color-sub));
+  }
+  .svc-item:where(:hover) .svc-icon-chip,
+  .svc-item:where(:hover) .svc-name {
+    color: var(--color-accent);
+  }
+  .svc-item-open {
+    border-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-line));
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 16%, transparent);
+  }
+  .svc-trigger {
+    @apply flex w-full cursor-pointer items-center gap-3 rounded-[0.9rem] px-4 py-4 text-left sm:gap-3.5 sm:px-5 sm:py-5;
+    font: inherit;
+  }
+  .svc-icon-chip {
+    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-mid;
+    background-color: var(--color-wash);
+    transition: color 0.15s ease;
+  }
+  .svc-name {
+    @apply min-w-0 flex-1 text-[1.05rem] font-semibold tracking-[-0.01em] text-ink;
+    transition: color 0.15s ease;
+  }
+  .svc-chevron {
+    @apply shrink-0 text-faint;
+    transition:
+      transform 0.2s ease,
+      color 0.15s ease;
+  }
+  .svc-chevron-open {
+    transform: rotate(180deg);
+    color: var(--color-accent);
+  }
+  .svc-panel {
+    padding: 0.1rem 1.1rem 1.25rem;
+    animation: page-enter 0.25s ease-out both;
+  }
+  @media (min-width: 40rem) {
+    .svc-panel {
+      padding: 0.1rem 1.25rem 1.5rem;
+    }
+  }
+  .svc-desc {
+    margin: 0 0 1.1rem;
+    max-width: 44rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--color-mid);
+  }
+  .svc-includes {
+    border-top: 1px solid var(--color-line);
+    padding-top: 1rem;
+  }
+  .svc-label {
+    margin: 0 0 0.55rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-sub);
+  }
+  .svc-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.4rem 1rem;
+    font-size: 0.9rem;
+    color: var(--color-mid);
+  }
+  @media (min-width: 40rem) {
+    .svc-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .svc-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .svc-check {
+    margin-top: 0.28rem;
+    flex: 0 0 auto;
+    color: var(--color-accent);
+  }
+  .svc-footer {
+    margin-top: 1.1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-line);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1.25rem;
+    font-size: 0.85rem;
+    color: var(--color-sub);
+  }
+  .svc-duration strong {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .svc-cta {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  .svc-cta:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* Homepage product cards — lift on hover for the primary (linked) card.
+     Shadow is painted with the ink token so it reads on light and dark. */
+  .product-card {
+    transition:
+      transform 0.2s ease,
+      border-color 0.15s ease,
+      box-shadow 0.2s ease;
+  }
+  .product-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-line));
+    box-shadow: 0 16px 36px -20px color-mix(in srgb, var(--color-accent) 45%, transparent);
+  }
+  .product-arrow {
+    transition: transform 0.2s ease;
+  }
+  .product-card:hover .product-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Homepage closing CTA band — the same zero-overflow gradient approach as
+     .hero-glow, painted on the band itself so nothing is ever clipped. */
+  .cta-band {
+    border: 1px solid var(--color-line);
+    border-radius: 1.25rem;
+    background-color: var(--color-paper);
+  }
+
+  /* Recent-post featured card — soft accent wash + tinted border. */
+  .latest-wash {
+    background-color: var(--color-paper);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Motion — subtle entrance + menu animations. All disabled by the
+   prefers-reduced-motion guard in @layer base above.
+--------------------------------------------------------------------------- */
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes menu-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes menu-link {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Runs only on the true first load (or hard reload), not on view-transition
+   navigations where the cross-fade already provides the entrance. */
+.yt-first .page-enter {
+  animation: page-enter 0.5s ease-out both;
+}
+
+/* Hero entrance — children stagger in via --hero-index. Disabled for
+   reduced-motion by the global guard in @layer base. */
+.yt-first .hero-enter {
+  opacity: 0;
+  animation: page-enter 0.55s ease-out both;
+  animation-delay: calc(0.06s + (var(--hero-index, 0) * 0.09s));
+}
+
+/* Mobile full-page menu (React island). Fades in as a whole; links stagger. */
+.y-menu-overlay {
+  animation: menu-fade 0.28s ease-out both;
+}
+.y-menu-overlay .y-menu-link {
+  opacity: 0;
+  animation: menu-link 0.4s ease-out both;
+  animation-delay: calc(0.08s + (var(--i, 0) * 0.06s));
+}

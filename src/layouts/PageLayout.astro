@@ -1,0 +1,37 @@
+---
+import BaseLayout from './BaseLayout.astro'
+import Breadcrumbs from '../components/Breadcrumbs.astro'
+
+interface Props {
+  title: string
+  metaTitle?: string
+  description?: string
+  canonical: string
+  jsonLd?: object[]
+  type?: 'website' | 'article' | 'profile' | 'softwareApplication'
+}
+
+const { title, metaTitle, description, canonical, jsonLd = [], type = 'website' } = Astro.props
+---
+
+<BaseLayout
+  title={metaTitle ?? title}
+  description={description}
+  canonical={canonical}
+  type={type}
+  jsonLd={jsonLd}
+>
+  <article class="site-container py-14 sm:py-20">
+      <Breadcrumbs items={[{ label: title }]} />
+
+      <header class="mt-8">
+        <h1 class="text-[2rem] sm:text-[2.4rem] font-semibold tracking-[-0.025em] leading-snug text-ink">
+          {title}
+        </h1>
+      </header>
+
+      <div class="prose mt-10">
+        <slot />
+      </div>
+  </article>
+</BaseLayout>

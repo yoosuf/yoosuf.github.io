@@ -1,0 +1,79 @@
+// @ts-check
+import { defineConfig } from 'astro/config'
+import react from '@astrojs/react'
+import sitemap from '@astrojs/sitemap'
+import tailwindcss from '@tailwindcss/vite'
+import { readdirSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
+
+const blogDir = join(process.cwd(), 'src/content/blog')
+
+// lastmod for every blog post URL, derived from the post date in front matter.
+// Sitemaps should only advertise change when content actually changes; posts
+// are immutable, so mark them yearly. Reads the markdown at config time.
+const postLastmod = new Map()
+for (const f of readdirSync(blogDir)) {
+  if (!f.endsWith('.md')) continue
+  const md = readFileSync(join(blogDir, f), 'utf8')
+  const dateMatch = md.match(/^date:\s*["']?([\d-]+)/m)
+  const permMatch = md.match(/^permalink:\s*"?([^"\s]+)"?/m)
+  if (!dateMatch) continue
+  const slug = permMatch
+    ? permMatch[1].replace(/^\/?blog\//, '').replace(/\/+$/, '')
+    : f.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '')
+  postLastmod.set(`/blog/${slug}/`, { date: dateMatch[1], priority: 0.7 })
+}
+
+const HIGH_PRIORITY = new Set(['/', '/blog/', '/services/', '/about/', '/contact/', '/pinemail/'])
+
+function pathFor(url) {
+  return new URL(url).pathname
+}
+
+export default defineConfig({
+  site: 'https://yoosuf.me',
+  output: 'static',
+  compressHTML: true,
+  prefetch: true,
+  build: {
+    // Global CSS is tiny; inline it so there is no render-blocking stylesheet request.
+    inlineStylesheets: 'always',
+  },
+  integrations: [
+    react(),
+    sitemap({
+      entryLimit: 50_000,
+      serialize(item) {
+        const path = pathFor(item.url)
+        const post = postLastmod.get(path)
+        if (post) {
+          item.lastmod = `${post.date}T00:00:00Z`
+          item.changefreq = 'yearly'
+          item.priority = post.priority
+        } else if (path === '/') {
+          item.priority = 1.0
+          item.changefreq = 'weekly'
+        } else if (HIGH_PRIORITY.has(path)) {
+          item.priority = 0.9
+          item.changefreq = 'monthly'
+        } else if (path.startsWith('/blog/page/')) {
+          item.priority = 0.4
+          item.changefreq = 'weekly'
+        } else {
+          item.priority = 0.5
+          item.changefreq = 'monthly'
+        }
+        return item
+      },
+    }),
+  ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
+  markdown: {
+    shikiConfig: {
+      themes: { light: 'github-light', dark: 'github-dark' },
+      wrap: true,
+    },
+  },
+})

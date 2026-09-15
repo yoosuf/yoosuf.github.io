@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+import PostLayout from '../../layouts/PostLayout.astro'
+
+export async function getStaticPaths() {
+  const entries = await getCollection('blog')
+  return entries
+    .filter((entry) => entry.data.published !== false)
+    .map((entry) => {
+      const path = entry.data.permalink
+        .replace(/^\/+/, '')
+        .replace(/\/+$/, '')
+        .replace(/^blog\/?/, '')
+      const slug = path
+      return { params: { slug }, props: { entry } }
+    })
+}
+
+interface Props {
+  entry: CollectionEntry<'blog'>
+}
+
+const { entry } = Astro.props
+---
+
+<PostLayout entry={entry} />

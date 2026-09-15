@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import BlogIndex from '../../components/BlogIndex.astro'
+import { POSTS_PER_PAGE } from '../../lib/pagination'
+import { decodeEntities, ensureTrailingSlash } from '../../lib/utils'
+import { SITE } from '../../config'
+
+const posts = (await getCollection('blog'))
+  .filter((post) => post.data.published !== false)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+
+const totalPosts = posts.length
+const totalPages = Math.max(1, Math.ceil(totalPosts / POSTS_PER_PAGE))
+const firstPage = posts.slice(0, POSTS_PER_PAGE)
+
+const itemListJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Blog posts by Yoosuf Mohamed',
+  numberOfItems: firstPage.length,
+  itemListElement: firstPage.map((post, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: new URL(ensureTrailingSlash(post.data.permalink), SITE.url).href,
+    name: decodeEntities(post.data.title),
+  })),
+}
+---
+
+<BaseLayout
+  title="Blog — Yoosuf Mohamed"
+  description="Read the blog of Yoosuf Mohamed, covering AI, systems architecture, and software engineering."
+  canonical="/blog/"
+  jsonLd={[itemListJsonLd]}
+>
+  <BlogIndex
+    posts={firstPage}
+    currentPage={1}
+    totalPages={totalPages}
+    totalPosts={totalPosts}
+    infinite
+  />
+</BaseLayout>

@@ -1,0 +1,293 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PostCard from '../components/PostCard.astro'
+import Icon from '../components/Icon.astro'
+import { decodeEntities, ensureTrailingSlash, formatShortDate, readingTime, toISODate } from '../lib/utils'
+import { SITE } from '../config'
+
+const posts = (await getCollection('blog'))
+  .filter((post) => post.data.published !== false)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+const recent = posts.slice(0, 5)
+const [featured, ...more] = recent
+
+const toolbox = [
+  'LLMs & RAG',
+  'AI agents',
+  'Production AI',
+  'Go',
+  'Elixir',
+  'Python · FastAPI',
+  'TypeScript',
+  'React',
+  'Flutter',
+]
+---
+
+<BaseLayout
+  title="Yoosuf Mohamed — Systems Architect, AI Engineer & Technical Consultant"
+  description={SITE.description}
+  keywords="Yoosuf Mohamed, systems architect, AI engineer, LLM, RAG, Go, Elixir, FastAPI, Node.js, Next.js, React, Flutter, Colombo Sri Lanka"
+  canonical="/"
+  imageAlt="Yoosuf Mohamed, systems architect and AI engineer."
+>
+  <article class="site-container py-12 sm:py-20">
+      <section class="relative py-6 sm:py-10" aria-labelledby="hero-heading">
+        <div class="hero-glow" aria-hidden="true"></div>
+
+        <p
+          style="--hero-index:0"
+          class="hero-enter relative inline-flex items-center gap-2 rounded-full border border-line bg-wash/70 px-3 py-1 text-[0.8rem] font-medium text-mid"
+        >
+          <span aria-hidden="true" class="relative flex h-2 w-2">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
+          </span>
+          Available for new projects
+        </p>
+
+        <h1
+          id="hero-heading"
+          style="--hero-index:1"
+          class="hero-enter relative mt-5 max-w-[16ch] text-[2.2rem] leading-[1.08] font-semibold tracking-[-0.03em] text-ink sm:text-[3rem] lg:text-[3.4rem]"
+        >
+          I build
+          <span class="relative inline-block whitespace-nowrap">
+            <span class="relative z-[1]">AI systems</span>
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 132 10"
+              preserveAspectRatio="none"
+              class="absolute -bottom-1 left-0 h-2.5 w-full text-accent/70 sm:-bottom-2"
+            >
+              <path
+                d="M2 7 C22 1, 42 9, 62 5 S 102 3, 130 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+          that businesses really depend on.
+        </h1>
+
+        <p style="--hero-index:2" class="hero-enter relative mt-6 max-w-[46rem] text-[1.05rem] leading-relaxed text-mid">
+          I'm Yoosuf Mohamed — systems architect and AI engineer in Colombo. I help startups
+          and enterprises ship LLM/RAG products, AI automation, and full-stack platforms
+          that go beyond the demo and scale reliably.
+        </p>
+
+        <div style="--hero-index:3" class="hero-enter relative mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <a
+            href="https://cal.com/yoosuf"
+            target="_blank"
+            rel="noopener"
+            class="rounded-lg bg-accent px-5 py-2.5 text-[0.95rem] font-semibold text-white no-underline transition-colors hover:bg-accent-strong"
+          >
+            Book a call
+          </a>
+          <a
+            href="/services/"
+            class="rounded-lg border border-line px-5 py-2.5 text-[0.95rem] font-semibold text-ink no-underline transition-colors hover:border-ink/30 hover:text-accent"
+          >
+            Explore services
+          </a>
+          <a href="/about/" class="text-[0.95rem] text-accent no-underline hover:underline underline-offset-4">
+            More about me →
+          </a>
+        </div>
+
+        <dl style="--hero-index:4" class="hero-enter relative mt-10 flex flex-wrap gap-x-12 gap-y-5 border-t border-line pt-7">
+          <div>
+            <dt class="sr-only">Experience</dt>
+            <dd class="text-[1.35rem] font-semibold tracking-[-0.02em] text-ink">10+ years</dd>
+            <dd class="mt-0.5 text-[0.85rem] text-sub">building for startups &amp; enterprises</dd>
+          </div>
+          <div>
+            <dt class="sr-only">Focus</dt>
+            <dd class="text-[1.35rem] font-semibold tracking-[-0.02em] text-ink">AI-first</dd>
+            <dd class="mt-0.5 text-[0.85rem] text-sub">LLM/RAG, automation, agent systems</dd>
+          </div>
+          <div>
+            <dt class="sr-only">Location</dt>
+            <dd class="text-[1.35rem] font-semibold tracking-[-0.02em] text-ink">Colombo, LK</dd>
+            <dd class="mt-0.5 text-[0.85rem] text-sub">working with teams worldwide</dd>
+          </div>
+        </dl>
+
+        <div style="--hero-index:5" class="hero-enter relative mt-10">
+          <p class="text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-sub">Toolbox</p>
+          <ul class="mt-3 flex flex-wrap gap-2">
+            {toolbox.map((tool) => (
+              <li
+                key={tool}
+                class="rounded-full border border-line bg-wash/60 px-3 py-1 font-mono text-[0.78rem] text-mid"
+              >
+                {tool}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section class="mt-14" aria-labelledby="products-heading">
+        <div class="flex items-end justify-between gap-4">
+          <h2 id="products-heading" class="text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-sub">
+            Products & projects
+          </h2>
+          <a href="/pinemail/" class="text-[0.85rem] text-accent no-underline hover:underline underline-offset-4">
+            About Pine Mail →
+          </a>
+        </div>
+
+        <ul class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <li>
+            <a
+              href="/pinemail/"
+              class="product-card group flex h-full flex-col rounded-xl border border-line bg-paper p-5 no-underline"
+            >
+              <span class="flex items-center gap-3">
+                <span class="svc-icon-chip" aria-hidden="true">
+                  <Icon name="mail" size={18} />
+                </span>
+                <span class="flex items-center justify-between gap-3 flex-1">
+                  <span class="text-[1.05rem] font-semibold tracking-[-0.01em] text-ink transition-colors group-hover:text-accent">
+                    Pine Mail
+                  </span>
+                  <span class="rounded-full border border-accent/25 px-2 py-0.5 text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-accent">
+                    Live
+                  </span>
+                </span>
+              </span>
+              <span class="mt-3 text-[0.925rem] leading-relaxed text-mid">
+                Self-hosted email + SMS catcher for dev, CI, and AI agents. Catch OTPs, magic
+                links, and 2FA codes without touching your real inbox.
+              </span>
+              <span class="mt-auto flex items-center gap-1.5 pt-4 text-[0.85rem] font-medium text-accent">
+                View Pine Mail
+                <Icon name="arrow-right" size={15} class="product-arrow" />
+              </span>
+            </a>
+          </li>
+
+          <li class="flex h-full flex-col rounded-xl border border-line bg-paper p-5 transition-colors hover:border-ink/15">
+            <span class="flex items-center gap-3">
+              <span class="svc-icon-chip" aria-hidden="true">
+                <Icon name="brain" size={18} />
+              </span>
+              <span class="flex items-center justify-between gap-3 flex-1">
+                <span class="text-[1.05rem] font-semibold tracking-[-0.01em] text-ink">
+                  KeepAI
+                </span>
+                <span class="rounded-full border border-line px-2 py-0.5 text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-sub">
+                  In the works
+                </span>
+              </span>
+            </span>
+            <span class="mt-3 text-[0.925rem] leading-relaxed text-mid">
+              A memory layer for AI. Give agents and assistants durable context that carries
+              across sessions — notes, decisions, and knowledge that actually stick.
+            </span>
+          </li>
+
+          <li class="flex h-full flex-col rounded-xl border border-line bg-paper p-5 transition-colors hover:border-ink/15">
+            <span class="flex items-center gap-3">
+              <span class="svc-icon-chip" aria-hidden="true">
+                <Icon name="message-square" size={18} />
+              </span>
+              <span class="flex items-center justify-between gap-3 flex-1">
+                <span class="text-[1.05rem] font-semibold tracking-[-0.01em] text-ink">
+                  Messenger DB Design
+                </span>
+                <span class="rounded-full border border-line px-2 py-0.5 text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-sub">
+                  Design study
+                </span>
+              </span>
+            </span>
+            <span class="mt-3 text-[0.925rem] leading-relaxed text-mid">
+              A database design study for a messaging product at scale — schema, partitioning,
+              and delivery semantics for chat at millions of messages.
+            </span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="mt-14" aria-labelledby="recent-heading">
+        <div class="flex items-end justify-between gap-4">
+          <h2 id="recent-heading" class="text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-sub">
+            Recent posts
+          </h2>
+          <a href="/blog/" class="text-[0.85rem] text-accent no-underline hover:underline underline-offset-4">
+            All posts →
+          </a>
+        </div>
+
+        <a
+          href={ensureTrailingSlash(featured.data.permalink)}
+          class="latest-wash group mt-4 block rounded-2xl border border-accent/25 p-6 no-underline transition-colors hover:border-accent/40 sm:p-8"
+        >
+          <span class="flex flex-wrap items-center gap-2">
+            <span class="rounded-full bg-accent/10 px-2.5 py-0.5 text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-accent">
+              Latest
+            </span>
+            {featured.data.categories.slice(0, 2).map((category) => (
+              <span
+                key={category}
+                class="rounded-full border border-line px-2.5 py-0.5 text-[0.7rem] font-medium text-sub"
+              >
+                {category}
+              </span>
+            ))}
+          </span>
+
+          <span class="mt-4 block text-[1.4rem] font-semibold leading-snug tracking-[-0.02em] text-ink transition-colors group-hover:text-accent sm:text-[1.7rem]">
+            {decodeEntities(featured.data.title)}
+          </span>
+
+          <span class="mt-2.5 block max-w-[46rem] text-[0.95rem] leading-relaxed text-mid">
+            {featured.data.description}
+          </span>
+
+          <span class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[0.82rem] text-sub">
+            <time datetime={toISODate(featured.data.date)}>{formatShortDate(featured.data.date)}</time>
+            <span aria-hidden="true">·</span>
+            <span>{readingTime(featured.body)} min read</span>
+          </span>
+        </a>
+
+        <ul class="mt-8 divide-y divide-line border-t border-b border-line">
+          {more.map((post) => (
+            <PostCard post={post} headingLevel="h3" />
+          ))}
+        </ul>
+      </section>
+
+      <section class="cta-band relative mt-16 px-6 py-14 text-center sm:px-12 sm:py-20" aria-labelledby="cta-heading">
+        <h2 id="cta-heading" class="text-[1.6rem] font-semibold tracking-[-0.02em] text-ink sm:text-[2rem]">
+          Let's build something that scales.
+        </h2>
+        <p class="mx-auto mt-3 max-w-[36rem] text-[1rem] leading-relaxed text-mid">
+          Planning an AI product, automating a workflow, or taking a platform to production?
+          I'd love to hear what you're building.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+          <a
+            href="https://cal.com/yoosuf"
+            target="_blank"
+            rel="noopener"
+            class="rounded-lg bg-accent px-5 py-2.5 text-[0.95rem] font-semibold text-white no-underline transition-colors hover:bg-accent-strong"
+          >
+            Book a call
+          </a>
+          <a
+            href="/contact/"
+            class="rounded-lg border border-line px-5 py-2.5 text-[0.95rem] font-semibold text-ink no-underline transition-colors hover:border-ink/30 hover:text-accent"
+          >
+            Contact me
+          </a>
+        </div>
+      </section>
+  </article>
+</BaseLayout>

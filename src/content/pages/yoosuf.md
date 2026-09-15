@@ -1,0 +1,35 @@
+---
+title: Yoosuf
+description: "Yoosuf is Yoosuf Mohamed, also known as Yoosuf Mo and aitchdei: a systems architect, AI engineer, software architect, and technical consultant based in Colombo, Sri Lanka."
+permalink: /yoosuf/
+---
+
+## Yoosuf is Yoosuf Mohamed
+
+Yoosuf is **Yoosuf Mohamed**, also known online as **Yoosuf Mo** and **aitchdei**.
+
+I'm a systems architect, AI engineer, software architect, and technical consultant based in Colombo, Sri Lanka. I help startups and enterprises design, build, and scale AI automation, LLM/RAG systems, AI agents, SaaS platforms, and full-stack software products.
+
+## What I Work On
+
+- AI automation and AI-first product development
+- LLM applications, RAG pipelines, and agentic workflows
+- SaaS architecture, backend systems, and full-stack product engineering
+- Go, Elixir, FastAPI, Node.js, NestJS, Next.js, React, Flutter, and AWS
+- Technical leadership for teams that need to ship faster and scale reliably
+
+## Find Me Online
+
+- Main website: [yoosuf.me](https://yoosuf.me/)
+- About: [About Yoosuf Mohamed](/about/)
+- Services: [Systems architecture and AI consulting](/services/)
+- Blog: [AI, systems architecture, and software engineering writing](/blog/)
+- Product: [Pine Mail, local auth testing for developers and AI agents](/pinemail/)
+- GitHub: [github.com/yoosuf](https://github.com/yoosuf)
+- LinkedIn: [linkedin.com/in/yoosufm](https://www.linkedin.com/in/yoosufm)
+- X: [@aitchdei](https://twitter.com/aitchdei)
+- YouTube: [@YoosufMo](https://www.youtube.com/@YoosufMo)
+
+## Search Terms This Page Connects
+
+If you're looking for Yoosuf, Yoosuf Mohamed, Yoosuf Mo, or aitchdei, this is the same person: a systems architect and AI engineer focused on AI automation, LLM/RAG products, software architecture, SaaS platforms, and production-grade engineering.

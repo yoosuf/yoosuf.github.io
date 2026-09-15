@@ -1,0 +1,123 @@
+---
+import ServicesAccordion from './services/ServicesAccordion'
+import { SERVICES } from '../data/services'
+
+const steps = [
+  {
+    name: 'Discovery call',
+    desc: 'A free 30-minute call to understand your goals, constraints, and what success looks like.',
+  },
+  {
+    name: 'Scope & proposal',
+    desc: 'You get a written scope with deliverables, a timeline, and a fixed price. No surprises, no scope creep.',
+  },
+  {
+    name: 'Delivery',
+    desc: 'We work in short cycles with regular check-ins, so you see real progress as it happens.',
+  },
+  {
+    name: 'Handoff & support',
+    desc: 'Code, docs, and knowledge transfer — plus optional ongoing support when you need it.',
+  },
+] as const
+
+const faqs = [
+  {
+    q: 'Do you work with startups or only enterprises?',
+    a: 'Both. Most of my work is with startups scaling past an MVP, but I regularly take on enterprise engagements for AI, modernization, and performance work.',
+  },
+  {
+    q: 'How are engagements priced?',
+    a: 'Every engagement is scoped and quoted individually based on complexity, timeline, and requirements. You always get a written proposal with a fixed price before any work begins.',
+  },
+  {
+    q: 'Do you work alongside my existing team?',
+    a: "Usually, yes — that's the point. I can lead, review, mentor, or just be the senior engineer your team is missing, working inside your existing stack and workflow.",
+  },
+  {
+    q: 'What happens when the engagement ends?',
+    a: 'You own everything we build. Delivery includes documentation and a proper handover, and most clients keep me on a lighter retainer or move to a fractional arrangement.',
+  },
+] as const
+---
+
+<section aria-labelledby="ep-engagement-heading">
+  <h2 id="ep-engagement-heading" class="sr-only">Engagement and pricing</h2>
+
+  <p class="mb-8 max-w-[44rem] text-[0.975rem] leading-relaxed text-mid">
+    Senior architecture, engineering, and AI leadership for startups and enterprises. Work is
+    scoped in writing and delivered by me directly. Open an engagement to see what's included.
+  </p>
+
+  <ServicesAccordion services={SERVICES} client:idle />
+
+  <style is:inline>
+    .ep-item[open] .ep-chevron {
+      transform: rotate(180deg);
+    }
+    .ep-item summary::-webkit-details-marker {
+      display: none;
+    }
+  </style>
+
+  <section class="mt-12" aria-labelledby="ep-process-heading">
+    <h3 id="ep-process-heading" class="text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-sub">
+      How engagements work
+    </h3>
+    <ol class="mt-6 divide-y divide-line border-t border-line">
+      {steps.map((step, i) => (
+        <li class="flex items-baseline gap-5 py-4">
+          <span class="w-7 shrink-0 font-mono text-[0.8rem] text-faint">0{i + 1}</span>
+          <div>
+            <p class="font-semibold text-ink">{step.name}</p>
+            <p class="mt-0.5 max-w-[42rem] text-[0.9rem] leading-relaxed text-mid">{step.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="mt-12" aria-labelledby="ep-faq-heading">
+    <h3 id="ep-faq-heading" class="text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-sub">
+      Common questions
+    </h3>
+    <div class="faq-list mt-4 divide-y divide-line border-t border-b border-line">
+      {faqs.map((faq) => (
+        <details class="ep-item ep-item-soft">
+          <summary class="flex cursor-pointer list-none items-baseline justify-between gap-4 py-4">
+            <span class="text-[1rem] font-semibold text-ink">{faq.q}</span>
+            <span class="shrink-0 text-sub transition-transform duration-200 ep-chevron">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+            </span>
+          </summary>
+          <div class="ep-body px-1 pb-5">
+            <p class="max-w-[44rem] text-[0.925rem] leading-relaxed text-mid">{faq.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-12" aria-labelledby="ep-help-heading">
+    <h3 id="ep-help-heading" class="text-[1.05rem] font-semibold text-ink">
+      Not sure which engagement fits?
+    </h3>
+    <p class="mt-2 max-w-[44rem] text-[0.925rem] leading-relaxed text-mid">
+      Book a free 30-minute call and we'll figure it out together. No pitch, no pressure — just a
+      straight answer on whether and how I can help.
+    </p>
+    <div class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[0.9rem]">
+      <a
+        class="inline-flex items-center gap-2 rounded bg-accent px-4 py-2 font-semibold text-white no-underline transition-colors hover:opacity-90"
+        href="https://cal.com/yoosuf"
+        target="_blank"
+        rel="noopener"
+      >
+        Book a call
+      </a>
+      <a class="self-center text-accent no-underline hover:underline underline-offset-4" href="mailto:mayoosuf@gmail.com">
+        Email me instead
+      </a>
+    </div>
+  </section>
+</section>

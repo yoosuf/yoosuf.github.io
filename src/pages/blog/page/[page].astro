@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import BlogIndex from '../../../components/BlogIndex.astro'
+import { POSTS_PER_PAGE } from '../../../lib/pagination'
+import { decodeEntities, ensureTrailingSlash } from '../../../lib/utils'
+import { SITE } from '../../../config'
+
+export async function getStaticPaths({ paginate }: { paginate: Function }) {
+  const posts = (await getCollection('blog'))
+    .filter((post) => post.data.published !== false)
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+
+  return paginate(posts, { pageSize: POSTS_PER_PAGE })
+}
+
+const { page } = Astro.props
+const currentPage = page.currentPage
+
+const itemListJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: `Blog posts by Yoosuf Mohamed — page ${currentPage}`,
+  numberOfItems: page.data.length,
+  itemListElement: page.data.map((post, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: new URL(ensureTrailingSlash(post.data.permalink), SITE.url).href,
+    name: decodeEntities(post.data.title),
+  })),
+}
+---
+
+<BaseLayout
+  title={
+    currentPage > 1 ? `Blog Page ${currentPage} — Yoosuf Mohamed` : 'Blog — Yoosuf Mohamed'
+  }
+  description="Read the blog of Yoosuf Mohamed, covering AI, systems architecture, and software engineering."
+  canonical={currentPage > 1 ? `/blog/page/${currentPage}/` : '/blog/'}
+  jsonLd={[itemListJsonLd]}
+>
+  <BlogIndex
+    posts={page.data}
+    currentPage={currentPage}
+    totalPages={page.lastPage}
+    totalPosts={page.total}
+  />
+</BaseLayout>

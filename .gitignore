@@ -1,13 +1,9 @@
-_site
-.sass-cache
-.jekyll-metadata
+# --- Astro build output ---
+dist
+.astro
+
+# --- dependencies ---
+node_modules
+
+# --- macOS ---
 .DS_Store
-
-.bundle
-.sass-cache
-Gemfile.lock
-_site
-*.gem
-
-
-.jekyll-cache

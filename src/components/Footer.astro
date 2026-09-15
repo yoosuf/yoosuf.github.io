@@ -1,0 +1,33 @@
+---
+import { SITE } from '../config'
+
+const year = SITE.date.currentYear
+---
+
+<footer transition:persist class="border-t border-line bg-paper">
+  <div class="site-container py-10">
+    <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+      <p class="text-[0.8rem] text-sub">
+        © 2007–{year} <a href="/" class="text-ink no-underline hover:underline">{SITE.title}</a>.
+        <span class="mx-1.5 text-faint" aria-hidden>&middot;</span>
+        <a class="hover:text-ink" href="/terms/">Terms</a>
+        <span class="mx-1.5 text-faint" aria-hidden>&middot;</span>
+        <a class="hover:text-ink" href="/privacy/">Privacy</a>
+      </p>
+
+      <nav class="ml-auto flex flex-wrap items-center justify-end gap-x-5 gap-y-2 text-[0.825rem] text-mid" aria-label="Footer">
+        <a class="no-underline hover:text-ink" href="/feed.xml">RSS</a>
+        <a class="no-underline hover:text-ink" href="mailto:{SITE.email}">Email</a>
+        <a class="no-underline hover:text-ink" href="https://twitter.com/aitchdei" target="_blank" rel="noopener">
+          X <span class="sr-only">(opens in new tab)</span>
+        </a>
+        <a class="no-underline hover:text-ink" href="https://github.com/yoosuf" target="_blank" rel="noopener">
+          GitHub <span class="sr-only">(opens in new tab)</span>
+        </a>
+        <a class="no-underline hover:text-ink" href="https://www.linkedin.com/in/yoosufm" target="_blank" rel="noopener">
+          LinkedIn <span class="sr-only">(opens in new tab)</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+</footer>

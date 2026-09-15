@@ -1,0 +1,363 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ProductLayout from '../layouts/ProductLayout.astro'
+import { pinemail } from '../data/product'
+import pinemailHtml from '../data/pinemail.html?raw'
+import { SITE } from '../config'
+
+const softwareJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Pine Mail',
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Linux, macOS, Windows',
+  description:
+    'A free, open-source local auth testing tool for email OTPs, magic links, password resets, SMS 2FA, Playwright tests, CI pipelines, and autonomous AI agents. Single Rust binary with SMTP and SMS catching, Twilio webhook ingestion, long-polling APIs, automatic signal extraction, and a native MCP server with 14 tools.',
+  url: `${SITE.url}/pinemail/`,
+  image: `${SITE.url}/assets/images/pinemail-og.png`,
+  softwareVersion: '0.2.0',
+  license: 'https://opensource.org/licenses/MIT',
+  isAccessibleForFree: true,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  featureList: [
+    'Dual-channel SMTP & SMS catching',
+    'Local auth testing for email OTPs, magic links, password resets, and SMS 2FA',
+    'Email long-polling (GET /api/wait) and SMS long-polling (GET /api/sms/wait)',
+    'Twilio webhook ingestion (POST /api/sms/webhook)',
+    'Automatic OTP and URL extraction for email and SMS',
+    'Litmus-style email analysis with heuristic spam score',
+    'Native Model Context Protocol (MCP) server with 14 tools for AI agents',
+    'Embedded dual-tab web dashboard with live WebSocket updates',
+    'REST API with SQLite storage',
+    'Single static binary under 15MB',
+    'In-memory database mode for CI',
+  ],
+  downloadUrl: 'https://github.com/yoosuf/pinemail',
+  codeRepository: 'https://github.com/yoosuf/pinemail',
+  author: { '@type': 'Person', name: 'Yoosuf Mohamed', url: SITE.url },
+  publisher: { '@type': 'Person', name: 'Yoosuf Mohamed', url: SITE.url },
+  sameAs: [
+    'https://github.com/yoosuf/pinemail',
+    'https://hub.docker.com/r/yoosuf/pinemail',
+    'https://www.producthunt.com/products/pinemail',
+    `${SITE.url}/blog/introducing-pinemail`,
+    `${SITE.url}/blog/pinemail-sms-mcp-analysis`,
+  ],
+}
+---
+
+<BaseLayout
+  title={pinemail.seo.title}
+  description={pinemail.seo.description}
+  image={pinemail.seo.image}
+  imageAlt={pinemail.seo.imageAlt}
+  keywords={pinemail.seo.keywords}
+  canonical={pinemail.seo.canonical}
+  type="softwareApplication"
+  jsonLd={[softwareJsonLd]}
+>
+  <ProductLayout product={pinemail}>
+    <div slot="media">
+      <div class="pm-terminal" role="img" aria-label="Pine Mail quickstart in a terminal">
+        <div class="pm-terminal-bar">
+          <span class="pm-terminal-dot pm-terminal-dot-red"></span>
+          <span class="pm-terminal-dot pm-terminal-dot-yellow"></span>
+          <span class="pm-terminal-dot pm-terminal-dot-green"></span>
+          <span class="pm-terminal-title">pinemail &mdash; zsh</span>
+        </div>
+        <div class="pm-terminal-body">
+          <pre class="pm-terminal-lines"><span class="pm-prompt">$</span> docker run -d --name pinemail \
+    -p 1025:1025 -p 8025:8025 yoosuf/pinemail:latest
+
+<span class="pm-prompt">$</span> curl "http://localhost:8025/api/wait?to=user@example.com&amp;timeout_ms=10000"
+&#123;
+  "id": "msg_01J6XYZ",
+  "subject": "Confirm your account",
+  "codes": ["849201"]
+&#125;
+
+<span class="pm-prompt">$</span> curl -X POST http://localhost:8025/api/sms/webhook \
+    -d "From=%2B15550199&amp;To=%2B15550100&amp;Body=Your code is 839201"
+<span class="pm-ok">&#10003;</span> sms_01A2B3 captured in 3ms</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body sections: builtfor → faq. Rendered via the shared product template. -->
+    <Fragment set:html={pinemailHtml} />
+
+    <script>
+      ;(() => {
+        const mq = window.matchMedia
+          ? window.matchMedia('(prefers-reduced-motion: reduce)')
+          : null
+        if (mq && mq.matches) return
+
+        const flow = document.querySelector('.pm-flow')
+        if (!flow) return
+
+        const app = flow.querySelector('.pm-flow-app')
+        const core = flow.querySelector('.pm-flow-core')
+        const consume = flow.querySelector('.pm-flow-consume')
+        const outArrow = flow.querySelector('.pm-arrow-out')
+        const inArrow = flow.querySelector('.pm-arrow-in')
+        const appMsg = app.querySelector('.pm-flow-status-msg')
+        const coreMsg = core.querySelector('.pm-flow-status-msg')
+        const conMsg = consume.querySelector('.pm-flow-status-msg')
+        const conPill = consume.querySelector('.pm-flow-status')
+        const logEl = flow.querySelector('.pm-flow-log')
+        const countEl = flow.querySelector('.pm-flow-log-count')
+
+        let seq = 421
+        let inbox = 0
+        let active = 0
+        let timer = null
+        const pmPage = document.querySelector('.pm-page')
+        const styles = pmPage ? getComputedStyle(pmPage) : null
+        const bgSoft =
+          (styles && styles.getPropertyValue('--pm-accent-soft').trim()) || '#d1fae5'
+
+        const pad = (n) => (n < 10 ? '0' + n : String(n))
+        const now = () => {
+          const d = new Date()
+          return pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds())
+        }
+        const rand = (a, b) => a + Math.random() * (b - a)
+
+        function logLine(text, hit) {
+          const li = document.createElement('li')
+          li.className = 'pm-flow-log-line'
+          if (hit) li.classList.add('pm-log-hit')
+          const t = document.createElement('time')
+          t.textContent = now()
+          li.appendChild(t)
+          li.appendChild(document.createTextNode(' ' + text))
+          logEl.appendChild(li)
+          while (logEl.children.length > 12) logEl.firstChild.remove()
+          li.animate(
+            [
+              { opacity: 0, transform: 'translateY(8px)' },
+              { opacity: 1, transform: 'translateY(0)' },
+            ],
+            { duration: 450, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'backwards' }
+          )
+          logEl.scrollTop = logEl.scrollHeight
+        }
+
+        const setStatus = (msg, text) => {
+          msg.textContent = text
+        }
+        const setPolling = (on) => {
+          conPill.classList.toggle('pm-status-polling', on)
+        }
+
+        function flash(node) {
+          const rest = getComputedStyle(node)
+          const restShadow = rest.boxShadow
+          const restBg = rest.backgroundColor
+          const ringBase = restShadow && restShadow !== 'none' ? ', ' + restShadow : ''
+          if (node._anim) node._anim.cancel()
+          node._anim = node.animate(
+            [
+              {
+                backgroundColor: bgSoft,
+                boxShadow: '0 0 0 5px rgba(16, 185, 129, 0.22)' + ringBase,
+              },
+              {
+                backgroundColor: bgSoft,
+                boxShadow: '0 0 0 3px rgba(16, 185, 129, 0.12)' + ringBase,
+                offset: 0.7,
+              },
+              { backgroundColor: restBg, boxShadow: restShadow },
+            ],
+            { duration: 1500, easing: 'ease-out', fill: 'none' }
+          )
+        }
+
+        function runPacket(arrow, pop) {
+          const pkt = arrow.querySelector('.pm-flow-packet')
+          if (pkt._anim) pkt._anim.cancel()
+          const flowAxis = getComputedStyle(arrow)
+            .getPropertyValue('--pm-flow-axis')
+            .trim()
+          const horizontal = flowAxis === 'x'
+          const axis = horizontal ? 'translateX' : 'translateY'
+          pkt._anim = pkt.animate(
+            [
+              { transform: axis + '(-34px)', opacity: 1 },
+              { transform: axis + '(34px)', opacity: 1 },
+            ],
+            { duration: 340, easing: 'cubic-bezier(0.33, 1, 0.68, 1)', fill: 'none' }
+          )
+          pkt._anim.onfinish = () => {
+            if (pop) {
+              const svg = arrow.querySelector('.pm-flow-arrow-icon svg')
+              svg.animate(
+                [
+                  { transform: 'scale(1)' },
+                  { transform: 'scale(1.14)', offset: 0.4 },
+                  { transform: 'scale(1)' },
+                ],
+                { duration: 320, easing: 'ease-out', fill: 'none' }
+              )
+            }
+          }
+        }
+
+        const updateCount = () => {
+          countEl.textContent = 'inbox ' + inbox
+        }
+
+        function send() {
+          active++
+          const id = String(seq++)
+          const channel = Math.random() < 0.6 ? 'SMTP' : 'Twilio'
+          const otp = String(100000 + Math.floor(Math.random() * 900000))
+          const spam = (0.01 + Math.random() * 0.08).toFixed(2)
+          const agentNr = 7700 + Math.floor(Math.random() * 200)
+          const isLink = Math.random() < 0.35
+
+          setStatus(appMsg, 'sending ' + id)
+          flash(app)
+          runPacket(outArrow, true)
+
+          setTimeout(() => {
+            setStatus(coreMsg, 'storing')
+            flash(core)
+            logLine(channel + ' ' + id + ' \u00b7 received')
+            inbox++
+            updateCount()
+          }, 480)
+
+          setTimeout(() => {
+            setStatus(coreMsg, 'parsing')
+            logLine(
+              'extract \u2192 ' +
+                (isLink ? 'magic link /verify?t=' + otp.slice(0, 4) : 'OTP ' + otp),
+              true
+            )
+          }, 900)
+
+          setTimeout(() => {
+            logLine('analysis \u00b7 spam ' + spam)
+            setStatus(coreMsg, 'ready')
+          }, 1320)
+
+          setTimeout(() => {
+            runPacket(inArrow, true)
+            flash(consume)
+            setPolling(false)
+            setStatus(conMsg, 'got ' + id)
+            logLine('delivered \u2192 agent ' + agentNr)
+            if (inbox > 0) inbox--
+            updateCount()
+          }, 1680)
+
+          setTimeout(() => {
+            setPolling(true)
+            setStatus(conMsg, 'long-polling\u2026')
+            active--
+            if (active === 0) schedule()
+          }, 2380)
+        }
+
+        function burst() {
+          const n = 2 + Math.floor(Math.random() * 3)
+          for (let i = 0; i < n; i++) {
+            setTimeout(send, i * 320)
+          }
+        }
+
+        function schedule() {
+          let wait = rand(2400, 6200)
+          if (Math.random() < 0.25) wait = rand(700, 1500)
+          timer = setTimeout(() => {
+            if (Math.random() < 0.4) burst()
+            else send()
+          }, wait)
+        }
+
+        setTimeout(send, 1200)
+
+        if (mq) {
+          const onChange = (e) => {
+            if (e.matches && timer) clearTimeout(timer)
+          }
+          if (mq.addEventListener) mq.addEventListener('change', onChange)
+        }
+      })()
+    <script>
+      ;(() => {
+        const tabs = document.getElementById('pmInstallTabs')
+        if (!tabs) return
+        const tabList = tabs.querySelector('[role="tablist"]')
+        const buttons = [...tabList.querySelectorAll('[role="tab"]')]
+        if (buttons.length === 0) return
+        const panels = [...tabs.querySelectorAll('[role="tabpanel"]')]
+        const panelBy = (name) => {
+          const p = panels.find((el) => el.dataset.tabname === name)
+          return p || null
+        }
+
+        const select = (id) => {
+          buttons.forEach((b) => {
+            const on = b.id === id
+            b.setAttribute('aria-selected', on ? 'true' : 'false')
+            b.tabIndex = on ? 0 : -1
+            const panel = panelBy(b.dataset.tabname)
+            if (panel) panel.hidden = !on
+          })
+        }
+
+        buttons.forEach((b) => {
+          b.addEventListener('click', () => select(b.id))
+          b.addEventListener('keydown', (e) => {
+            const i = buttons.indexOf(b)
+            let next = null
+            if (e.key === 'ArrowRight') next = buttons[(i + 1) % buttons.length]
+            else if (e.key === 'ArrowLeft')
+              next = buttons[(i - 1 + buttons.length) % buttons.length]
+            else if (e.key === 'Home') next = buttons[0]
+            else if (e.key === 'End') next = buttons[buttons.length - 1]
+            if (!next) return
+            e.preventDefault()
+            select(next.id)
+            next.focus()
+          })
+        })
+
+        tabs.addEventListener('click', (e) => {
+          const btn = e.target.closest('.pm-code-copy')
+          if (!btn) return
+          const codebox = btn.closest('.pm-codebox')
+          const pre = codebox ? codebox.querySelector('pre') : null
+          if (!pre) return
+          const text = pre.innerText
+          const done = () => {
+            btn.classList.add('is-copied')
+            btn.textContent = 'Copied'
+            setTimeout(() => {
+              btn.classList.remove('is-copied')
+              btn.textContent = 'Copy'
+            }, 2000)
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(() => {})
+          } else {
+            const ta = document.createElement('textarea')
+            ta.value = text
+            ta.style.position = 'fixed'
+            ta.style.opacity = '0'
+            document.body.appendChild(ta)
+            ta.select()
+            try {
+              document.execCommand('copy')
+              done()
+            } catch (_) {}
+            ta.remove()
+          }
+        })
+      })()
+    </script>
+  </ProductLayout>
+</BaseLayout>

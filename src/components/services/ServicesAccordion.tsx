@@ -1,7 +1,9 @@
 import { useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
+import * as stylex from '@stylexjs/stylex'
 import type { Service } from '../../data/services'
 import { SERVICE_ICONS } from '../../data/services'
 import { ReactIcon, type IconName } from '../ReactIcon'
+import { servicesAccordionStyles } from './servicesAccordion.stylex'
 
 interface ServicesAccordionProps {
   services: Service[]
@@ -43,7 +45,7 @@ export default function ServicesAccordion({ services }: ServicesAccordionProps):
   }
 
   return (
-    <div className="flex flex-col gap-3" id="ep-accordion">
+    <div {...stylex.props(servicesAccordionStyles.stack)} id="ep-accordion">
       {services.map((service, index) => {
         const expanded = openIndex === index
         const iconName = (SERVICE_ICONS[service.tab] ?? 'lamp') as IconName
@@ -55,7 +57,7 @@ export default function ServicesAccordion({ services }: ServicesAccordionProps):
             className={`svc-item ${expanded ? 'svc-item-open' : ''}`}
             key={service.tab}
           >
-            <h3 className="m-0">
+            <h3 {...stylex.props(servicesAccordionStyles.heading)}>
               <button
                 type="button"
                 id={triggerId}

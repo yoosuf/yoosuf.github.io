@@ -5,7 +5,7 @@ description: Create or edit blog posts on yoosuf.me (yoosuf.github.io), an Astro
 
 # astro-blog — writing posts for yoosuf.me
 
-This site is an Astro 7 site (Tailwind CSS v4, React islands, TypeScript). Posts live in
+This site is an Astro 7 site (StyleX + React 19 islands, TypeScript). Posts live in
 `src/content/blog/*.md`, named `YYYY-MM-DD-slug.md`, and are loaded through the `blog`
 collection defined in `src/content.config.ts`. Front matter there is authoritative — if
 this skill and the schema disagree, the schema wins.

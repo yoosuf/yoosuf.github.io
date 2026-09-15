@@ -1,7 +1,11 @@
 ---
+import * as stylex from '@stylexjs/stylex'
 import BaseLayout from '../layouts/BaseLayout.astro'
-import Breadcrumbs from '../components/Breadcrumbs.astro'
+import { Breadcrumbs } from '../components/ui/Breadcrumbs'
 import EngagementPricing from '../components/EngagementPricing.astro'
+import { pageStyles } from '../components/ui/page.stylex'
+import { servicesStyles } from '../components/ui/services.stylex'
+import { SITE } from '../config'
 ---
 
 <BaseLayout
@@ -9,17 +13,17 @@ import EngagementPricing from '../components/EngagementPricing.astro'
   description="Consulting, architecture audits, AI integration, product development, and fractional tech leadership — scoped in writing and delivered by Yoosuf Mohamed."
   canonical="/services/"
 >
-  <article class="site-container py-14 sm:py-20">
-      <Breadcrumbs items={[{ label: 'Services' }]} />
+  <article {...stylex.attrs(pageStyles.page, pageStyles.container)}>
+    <Breadcrumbs items={[{ label: 'Services' }]} baseUrl={SITE.url} />
 
-      <header class="mt-8">
-        <h1 class="text-[2rem] sm:text-[2.4rem] font-semibold tracking-[-0.025em] leading-snug text-ink">
-          Services
-        </h1>
-      </header>
+    <header {...stylex.attrs(pageStyles.header)}>
+      <h1 {...stylex.attrs(pageStyles.title)}>
+        Services
+      </h1>
+    </header>
 
-      <div class="mt-10">
-        <EngagementPricing />
-      </div>
-    </article>
+    <div {...stylex.attrs(servicesStyles.content)}>
+      <EngagementPricing />
+    </div>
+  </article>
 </BaseLayout>

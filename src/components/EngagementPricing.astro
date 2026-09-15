@@ -1,6 +1,10 @@
 ---
+import * as stylex from '@stylexjs/stylex'
 import ServicesAccordion from './services/ServicesAccordion'
 import { SERVICES } from '../data/services'
+import { servicesStyles } from './ui/services.stylex'
+import { buttons, kicker } from './ui/primitives'
+import { a11y } from './ui/primitives'
 
 const steps = [
   {
@@ -39,12 +43,14 @@ const faqs = [
     a: 'You own everything we build. Delivery includes documentation and a proper handover, and most clients keep me on a lighter retainer or move to a fractional arrangement.',
   },
 ] as const
+const faqListAttrs = stylex.attrs(servicesStyles.faqList)
+const chevronAttrs = stylex.attrs(servicesStyles.chevron)
 ---
 
 <section aria-labelledby="ep-engagement-heading">
-  <h2 id="ep-engagement-heading" class="sr-only">Engagement and pricing</h2>
+  <h2 id="ep-engagement-heading" {...stylex.attrs(a11y.srOnly)}>Engagement and pricing</h2>
 
-  <p class="mb-8 max-w-[44rem] text-[0.975rem] leading-relaxed text-mid">
+  <p {...stylex.attrs(servicesStyles.intro)}>
     Senior architecture, engineering, and AI leadership for startups and enterprises. Work is
     scoped in writing and delivered by me directly. Open an engagement to see what's included.
   </p>
@@ -60,62 +66,62 @@ const faqs = [
     }
   </style>
 
-  <section class="mt-12" aria-labelledby="ep-process-heading">
-    <h3 id="ep-process-heading" class="text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-sub">
+  <section {...stylex.attrs(servicesStyles.section)} aria-labelledby="ep-process-heading">
+    <h3 id="ep-process-heading" {...stylex.attrs(kicker.eyebrow)}>
       How engagements work
     </h3>
-    <ol class="mt-6 divide-y divide-line border-t border-line">
+    <ol {...stylex.attrs(servicesStyles.processList)}>
       {steps.map((step, i) => (
-        <li class="flex items-baseline gap-5 py-4">
-          <span class="w-7 shrink-0 font-mono text-[0.8rem] text-faint">0{i + 1}</span>
+        <li {...stylex.attrs(servicesStyles.processItem)}>
+          <span {...stylex.attrs(servicesStyles.processNum)}>0{i + 1}</span>
           <div>
-            <p class="font-semibold text-ink">{step.name}</p>
-            <p class="mt-0.5 max-w-[42rem] text-[0.9rem] leading-relaxed text-mid">{step.desc}</p>
+            <p {...stylex.attrs(servicesStyles.processName)}>{step.name}</p>
+            <p {...stylex.attrs(servicesStyles.processDesc)}>{step.desc}</p>
           </div>
         </li>
       ))}
     </ol>
   </section>
 
-  <section class="mt-12" aria-labelledby="ep-faq-heading">
-    <h3 id="ep-faq-heading" class="text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-sub">
+  <section {...stylex.attrs(servicesStyles.section)} aria-labelledby="ep-faq-heading">
+    <h3 id="ep-faq-heading" {...stylex.attrs(kicker.eyebrow)}>
       Common questions
     </h3>
-    <div class="faq-list mt-4 divide-y divide-line border-t border-b border-line">
+    <div {...faqListAttrs} class:list={['faq-list', faqListAttrs.class]}>
       {faqs.map((faq) => (
         <details class="ep-item ep-item-soft">
-          <summary class="flex cursor-pointer list-none items-baseline justify-between gap-4 py-4">
-            <span class="text-[1rem] font-semibold text-ink">{faq.q}</span>
-            <span class="shrink-0 text-sub transition-transform duration-200 ep-chevron">
+          <summary {...stylex.attrs(servicesStyles.summary)}>
+            <span {...stylex.attrs(servicesStyles.summaryText)}>{faq.q}</span>
+            <span {...chevronAttrs} class:list={['ep-chevron', chevronAttrs.class]}>
               <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
             </span>
           </summary>
-          <div class="ep-body px-1 pb-5">
-            <p class="max-w-[44rem] text-[0.925rem] leading-relaxed text-mid">{faq.a}</p>
+          <div {...stylex.attrs(servicesStyles.faqBody)}>
+            <p {...stylex.attrs(servicesStyles.faqAnswer)}>{faq.a}</p>
           </div>
         </details>
       ))}
     </div>
   </section>
 
-  <section class="mt-12" aria-labelledby="ep-help-heading">
-    <h3 id="ep-help-heading" class="text-[1.05rem] font-semibold text-ink">
+  <section {...stylex.attrs(servicesStyles.section)} aria-labelledby="ep-help-heading">
+    <h3 id="ep-help-heading" {...stylex.attrs(servicesStyles.helpHeading)}>
       Not sure which engagement fits?
     </h3>
-    <p class="mt-2 max-w-[44rem] text-[0.925rem] leading-relaxed text-mid">
+    <p {...stylex.attrs(servicesStyles.helpBody)}>
       Book a free 30-minute call and we'll figure it out together. No pitch, no pressure — just a
       straight answer on whether and how I can help.
     </p>
-    <div class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[0.9rem]">
+    <div {...stylex.attrs(servicesStyles.bookRow)}>
       <a
-        class="inline-flex items-center gap-2 rounded bg-accent px-4 py-2 font-semibold text-white no-underline transition-colors hover:opacity-90"
+        {...stylex.attrs(buttons.small)}
         href="https://cal.com/yoosuf"
         target="_blank"
         rel="noopener"
       >
         Book a call
       </a>
-      <a class="self-center text-accent no-underline hover:underline underline-offset-4" href="mailto:mayoosuf@gmail.com">
+      <a {...stylex.attrs(buttons.textLink)} href="mailto:mayoosuf@gmail.com">
         Email me instead
       </a>
     </div>

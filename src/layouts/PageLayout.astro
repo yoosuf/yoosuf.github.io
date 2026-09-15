@@ -1,6 +1,10 @@
 ---
+import * as stylex from '@stylexjs/stylex'
 import BaseLayout from './BaseLayout.astro'
-import Breadcrumbs from '../components/Breadcrumbs.astro'
+import { Breadcrumbs } from '../components/ui/Breadcrumbs'
+import { pageStyles } from '../components/ui/page.stylex'
+import { shellStyles } from '../components/ui/shell.stylex'
+import { SITE } from '../config'
 
 interface Props {
   title: string
@@ -12,6 +16,7 @@ interface Props {
 }
 
 const { title, metaTitle, description, canonical, jsonLd = [], type = 'website' } = Astro.props
+const proseAttrs = stylex.attrs(shellStyles.prose)
 ---
 
 <BaseLayout
@@ -21,16 +26,14 @@ const { title, metaTitle, description, canonical, jsonLd = [], type = 'website' 
   type={type}
   jsonLd={jsonLd}
 >
-  <article class="site-container py-14 sm:py-20">
-      <Breadcrumbs items={[{ label: title }]} />
+  <article {...stylex.attrs(pageStyles.page, pageStyles.container)}>
+      <Breadcrumbs items={[{ label: title }]} baseUrl={SITE.url} />
 
-      <header class="mt-8">
-        <h1 class="text-[2rem] sm:text-[2.4rem] font-semibold tracking-[-0.025em] leading-snug text-ink">
-          {title}
-        </h1>
+      <header {...stylex.attrs(pageStyles.header)}>
+        <h1 {...stylex.attrs(pageStyles.title)}>{title}</h1>
       </header>
 
-      <div class="prose mt-10">
+      <div {...proseAttrs} class:list={['prose', proseAttrs.class]}>
         <slot />
       </div>
   </article>

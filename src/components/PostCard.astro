@@ -1,5 +1,8 @@
 ---
+import * as stylex from '@stylexjs/stylex'
 import type { CollectionEntry } from 'astro:content'
+import { postCardStyles } from './ui/postCard.stylex'
+import { kicker } from './ui/primitives'
 import { decodeEntities, ensureTrailingSlash, formatShortDate, readingTime, toISODate } from '../lib/utils'
 
 interface Props {
@@ -11,24 +14,25 @@ const { post, headingLevel = 'h2' } = Astro.props
 const { title, date, description, permalink } = post.data
 const url = ensureTrailingSlash(permalink)
 const HeadingTag = headingLevel
+const rowAttrs = stylex.attrs(postCardStyles.row)
+const dateAttrs = stylex.attrs(kicker.date)
+const headingAttrs = stylex.attrs(postCardStyles.heading)
+const titleAttrs = stylex.attrs(postCardStyles.titleLink)
 ---
 
-<li class="group py-5">
-  <time class="text-[0.775rem] font-medium uppercase tracking-[0.12em] text-faint transition-colors duration-200 group-hover:text-sub" datetime={toISODate(date)}>
+<li {...rowAttrs} class:list={['y-post-card', rowAttrs.class]}>
+  <time {...dateAttrs} class:list={['y-post-date', dateAttrs.class]} datetime={toISODate(date)}>
     {formatShortDate(date)}
   </time>
 
-  <HeadingTag class="mt-1 text-[1.2rem] font-semibold leading-snug tracking-[-0.01em] transition-transform duration-200 ease-out group-hover:translate-x-1">
-    <a
-      href={url}
-      class="text-ink decoration-accent/30 no-underline underline-offset-3 transition-colors duration-200 group-hover:text-accent group-hover:underline"
-    >
+  <HeadingTag {...headingAttrs} class:list={['y-post-heading', headingAttrs.class]}>
+    <a href={url} {...titleAttrs} class:list={['y-post-title', titleAttrs.class]}>
       {decodeEntities(title)}
     </a>
   </HeadingTag>
 
   {description && (
-    <p class="mt-1.5 text-[0.95rem] leading-relaxed text-mid">
+    <p {...stylex.attrs(postCardStyles.desc)}>
       {description}
     </p>
   )}

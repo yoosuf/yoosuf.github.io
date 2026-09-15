@@ -1,8 +1,12 @@
 ---
+import * as stylex from '@stylexjs/stylex'
 import type { CollectionEntry } from 'astro:content'
 import { render } from 'astro:content'
 import BaseLayout from './BaseLayout.astro'
-import Breadcrumbs from '../components/Breadcrumbs.astro'
+import { Breadcrumbs } from '../components/ui/Breadcrumbs'
+import { pageStyles } from '../components/ui/page.stylex'
+import { postStyles } from '../components/ui/post.stylex'
+import { kicker, pills } from '../components/ui/primitives'
 import Icon from '../components/Icon.astro'
 import {
   decodeEntities,
@@ -32,6 +36,7 @@ const postImage = entry.data.heroImage
   ? new URL(entry.data.heroImage, SITE.url).href
   : new URL(SITE.socialImage, SITE.url).href
 const postImageAlt = entry.data.heroAlt ?? decodedTitle
+const proseAttrs = stylex.attrs(postStyles.prose)
 
 const articleJsonLd = {
   '@context': 'https://schema.org',
@@ -84,39 +89,39 @@ const articleJsonLd = {
     tags,
   }}
 >
-  <article class="site-container py-14 sm:py-20">
-      <Breadcrumbs items={[{ label: 'Blog', href: '/blog/' }, { label: decodedTitle }]} />
+  <article {...stylex.attrs(pageStyles.page, pageStyles.container)}>
+      <Breadcrumbs items={[{ label: 'Blog', href: '/blog/' }, { label: decodedTitle }]} baseUrl={SITE.url} />
 
-      <header class="mt-8">
+      <header {...stylex.attrs(pageStyles.header)}>
         {categories.length > 0 && (
-          <p class="text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-sub">
+          <p {...stylex.attrs(kicker.eyebrow)}>
             {categories[0]}
           </p>
         )}
 
-        <h1 class="mt-2 text-[2rem] sm:text-[2.6rem] font-semibold tracking-[-0.025em] leading-snug text-ink">
+        <h1 {...stylex.attrs(postStyles.title)}>
           {decodedTitle}
         </h1>
 
-        <p class="mt-4 flex flex-wrap items-center gap-1.5 text-[0.825rem] text-sub">
+        <p {...stylex.attrs(postStyles.meta)}>
           <time datetime={isoDate}>{formatShortDate(date)}</time>
           <span aria-hidden="true">&middot;</span>
-          <span class="inline-flex items-center gap-1">
+          <span {...stylex.attrs(postStyles.metaItem)}>
             <Icon name="clock" size={13} />
             {minutes} min read
           </span>
         </p>
       </header>
 
-      <div class="prose mt-10">
+      <div {...proseAttrs} class:list={['prose', proseAttrs.class]}>
         <Content />
       </div>
 
       {tags.length > 0 && (
-        <footer class="mt-12 border-t border-line pt-6">
-          <ul class="flex flex-wrap gap-1.5" aria-label="Tags">
+        <footer {...stylex.attrs(postStyles.tags)}>
+          <ul {...stylex.attrs(postStyles.tagList)} aria-label="Tags">
             {tags.map((tag) => (
-              <li class="rounded border border-line px-2 py-0.5 text-[0.725rem] text-sub">{tag}</li>
+              <li {...stylex.attrs(pills.tag)}>{tag}</li>
             ))}
           </ul>
         </footer>

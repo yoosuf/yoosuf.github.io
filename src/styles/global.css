@@ -1,13 +1,17 @@
-@import "tailwindcss";
-@plugin "@tailwindcss/typography";
-
 /* ---------------------------------------------------------------------------
    Design system — simple, minimal, standard.
    System fonts only (no webfont requests), two-tone neutrals on paper,
    one restrained accent used for links and selection only.
+
+   Tailwind has been fully removed from the pipeline. This file provides the
+   preflight-equivalent reset, the design tokens (previously Tailwind
+   `@theme` variables), the `.prose` markdown typesetting (previously the
+   `@tailwindcss/typography` plugin), and the shared component/composite
+   classes. Interactive component styles live in StyleX (tokens.stylex.ts).
 --------------------------------------------------------------------------- */
 
-@theme {
+:root {
+  /* Fonts */
   --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas,
@@ -39,7 +43,231 @@
   }
 }
 
+/* Preflight-equivalent reset (Tailwind v4 base). Universal boxing/margin,
+   form-control normalisation, list-style removal, fluid media, block elements
+   with margin: 0 — component and .prose rules re-add the margins they need.
+   Lives inside `@layer base` so (a) component/StyleX rules layered after it
+   win on the same properties, and (b) it can never outrank layer styles. */
 @layer base {
+*,
+::before,
+::after,
+::backdrop,
+::file-selector-button {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
+}
+
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+  font-family: var(--font-sans);
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  line-height: inherit;
+}
+
+hr {
+  height: 0;
+  color: inherit;
+  border-top-width: 1px;
+}
+
+abbr:where([title]) {
+  text-decoration: underline dotted;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  color: inherit;
+  -webkit-text-decoration: inherit;
+  text-decoration: inherit;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
+  font-size: 1em;
+  font-variation-settings: normal;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+table {
+  text-indent: 0;
+  border-color: inherit;
+  border-collapse: collapse;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea,
+::file-selector-button {
+  font: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  border-radius: 0;
+  background-color: transparent;
+  opacity: 1;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+input:where([type="button"], [type="reset"], [type="submit"]),
+::file-selector-button {
+  appearance: button;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type="search"] {
+  -webkit-appearance: textfield;
+  appearance: textfield;
+  outline-offset: -2px;
+}
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  appearance: button;
+  font: inherit;
+}
+
+summary {
+  display: list-item;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+blockquote,
+dl,
+dd,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  color: color-mix(in oklab, currentcolor 50%, transparent);
+}
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+:disabled {
+  cursor: default;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  vertical-align: middle;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+[hidden]:where(:not([hidden="until-found"])) {
+    display: none !important;
+  }
+
   :root {
     color-scheme: light;
   }
@@ -49,7 +277,8 @@
   }
 
   body {
-    color-scheme: light;
+    /* NOTE: no `color-scheme` here — it must inherit from :root so
+       `light-dark()` (StyleX tokens) resolves to the active scheme. */
     background-color: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
@@ -123,14 +352,23 @@
 }
 
 @layer components {
-  /* Single canonical content width used by header, footer, and pages */
-  .site-container {
-    @apply mx-auto w-full max-w-[68rem] px-5 sm:px-8;
-  }
-
   /* Skip link — hidden until focused */
   .skip-link {
-    @apply fixed top-2 left-2 z-[10000] -translate-y-96 bg-accent px-4 py-2 text-sm font-semibold text-white no-underline transition-transform focus:translate-y-0;
+    background-color: var(--color-accent);
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    left: 0.5rem;
+    padding: 0.5rem 1rem;
+    position: fixed;
+    text-decoration-line: none;
+    top: 0.5rem;
+    transform: translateY(-24rem);
+    transition: transform 0.15s ease;
+    z-index: 10000;
+  }
+  .skip-link:focus {
+    transform: translateY(0);
   }
 
   /* Homepage hero wash — plain CSS gradients painted on a zero-overflow,
@@ -140,12 +378,81 @@
     display: none;
   }
 
-  /* Article content typesetting */
+  /* -------------------------------------------------------------------
+     Article / markdown typesetting (`.prose`). Hand-written replacement
+     for the @tailwindcss/typography plugin.
+  ------------------------------------------------------------------- */
   .prose {
-    @apply max-w-none;
+    max-width: none;
+    color: var(--color-mid);
+    font-size: 1rem;
+    line-height: 1.75;
   }
+  .prose :where(> :first-child) {
+    margin-top: 0;
+  }
+  .prose :where(> :last-child) {
+    margin-bottom: 0;
+  }
+
+  .prose :where(h2, h3, h4) {
+    color: var(--color-ink);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    margin-bottom: 0.75em;
+    margin-top: 1.75em;
+    text-wrap: balance;
+  }
+  .prose :where(h2) {
+    font-size: 1.5em;
+    margin-top: 2em;
+  }
+  .prose :where(h3) {
+    font-size: 1.25em;
+    margin-top: 1.6em;
+  }
+  .prose :where(h4) {
+    font-size: 1.1em;
+    margin-top: 1.5em;
+  }
+
+  .prose :where(p) {
+    margin-bottom: 1.25em;
+    margin-top: 1.25em;
+  }
+
+  .prose :where(ul, ol) {
+    margin-bottom: 1.25em;
+    margin-top: 1.25em;
+    padding-inline-start: 1.5em;
+  }
+  .prose :where(ul, ol) :where(ul, ol) {
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+  }
+  .prose :where(ul) {
+    list-style: disc;
+  }
+  .prose :where(ol) {
+    list-style: decimal;
+  }
+  .prose :where(li) {
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+  }
+  .prose :where(li > p) {
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+  }
+  .prose :where(li::marker) {
+    color: var(--color-mid);
+  }
+
   .prose :where(a) {
     color: var(--color-accent);
+    font-weight: 500;
+    text-decoration-line: underline;
     text-underline-offset: 3px;
     text-decoration-thickness: 1px;
   }
@@ -153,12 +460,22 @@
     color: var(--color-accent-strong);
     text-decoration-thickness: 2px;
   }
+
   .prose :where(blockquote) {
-    @apply border-l-2 border-line pl-6;
-    border-left-color: var(--color-line);
+    border-inline-start: 2px solid var(--color-line);
     color: var(--color-mid);
     font-style: normal;
+    margin-bottom: 1.25em;
+    margin-top: 1.25em;
+    padding-inline-start: 1.5rem;
   }
+  .prose :where(blockquote > :first-child) {
+    margin-top: 0;
+  }
+  .prose :where(blockquote > :last-child) {
+    margin-bottom: 0;
+  }
+
   .prose :where(code):not(:where(pre code)) {
     background-color: var(--color-wash);
     color: var(--color-ink);
@@ -172,27 +489,71 @@
     border: 1px solid var(--color-line);
     border-radius: 8px;
     overflow-x: auto;
+    padding: 1em 1.25em;
+    margin-bottom: 1.25em;
+    margin-top: 1.25em;
   }
   .prose :where(pre code) {
     font-family: var(--font-mono);
     font-size: 0.9em;
     line-height: 1.7;
   }
+
   .prose :where(hr) {
     border-color: var(--color-line);
+    margin-bottom: 2em;
+    margin-top: 2em;
   }
+
+  .prose :where(img) {
+    border-radius: 0.5rem;
+    margin-bottom: 2em;
+    margin-top: 2em;
+  }
+
+  .prose :where(video) {
+    border-radius: 0.5rem;
+    margin-bottom: 2em;
+    margin-top: 2em;
+  }
+
   .prose :where(table) {
     font-size: 0.95em;
     display: block;
     width: 100%;
     overflow-x: auto;
+    margin-bottom: 1.25em;
+    margin-top: 1.25em;
+  }
+  .prose :where(th, td) {
+    border: 1px solid var(--color-line);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    vertical-align: baseline;
   }
   .prose :where(th) {
     background-color: var(--color-wash);
     font-weight: 600;
   }
+
   .prose :where(kbd) {
     font-family: var(--font-mono);
+  }
+
+  .prose :where(figure) {
+    margin-bottom: 1.25em;
+    margin-top: 1.25em;
+  }
+  .prose :where(figure figcaption) {
+    color: var(--color-sub);
+    font-size: 0.85em;
+    margin-top: 0.5em;
+    text-align: center;
+  }
+
+  .prose :where(strong) {
+    color: var(--color-ink);
+    font-weight: 600;
   }
 
   /* Shiki dual themes: Astro emits --shiki-dark vars only; apply them here. */
@@ -256,20 +617,46 @@
     box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 16%, transparent);
   }
   .svc-trigger {
-    @apply flex w-full cursor-pointer items-center gap-3 rounded-[0.9rem] px-4 py-4 text-left sm:gap-3.5 sm:px-5 sm:py-5;
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 0.9rem;
+    padding: 1rem;
+    text-align: left;
     font: inherit;
   }
+  @media (min-width: 40rem) {
+    .svc-trigger {
+      gap: 0.875rem;
+      padding: 1.25rem;
+    }
+  }
   .svc-icon-chip {
-    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-mid;
+    display: flex;
+    height: 2.25rem;
+    width: 2.25rem;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    color: var(--color-mid);
     background-color: var(--color-wash);
     transition: color 0.15s ease;
   }
   .svc-name {
-    @apply min-w-0 flex-1 text-[1.05rem] font-semibold tracking-[-0.01em] text-ink;
+    min-width: 0;
+    flex: 1 1 0%;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
     transition: color 0.15s ease;
   }
   .svc-chevron {
-    @apply shrink-0 text-faint;
+    flex: 0 0 auto;
+    color: var(--color-faint);
     transition:
       transform 0.2s ease,
       color 0.15s ease;
@@ -386,6 +773,34 @@
   .latest-wash {
     background-color: var(--color-paper);
   }
+
+  /* Group-hover composites (descendant selectors StyleX leaves to CSS). */
+  .product-card:hover .y-product-title {
+    color: var(--color-accent);
+  }
+  .latest-wash:hover .y-latest-title {
+    color: var(--color-accent);
+  }
+  .y-post-card:hover .y-post-date {
+    color: var(--color-sub);
+  }
+  .y-post-card:hover .y-post-heading {
+    transform: translateX(4px);
+  }
+  .y-post-card:hover .y-post-title {
+    color: var(--color-accent);
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+  }
+
+  /* Blog list — horizontal dividers between rows (the old `divide-y`). */
+  .y-blog-list > li + li {
+    border-block-start-color: var(--color-line);
+    border-block-start-style: solid;
+    border-block-start-width: 1px;
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -402,6 +817,36 @@
     opacity: 1;
     transform: none;
   }
+}
+
+/* Footnote 1 — see "single entrance motion" note near `.yt-first .page-enter`. */
+@keyframes page-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Pulsing "available" dot (homepage hero) — replaces Tailwind's animate-ping. */
+@keyframes y-ping {
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.y-ping {
+  animation: y-ping 1.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  background-color: var(--color-accent);
+  border-radius: 999px;
+  display: inline-flex;
+  height: 100%;
+  opacity: 0.6;
+  position: absolute;
+  width: 100%;
 }
 
 @keyframes menu-fade {
@@ -425,17 +870,18 @@
 }
 
 /* Runs only on the true first load (or hard reload), not on view-transition
-   navigations where the cross-fade already provides the entrance. */
-.yt-first .page-enter {
-  animation: page-enter 0.5s ease-out both;
-}
+   navigations where the cross-fade already provides the entrance.
 
-/* Hero entrance — children stagger in via --hero-index. Disabled for
-   reduced-motion by the global guard in @layer base. */
-.yt-first .hero-enter {
-  opacity: 0;
-  animation: page-enter 0.55s ease-out both;
-  animation-delay: calc(0.06s + (var(--hero-index, 0) * 0.09s));
+   SINGLE ENTRANCE MOTION: the whole-page reveal is a pure opacity fade —
+   no translate — and the hero no longer animates its children separately
+   (previously each `hero-enter` element held at `opacity: 0` while the page
+   slid beneath it, compounding to ~20px of motion and leaving the headline
+   invisible for the first ~230ms; that read as a jerky load). The fade-only
+   reveal shows everything together from the first frame. See `@keyframes
+   page-fade` above; `@keyframes page-enter` (with the 10px rise) is still used
+   by the services accordion panels (`.svc-panel`), so keep the two separate. */
+.yt-first .page-enter {
+  animation: page-fade 0.45s ease-out both;
 }
 
 /* Mobile full-page menu (React island). Fades in as a whole; links stagger. */

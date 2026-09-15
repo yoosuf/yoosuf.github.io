@@ -1,8 +1,13 @@
 ---
+import * as stylex from '@stylexjs/stylex'
 import type { CollectionEntry } from 'astro:content'
-import Breadcrumbs from './Breadcrumbs.astro'
+import { Breadcrumbs } from './ui/Breadcrumbs'
+import { pageStyles } from './ui/page.stylex'
+import { blogStyles } from './ui/blog.stylex'
+import { a11y } from './ui/primitives'
 import PostCard from './PostCard.astro'
 import { POSTS_PER_PAGE } from '../lib/pagination'
+import { SITE } from '../config'
 
 interface Props {
   posts: CollectionEntry<'blog'>[]
@@ -16,35 +21,30 @@ const { posts, currentPage, totalPages, totalPosts, infinite = false } = Astro.p
 const pageUrl = (n: number) => (n === 1 ? '/blog/' : `/blog/page/${n}/`)
 const start = (currentPage - 1) * POSTS_PER_PAGE + 1
 const end = start + posts.length - 1
-
-const pageLinkClass =
-  'flex h-9 min-w-9 items-center justify-center rounded-md border px-2 text-[0.9rem] font-medium text-mid no-underline transition-colors hover:border-ink/30 hover:text-accent'
-const pageLinkDisabled =
-  'flex h-9 min-w-9 items-center justify-center rounded-md border border-line px-2 text-[0.9rem] text-faint'
-const pageLinkCurrent =
-  'flex h-9 min-w-9 items-center justify-center rounded-md border border-accent bg-accent px-2 text-[0.9rem] font-semibold text-white'
+const listAttrs = stylex.attrs(blogStyles.list)
 ---
 
-<article class="site-container py-14 sm:py-20">
-  <Breadcrumbs items={[{ label: 'Blog' }]} />
+<article {...stylex.attrs(pageStyles.page, pageStyles.container)}>
+  <Breadcrumbs items={[{ label: 'Blog' }]} baseUrl={SITE.url} />
 
-  <header>
-    <h1 class="mt-8 text-[2rem] sm:text-[2.4rem] font-semibold tracking-[-0.025em] leading-snug text-ink">
+  <header {...stylex.attrs(pageStyles.header)}>
+    <h1 {...stylex.attrs(pageStyles.title)}>
       Blog
     </h1>
 
-    <p class="mt-4 max-w-[42rem] text-[0.95rem] leading-relaxed text-mid">
+    <p {...stylex.attrs(blogStyles.intro)}>
       Notes, thoughts, and deep dives on AI, systems architecture, and software engineering —
       from over a decade building products.
     </p>
 
-    <p class="mt-3 text-[0.85rem] text-sub" data-blog-summary>
+    <p {...stylex.attrs(blogStyles.summary)} data-blog-summary>
       Showing {start}–{end} of {totalPosts} posts
     </p>
   </header>
 
   <ul
-    class="mt-10 divide-y divide-line border-t border-b border-line"
+    {...listAttrs}
+    class:list={['y-blog-list', listAttrs.class]}
     data-infinite-list
     data-total={totalPosts}
   >
@@ -56,29 +56,29 @@ const pageLinkCurrent =
   {infinite ? (
     <>
       <div
-        class="h-px w-full"
+        {...stylex.attrs(blogStyles.sentinel)}
         data-infinite-sentinel
         data-next={currentPage + 1}
         data-last={totalPages}
         aria-hidden="true"
       ></div>
 
-      <p class="sr-only" data-infinite-status role="status"></p>
+      <p {...stylex.attrs(a11y.srOnly)} data-infinite-status role="status"></p>
 
       {totalPages > 1 && (
-        <div class="mt-10 flex flex-col items-center gap-4 border-t border-line pt-8">
+        <div {...stylex.attrs(blogStyles.footerNav)}>
           <button
             type="button"
             data-infinite-button
-            class="inline-flex h-10 items-center justify-center rounded-md border border-line px-6 text-[0.9rem] font-medium text-mid transition-colors hover:border-accent/40 hover:text-accent"
+            {...stylex.attrs(blogStyles.loadMore)}
           >
             Load more posts
           </button>
 
           <noscript>
-            <div class="flex flex-col items-center gap-2">
+            <div {...stylex.attrs(blogStyles.noscriptStack)}>
               {Array.from({ length: totalPages }, (_, i) => i + 2).map((n) => (
-                <a href={pageUrl(n)} class="text-[0.9rem] text-accent no-underline hover:underline">
+                <a href={pageUrl(n)} {...stylex.attrs(blogStyles.olderLink)}>
                   Older posts — page {n}
                 </a>
               ))}
@@ -89,19 +89,19 @@ const pageLinkCurrent =
     </>
   ) : (
     totalPages > 1 && (
-      <nav aria-label="Blog pages" class="mt-10 flex flex-col items-center gap-4 border-t border-line pt-8">
-        <p class="text-[0.85rem] text-sub">
+      <nav aria-label="Blog pages" {...stylex.attrs(blogStyles.footerNav)}>
+        <p {...stylex.attrs(blogStyles.pagerInfo)}>
           Page {currentPage} of {totalPages}
         </p>
 
-        <ul class="flex flex-wrap items-center justify-center gap-2">
+        <ul {...stylex.attrs(blogStyles.pagerList)}>
           <li>
             {currentPage > 1 ? (
-              <a href={pageUrl(currentPage - 1)} class={pageLinkClass} aria-label="Previous page">
+              <a href={pageUrl(currentPage - 1)} {...stylex.attrs(blogStyles.pageLink)} aria-label="Previous page">
                 ←
               </a>
             ) : (
-              <span class={pageLinkDisabled} aria-hidden="true">
+              <span {...stylex.attrs(blogStyles.pageLinkDisabled)} aria-hidden="true">
                 ←
               </span>
             )}
@@ -110,13 +110,13 @@ const pageLinkCurrent =
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) =>
             n === currentPage ? (
               <li key={n}>
-                <span aria-current="page" class={pageLinkCurrent}>
+                <span aria-current="page" {...stylex.attrs(blogStyles.pageLinkCurrent)}>
                   {n}
                 </span>
               </li>
             ) : (
               <li key={n}>
-                <a href={pageUrl(n)} class={pageLinkClass}>
+                <a href={pageUrl(n)} {...stylex.attrs(blogStyles.pageLink)}>
                   {n}
                 </a>
               </li>
@@ -125,11 +125,11 @@ const pageLinkCurrent =
 
           <li>
             {currentPage < totalPages ? (
-              <a href={pageUrl(currentPage + 1)} class={pageLinkClass} aria-label="Next page">
+              <a href={pageUrl(currentPage + 1)} {...stylex.attrs(blogStyles.pageLink)} aria-label="Next page">
                 →
               </a>
             ) : (
-              <span class={pageLinkDisabled} aria-hidden="true">
+              <span {...stylex.attrs(blogStyles.pageLinkDisabled)} aria-hidden="true">
                 →
               </span>
             )}

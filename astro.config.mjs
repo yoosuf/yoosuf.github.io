@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
-import tailwindcss from '@tailwindcss/vite'
+import stylexVite from '@stylexjs/unplugin/vite'
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
@@ -68,7 +68,27 @@ export default defineConfig({
     }),
   ],
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [
+      // StyleX compiles inline+extracted rules; extracted CSS is appended to
+      // the global.css asset and inlined by `inlineStylesheets: 'always'`.
+      stylexVite({
+        useCSSLayers: true,
+        // The unplugin re-processes collected rules through Lightning CSS
+        // with its own (old) browserslist defaults, which lower the
+        // `light-dark()` colour tokens into a broken var() polyfill. Pin
+        // modern targets so light-dark() survives and resolves via the
+        // color-scheme declared on :root in global.css.
+        lightningcssOptions: {
+          targets: {
+            chrome: 123 << 16,
+            edge: 123 << 16,
+            firefox: 120 << 16,
+            safari: (17 << 16) | (5 << 8),
+            ios_saf: (17 << 16) | (5 << 8),
+          },
+        },
+      }),
+    ],
   },
   markdown: {
     shikiConfig: {

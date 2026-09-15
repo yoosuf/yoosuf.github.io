@@ -7,8 +7,11 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:clean": "node scripts/build-without-warnings.mjs",
+    "check:architecture": "node scripts/check-stylex-architecture.mjs",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:architecture": "node --test tests/stylex-architecture.test.mjs"
   },
   "engines": {
     "node": ">=22"
@@ -17,15 +20,14 @@
     "@astrojs/react": "^6.0.5",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
-    "@tailwindcss/typography": "^0.5.20",
-    "@tailwindcss/vite": "^4.3.3",
+    "@stylexjs/stylex": "^0.19.0",
     "astro": "^7.3.2",
     "mermaid": "^11.17.2",
     "react": "^19.3.0",
-    "react-dom": "^19.3.0",
-    "tailwindcss": "^4.3.3"
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
+    "@stylexjs/unplugin": "^0.19.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "typescript": "^7.0.2"

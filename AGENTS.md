@@ -5,8 +5,11 @@ Project instructions for AI coding agents. Read this before making changes.
 ## What this is
 
 A static site for **Yoosuf Mohamed**, Systems Architect. Rebuilt from Jekyll on the
-`feature/astro-tailwind` branch: **Astro 7 + Tailwind CSS v4 + React 19 islands +
-TypeScript**. Vanilla HTML/SCSS conventions from the Jekyll era no longer apply here.
+`feature/astro-tailwind` branch: **Astro 7 + StyleX (`@stylexjs/stylex`) + React 19
+islands + TypeScript**. **Tailwind CSS has been fully removed** from the pipeline
+(uninstalled; `global.css` now provides the reset, design tokens, `.prose`
+typesetting, and shared component/composite classes). Vanilla HTML/SCSS conventions
+from the Jekyll era no longer apply here.
 
 Live site: https://yoosuf.me (CNAME in `public/CNAME`).
 
@@ -38,8 +41,16 @@ pages; the blog paginates 10 posts per page, so the total grows by one page per 
 - `src/content.config.ts` — content collection schemas (authoritative front matter contract)
 - `src/data/services.ts` — service data shared by Astro + React
 - `src/config.ts` — `SITE`, `NAV`, socials (single source of truth)
-- `src/styles/global.css` — design tokens, `.site-container`, motion, component classes
-- `astro.config.mjs` — integrations, prefetch, `inlineStylesheets: 'always'`
+- `src/styles/` — `tokens.stylex.ts` (single source of palette; semantic tokens,
+  `light-dark()` colours resolved via `color-scheme` on `:root`), `global.css`
+  (preflight-equivalent reset, `--color-*` design tokens, `.prose` markdown
+  typesetting, motion keyframes, group-hover composites)
+- `src/components/ui/` — StyleX style modules + shared primitives: `primitives.ts`
+  (srOnly, kicker, headings, body, buttons, pills, chips, stat, dividers),
+  `Breadcrumbs.tsx`, `page.stylex.ts` (page shell), plus per-area
+  modules (`home`, `postCard`, `post`, `blog`, `services`, `header`, `footer`, `shell`)
+- `astro.config.mjs` — `stylexVite` plugin only (no Tailwind), prefetch,
+  `inlineStylesheets: 'always'`, pinned `lightningcssOptions.targets`
 
 ## Editing blog posts
 
@@ -73,10 +84,13 @@ See the `astro-blog` skill for the full voice guide and workflow.
   (`client:idle`). Keep mermaid + pinemail (`WAAPI`) logic vanilla — not every component needs React.
 - **Never call `window`/`document` during render.** SSR renders server-side; server-pinned
   values (like `currentPath`) must come in as props from the Astro wrapper.
-- Hooks in `src/hooks/`; shared typed icons in `ReactIcon.tsx`; markup is Tailwind utilities
-  with component classes in `global.css` `@layer components` for the island styles.
-- No inline `style` in Astro components for island markup; put those classes in `global.css`
-  (scoped styles can't reach React-rendered DOM).
+- Hooks in `src/hooks/`; shared typed icons in `ReactIcon.tsx`. React island markup
+  uses `stylex.props(styles.key).className`; Astro components use
+  `stylex.attrs(styles.key).class`. Put sophisticated island chrome (e.g. `.svc-*`)
+  in `global.css` `@layer components` — scoped styles can't reach React-rendered DOM.
+- Styles must live in StyleX modules (compiled by `stylexVite`); the unplugin only
+  transforms `.js/.jsx/.ts/.tsx`, so `.astro` files import the compiled style module.
+- **Never write Tailwind utility classes** — the packages are uninstalled.
 
 ## a11y standards (non-negotiable)
 
@@ -89,14 +103,51 @@ See the `astro-blog` skill for the full voice guide and workflow.
 
 ## Responsive & layout (critical)
 
-- **No horizontal scroll allowed at any width** (320px up). `.site-container`
-  (max-width 68rem) is the single content width — used by header, footer, and page wrappers.
+- **No horizontal scroll allowed at any width** (320px up). The single content width
+  comes from `pageStyles.container` in `page.stylex.ts` (max 68rem, auto-centred,
+  responsive inline padding) — compose it onto any page/article shell (or use
+  `primitives`/`page` keys) like `services.astro`, `BlogIndex.astro`, `PostLayout.astro`,
+  `404.astro`, and `index.astro` do.
 - Wide tables/docs (e.g. pinemail `.pm-doc-table`) must be wrapped for contained
   horizontal scrolling, never left loose in the page flow.
 - After layout changes, verify with the CDP overflow sweep across 320/375/768/1024:
   every page must report `innerW == htmlW == vw`.
-- **Do not create a class named `.container`** — it collides with Tailwind v4's built-in
-  `container` utility.
+
+## StyleX + global.css conventions (no Tailwind)
+
+- **Tokens** are the single source of palette: `tokens.stylex.ts` for StyleX (`defineVars`
+  with `light-dark()` values), and the matching `--color-*` custom properties in
+  `global.css:root` (plus a `prefers-color-scheme: dark` override) for plain-CSS rules.
+  Keep the two in lockstep.
+- **Hand-written `.prose`** in `global.css` `@layer components` replaces the removed
+  `@tailwindcss/typography` plugin; style markdown there, not via utilities.
+- **The preflight-equivalent reset lives inside a `@layer base` block.** Unlayered CSS
+  outranks *every* layer, so any unlayered reset would silently kill `.prose` and
+  StyleX styling (e.g. `h1..h6 { font-size: inherit }`). Keep it in the layer.
+- **Never set `color-scheme` on `body`** — it must inherit from `:root` so `light-dark()`
+  (used by the StyleX tokens applied on `body`) resolves to the active scheme. `:root`
+  declares `color-scheme: light` with a dark override in the media query.
+- Shared styles: reuse `primitives.ts` before inventing classes; compose with
+  `stylex.attrs(a, b).class`. Descendant/group-hover composites (`.product-card:hover
+  .y-product-title`, `.y-post-card:hover .y-post-title`, ...) remain in `global.css` —
+  StyleX can't express them.
+
+## Load motion (single entrance — no jerk)
+
+The page-load reveal is intentionally **one clean motion**: a pure opacity fade on
+`main#site-main` (`.yt-first .page-enter` → `@keyframes page-fade`, 0.45s, **no translate**),
+fired only on a true first load / hard reload (`.yt-first` is set synchronously in
+`BaseLayout.astro` via `sessionStorage 'yt-nav'`). View-transition navigations skip it.
+
+- Hero children must **not** animate separately on load — the old per-element stagger
+  kept the headline invisible ~230ms while the whole page slid beneath it; that compound
+  motion reads as a jerky load. The `hero-enter`/`--hero-index` classes are gone; don't
+  re-introduce them.
+- `@keyframes page-enter` (10px rise) exists only for the `.svc-panel` accordion panels —
+  keep it separate from the page reveal.
+- Any new motion must be gated behind `prefers-reduced-motion` and verified with the
+  frame-trace check: headline visible at frame one, `main` fades 0→1 with `transform: none`,
+  no long tasks / rAF gaps > 25ms while it runs, CLS stays 0.
 
 ## Gotchas
 
@@ -106,6 +157,9 @@ See the `astro-blog` skill for the full voice guide and workflow.
 - View transitions: `<ClientRouter/>` from `astro:transitions`; prefetch via config.
 - `build.inlineStylesheets: 'always'` inlines CSS into HTML (no render-blocking CSS request).
 - Keep GA deferred (idle/pointerdown, PROD only) so third-party JS stays off the critical path.
+- The `stylexVite` unplugin re-processes collected CSS through Lightning CSS with old
+  browserslist defaults, which lower `light-dark()` into a broken `var()` polyfill. The
+  pinned `lightningcssOptions.targets` in `astro.config.mjs` prevents that.
 - Never commit `dist/`, `.astro/` (gitignored).
 - Only commit when explicitly asked.
 
@@ -114,4 +168,6 @@ See the `astro-blog` skill for the full voice guide and workflow.
 1. `npx tsc --noEmit` — clean.
 2. `npm run build` — no warnings.
 3. Responsive sweep if layouts changed — no horizontal overflow at 320+.
-4. If a post is notable, add it to `public/llms.txt`.
+4. If you touched load motion, run the frame-trace check (headline at frame one, fade-only,
+   no long tasks) — see "Load motion" above.
+5. If a post is notable, add it to `public/llms.txt`.

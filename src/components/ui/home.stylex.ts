@@ -53,6 +53,7 @@ export const homeStyles = stylex.create({
     height: '100%',
     opacity: 0.6,
     position: 'absolute',
+    transformOrigin: 'center',
     width: '100%',
   },
 

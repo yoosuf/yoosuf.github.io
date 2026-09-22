@@ -117,6 +117,15 @@ test('centralizes deterministic hand-drawn Mermaid defaults', async () => {
   assert.match(config, /themeVariables/)
 })
 
+test('gives pencil Mermaid labels a handwriting font fallback', async () => {
+  const config = await readFile(new URL('../src/lib/mermaid/config.ts', import.meta.url), 'utf8')
+
+  assert.match(config, /pencilFontFamily/)
+  assert.match(config, /Segoe Print/)
+  assert.match(config, /Bradley Hand/)
+  assert.match(config, /fontFamily: pencilFontFamily/)
+})
+
 test('provides one navigation-safe shared Mermaid renderer', async () => {
   const renderer = await readFile(new URL('../src/lib/mermaid/render.ts', import.meta.url), 'utf8')
   const bootstrap = await readFile(new URL('../src/scripts/mermaid.ts', import.meta.url), 'utf8')
@@ -169,6 +178,16 @@ test('uses the homepage CTA pattern for services conversion', async () => {
   assert.match(engagement, /homeStyles\.ctaActions/)
   assert.match(engagement, /href="\/contact\/"/)
   assert.doesNotMatch(engagement, /mailto:/)
+})
+
+test('keeps the availability pulse animation idempotent and centered', async () => {
+  const motion = await readFile(new URL('../src/scripts/motion.ts', import.meta.url), 'utf8')
+  const homeStyles = await readFile(new URL('../src/components/ui/home.stylex.ts', import.meta.url), 'utf8')
+
+  assert.match(motion, /pulseAnimations = new WeakMap<HTMLElement, Animation>\(\)/)
+  assert.match(motion, /pulseAnimations\.has\(element\)/)
+  assert.match(motion, /duration: 1600/)
+  assert.match(homeStyles, /transformOrigin: 'center'/)
 })
 
 test('keeps emitted content free of malformed attributes and duplicate classes', async () => {

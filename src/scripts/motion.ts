@@ -1,7 +1,11 @@
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const pulseAnimations = new WeakMap<HTMLElement, Animation>()
+
+function prefersReducedMotion(): boolean {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
 
 function animate(element: Element, keyframes: Keyframe[], options: KeyframeAnimationOptions): void {
-  if (reducedMotion || !('animate' in element)) return
+  if (prefersReducedMotion() || !('animate' in element)) return
   element.animate(keyframes, options)
 }
 
@@ -13,13 +17,20 @@ function setupMotion(): void {
   }
 
   document.querySelectorAll<HTMLElement>('[data-motion="pulse"]').forEach((element) => {
-    if (!reducedMotion) {
-      element.animate([{ transform: 'scale(1)', opacity: 0.75 }, { transform: 'scale(2)', opacity: 0 }], {
-        duration: 1200,
+    if (prefersReducedMotion() || pulseAnimations.has(element)) return
+
+    const animation = element.animate(
+      [
+        { transform: 'scale(1)', opacity: 0.65 },
+        { transform: 'scale(2.4)', opacity: 0 },
+      ],
+      {
+        duration: 1600,
         easing: 'cubic-bezier(0, 0, 0.2, 1)',
         iterations: Infinity,
-      })
-    }
+      },
+    )
+    pulseAnimations.set(element, animation)
   })
 }
 

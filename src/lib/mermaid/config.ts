@@ -10,6 +10,11 @@ export const mermaidConfig: MermaidConfig = {
   theme: 'base',
 }
 
+// Keep the pencil treatment local to Mermaid's SVG text. These are platform
+// fonts, so diagrams remain self-contained and gracefully fall back to the
+// browser's cursive face when a handwriting font is unavailable.
+const pencilFontFamily = '"Segoe Print", "Bradley Hand", "Comic Sans MS", cursive'
+
 const themeVariables = {
   pencil: {
     background: '#fffdf7',
@@ -20,7 +25,7 @@ const themeVariables = {
     secondaryColor: '#f4f0e7',
     tertiaryColor: '#ebe6da',
     textColor: '#34332f',
-    fontFamily: 'ui-sans-serif, system-ui, sans-serif',
+    fontFamily: pencilFontFamily,
   },
   marker: {
     background: '#ffffff',

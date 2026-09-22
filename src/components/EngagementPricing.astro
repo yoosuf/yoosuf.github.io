@@ -5,6 +5,7 @@ import { SERVICES } from '../data/services'
 import { servicesStyles } from './ui/services.stylex'
 import { buttons, kicker } from './ui/primitives'
 import { a11y } from './ui/primitives'
+import { SITE } from '../config'
 
 const steps = [
   {
@@ -45,6 +46,7 @@ const faqs = [
 ] as const
 const faqListAttrs = stylex.attrs(servicesStyles.faqList)
 const chevronAttrs = stylex.attrs(servicesStyles.chevron)
+const helpCardAttrs = stylex.attrs(servicesStyles.section, servicesStyles.helpCard)
 ---
 
 <section aria-labelledby="ep-engagement-heading">
@@ -104,7 +106,7 @@ const chevronAttrs = stylex.attrs(servicesStyles.chevron)
     </div>
   </section>
 
-  <section {...stylex.attrs(servicesStyles.section)} aria-labelledby="ep-help-heading">
+  <section class:list={['cta-band', helpCardAttrs.class]} aria-labelledby="ep-help-heading">
     <h3 id="ep-help-heading" {...stylex.attrs(servicesStyles.helpHeading)}>
       Not sure which engagement fits?
     </h3>
@@ -121,7 +123,7 @@ const chevronAttrs = stylex.attrs(servicesStyles.chevron)
       >
         Book a call
       </a>
-      <a {...stylex.attrs(buttons.textLink)} href="mailto:mayoosuf@gmail.com">
+      <a {...stylex.attrs(buttons.textLink)} href={`mailto:${SITE.email}`}>
         Email me instead
       </a>
     </div>

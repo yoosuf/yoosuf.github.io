@@ -134,4 +134,11 @@ export const servicesStyles = stylex.create({
     gap: '0.5rem 1.25rem',
     marginBlockStart: space['4'],
   },
+
+  /* "Not sure which engagement fits?" — bordered card (surface + radius come
+     from the global `.cta-band` class); this adds the responsive padding. */
+  helpCard: {
+    paddingBlock: { default: space['6'], '@media (min-width: 40rem)': space['8'] },
+    paddingInline: { default: space['6'], '@media (min-width: 40rem)': space['8'] },
+  },
 })

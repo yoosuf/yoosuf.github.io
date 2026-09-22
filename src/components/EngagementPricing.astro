@@ -87,12 +87,12 @@ const chevronAttrs = stylex.attrs(servicesStyles.chevron)
     <h3 id="ep-faq-heading" {...stylex.attrs(kicker.eyebrow)}>
       Common questions
     </h3>
-    <div {...faqListAttrs} class:list={['faq-list', faqListAttrs.class]}>
+    <div class:list={['faq-list', faqListAttrs.class]}>
       {faqs.map((faq) => (
         <details class="ep-item ep-item-soft">
           <summary {...stylex.attrs(servicesStyles.summary)}>
             <span {...stylex.attrs(servicesStyles.summaryText)}>{faq.q}</span>
-            <span {...chevronAttrs} class:list={['ep-chevron', chevronAttrs.class]}>
+            <span class:list={['ep-chevron', chevronAttrs.class]}>
               <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
             </span>
           </summary>

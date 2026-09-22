@@ -20,13 +20,13 @@ const headingAttrs = stylex.attrs(postCardStyles.heading)
 const titleAttrs = stylex.attrs(postCardStyles.titleLink)
 ---
 
-<li {...rowAttrs} class:list={['y-post-card', rowAttrs.class]}>
-  <time {...dateAttrs} class:list={['y-post-date', dateAttrs.class]} datetime={toISODate(date)}>
+<li class:list={['y-post-card', rowAttrs.class]}>
+  <time class:list={['y-post-date', dateAttrs.class]} datetime={toISODate(date)}>
     {formatShortDate(date)}
   </time>
 
-  <HeadingTag {...headingAttrs} class:list={['y-post-heading', headingAttrs.class]}>
-    <a href={url} {...titleAttrs} class:list={['y-post-title', titleAttrs.class]}>
+  <HeadingTag class:list={['y-post-heading', headingAttrs.class]}>
+    <a href={url} class:list={['y-post-title', titleAttrs.class]}>
       {decodeEntities(title)}
     </a>
   </HeadingTag>

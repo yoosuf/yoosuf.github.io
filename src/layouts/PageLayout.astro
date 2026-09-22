@@ -33,7 +33,7 @@ const proseAttrs = stylex.attrs(shellStyles.prose)
         <h1 {...stylex.attrs(pageStyles.title)}>{title}</h1>
       </header>
 
-      <div {...proseAttrs} class:list={['prose', proseAttrs.class]}>
+      <div class:list={['prose', proseAttrs.class]}>
         <slot />
       </div>
   </article>

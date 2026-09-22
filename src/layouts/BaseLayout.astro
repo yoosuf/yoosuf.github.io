@@ -184,7 +184,7 @@ const mainAttrs = stylex.attrs(shellStyles.main)
 
     <Header currentPath={Astro.url.pathname} client:load />
 
-    <main {...mainAttrs} id="site-main" class:list={['page-enter', mainAttrs.class]} tabindex="-1">
+    <main id="site-main" class:list={['page-enter', mainAttrs.class]} tabindex="-1">
       <slot />
     </main>
 

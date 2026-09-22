@@ -146,7 +146,6 @@ const ctaBandAttrs = stylex.attrs(homeStyles.ctaBand)
           <li>
             <a
               href="/pinemail/"
-              {...productCardAttrs}
               class:list={['product-card', productCardAttrs.class]}
             >
               <span {...stylex.attrs(homeStyles.productIconRow)}>
@@ -154,7 +153,7 @@ const ctaBandAttrs = stylex.attrs(homeStyles.ctaBand)
                   <Icon name="mail" size={18} />
                 </span>
                 <span {...stylex.attrs(homeStyles.productTitleRow)}>
-                  <span {...productTitleAttrs} class:list={['y-product-title', productTitleAttrs.class]}>Pine Mail</span>
+                  <span class:list={['y-product-title', productTitleAttrs.class]}>Pine Mail</span>
                   <span {...stylex.attrs(pills.accentBorder)}>Live</span>
                 </span>
               </span>
@@ -215,7 +214,6 @@ const ctaBandAttrs = stylex.attrs(homeStyles.ctaBand)
 
         <a
           href={ensureTrailingSlash(featured.data.permalink)}
-          {...latestCardAttrs}
           class:list={['latest-wash', latestCardAttrs.class]}
         >
           <span {...stylex.attrs(homeStyles.latestBadgeRow)}>
@@ -227,7 +225,7 @@ const ctaBandAttrs = stylex.attrs(homeStyles.ctaBand)
             ))}
           </span>
 
-          <span {...latestTitleAttrs} class:list={['y-latest-title', latestTitleAttrs.class]}>
+          <span class:list={['y-latest-title', latestTitleAttrs.class]}>
             {decodeEntities(featured.data.title)}
           </span>
 
@@ -249,7 +247,7 @@ const ctaBandAttrs = stylex.attrs(homeStyles.ctaBand)
         </ul>
       </section>
 
-      <section {...ctaBandAttrs} class:list={['cta-band', ctaBandAttrs.class]} aria-labelledby="cta-heading">
+      <section class:list={['cta-band', ctaBandAttrs.class]} aria-labelledby="cta-heading">
         <h2 id="cta-heading" {...stylex.attrs(homeStyles.ctaHeading)}>
           Let's build something that scales.
         </h2>

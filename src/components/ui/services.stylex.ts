@@ -1,9 +1,8 @@
 import * as stylex from '@stylexjs/stylex'
 import { colors, fonts, lineHeights, space, weights } from '../../styles/tokens.stylex'
 
-// Services page (EngagementPricing.astro). The <details> FAQ behaviour (chevron
-// rotation, marker hide, details-content animation) stays on the `.ep-item`
-// global classes; everything here is discrete-element tokens.
+// Services page (EngagementPricing.astro). FAQ elements are styled directly
+// through these keys; no global element relationship selectors are required.
 export const servicesStyles = stylex.create({
   content: {
     marginBlockStart: space['10'],
@@ -71,6 +70,12 @@ export const servicesStyles = stylex.create({
     borderBlockStartStyle: 'solid',
     borderBlockStartWidth: 1,
     marginBlockStart: space['4'],
+  },
+
+  faqItem: {
+    borderBlockEndColor: colors.border,
+    borderBlockEndStyle: 'solid',
+    borderBlockEndWidth: 1,
   },
 
   summary: {

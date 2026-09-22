@@ -1,12 +1,13 @@
----
+--- 
 interface Props {
   name: string
   size?: number
   class?: string
   'aria-hidden'?: string | boolean
+  'data-home-hook'?: string
 }
 
-const { name, size = 16, class: className = '' } = Astro.props
+const { name, size = 16, class: className = '', 'data-home-hook': dataHook } = Astro.props
 ---
 
 <svg
@@ -19,6 +20,7 @@ const { name, size = 16, class: className = '' } = Astro.props
   stroke-linecap="round"
   stroke-linejoin="round"
   class={className}
+  data-home-hook={dataHook}
   aria-hidden="true"
 >
   {name === "clock" && (

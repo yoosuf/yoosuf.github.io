@@ -1,9 +1,8 @@
 import * as stylex from '@stylexjs/stylex'
 import { colors, space } from '../styles/tokens.stylex'
 
-// Footer chrome: legal line + utility nav. Composed with the tailwind-free
-// preflight (`a { color: inherit }` in global.css base) so links pick up the
-// row's colour unless they opt into one here.
+// Footer chrome: legal line + utility nav. Links opt into their own colour
+// explicitly because there is no global reset layer.
 export const footerStyles = stylex.create({
   bar: {
     backgroundColor: colors.bg,

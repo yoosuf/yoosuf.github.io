@@ -21,7 +21,6 @@ const { posts, currentPage, totalPages, totalPosts, infinite = false } = Astro.p
 const pageUrl = (n: number) => (n === 1 ? '/blog/' : `/blog/page/${n}/`)
 const start = (currentPage - 1) * POSTS_PER_PAGE + 1
 const end = start + posts.length - 1
-const listAttrs = stylex.attrs(blogStyles.list)
 ---
 
 <article {...stylex.attrs(pageStyles.page, pageStyles.container)}>
@@ -43,12 +42,12 @@ const listAttrs = stylex.attrs(blogStyles.list)
   </header>
 
   <ul
-    class:list={['y-blog-list', listAttrs.class]}
+    {...stylex.attrs(blogStyles.list)}
     data-infinite-list
     data-total={totalPosts}
   >
-    {posts.map((post) => (
-      <PostCard post={post} />
+    {posts.map((post, index) => (
+      <PostCard post={post} divider={index > 0} />
     ))}
   </ul>
 

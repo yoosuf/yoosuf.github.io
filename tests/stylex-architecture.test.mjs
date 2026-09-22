@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
-import { mkdtemp, mkdir, writeFile } from 'node:fs/promises'
+import { access, mkdtemp, mkdir, readFile, writeFile } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
 import test from 'node:test'
@@ -47,6 +48,49 @@ test('allows documented global hooks that contain utility-like words', async () 
   })
 
   assert.deepEqual(inspectSource({ rootDir }), [])
+})
+
+test('keeps services accordion presentation out of global CSS and literal class hooks', async () => {
+  const servicesIsland = await readFile(new URL('../src/components/services/ServicesAccordion.tsx', import.meta.url), 'utf8')
+  const baseLayout = await readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8')
+
+  await assert.rejects(access(new URL('../src/styles/global.css', import.meta.url)))
+  assert.doesNotMatch(baseLayout, /styles\/global\.css/)
+  assert.doesNotMatch(servicesIsland, /className=\{?['"`]svc-/)
+})
+
+test('keeps Markdown and generated Pinemail content on explicit StyleX attributes', async () => {
+  const postLayout = await readFile(new URL('../src/layouts/PostLayout.astro', import.meta.url), 'utf8')
+  const pinemailBody = await readFile(new URL('../src/components/product/PinemailBody.astro', import.meta.url), 'utf8')
+  const generator = await readFile(new URL('../scripts/generate-pinemail-body.mjs', import.meta.url), 'utf8')
+
+  assert.match(postLayout, /<Content components=\{markdownComponents\}/)
+  assert.doesNotMatch(postLayout, /class:list=\{\['prose'/)
+  assert.match(pinemailBody, /\{\.\.\.stylex\.attrs\(styles\./)
+  assert.doesNotMatch(pinemailBody, /pmCls\(/)
+  assert.match(generator, /class:list=/)
+})
+
+test('keeps Pinemail descendant presentation in StyleX keys', async () => {
+  const productStyles = await readFile(new URL('../src/components/ui/product.stylex.ts', import.meta.url), 'utf8')
+  const pinemailBody = await readFile(new URL('../src/components/product/PinemailBody.astro', import.meta.url), 'utf8')
+
+  assert.match(productStyles, /pmFaqSummary:/)
+  assert.match(productStyles, /pmTableCell:/)
+  assert.match(productStyles, /pmFlowLogLine:/)
+  assert.match(pinemailBody, /styles\.pmFaqSummary/)
+  assert.match(pinemailBody, /styles\.pmTableCell/)
+  assert.match(pinemailBody, /styles\.pmFlowLogLine/)
+})
+
+test('keeps emitted content free of malformed attributes and duplicate classes', async () => {
+  const dist = new URL('../dist/', import.meta.url)
+  if (!existsSync(dist)) return
+
+  for (const route of ['index.html', 'blog/hello-you/index.html', 'terms/index.html', 'pinemail/index.html']) {
+    const html = await readFile(new URL(route, dist), 'utf8')
+    assert.doesNotMatch(html, /\[object Object\]|<[^>]*class="[^"]*"[^>]*class="/)
+  }
 })
 
 test('rejects build output warnings and accidental StyleX route output', () => {

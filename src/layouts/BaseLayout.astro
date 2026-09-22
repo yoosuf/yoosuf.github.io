@@ -5,7 +5,6 @@ import * as stylex from '@stylexjs/stylex'
 import { shellStyles } from '../components/ui/shell.stylex'
 import Header from '../components/header/Header'
 import Footer from '../components/Footer.astro'
-import '../../src/styles/global.css'
 
 interface ArticleMeta {
   published?: string
@@ -60,7 +59,7 @@ const mainAttrs = stylex.attrs(shellStyles.main)
 ---
 
 <!doctype html>
-<html lang={SITE.lang}>
+<html {...stylex.attrs(shellStyles.html)} lang={SITE.lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -95,6 +94,299 @@ const mainAttrs = stylex.attrs(shellStyles.main)
     )}
 
     <ClientRouter />
+
+    <style is:global>
+      /* -------------------------------------------------------------------
+        Base layer — reset, selection/focus, motion guard, syntax + diagram
+        theming, and descendant/composite behaviour StyleX atomics can't
+        express (group-hover and `[data-home-hook]` relationships). Uses the
+        same palette pairs as tokens.stylex.ts via light-dark(), resolved by
+        the `color-scheme: light dark` shellStyles.html class on <html>.
+
+        `@layer base` is declared FIRST so the compiled StyleX atoms (emitted
+        into their own later `priority1`/`priority2` layers) out-cascade it
+        wherever an atom exists. Only the narrow override rules below it are
+        unlayered (or !important) so they beat both atoms and Shiki's inline
+        span styles.
+      ------------------------------------------------------------------- */
+      @layer base {
+        *,
+        *::before,
+        *::after,
+        ::backdrop,
+        ::file-selector-button {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          border: 0 solid;
+        }
+
+        html {
+          line-height: 1.5;
+          -webkit-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+          tab-size: 4;
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+          line-height: inherit;
+        }
+
+        hr {
+          height: 0;
+          color: inherit;
+          border-top-width: 1px;
+        }
+
+        abbr[title] {
+          text-decoration: underline dotted;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          font-size: inherit;
+          font-weight: inherit;
+        }
+
+        a {
+          color: inherit;
+          -webkit-text-decoration: inherit;
+          text-decoration: inherit;
+        }
+
+        b,
+        strong {
+          font-weight: bolder;
+        }
+
+        small {
+          font-size: 80%;
+        }
+
+        sub,
+        sup {
+          font-size: 75%;
+          line-height: 0;
+          position: relative;
+          vertical-align: baseline;
+        }
+
+        sub {
+          bottom: -0.25em;
+        }
+
+        sup {
+          top: -0.5em;
+        }
+
+        table {
+          text-indent: 0;
+          border-color: inherit;
+          border-collapse: collapse;
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea,
+        ::file-selector-button {
+          font: inherit;
+          font-feature-settings: inherit;
+          font-variation-settings: inherit;
+          letter-spacing: inherit;
+          color: inherit;
+          border-radius: 0;
+          background-color: transparent;
+          opacity: 1;
+        }
+
+        button,
+        select {
+          text-transform: none;
+        }
+
+        button,
+        input[type='button'],
+        input[type='reset'],
+        input[type='submit'],
+        ::file-selector-button {
+          appearance: button;
+        }
+
+        input[type='search'] {
+          -webkit-appearance: none;
+          appearance: none;
+          outline-offset: -2px;
+        }
+
+        ::-webkit-search-decoration {
+          -webkit-appearance: none;
+        }
+
+        textarea {
+          resize: vertical;
+        }
+
+        summary {
+          display: list-item;
+        }
+
+        ol,
+        ul,
+        menu {
+          list-style: none;
+        }
+
+        blockquote,
+        dl,
+        dd,
+        figure,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        hr,
+        p,
+        pre {
+          margin: 0;
+        }
+
+        fieldset {
+          margin: 0;
+          padding: 0;
+        }
+
+        legend {
+          padding: 0;
+        }
+
+        button,
+        [role='button'] {
+          cursor: pointer;
+        }
+
+        :disabled {
+          cursor: default;
+        }
+
+        img,
+        svg,
+        video,
+        canvas,
+        audio,
+        iframe,
+        embed,
+        object {
+          display: block;
+          vertical-align: middle;
+        }
+
+        img,
+        video {
+          max-width: 100%;
+          height: auto;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          text-wrap: balance;
+        }
+
+        p {
+          text-wrap: pretty;
+        }
+
+        a {
+          transition: color 0.15s ease;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          *,
+          *::before,
+          *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+          }
+
+          ::view-transition-group(*),
+          ::view-transition-old(*),
+          ::view-transition-new(*) {
+            animation-duration: 0s !important;
+          }
+        }
+      }
+
+      /* Selection + focus ring: keep unlayered so they outrank any atom. */
+      ::selection {
+        background: color-mix(in srgb, light-dark(#2563eb, #8bb0ff) 22%, transparent);
+      }
+
+      :is(a, button, summary, [tabindex]):focus-visible {
+        outline: 2px solid light-dark(#2563eb, #8bb0ff);
+        outline-offset: 2px;
+        border-radius: 2px;
+      }
+
+      [id] {
+        scroll-margin-top: 6rem;
+      }
+
+      /* Shiki dual themes: Astro emits the light colour inline and the dark
+         colour in --shiki-dark; apply the dark palette under dark scheme. */
+      @media (prefers-color-scheme: dark) {
+        .astro-code {
+          background-color: var(--shiki-dark-bg, #0d1117) !important;
+        }
+        .astro-code .line span {
+          color: var(--shiki-dark, #e6e6e6) !important;
+        }
+      }
+
+      /* Mermaid diagrams replace their <pre> at runtime via mermaid.ts. */
+      .mermaid {
+        margin: 1.5em 0;
+        overflow-x: auto;
+      }
+      .mermaid svg {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* Group-hover composites for the data-home-hook relationship classes. */
+      [data-home-hook='product-card']:hover [data-home-hook='y-product-title'],
+      [data-home-hook='latest-wash']:hover [data-home-hook='y-latest-title'],
+      [data-home-hook='y-post-card']:hover [data-home-hook='y-post-title'] {
+        color: light-dark(#2563eb, #8bb0ff);
+      }
+      [data-home-hook='y-post-card']:hover [data-home-hook='y-post-title'] {
+        text-decoration-line: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+        text-decoration-color: color-mix(in srgb, light-dark(#2563eb, #8bb0ff) 30%, transparent);
+      }
+      [data-home-hook='y-post-card']:hover [data-home-hook='y-post-heading'],
+      [data-home-hook='product-card']:hover [data-home-hook='y-product-arrow'] {
+        transform: translateX(4px);
+      }
+      [data-home-hook='svc-item']:hover [data-home-hook='svc-name'],
+      [data-home-hook='svc-item']:hover [data-home-hook='svc-chip'] {
+        color: light-dark(#2563eb, #8bb0ff);
+      }
+    </style>
 
     <meta property="og:title" content={og.title} />
     <meta property="og:type" content={og.type} />
@@ -181,14 +473,15 @@ const mainAttrs = stylex.attrs(shellStyles.main)
     </script>
   </head>
   <body {...stylex.attrs(shellStyles.body)}>
-    <a class="skip-link" href="#site-main">Skip to main content</a>
+    <a {...stylex.attrs(shellStyles.skipLink)} href="#site-main">Skip to main content</a>
 
     <Header currentPath={Astro.url.pathname} client:load />
 
-    <main id="site-main" class:list={['page-enter', mainAttrs.class]} tabindex="-1">
+    <main id="site-main" {...mainAttrs} tabindex="-1">
       <slot />
     </main>
 
     <Footer />
+    <script src="../scripts/motion.ts"></script>
   </body>
 </html>

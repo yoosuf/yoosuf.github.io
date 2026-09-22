@@ -1,0 +1,67 @@
+---
+import * as stylex from '@stylexjs/stylex'
+import { markdownStyles } from '../ui/markdown.stylex'
+
+interface Props {
+  tag?: keyof typeof markdownStyles
+  class?: string
+  [key: string]: unknown
+}
+
+const { tag = 'paragraph', class: className, ...attrs } = Astro.props
+const style = markdownStyles[tag as keyof typeof markdownStyles] ?? markdownStyles.paragraph
+const styleAttrs = stylex.attrs(style)
+const element = {
+  paragraph: 'p',
+  heading2: 'h2',
+  heading3: 'h3',
+  heading4: 'h4',
+  list: 'ul',
+  orderedList: 'ol',
+  listItem: 'li',
+  link: 'a',
+  quote: 'blockquote',
+  code: 'code',
+  pre: 'pre',
+  rule: 'hr',
+  image: 'img',
+  video: 'video',
+  table: 'table',
+  tableHead: 'thead',
+  tableBody: 'tbody',
+  tableRow: 'tr',
+  tableCell: 'td',
+  tableHeader: 'th',
+  figure: 'figure',
+  caption: 'figcaption',
+  strong: 'strong',
+  kbd: 'kbd',
+} as const
+const tagName = element[tag as keyof typeof element] ?? 'p'
+const forwarded = { ...attrs, ...styleAttrs, ...(className ? { class: className } : {}) }
+---
+
+{tagName === 'p' && <p {...forwarded}><slot /></p>}
+{tagName === 'h2' && <h2 {...forwarded}><slot /></h2>}
+{tagName === 'h3' && <h3 {...forwarded}><slot /></h3>}
+{tagName === 'h4' && <h4 {...forwarded}><slot /></h4>}
+{tagName === 'ul' && <ul {...forwarded}><slot /></ul>}
+{tagName === 'ol' && <ol {...forwarded}><slot /></ol>}
+{tagName === 'li' && <li {...forwarded}><slot /></li>}
+{tagName === 'a' && <a {...forwarded}><slot /></a>}
+{tagName === 'blockquote' && <blockquote {...forwarded}><slot /></blockquote>}
+{tagName === 'code' && <code {...forwarded}><slot /></code>}
+{tagName === 'pre' && <pre {...forwarded}><slot /></pre>}
+{tagName === 'hr' && <hr {...forwarded} />}
+{tagName === 'img' && <img {...forwarded} />}
+{tagName === 'video' && <video {...forwarded}><slot /></video>}
+{tagName === 'table' && <table {...forwarded}><slot /></table>}
+{tagName === 'thead' && <thead {...forwarded}><slot /></thead>}
+{tagName === 'tbody' && <tbody {...forwarded}><slot /></tbody>}
+{tagName === 'tr' && <tr {...forwarded}><slot /></tr>}
+{tagName === 'td' && <td {...forwarded}><slot /></td>}
+{tagName === 'th' && <th {...forwarded}><slot /></th>}
+{tagName === 'figure' && <figure {...forwarded}><slot /></figure>}
+{tagName === 'figcaption' && <figcaption {...forwarded}><slot /></figcaption>}
+{tagName === 'strong' && <strong {...forwarded}><slot /></strong>}
+{tagName === 'kbd' && <kbd {...forwarded}><slot /></kbd>}

@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import * as stylex from '@stylexjs/stylex'
 import { NAV, SITE } from '../../config'
 import { useMenuDialog } from '../../hooks/useMenuDialog'
@@ -35,6 +35,17 @@ export default function Header({ currentPath }: HeaderProps): ReactNode {
 
   useMenuDialog({ isOpen: menuOpen, onClose: closeMenu, panelRef })
 
+  useEffect(() => {
+    if (!menuOpen || !panelRef.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    panelRef.current.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 280, easing: 'ease-out', fill: 'both' })
+    panelRef.current.querySelectorAll<HTMLElement>('[data-menu-link]').forEach((link, index) => {
+      link.animate(
+        [{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'none' }],
+        { duration: 400, delay: 80 + index * 60, easing: 'ease-out', fill: 'both' },
+      )
+    })
+  }, [menuOpen])
+
   const menu = () => {
     const overlayProps = stylex.props(headerStyles.menuOverlay)
 
@@ -46,7 +57,6 @@ export default function Header({ currentPath }: HeaderProps): ReactNode {
       role="dialog"
       aria-modal="true"
       aria-labelledby="mobile-menu-title"
-      className={`${overlayProps.className} y-menu-overlay`}
     >
       <h2 id="mobile-menu-title" {...stylex.props(a11y.srOnly)}>
         Menu
@@ -80,7 +90,8 @@ export default function Header({ currentPath }: HeaderProps): ReactNode {
         <ul {...stylex.props(headerStyles.menuList)}>
           {NAV.map((item, index) => (
             <li
-              className="y-menu-link"
+              {...stylex.props(headerStyles.menuLinkItem)}
+              data-menu-link
               key={item.link}
               style={{ ['--i' as string]: index }}
             >

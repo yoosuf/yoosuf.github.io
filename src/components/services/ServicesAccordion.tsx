@@ -54,7 +54,11 @@ export default function ServicesAccordion({ services }: ServicesAccordionProps):
 
         return (
           <div
-            className={`svc-item ${expanded ? 'svc-item-open' : ''}`}
+            {...stylex.props(
+              servicesAccordionStyles.item,
+              expanded && servicesAccordionStyles.itemOpen,
+            )}
+            data-home-hook="svc-item"
             key={service.tab}
           >
             <h3 {...stylex.props(servicesAccordionStyles.heading)}>
@@ -66,19 +70,23 @@ export default function ServicesAccordion({ services }: ServicesAccordionProps):
                 }}
                 aria-expanded={expanded}
                 aria-controls={panelId}
-                className="svc-trigger"
+                {...stylex.props(servicesAccordionStyles.trigger)}
                 onClick={() => toggle(index)}
                 onKeyDown={(event) => onTriggerKeyDown(event, index)}
               >
-                <span className="svc-icon-chip" aria-hidden="true">
+                <span {...stylex.props(servicesAccordionStyles.iconChip)} data-home-hook="svc-chip" aria-hidden="true">
                   <ReactIcon name={iconName} size={15} />
                 </span>
-                <span className="svc-name">{service.name}</span>
-                <ReactIcon
-                  name="chevron-down"
-                  size={16}
-                  className={`svc-chevron ${expanded ? 'svc-chevron-open' : ''}`}
-                />
+                <span {...stylex.props(servicesAccordionStyles.name)} data-home-hook="svc-name">{service.name}</span>
+                <span
+                  {...stylex.props(
+                    servicesAccordionStyles.chevron,
+                    expanded && servicesAccordionStyles.chevronOpen,
+                  )}
+                  aria-hidden="true"
+                >
+                  <ReactIcon name="chevron-down" size={16} />
+                </span>
               </button>
             </h3>
 
@@ -87,34 +95,31 @@ export default function ServicesAccordion({ services }: ServicesAccordionProps):
                 id={panelId}
                 role="region"
                 aria-labelledby={triggerId}
-                className="svc-panel"
+                {...stylex.props(servicesAccordionStyles.panel)}
               >
-                <p className="svc-desc">{service.description}</p>
+                <p {...stylex.props(servicesAccordionStyles.desc)}>{service.description}</p>
 
-                <div className="svc-includes">
-                  <p className="svc-label">What's included</p>
-                  <ul className="svc-list">
+                <div {...stylex.props(servicesAccordionStyles.includes)}>
+                  <p {...stylex.props(servicesAccordionStyles.label)}>What's included</p>
+                  <ul {...stylex.props(servicesAccordionStyles.list)}>
                     {service.includes.map((item) => (
-                      <li className="svc-list-item" key={item}>
-                        <ReactIcon
-                          name="check"
-                          size={14}
-                          className="svc-check"
-                          aria-hidden="true"
-                        />
+                      <li {...stylex.props(servicesAccordionStyles.listItem)} key={item}>
+                        <span {...stylex.props(servicesAccordionStyles.check)} aria-hidden="true">
+                          <ReactIcon name="check" size={14} />
+                        </span>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="svc-footer">
-                  <span className="svc-duration">
+                <div {...stylex.props(servicesAccordionStyles.footer)}>
+                  <span {...stylex.props(servicesAccordionStyles.duration)}>
                     Typical engagement:{' '}
-                    <strong>{service.duration}</strong>
+                    <strong {...stylex.props(servicesAccordionStyles.durationStrong)}>{service.duration}</strong>
                   </span>
                   <a
-                    className="svc-cta"
+                    {...stylex.props(servicesAccordionStyles.cta)}
                     href="https://cal.com/yoosuf"
                     target="_blank"
                     rel="noopener"

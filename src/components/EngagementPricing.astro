@@ -44,9 +44,6 @@ const faqs = [
     a: 'You own everything we build. Delivery includes documentation and a proper handover, and most clients keep me on a lighter retainer or move to a fractional arrangement.',
   },
 ] as const
-const faqListAttrs = stylex.attrs(servicesStyles.faqList)
-const chevronAttrs = stylex.attrs(servicesStyles.chevron)
-const helpCardAttrs = stylex.attrs(servicesStyles.section, servicesStyles.helpCard)
 ---
 
 <section aria-labelledby="ep-engagement-heading">
@@ -58,15 +55,6 @@ const helpCardAttrs = stylex.attrs(servicesStyles.section, servicesStyles.helpCa
   </p>
 
   <ServicesAccordion services={SERVICES} client:idle />
-
-  <style is:inline>
-    .ep-item[open] .ep-chevron {
-      transform: rotate(180deg);
-    }
-    .ep-item summary::-webkit-details-marker {
-      display: none;
-    }
-  </style>
 
   <section {...stylex.attrs(servicesStyles.section)} aria-labelledby="ep-process-heading">
     <h3 id="ep-process-heading" {...stylex.attrs(kicker.eyebrow)}>
@@ -89,12 +77,12 @@ const helpCardAttrs = stylex.attrs(servicesStyles.section, servicesStyles.helpCa
     <h3 id="ep-faq-heading" {...stylex.attrs(kicker.eyebrow)}>
       Common questions
     </h3>
-    <div class:list={['faq-list', faqListAttrs.class]}>
+    <div {...stylex.attrs(servicesStyles.faqList)}>
       {faqs.map((faq) => (
-        <details class="ep-item ep-item-soft">
+        <details {...stylex.attrs(servicesStyles.faqItem)}>
           <summary {...stylex.attrs(servicesStyles.summary)}>
             <span {...stylex.attrs(servicesStyles.summaryText)}>{faq.q}</span>
-            <span class:list={['ep-chevron', chevronAttrs.class]}>
+            <span {...stylex.attrs(servicesStyles.chevron)}>
               <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
             </span>
           </summary>
@@ -106,7 +94,7 @@ const helpCardAttrs = stylex.attrs(servicesStyles.section, servicesStyles.helpCa
     </div>
   </section>
 
-  <section class:list={['cta-band', helpCardAttrs.class]} aria-labelledby="ep-help-heading">
+  <section {...stylex.attrs(servicesStyles.section, servicesStyles.helpCard)} aria-labelledby="ep-help-heading">
     <h3 id="ep-help-heading" {...stylex.attrs(servicesStyles.helpHeading)}>
       Not sure which engagement fits?
     </h3>

@@ -1,8 +1,7 @@
 import * as stylex from '@stylexjs/stylex'
 import { colors, letterSpacing, lineHeights, radii, space, typeScale, weights } from '../../styles/tokens.stylex'
 
-// Homepage hero + sections. Hover-group composites (product-card lift, arrow
-// nudge) stay in global.css; everything here is discrete-element tokens.
+// Homepage hero + sections. Every element receives its own StyleX attrs.
 export const homeStyles = stylex.create({
   article: {
     paddingBlockEnd: { default: space['12'], '@media (min-width: 40rem)': space['20'] },
@@ -45,6 +44,16 @@ export const homeStyles = stylex.create({
     height: '0.5rem',
     position: 'relative',
     width: '0.5rem',
+  },
+
+  pulseDotPing: {
+    backgroundColor: colors.accent,
+    borderRadius: '999px',
+    display: 'inline-flex',
+    height: '100%',
+    opacity: 0.6,
+    position: 'absolute',
+    width: '100%',
   },
 
   headline: {
@@ -184,6 +193,13 @@ export const homeStyles = stylex.create({
     height: '100%',
     padding: space['5'],
     textDecorationLine: 'none',
+    transitionDuration: '0.2s,0.15s,0.2s',
+    transitionProperty: 'transform,border-color,box-shadow',
+    ':hover': {
+      borderColor: colors.accentBorderHover,
+      boxShadow: '0 16px 36px -20px color-mix(in srgb, #2563eb 45%, transparent)',
+      transform: 'translateY(-3px)',
+    },
   },
 
   productCardStatic: {
@@ -207,6 +223,18 @@ export const homeStyles = stylex.create({
     alignItems: 'center',
     display: 'flex',
     gap: space['3'],
+  },
+
+  productIcon: {
+    alignItems: 'center',
+    backgroundColor: colors.wash,
+    borderRadius: radii.md,
+    color: colors.textMuted,
+    display: 'flex',
+    flexShrink: 0,
+    height: '2.25rem',
+    justifyContent: 'center',
+    width: '2.25rem',
   },
 
   productTitleRow: {
@@ -245,6 +273,11 @@ export const homeStyles = stylex.create({
     gap: '0.375rem',
     marginBlockStart: 'auto',
     paddingBlockStart: space['4'],
+  },
+
+  productArrow: {
+    transitionDuration: '0.2s',
+    transitionProperty: 'transform',
   },
 
   /* Featured post */
@@ -330,6 +363,11 @@ export const homeStyles = stylex.create({
 
   /* CTA band */
   ctaBand: {
+    backgroundColor: colors.bg,
+    borderColor: colors.border,
+    borderRadius: '1.25rem',
+    borderStyle: 'solid',
+    borderWidth: 1,
     marginBlockStart: space['16'],
     paddingBlock: { default: space['14'], '@media (min-width: 40rem)': space['20'] },
     paddingInline: { default: space['6'], '@media (min-width: 40rem)': space['12'] },

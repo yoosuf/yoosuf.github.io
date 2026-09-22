@@ -9,13 +9,16 @@ const infiniteSource = await readFile(new URL('../src/scripts/infiniteScroll.ts'
 const postLayoutSource = await readFile(new URL('../src/layouts/PostLayout.astro', import.meta.url), 'utf8')
 const mermaidSource = await readFile(new URL('../src/scripts/mermaid.ts', import.meta.url), 'utf8').catch(() => '')
 
-test('Pine Mail simulator tears down work before Astro swaps the page', () => {
+test('Pine Mail page script is safe to reinitialize across Astro navigation', () => {
   assert.match(routeSource, /<script src="\.\.\/scripts\/pinemail\.ts"><\/script>/)
-  assert.match(source, /astro:before-swap/)
-  assert.match(source, /clearTimeout\([^)]*\)/)
-  assert.match(source, /\.disconnect\(\)/)
-  assert.match(source, /\.cancel\(\)/)
-  assert.match(source, /clearTimeouts|pendingTimers|timeouts/)
+  assert.match(source, /astro:page-load/)
+  assert.match(source, /dataset\.initialized/)
+  assert.match(source, /setupInstallTabs/)
+})
+
+test('Pine Mail initial render does not start a compositor animation loop', () => {
+  assert.doesNotMatch(source, /\.animate\(/)
+  assert.doesNotMatch(source, /IntersectionObserver/)
 })
 
 test('Astro page scripts reinitialize and clean up across view transitions', () => {

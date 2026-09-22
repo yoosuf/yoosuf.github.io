@@ -9,18 +9,13 @@ import * as stylex from '@stylexjs/stylex'
  * pairs, so the values below reference tokens as `var(--pm-*)` strings and are
  * therefore theme-aware without a stylesheet.
  *
- * What stays in global.css (unlayered, scoped `.pm-page`): descendant /
- * JS-created-element / runtime-state / animated-pseudo rules StyleX can't
- * express — `.pm-page code` pill + resets, `.pm-builtfor-icon svg` sizes,
- * `.pm-flow-log-line` (JS-created), `.pm-status-polling` LED, flow rail
- * `::before` dash tracks + keyframes, `.pm-faq-item` internals, `.pm-tool`
- * hover children, tab selected state, `/dashboard` axis var, CTA ghost on the
- * dark hero/CTA bands.
+ * Runtime states are represented by explicit data/StyleX variants or by
+ * vanilla event handlers. Generated Pinemail markup spreads these attrs.
  */
 
 export const styles = stylex.create({
-  /* Page shell — hard guarantee against horizontal page scroll from the
-     animated flow diagram and wide code blocks (tables scroll internally). */
+  /* Page shell — hard guarantee against horizontal page scroll from the flow
+     diagram and wide code blocks (tables scroll internally). */
   pmPage: {
     overflowX: 'clip',
   },
@@ -177,8 +172,31 @@ export const styles = stylex.create({
     },
   },
 
+  pmHeroCheck: {
+    alignItems: 'center',
+    color: '#cbd5e1',
+    display: 'flex',
+    fontSize: 'var(--pm-fs-small)',
+    fontWeight: 600,
+    gap: '8px',
+  },
+
+  pmHeroCheckIcon: {
+    color: 'var(--pm-term-accent)',
+    flexShrink: 0,
+    height: 15,
+    strokeWidth: 3,
+    width: 15,
+  },
+
   pmHeroRight: {
     minWidth: 0,
+  },
+
+  pmBrandIcon: {
+    flexShrink: 0,
+    height: 22,
+    width: 22,
   },
 
   /* --- Terminal mockup --- */
@@ -385,65 +403,6 @@ export const styles = stylex.create({
       borderColor: 'color-mix(in srgb, var(--pm-accent) 48%, var(--pm-border))',
       boxShadow: '0 10px 22px -10px var(--pm-accent-glow)',
       transform: 'translateY(-2px)',
-    },
-    ':after': {
-      content: 'attr(title)',
-      position: 'absolute',
-      bottom: 'calc(100% + 9px)',
-      left: '50%',
-      transform: 'translateX(-50%) translateY(3px)',
-      paddingTop: '4px',
-      paddingRight: '9px',
-      paddingBottom: '4px',
-      paddingLeft: '9px',
-      borderRadius: 6,
-      backgroundColor: 'var(--pm-band)',
-      color: '#fff',
-      fontSize: 11,
-      fontWeight: 600,
-      letterSpacing: '0.02em',
-      lineHeight: 1.3,
-      whiteSpace: 'nowrap',
-      opacity: 0,
-      visibility: 'hidden',
-      pointerEvents: 'none',
-      zIndex: 20,
-      transitionProperty: 'opacity, transform, visibility',
-      transitionDuration: '0.15s',
-    },
-    ':before': {
-      content: '""',
-      position: 'absolute',
-      bottom: 'calc(100% + 5px)',
-      left: '50%',
-      width: 7,
-      height: 7,
-      backgroundColor: 'var(--pm-band)',
-      transform: 'translateX(-50%) rotate(45deg)',
-      opacity: 0,
-      visibility: 'hidden',
-      pointerEvents: 'none',
-      zIndex: 20,
-      transitionProperty: 'opacity, visibility',
-      transitionDuration: '0.15s',
-    },
-    ':hover:after': {
-      opacity: 1,
-      visibility: 'visible',
-      transform: 'translateX(-50%) translateY(0)',
-    },
-    ':hover:before': {
-      opacity: 1,
-      visibility: 'visible',
-    },
-    ':focus-visible:after': {
-      opacity: 1,
-      visibility: 'visible',
-      transform: 'translateX(-50%) translateY(0)',
-    },
-    ':focus-visible:before': {
-      opacity: 1,
-      visibility: 'visible',
     },
     '@media (max-width: 767px)': {
       width: 48,
@@ -939,8 +898,9 @@ export const styles = stylex.create({
     color: 'var(--pm-ink-faint)',
   },
 
-  /* Live log (element, container; JS appends `.pm-flow-log-line` children —
-     those stay on global composites since atomic classes can't reach them). */
+  /* Live log (element, container; the initial rows are authored in the page
+     markup and stay on global composites since atomic classes can't reach
+     them). */
   pmFlowLogHead: {
     display: 'flex',
     alignItems: 'center',
@@ -1012,19 +972,38 @@ export const styles = stylex.create({
     alignItems: 'center',
     gap: '7px',
     whiteSpace: 'nowrap',
-    ':before': {
-      content: '""',
-      width: 7,
-      height: 7,
-      borderRadius: '50%',
-      backgroundColor: 'var(--pm-accent)',
-      boxShadow: '0 0 6px 1px var(--pm-accent-glow)',
-    },
   },
 
-  /* Connector rail (element). The WAAPI packet rides it; the axis custom
-     property and the `::before` dash track (with its keyframes) live in
-     global.css because the orientation flips in a media query. */
+  pmFlowStatusDot: {
+    width: 7,
+    height: 7,
+    borderRadius: '50%',
+    backgroundColor: 'var(--pm-accent)',
+    boxShadow: '0 0 6px 1px var(--pm-accent-glow)',
+  },
+
+  pmFlowLogLine: {
+    flexShrink: 0,
+    fontFamily: 'var(--font-mono)',
+    fontSize: 'var(--pm-fs-tiny)',
+    lineHeight: 1.65,
+    color: '#94a3b8',
+  },
+
+  pmFlowLogTime: {
+    marginRight: 8,
+    color: '#64748b',
+  },
+
+  pmFlowLogHit: {
+    color: '#34d399',
+  },
+
+  pmFlowLogHitTime: {
+    color: '#10b981',
+  },
+
+  /* Connector rail and its visible dash track are explicit child elements. */
   pmFlowArrow: {
     position: 'relative',
     zIndex: 2,
@@ -1076,6 +1055,20 @@ export const styles = stylex.create({
       width: 'auto',
       height: 6,
       transform: 'translateY(-50%)',
+    },
+  },
+
+  pmFlowRailTrack: {
+    position: 'absolute',
+    inset: 0,
+    borderRadius: 'inherit',
+    backgroundImage: 'linear-gradient(180deg, color-mix(in srgb, var(--pm-accent) 78%, transparent) 50%, transparent 50%)',
+    backgroundSize: '5px 14px',
+    backgroundRepeat: 'repeat-y',
+    '@media (min-width: 1180px)': {
+      backgroundImage: 'linear-gradient(90deg, color-mix(in srgb, var(--pm-accent) 78%, transparent) 50%, transparent 50%)',
+      backgroundSize: '14px 6px',
+      backgroundRepeat: 'repeat-x',
     },
   },
 
@@ -1711,11 +1704,14 @@ export const styles = stylex.create({
     transitionProperty: 'background-color, color',
     transitionDuration: '0.25s',
     transitionTimingFunction: 'ease',
+    color: 'var(--pm-ink)',
     ':hover': {
       backgroundColor: 'var(--pm-accent-strong)',
+      color: 'var(--pm-on-accent)',
     },
     ':focus-within': {
       backgroundColor: 'var(--pm-accent-strong)',
+      color: 'var(--pm-on-accent)',
     },
   },
 
@@ -1727,7 +1723,7 @@ export const styles = stylex.create({
     width: 38,
     height: 38,
     borderRadius: 10,
-    color: 'var(--pm-accent-strong)',
+    color: 'inherit',
     backgroundColor: 'color-mix(in srgb, var(--pm-accent) 14%, transparent)',
     borderWidth: 1,
     borderStyle: 'solid',
@@ -1750,7 +1746,7 @@ export const styles = stylex.create({
     fontSize: 'var(--pm-fs-body)',
     fontWeight: 700,
     lineHeight: 1.3,
-    color: 'var(--pm-ink)',
+    color: 'inherit',
     fontFamily: 'var(--font-mono)',
     wordBreak: 'break-word',
   },
@@ -1763,7 +1759,7 @@ export const styles = stylex.create({
     width: 26,
     height: 26,
     borderRadius: 8,
-    color: 'var(--pm-accent-strong)',
+    color: 'inherit',
     backgroundColor: 'color-mix(in srgb, var(--pm-accent) 12%, transparent)',
   },
 
@@ -1771,7 +1767,7 @@ export const styles = stylex.create({
     margin: 0,
     fontSize: 'var(--pm-fs-small)',
     lineHeight: 1.5,
-    color: 'var(--pm-ink-soft)',
+    color: 'inherit',
   },
 
   /* --- Agent workflow timeline --- */
@@ -1903,6 +1899,102 @@ export const styles = stylex.create({
     ':hover': {
       backgroundColor: 'var(--pm-bg-soft)',
     },
+  },
+
+  pmFaqSummary: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 16,
+    margin: 0,
+    paddingBlock: 18,
+    paddingInline: 22,
+    fontSize: 'var(--pm-fs-body)',
+    fontWeight: 700,
+    color: 'var(--pm-ink)',
+    cursor: 'pointer',
+    listStyleType: 'none',
+    transitionProperty: 'background-color',
+    transitionDuration: '0.2s',
+    ':hover': {
+      backgroundColor: 'var(--pm-bg-soft)',
+    },
+  },
+
+  pmFaqAnswer: {
+    margin: 0,
+    paddingTop: 0,
+    paddingRight: 22,
+    paddingBottom: 20,
+    paddingLeft: 22,
+    fontSize: 'var(--pm-fs-body)',
+    lineHeight: 1.6,
+    color: 'var(--pm-ink-soft)',
+  },
+
+  pmFaqToggle: {
+    flexShrink: 0,
+    width: 18,
+    height: 18,
+    color: 'var(--pm-accent-strong)',
+  },
+
+  pmFaqToggleHidden: {
+    display: 'none',
+  },
+
+  pmTableCell: {
+    paddingBlock: 13,
+    paddingInline: 18,
+    textAlign: 'left',
+    verticalAlign: 'top',
+    borderBlockEndColor: 'var(--pm-border)',
+    borderBlockEndStyle: 'solid',
+    borderBlockEndWidth: 1,
+  },
+
+  pmTableHeader: {
+    fontSize: 'var(--pm-fs-small)',
+    fontWeight: 700,
+    color: 'var(--pm-ink)',
+    backgroundColor: 'var(--pm-bg-soft)',
+  },
+
+  pmDocTableCell: {
+    paddingBlock: 8,
+    paddingInline: 14,
+  },
+
+  pmDocTableHeader: {
+    fontSize: 'var(--pm-fs-tiny)',
+    fontWeight: 700,
+    letterSpacing: '0.05em',
+    textTransform: 'uppercase',
+    color: 'var(--pm-ink-faint)',
+    backgroundColor: 'var(--pm-bg-soft)',
+  },
+
+  pmInlineCode: {
+    fontFamily: 'var(--font-mono)',
+    fontSize: '0.9em',
+    paddingBlock: '0.15em',
+    paddingInline: '0.4em',
+    backgroundColor: 'color-mix(in srgb, var(--pm-accent) 12%, transparent)',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'color-mix(in srgb, var(--pm-accent) 20%, transparent)',
+    borderRadius: 6,
+    color: 'var(--pm-ink)',
+  },
+
+  pmWorkflowStepText: {
+    marginTop: 6,
+    marginRight: 0,
+    marginBottom: 0,
+    marginLeft: 0,
+    fontSize: 'var(--pm-fs-small)',
+    lineHeight: 1.55,
+    color: 'var(--pm-ink-soft)',
   },
 
   /* --- CTA box --- */

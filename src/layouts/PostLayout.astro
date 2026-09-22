@@ -16,6 +16,30 @@ import {
   toISODate,
 } from '../lib/utils'
 import { SITE } from '../config'
+import Paragraph from '../components/markdown/Paragraph.astro'
+import Heading2 from '../components/markdown/Heading2.astro'
+import Heading3 from '../components/markdown/Heading3.astro'
+import Heading4 from '../components/markdown/Heading4.astro'
+import UnorderedList from '../components/markdown/UnorderedList.astro'
+import OrderedList from '../components/markdown/OrderedList.astro'
+import ListItem from '../components/markdown/ListItem.astro'
+import Link from '../components/markdown/Link.astro'
+import Quote from '../components/markdown/Quote.astro'
+import Code from '../components/markdown/Code.astro'
+import Pre from '../components/markdown/Pre.astro'
+import Rule from '../components/markdown/Rule.astro'
+import Image from '../components/markdown/Image.astro'
+import Video from '../components/markdown/Video.astro'
+import Table from '../components/markdown/Table.astro'
+import TableHead from '../components/markdown/TableHead.astro'
+import TableBody from '../components/markdown/TableBody.astro'
+import TableRow from '../components/markdown/TableRow.astro'
+import TableCell from '../components/markdown/TableCell.astro'
+import TableHeader from '../components/markdown/TableHeader.astro'
+import Figure from '../components/markdown/Figure.astro'
+import Caption from '../components/markdown/Caption.astro'
+import Strong from '../components/markdown/Strong.astro'
+import Kbd from '../components/markdown/Kbd.astro'
 
 interface Props {
   entry: CollectionEntry<'blog'>
@@ -37,6 +61,12 @@ const postImage = entry.data.heroImage
   : new URL(SITE.socialImage, SITE.url).href
 const postImageAlt = entry.data.heroAlt ?? decodedTitle
 const proseAttrs = stylex.attrs(postStyles.prose)
+const markdownComponents = {
+  p: Paragraph, h2: Heading2, h3: Heading3, h4: Heading4, ul: UnorderedList, ol: OrderedList,
+  li: ListItem, a: Link, blockquote: Quote, code: Code, pre: Pre, hr: Rule, img: Image, video: Video,
+  table: Table, thead: TableHead, tbody: TableBody, tr: TableRow, td: TableCell, th: TableHeader,
+  figure: Figure, figcaption: Caption, strong: Strong, kbd: Kbd,
+}
 
 const articleJsonLd = {
   '@context': 'https://schema.org',
@@ -113,8 +143,8 @@ const articleJsonLd = {
         </p>
       </header>
 
-      <div class:list={['prose', proseAttrs.class]}>
-        <Content />
+      <div {...proseAttrs}>
+        <Content components={markdownComponents} />
       </div>
 
       {tags.length > 0 && (

@@ -134,6 +134,9 @@ export const headerStyles = stylex.create({
     },
   },
 
+  menuLinkItem: {
+  },
+
   menuLinkActive: {
     color: colors.accent,
   },

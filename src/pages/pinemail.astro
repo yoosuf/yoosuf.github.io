@@ -7,8 +7,6 @@ import { styles } from '../components/ui/product.stylex'
 import { pinemail } from '../data/product'
 import { SITE } from '../config'
 
-const attrsOf = stylex.attrs
-const pmCls = (...keys) => attrsOf(...keys).class
 
 const softwareJsonLd = {
   '@context': 'https://schema.org',
@@ -63,27 +61,27 @@ const softwareJsonLd = {
 >
   <ProductLayout product={pinemail}>
     <div slot="media">
-      <div class:list={['pm-terminal', pmCls(styles.pmTerminal)]} role="img" aria-label="Pine Mail quickstart in a terminal">
-        <div class:list={['pm-terminal-bar', pmCls(styles.pmTerminalBar)]}>
-          <span class:list={['pm-terminal-dot', 'pm-terminal-dot-red', pmCls(styles.pmTerminalDotRed)]}></span>
-          <span class:list={['pm-terminal-dot', 'pm-terminal-dot-yellow', pmCls(styles.pmTerminalDotYellow)]}></span>
-          <span class:list={['pm-terminal-dot', 'pm-terminal-dot-green', pmCls(styles.pmTerminalDotGreen)]}></span>
-          <span class:list={['pm-terminal-title', pmCls(styles.pmTerminalTitle)]}>pinemail &mdash; zsh</span>
+      <div data-pm-hook="pm-terminal" {...stylex.attrs(styles.pmTerminal)} role="img" aria-label="Pine Mail quickstart in a terminal">
+        <div data-pm-hook="pm-terminal-bar" {...stylex.attrs(styles.pmTerminalBar)}>
+          <span data-pm-hook="pm-terminal-dot pm-terminal-dot-red" {...stylex.attrs(styles.pmTerminalDotRed)}></span>
+          <span data-pm-hook="pm-terminal-dot pm-terminal-dot-yellow" {...stylex.attrs(styles.pmTerminalDotYellow)}></span>
+          <span data-pm-hook="pm-terminal-dot pm-terminal-dot-green" {...stylex.attrs(styles.pmTerminalDotGreen)}></span>
+          <span data-pm-hook="pm-terminal-title" {...stylex.attrs(styles.pmTerminalTitle)}>pinemail — zsh</span>
         </div>
-        <div class:list={['pm-terminal-body', pmCls(styles.pmTerminalBody)]}>
-          <pre class:list={['pm-terminal-lines', pmCls(styles.pmTerminalLines)]}><span class:list={['pm-prompt', pmCls(styles.pmPrompt)]}>$</span> docker run -d --name pinemail \
+        <div data-pm-hook="pm-terminal-body" {...stylex.attrs(styles.pmTerminalBody)}>
+          <pre data-pm-hook="pm-terminal-lines" {...stylex.attrs(styles.pmTerminalLines)}><span data-pm-hook="pm-prompt" {...stylex.attrs(styles.pmPrompt)}>$</span> docker run -d --name pinemail \
     -p 1025:1025 -p 8025:8025 yoosuf/pinemail:latest
 
-<span class:list={['pm-prompt', pmCls(styles.pmPrompt)]}>$</span> curl "http://localhost:8025/api/wait?to=user@example.com&amp;timeout_ms=10000"
+<span data-pm-hook="pm-prompt" {...stylex.attrs(styles.pmPrompt)}>$</span> curl "http://localhost:8025/api/wait?to=user@example.com&timeout_ms=10000"
 &#123;
   "id": "msg_01J6XYZ",
   "subject": "Confirm your account",
   "codes": ["849201"]
 &#125;
 
-<span class:list={['pm-prompt', pmCls(styles.pmPrompt)]}>$</span> curl -X POST http://localhost:8025/api/sms/webhook \
-    -d "From=%2B15550199&amp;To=%2B15550100&amp;Body=Your code is 839201"
-<span class:list={['pm-ok', pmCls(styles.pmOk)]}>&#10003;</span> sms_01A2B3 captured in 3ms</pre>
+<span data-pm-hook="pm-prompt" {...stylex.attrs(styles.pmPrompt)}>$</span> curl -X POST http://localhost:8025/api/sms/webhook \
+    -d "From=%2B15550199&To=%2B15550100&Body=Your code is 839201"
+<span data-pm-hook="pm-ok" {...stylex.attrs(styles.pmOk)}>&#10003;</span> sms_01A2B3 captured in 3ms</pre>
         </div>
       </div>
     </div>

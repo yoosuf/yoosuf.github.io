@@ -1,11 +1,15 @@
 import * as stylex from '@stylexjs/stylex'
 import { colors, letterSpacing, lineHeights, space } from '../../styles/tokens.stylex'
 
-// Blog list row (PostCard.astro). Hover interactions with the row use the
-// `.y-post-card` descendant composites in global.css.
+// Blog list row (PostCard.astro). Every element receives its own StyleX attrs.
 export const postCardStyles = stylex.create({
   row: {
     paddingBlock: space['5'],
+  },
+  divider: {
+    borderBlockStartColor: colors.border,
+    borderBlockStartStyle: 'solid',
+    borderBlockStartWidth: 1,
   },
   heading: {
     color: colors.text,

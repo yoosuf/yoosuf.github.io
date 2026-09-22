@@ -63,13 +63,11 @@ const themeCss =
 
 const brandUrl = new URL(product.homeHref, SITE.url).href
 
-const attrsOf = stylex.attrs
-const pmCls = (...keys) => attrsOf(...keys).class
 
 function actionClass(action: ProductAction) {
   return action.variant === 'ghost'
-    ? { stylex: pmCls(styles.pmCta, styles.pmCtaGhost), list: ['pm-cta', 'pm-cta-ghost'] }
-    : { stylex: pmCls(styles.pmCta), list: ['pm-cta'] }
+    ? stylex.attrs(styles.pmCta, styles.pmCtaGhost)
+    : stylex.attrs(styles.pmCta)
 }
 
 function actionProps(action: ProductAction) {
@@ -78,17 +76,17 @@ function actionProps(action: ProductAction) {
 }
 ---
 
-<div class:list={['pm-page', pmCls(styles.pmPage)]} style={themeCss}>
-  <nav class:list={['pm-subnav', pmCls(styles.pmSubnav)]} aria-label={`${product.name} sections`}>
-    <div class:list={['pm-container', pmCls(styles.pmContainer, styles.pmSubnavContainer)]}>
-      <a class:list={['pm-brand', pmCls(styles.pmBrand)]} href={brandUrl} aria-label={`${product.name} home`}>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-hidden="true"><path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.6a1 1 0 0 1-.7-1.7L8 10h-.8a1 1 0 0 1-.7-1.6L11 5.5a1 1 0 0 1 1.4 0l4.5 2.9a1 1 0 0 1-.7 1.6H15l2.3 2.3a1 1 0 0 1-.7 1.7Z"/></svg>
+<div data-pm-hook="pm-page" {...stylex.attrs(styles.pmPage)} style={themeCss}>
+  <nav data-pm-hook="pm-subnav" {...stylex.attrs(styles.pmSubnav)} aria-label={`${product.name} sections`}>
+    <div data-pm-hook="pm-container" {...stylex.attrs(styles.pmContainer, styles.pmSubnavContainer)}>
+      <a data-pm-hook="pm-brand" {...stylex.attrs(styles.pmBrand)} href={brandUrl} aria-label={`${product.name} home`}>
+        <svg {...stylex.attrs(styles.pmBrandIcon)} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-hidden="true"><path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.6a1 1 0 0 1-.7-1.7L8 10h-.8a1 1 0 0 1-.7-1.6L11 5.5a1 1 0 0 1 1.4 0l4.5 2.9a1 1 0 0 1-.7 1.6H15l2.3 2.3a1 1 0 0 1-.7 1.7Z"/></svg>
         <span>{product.name}</span>
       </a>
-      <div class:list={['pm-subnav-links', pmCls(styles.pmSubnavLinks)]}>
+      <div data-pm-hook="pm-subnav-links" {...stylex.attrs(styles.pmSubnavLinks)}>
         {
           product.navLinks.map((link) => (
-            <a class:list={['pm-subnav-link', pmCls(styles.pmSubnavLink)]} href={link.href}>
+            <a data-pm-hook="pm-subnav-link" {...stylex.attrs(styles.pmSubnavLink)} href={link.href}>
               {link.label}
             </a>
           ))
@@ -97,16 +95,16 @@ function actionProps(action: ProductAction) {
     </div>
   </nav>
 
-  <section class:list={['pm-hero', pmCls(styles.pmHero)]}>
-    <div class:list={['pm-hero-grid', pmCls(styles.pmHeroGrid)]}>
-      <div class:list={['pm-hero-left', pmCls(styles.pmHeroLeft)]}>
-        <span class:list={['pm-hero-tag', pmCls(styles.pmHeroTag)]}>{product.hero.tag}</span>
-        <h1 class:list={['pm-hero-title', pmCls(styles.pmHeroTitle)]}>{product.hero.title}</h1>
-        <p class:list={['pm-hero-sub', pmCls(styles.pmHeroSub)]}>{product.hero.sub}</p>
-        <div class:list={['pm-hero-actions', pmCls(styles.pmHeroActions)]}>
+  <section data-pm-hook="pm-hero" {...stylex.attrs(styles.pmHero)}>
+    <div data-pm-hook="pm-hero-grid" {...stylex.attrs(styles.pmHeroGrid)}>
+      <div data-pm-hook="pm-hero-left" {...stylex.attrs(styles.pmHeroLeft)}>
+        <span data-pm-hook="pm-hero-tag" {...stylex.attrs(styles.pmHeroTag)}>{product.hero.tag}</span>
+        <h1 data-pm-hook="pm-hero-title" {...stylex.attrs(styles.pmHeroTitle)}>{product.hero.title}</h1>
+        <p data-pm-hook="pm-hero-sub" {...stylex.attrs(styles.pmHeroSub)}>{product.hero.sub}</p>
+        <div data-pm-hook="pm-hero-actions" {...stylex.attrs(styles.pmHeroActions)}>
           {
             product.hero.actions.map((action) => (
-              <a class:list={[actionClass(action).stylex, ...actionClass(action).list]} href={action.href} {...actionProps(action)}>
+              <a {...actionClass(action)} href={action.href} {...actionProps(action)}>
                 {action.icon === 'launch' && (
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 11 7-8 7 8"/><path d="M5 18h14"/><path d="M5 22h14"/></svg>
                 )}
@@ -118,17 +116,17 @@ function actionProps(action: ProductAction) {
             ))
           }
         </div>
-        <ul class:list={['pm-hero-checks', pmCls(styles.pmHeroChecks)]}>
+        <ul data-pm-hook="pm-hero-checks" {...stylex.attrs(styles.pmHeroChecks)}>
           {product.hero.checks.map((check) => (
-            <li>
-              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7" /></svg>
+            <li {...stylex.attrs(styles.pmHeroCheck)}>
+              <svg {...stylex.attrs(styles.pmHeroCheckIcon)} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7" /></svg>
               <span>{check}</span>
             </li>
           ))}
         </ul>
       </div>
 
-      <div class:list={['pm-hero-right', pmCls(styles.pmHeroRight)]}>
+      <div data-pm-hook="pm-hero-right" {...stylex.attrs(styles.pmHeroRight)}>
         <slot name="media" />
       </div>
     </div>
@@ -136,15 +134,15 @@ function actionProps(action: ProductAction) {
 
   <slot />
 
-  <section class:list={['pm-section', pmCls(styles.pmSection)]}>
-    <div class:list={['pm-container', pmCls(styles.pmContainer)]}>
-      <div class:list={['pm-cta-box', pmCls(styles.pmCtaBox)]}>
-        <h2 class:list={['pm-cta-title', pmCls(styles.pmCtaTitle)]}>{product.cta.title}</h2>
-        <p class:list={['pm-cta-text', pmCls(styles.pmCtaText)]}>{product.cta.text}</p>
-        <div class:list={['pm-cta-actions', pmCls(styles.pmCtaActions)]}>
+  <section data-pm-hook="pm-section" {...stylex.attrs(styles.pmSection)}>
+    <div data-pm-hook="pm-container" {...stylex.attrs(styles.pmContainer)}>
+      <div data-pm-hook="pm-cta-box" {...stylex.attrs(styles.pmCtaBox)}>
+        <h2 data-pm-hook="pm-cta-title" {...stylex.attrs(styles.pmCtaTitle)}>{product.cta.title}</h2>
+        <p data-pm-hook="pm-cta-text" {...stylex.attrs(styles.pmCtaText)}>{product.cta.text}</p>
+        <div data-pm-hook="pm-cta-actions" {...stylex.attrs(styles.pmCtaActions)}>
           {
             product.cta.actions.map((action) => (
-              <a class:list={[actionClass(action).stylex, ...actionClass(action).list]} href={action.href} {...actionProps(action)}>
+              <a {...actionClass(action)} href={action.href} {...actionProps(action)}>
                 {action.icon === 'launch' && (
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 11 7-8 7 8"/><path d="M5 18h14"/><path d="M5 22h14"/></svg>
                 )}

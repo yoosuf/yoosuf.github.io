@@ -3,11 +3,13 @@
   "type": "module",
   "version": "1.0.0",
   "private": true,
-  "description": "Personal site and blog of Yoosuf Mohamed — Systems Architect. Built with Astro + Tailwind CSS.",
+  "description": "Personal site and blog of Yoosuf Mohamed — Systems Architect. Built with Astro + StyleX.",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "build:clean": "node scripts/build-without-warnings.mjs",
+    "generate:pinemail": "node scripts/generate-pinemail-body.mjs",
+    "convert:stylex-attrs": "node scripts/convert-stylex-attrs.mjs",
     "check:architecture": "node scripts/check-stylex-architecture.mjs",
     "preview": "astro preview",
     "astro": "astro",
@@ -17,6 +19,8 @@
     "node": ">=22"
   },
   "dependencies": {
+    "@astrojs/mdx": "^8.0.1",
+    "@astrojs/mdx": "^8.0.1",
     "@astrojs/react": "^6.0.5",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",

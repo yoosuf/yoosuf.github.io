@@ -1,0 +1,5 @@
+---
+import MarkdownElement from './MarkdownElement.astro'
+const { style: _style, ...attrs } = Astro.props
+---
+<MarkdownElement tag="code" {...attrs}><slot /></MarkdownElement>

@@ -7,8 +7,8 @@ import * as stylex from '@stylexjs/stylex'
 // consts module.
 //
 // Colours pair both palettes inline via the CSS `light-dark()` function and
-// resolve against the `color-scheme` declared on `:root` in global.css — no
-// theme objects or wrappers needed for system dark mode. Values preserve
+// resolve against the `color-scheme` declared on the document shell — no theme
+// objects or wrappers needed for system dark mode. Values preserve
 // parity with the previous Tailwind `@theme` (bg/wash/accent maps to the old
 // paper/wash/accent; text* maps to ink/mid/sub/faint).
 

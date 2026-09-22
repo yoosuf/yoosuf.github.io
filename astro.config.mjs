@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config'
 import react from '@astrojs/react'
+import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import stylexVite from '@stylexjs/unplugin/vite'
 import { readdirSync, readFileSync } from 'node:fs'
@@ -13,7 +14,7 @@ const blogDir = join(process.cwd(), 'src/content/blog')
 // are immutable, so mark them yearly. Reads the markdown at config time.
 const postLastmod = new Map()
 for (const f of readdirSync(blogDir)) {
-  if (!f.endsWith('.md')) continue
+  if (!f.endsWith('.mdx')) continue
   const md = readFileSync(join(blogDir, f), 'utf8')
   const dateMatch = md.match(/^date:\s*["']?([\d-]+)/m)
   const permMatch = md.match(/^permalink:\s*"?([^"\s]+)"?/m)
@@ -36,11 +37,12 @@ export default defineConfig({
   compressHTML: true,
   prefetch: true,
   build: {
-    // Global CSS is tiny; inline it so there is no render-blocking stylesheet request.
+    // StyleX extracts and inlines the generated rules; there is no global stylesheet.
     inlineStylesheets: 'always',
   },
   integrations: [
     react(),
+    mdx(),
     sitemap({
       entryLimit: 50_000,
       serialize(item) {
@@ -75,15 +77,14 @@ export default defineConfig({
       chunkSizeWarningLimit: 700,
     },
     plugins: [
-      // StyleX compiles inline+extracted rules; extracted CSS is appended to
-      // the global.css asset and inlined by `inlineStylesheets: 'always'`.
+      // StyleX compiles inline and extracted rules and inlines the result.
       stylexVite({
         useCSSLayers: true,
         // The unplugin re-processes collected rules through Lightning CSS
         // with its own (old) browserslist defaults, which lower the
         // `light-dark()` colour tokens into a broken var() polyfill. Pin
         // modern targets so light-dark() survives and resolves via the
-        // color-scheme declared on :root in global.css.
+        // color-scheme declared on the document root.
         lightningcssOptions: {
           targets: {
             chrome: 123 << 16,

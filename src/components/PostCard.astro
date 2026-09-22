@@ -8,25 +8,22 @@ import { decodeEntities, ensureTrailingSlash, formatShortDate, readingTime, toIS
 interface Props {
   post: CollectionEntry<'blog'>
   headingLevel?: 'h2' | 'h3'
+  divider?: boolean
 }
 
-const { post, headingLevel = 'h2' } = Astro.props
+const { post, headingLevel = 'h2', divider = false } = Astro.props
 const { title, date, description, permalink } = post.data
 const url = ensureTrailingSlash(permalink)
 const HeadingTag = headingLevel
-const rowAttrs = stylex.attrs(postCardStyles.row)
-const dateAttrs = stylex.attrs(kicker.date)
-const headingAttrs = stylex.attrs(postCardStyles.heading)
-const titleAttrs = stylex.attrs(postCardStyles.titleLink)
 ---
 
-<li class:list={['y-post-card', rowAttrs.class]}>
-  <time class:list={['y-post-date', dateAttrs.class]} datetime={toISODate(date)}>
+<li {...stylex.attrs(postCardStyles.row, divider && postCardStyles.divider)} data-home-hook="y-post-card">
+  <time {...stylex.attrs(kicker.date)} datetime={toISODate(date)}>
     {formatShortDate(date)}
   </time>
 
-  <HeadingTag class:list={['y-post-heading', headingAttrs.class]}>
-    <a href={url} class:list={['y-post-title', titleAttrs.class]}>
+  <HeadingTag {...stylex.attrs(postCardStyles.heading)} data-home-hook="y-post-heading">
+    <a href={url} {...stylex.attrs(postCardStyles.titleLink)} data-home-hook="y-post-title">
       {decodeEntities(title)}
     </a>
   </HeadingTag>

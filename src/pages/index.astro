@@ -27,11 +27,6 @@ const toolbox = [
   'React',
   'Flutter',
 ]
-const productCardAttrs = stylex.attrs(homeStyles.productCard)
-const productTitleAttrs = stylex.attrs(homeStyles.productTitle)
-const latestCardAttrs = stylex.attrs(homeStyles.latestCard)
-const latestTitleAttrs = stylex.attrs(homeStyles.latestTitle)
-const ctaBandAttrs = stylex.attrs(homeStyles.ctaBand)
 ---
 
 <BaseLayout
@@ -43,11 +38,9 @@ const ctaBandAttrs = stylex.attrs(homeStyles.ctaBand)
 >
   <article {...stylex.attrs(homeStyles.article, pageStyles.container)}>
       <section {...stylex.attrs(homeStyles.hero)} aria-labelledby="hero-heading">
-        <div class="hero-glow" aria-hidden="true"></div>
-
         <p {...stylex.attrs(homeStyles.availPill)}>
           <span aria-hidden="true" {...stylex.attrs(homeStyles.pulseDotWrap)}>
-            <span class="y-ping"></span>
+            <span data-motion="pulse" {...stylex.attrs(homeStyles.pulseDotPing)}></span>
             <span {...stylex.attrs(homeStyles.pulseDot)}></span>
           </span>
           Available for new projects
@@ -143,14 +136,15 @@ const ctaBandAttrs = stylex.attrs(homeStyles.ctaBand)
           <li>
             <a
               href="/pinemail/"
-              class:list={['product-card', productCardAttrs.class]}
+              {...stylex.attrs(homeStyles.productCard)}
+              data-home-hook="product-card"
             >
               <span {...stylex.attrs(homeStyles.productIconRow)}>
-                <span class="svc-icon-chip" aria-hidden="true">
+                <span {...stylex.attrs(homeStyles.productIcon)} aria-hidden="true">
                   <Icon name="mail" size={18} />
                 </span>
                 <span {...stylex.attrs(homeStyles.productTitleRow)}>
-                  <span class:list={['y-product-title', productTitleAttrs.class]}>Pine Mail</span>
+                  <span {...stylex.attrs(homeStyles.productTitle)} data-home-hook="y-product-title">Pine Mail</span>
                   <span {...stylex.attrs(pills.accentBorder)}>Live</span>
                 </span>
               </span>
@@ -160,14 +154,14 @@ const ctaBandAttrs = stylex.attrs(homeStyles.ctaBand)
               </span>
               <span {...stylex.attrs(homeStyles.productCta)}>
                 View Pine Mail
-                <Icon name="arrow-right" size={15} class="product-arrow" />
+                <Icon name="arrow-right" size={15} {...stylex.attrs(homeStyles.productArrow)} data-home-hook="y-product-arrow" />
               </span>
             </a>
           </li>
 
           <li {...stylex.attrs(homeStyles.productCardStatic)}>
             <span {...stylex.attrs(homeStyles.productIconRow)}>
-              <span class="svc-icon-chip" aria-hidden="true">
+              <span {...stylex.attrs(homeStyles.productIcon)} aria-hidden="true">
                 <Icon name="brain" size={18} />
               </span>
               <span {...stylex.attrs(homeStyles.productTitleRow)}>
@@ -183,7 +177,7 @@ const ctaBandAttrs = stylex.attrs(homeStyles.ctaBand)
 
           <li {...stylex.attrs(homeStyles.productCardStatic)}>
             <span {...stylex.attrs(homeStyles.productIconRow)}>
-              <span class="svc-icon-chip" aria-hidden="true">
+              <span {...stylex.attrs(homeStyles.productIcon)} aria-hidden="true">
                 <Icon name="message-square" size={18} />
               </span>
               <span {...stylex.attrs(homeStyles.productTitleRow)}>
@@ -211,7 +205,8 @@ const ctaBandAttrs = stylex.attrs(homeStyles.ctaBand)
 
         <a
           href={ensureTrailingSlash(featured.data.permalink)}
-          class:list={['latest-wash', latestCardAttrs.class]}
+          {...stylex.attrs(homeStyles.latestCard)}
+          data-home-hook="latest-wash"
         >
           <span {...stylex.attrs(homeStyles.latestBadgeRow)}>
             <span {...stylex.attrs(pills.accent)}>Latest</span>
@@ -222,7 +217,7 @@ const ctaBandAttrs = stylex.attrs(homeStyles.ctaBand)
             ))}
           </span>
 
-          <span class:list={['y-latest-title', latestTitleAttrs.class]}>
+          <span {...stylex.attrs(homeStyles.latestTitle)} data-home-hook="y-latest-title">
             {decodeEntities(featured.data.title)}
           </span>
 
@@ -244,7 +239,7 @@ const ctaBandAttrs = stylex.attrs(homeStyles.ctaBand)
         </ul>
       </section>
 
-      <section class:list={['cta-band', ctaBandAttrs.class]} aria-labelledby="cta-heading">
+      <section {...stylex.attrs(homeStyles.ctaBand)} aria-labelledby="cta-heading">
         <h2 id="cta-heading" {...stylex.attrs(homeStyles.ctaHeading)}>
           Let's build something that scales.
         </h2>

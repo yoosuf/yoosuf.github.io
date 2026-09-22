@@ -20,7 +20,7 @@ const year = SITE.date.currentYear
 
       <nav {...stylex.attrs(footerStyles.nav)} aria-label="Footer">
         <a {...stylex.attrs(footerStyles.navLink)} href="/feed.xml">RSS</a>
-        <a {...stylex.attrs(footerStyles.navLink)} href="mailto:{SITE.email}">Email</a>
+        <a {...stylex.attrs(footerStyles.navLink)} href={`mailto:${SITE.email}`}>Email</a>
         <a {...stylex.attrs(footerStyles.navLink)} href="https://twitter.com/aitchdei" target="_blank" rel="noopener">
           X <span {...stylex.attrs(a11y.srOnly)}>(opens in new tab)</span>
         </a>

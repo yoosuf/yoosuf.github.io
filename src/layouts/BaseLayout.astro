@@ -134,8 +134,9 @@ const mainAttrs = stylex.attrs(shellStyles.main)
     ))}
 
     {import.meta.env.PROD && (
-      <script is:inline>
-        {`window.dataLayer = window.dataLayer || [];
+      <script
+        is:inline
+        set:html={`window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         (function () {
           var id = '${SITE.gaId}';
@@ -163,7 +164,7 @@ const mainAttrs = stylex.attrs(shellStyles.main)
           else addEventListener('load', onIdle, { once: true });
           addEventListener('pointerdown', load, { once: true });
         })();`}
-      </script>
+      />
     )}
 
     <script is:inline>

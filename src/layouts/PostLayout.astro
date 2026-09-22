@@ -128,53 +128,5 @@ const articleJsonLd = {
       )}
   </article>
 
-  {mermaid && (
-    <script>
-      // Mermaid is heavy (~1MB); defer the download until the page is idle so
-      // it never competes with the initial paint.
-      const render = async () => {
-        const blocks = [...document.querySelectorAll('pre[data-language="mermaid"]')]
-        if (!blocks.length) return
-
-        // The dynamic import fans out across many small chunks; a single
-        // dropped response on a busy first load rejects it. Retry a few times
-        // with a short backoff before giving up (and leaving the source block).
-        let mermaid
-        for (let attempt = 0; attempt < 3; attempt++) {
-          try {
-            ;({ default: mermaid } = await import('mermaid'))
-            break
-          } catch (err) {
-            if (attempt === 2) {
-              console.error('Mermaid failed to load:', err)
-              return
-            }
-            await new Promise((resolve) => setTimeout(resolve, 350 * (attempt + 1)))
-          }
-        }
-
-        mermaid.initialize({ startOnLoad: false, theme: 'default' })
-        const nodes = blocks.map((pre, i) => {
-          const div = document.createElement('div')
-          div.className = 'mermaid'
-          div.id = 'mermaid-' + i
-          div.textContent = pre.textContent
-          pre.replaceWith(div)
-          return div
-        })
-        try {
-          await mermaid.run({ nodes })
-        } catch (err) {
-          // A diagram that fails to parse renders its own error box; anything
-          // else reaching here is logged without hiding the surrounding post.
-          console.error('Mermaid rendering failed:', err)
-        }
-      }
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(render, { timeout: 3000 })
-      } else {
-        setTimeout(render, 1500)
-      }
-    </script>
-  )}
+  {mermaid && <script src="../scripts/mermaid.ts"></script>}
 </BaseLayout>

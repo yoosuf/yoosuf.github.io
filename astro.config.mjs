@@ -68,6 +68,12 @@ export default defineConfig({
     }),
   ],
   vite: {
+    build: {
+      // Mermaid is loaded only by diagram posts after idle time. Its parser
+      // bundle is intentionally isolated from the initial graph and is just
+      // above Vite's generic 500 kB warning threshold.
+      chunkSizeWarningLimit: 700,
+    },
     plugins: [
       // StyleX compiles inline+extracted rules; extracted CSS is appended to
       // the global.css asset and inlined by `inlineStylesheets: 'always'`.

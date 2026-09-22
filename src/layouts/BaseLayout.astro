@@ -356,16 +356,6 @@ const mainAttrs = stylex.attrs(shellStyles.main)
         }
       }
 
-      /* Mermaid diagrams replace their <pre> at runtime via mermaid.ts. */
-      .mermaid {
-        margin: 1.5em 0;
-        overflow-x: auto;
-      }
-      .mermaid svg {
-        max-width: 100%;
-        height: auto;
-      }
-
       /* Group-hover composites for the data-home-hook relationship classes. */
       [data-home-hook='product-card']:hover [data-home-hook='y-product-title'],
       [data-home-hook='latest-wash']:hover [data-home-hook='y-latest-title'],

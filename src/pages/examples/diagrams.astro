@@ -1,0 +1,107 @@
+---
+import * as stylex from '@stylexjs/stylex'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import MermaidDiagram from '../../components/diagrams/MermaidDiagram.astro'
+import { body, headings } from '../../components/ui/primitives'
+import { pageStyles } from '../../components/ui/page.stylex'
+
+const flowchart = `flowchart LR
+    User --> Web
+    Web --> API
+    API --> DB`
+
+const architecture = `flowchart LR
+    USER["Customer"]
+    WEB["Astro"]
+    API["API"]
+    DB[("PostgreSQL")]
+    REDIS[("Redis")]
+    WORKER["Worker"]
+    USER --> WEB
+    WEB --> API
+    API --> DB
+    API --> REDIS
+    API --> WORKER`
+
+const sequence = `sequenceDiagram
+    actor User
+    participant Web
+    participant API
+    participant DB
+    User->>Web: Submit request
+    Web->>API: POST /orders
+    API->>DB: Create order
+    DB-->>API: Order
+    API-->>Web: Success`
+
+const stateMachine = `stateDiagram-v2
+    [*] --> Draft
+    Draft --> Submitted
+    Submitted --> Approved
+    Submitted --> Rejected
+    Rejected --> Draft
+    Approved --> Completed
+    Completed --> [*]`
+
+const classicOverride = `---
+config:
+  look: classic
+---
+flowchart LR
+    Source --> Override`
+---
+
+<BaseLayout
+  title="Mermaid Diagram Examples — Yoosuf Mohamed"
+  description="Hand-drawn Mermaid diagram examples using the site's Astro and StyleX system."
+  canonical="/examples/diagrams/"
+>
+  <article {...stylex.attrs(pageStyles.page, pageStyles.container)}>
+    <header>
+      <h1 {...stylex.attrs(headings.page)}>Hand-drawn Mermaid diagrams</h1>
+      <p {...stylex.attrs(body.muted)}>
+        Mermaid remains the source of truth; Astro and StyleX provide the engineering-paper surface around it.
+      </p>
+    </header>
+
+    <MermaidDiagram
+      title="Request flow"
+      caption="A small flowchart in the pencil variant."
+      ariaLabel="A user request flows from the web application to the API and database."
+      code={flowchart}
+      variant="pencil"
+    />
+
+    <MermaidDiagram
+      title="Application architecture"
+      caption="The marker variant uses stronger ink and a cleaner whiteboard surface."
+      ariaLabel="Customer access flows through Astro to an API, PostgreSQL, Redis and a worker."
+      code={architecture}
+      variant="marker"
+      size="wide"
+    />
+
+    <MermaidDiagram
+      title="Order submission sequence"
+      ariaLabel="A user submits an order through the web application; the API stores it in the database and returns success."
+      code={sequence}
+      variant="pencil"
+    />
+
+    <MermaidDiagram
+      title="Order lifecycle"
+      caption="State diagrams use the same renderer and fixed hand-drawn seed."
+      ariaLabel="An order moves from draft to submitted, then approved or rejected, and finally completed."
+      code={stateMachine}
+      variant="marker"
+    />
+
+    <MermaidDiagram
+      title="Native Mermaid override"
+      caption="This diagram opts out of the global hand-drawn look through Mermaid frontmatter."
+      ariaLabel="A classic Mermaid diagram showing Source flowing to Override."
+      code={classicOverride}
+      variant="pencil"
+    />
+  </article>
+</BaseLayout>

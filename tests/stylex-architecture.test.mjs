@@ -83,6 +83,83 @@ test('keeps Pinemail descendant presentation in StyleX keys', async () => {
   assert.match(pinemailBody, /styles\.pmFlowLogLine/)
 })
 
+test('defines the Mermaid diagram visual system in StyleX modules', async () => {
+  const tokens = await readFile(new URL('../src/styles/diagramTokens.stylex.ts', import.meta.url), 'utf8')
+  const styles = await readFile(new URL('../src/components/diagrams/MermaidDiagram.stylex.ts', import.meta.url), 'utf8')
+
+  assert.match(tokens, /defineVars/)
+  assert.match(tokens, /pencil/)
+  assert.match(tokens, /marker/)
+  assert.match(styles, /stylex\.create/)
+  assert.match(styles, /overflowX: ['"]auto['"]|overflowX: ['"]scroll['"]|overflowX:/)
+  assert.match(styles, /justifyContent: ['"]center['"]|justifyContent:/)
+  assert.doesNotMatch(styles, /backgroundColor:\s*['"]#/)
+})
+
+test('exposes an Astro-first accessible Mermaid diagram component', async () => {
+  const component = await readFile(new URL('../src/components/diagrams/MermaidDiagram.astro', import.meta.url), 'utf8')
+
+  assert.match(component, /<figure/)
+  assert.match(component, /data-mermaid-diagram/)
+  assert.match(component, /stylex\.attrs\(/)
+  assert.match(component, /aria-labelledby|aria-label/)
+  assert.match(component, /figcaption/)
+  assert.doesNotMatch(component, /client:(load|idle|visible|media)/)
+})
+
+test('centralizes deterministic hand-drawn Mermaid defaults', async () => {
+  const config = await readFile(new URL('../src/lib/mermaid/config.ts', import.meta.url), 'utf8')
+
+  assert.match(config, /startOnLoad:\s*false/)
+  assert.match(config, /securityLevel:\s*['"]strict['"]|securityLevel:/)
+  assert.match(config, /look:\s*['"]handDrawn['"]|look:/)
+  assert.match(config, /handDrawnSeed:\s*42/)
+  assert.match(config, /themeVariables/)
+})
+
+test('provides one navigation-safe shared Mermaid renderer', async () => {
+  const renderer = await readFile(new URL('../src/lib/mermaid/render.ts', import.meta.url), 'utf8')
+  const bootstrap = await readFile(new URL('../src/scripts/mermaid.ts', import.meta.url), 'utf8')
+
+  assert.match(renderer, /import\(['"]mermaid['"]\)/)
+  assert.match(renderer, /data-mermaid-target/)
+  assert.match(renderer, /mermaidState/)
+  assert.match(renderer, /renderMermaidDiagrams/)
+  assert.match(renderer, /astro:page-load/)
+  assert.match(renderer, /astro:before-swap/)
+  assert.doesNotMatch(bootstrap, /mermaid\.initialize\(/)
+})
+
+test('normalizes horizontal flowcharts to vertical Mermaid layouts', async () => {
+  const renderer = await readFile(new URL('../src/lib/mermaid/render.ts', import.meta.url), 'utf8')
+
+  assert.match(renderer, /normalizeDiagramSource/)
+  assert.match(renderer, /flowchart\|graph/)
+  assert.match(renderer, /LR\|RL/)
+  assert.match(renderer, /direction/)
+  assert.match(renderer, /TB/)
+})
+
+test('routes Markdown Mermaid fences through the StyleX diagram surface', async () => {
+  const pre = await readFile(new URL('../src/components/markdown/Pre.astro', import.meta.url), 'utf8')
+  const baseLayout = await readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8')
+
+  assert.match(pre, /data-language|mermaid/)
+  assert.match(pre, /data-mermaid-target|MermaidDiagram/)
+  assert.doesNotMatch(baseLayout, /\.mermaid\s*\{/)
+})
+
+test('ships a Mermaid diagram gallery covering the supported diagram forms', async () => {
+  const gallery = await readFile(new URL('../src/pages/examples/diagrams.astro', import.meta.url), 'utf8')
+
+  assert.match(gallery, /MermaidDiagram/)
+  assert.match(gallery, /flowchart LR/)
+  assert.match(gallery, /sequenceDiagram/)
+  assert.match(gallery, /stateDiagram-v2/)
+  assert.match(gallery, /variant="marker"/)
+  assert.match(gallery, /variant="pencil"/)
+})
+
 test('keeps emitted content free of malformed attributes and duplicate classes', async () => {
   const dist = new URL('../dist/', import.meta.url)
   if (!existsSync(dist)) return

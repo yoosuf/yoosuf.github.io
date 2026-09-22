@@ -1,0 +1,96 @@
+---
+import * as stylex from '@stylexjs/stylex'
+import { mermaidDiagramStyles } from './MermaidDiagram.stylex'
+
+interface Props {
+  code: string
+  title?: string
+  caption?: string
+  ariaLabel?: string
+  variant?: 'pencil' | 'marker'
+  size?: 'default' | 'wide'
+  class?: string
+}
+
+const {
+  code,
+  title,
+  caption,
+  ariaLabel,
+  variant = 'pencil',
+  size = 'default',
+  class: className,
+} = Astro.props
+
+function stableId(source: string): string {
+  let hash = 2166136261
+  for (let index = 0; index < source.length; index += 1) {
+    hash ^= source.charCodeAt(index)
+    hash = Math.imul(hash, 16777619)
+  }
+  return `mermaid-${(hash >>> 0).toString(36)}`
+}
+
+const baseId = stableId(`${title ?? ''}\u0000${code}`)
+const titleId = title ? `${baseId}-title` : undefined
+const captionId = caption ? `${baseId}-caption` : undefined
+const rootStyleAttrs = stylex.attrs(mermaidDiagramStyles.root)
+const rootAttrs = {
+  ...rootStyleAttrs,
+  class: [rootStyleAttrs.class, className].filter(Boolean).join(' '),
+}
+const headerAttrs = stylex.attrs(mermaidDiagramStyles.header)
+const titleAttrs = stylex.attrs(mermaidDiagramStyles.title)
+const surfaceAttrs = stylex.attrs(
+  mermaidDiagramStyles.surface,
+  variant === 'marker' ? mermaidDiagramStyles.marker : mermaidDiagramStyles.pencil,
+)
+const targetAttrs = stylex.attrs(
+  mermaidDiagramStyles.target,
+  size === 'wide' ? mermaidDiagramStyles.wide : mermaidDiagramStyles.defaultSize,
+  mermaidDiagramStyles.pending,
+)
+const readyAttrs = stylex.attrs(mermaidDiagramStyles.ready)
+const errorAttrs = stylex.attrs(mermaidDiagramStyles.error)
+const captionAttrs = stylex.attrs(mermaidDiagramStyles.caption)
+---
+
+<figure
+  {...rootAttrs}
+  data-mermaid-diagram
+  data-mermaid-variant={variant}
+  data-mermaid-size={size}
+  aria-labelledby={titleId}
+  aria-describedby={captionId}
+  aria-label={!title ? ariaLabel : undefined}
+>
+  {title && (
+    <header {...headerAttrs}>
+      <h2 id={titleId} {...titleAttrs}>{title}</h2>
+    </header>
+  )}
+
+  <div {...surfaceAttrs}>
+    <div
+      {...targetAttrs}
+      data-mermaid-target
+      data-mermaid-id={baseId}
+      data-mermaid-state="pending"
+      data-mermaid-pending-class={targetAttrs.class}
+      data-mermaid-ready-class={readyAttrs.class}
+      data-mermaid-error-class={errorAttrs.class}
+      aria-label={ariaLabel ?? title ?? 'Mermaid diagram'}
+      role="img"
+    >
+      <template data-mermaid-source>{code}</template>
+    </div>
+  </div>
+
+  {caption && <figcaption id={captionId} {...captionAttrs}>{caption}</figcaption>}
+</figure>
+
+<script>
+  import { scheduleMermaidRender } from '../../lib/mermaid/render'
+
+  scheduleMermaidRender()
+</script>

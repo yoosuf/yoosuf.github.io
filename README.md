@@ -7,7 +7,7 @@ Live at [https://yoosuf.me](https://yoosuf.me), deployed via GitHub Pages.
 ## Stack
 
 - **Static site generator:** [Astro](https://astro.build/) 7 (static output)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/) v4 (`@theme` tokens in `src/styles/global.css`)
+- **Styling:** StyleX 0.19 with semantic tokens and static Vite extraction (`src/styles/`)
 - **Interactivity:** React 19 islands + TypeScript (`@astrojs/react`) — header nav/dialog, services accordion
 - **Fonts:** system UI + monospace stack only (zero webfont requests)
 - **View transitions:** `ClientRouter` from `astro:transitions` with `prefetch`
@@ -26,6 +26,46 @@ npx tsc --noEmit           # typecheck TS/TSX
 ```
 
 The generated site goes into `dist/` (gitignored).
+
+## Mermaid diagrams
+
+Use `MermaidDiagram.astro` when a page needs an explicit title, caption, variant, or accessible label:
+
+```astro
+---
+import MermaidDiagram from '../components/diagrams/MermaidDiagram.astro'
+
+const architecture = `flowchart LR
+  User --> Web
+  Web --> API
+  API --> Database`
+---
+
+<MermaidDiagram
+  code={architecture}
+  title="Application architecture"
+  caption="High-level request flow."
+  ariaLabel="A user request flows from the web application through the API to the database."
+  variant="pencil"
+/>
+```
+
+The default renderer uses Mermaid's deterministic `handDrawn` look with seed `42`. Use `variant="marker"` for a cleaner whiteboard surface; both variants use Mermaid SVG and the site's light/dark color scheme. Existing ` ```mermaid ` fences in MDX posts use the same renderer automatically. Mermaid frontmatter remains authoritative, so a diagram can opt into another native look:
+
+````markdown
+```mermaid
+---
+config:
+  look: classic
+---
+flowchart LR
+  A --> B
+```
+````
+
+See `/examples/diagrams/` for flowchart, architecture, sequence, state-machine, and override examples.
+
+For readability in the document column, horizontal `flowchart LR/RL` and `graph LR/RL` declarations are rendered top-to-bottom by the shared browser renderer. The original Mermaid source remains unchanged in the post or page.
 
 ## Project structure
 

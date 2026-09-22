@@ -115,35 +115,4 @@ export const servicesStyles = stylex.create({
     textWrap: 'pretty',
   },
 
-  helpHeading: {
-    color: colors.text,
-    fontSize: '1.05rem',
-    fontWeight: weights.semibold,
-    marginBlock: 0,
-  },
-
-  helpBody: {
-    color: colors.textMuted,
-    fontSize: '0.925rem',
-    lineHeight: lineHeights.relaxed,
-    marginBlockEnd: 0,
-    marginBlockStart: space['2'],
-    maxWidth: '44rem',
-    textWrap: 'pretty',
-  },
-
-  bookRow: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    fontSize: '0.9rem',
-    gap: '0.5rem 1.25rem',
-    marginBlockStart: space['4'],
-  },
-
-  /* "Not sure which engagement fits?" — bordered card (surface + radius come
-     from the global `.cta-band` class); this adds the responsive padding. */
-  helpCard: {
-    paddingBlock: { default: space['6'], '@media (min-width: 40rem)': space['8'] },
-    paddingInline: { default: space['6'], '@media (min-width: 40rem)': space['8'] },
-  },
 })

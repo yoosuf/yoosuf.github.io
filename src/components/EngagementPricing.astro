@@ -3,9 +3,9 @@ import * as stylex from '@stylexjs/stylex'
 import ServicesAccordion from './services/ServicesAccordion'
 import { SERVICES } from '../data/services'
 import { servicesStyles } from './ui/services.stylex'
+import { homeStyles } from './ui/home.stylex'
 import { buttons, kicker } from './ui/primitives'
 import { a11y } from './ui/primitives'
-import { SITE } from '../config'
 
 const steps = [
   {
@@ -94,25 +94,25 @@ const faqs = [
     </div>
   </section>
 
-  <section {...stylex.attrs(servicesStyles.section, servicesStyles.helpCard)} aria-labelledby="ep-help-heading">
-    <h3 id="ep-help-heading" {...stylex.attrs(servicesStyles.helpHeading)}>
-      Not sure which engagement fits?
-    </h3>
-    <p {...stylex.attrs(servicesStyles.helpBody)}>
-      Book a free 30-minute call and we'll figure it out together. No pitch, no pressure — just a
-      straight answer on whether and how I can help.
+  <section {...stylex.attrs(homeStyles.ctaBand)} aria-labelledby="ep-cta-heading">
+    <h2 id="ep-cta-heading" {...stylex.attrs(homeStyles.ctaHeading)}>
+      Let's build something that scales.
+    </h2>
+    <p {...stylex.attrs(homeStyles.ctaBody)}>
+      Planning an AI product, automating a workflow, or taking a platform to production? I'd love
+      to hear what you're building.
     </p>
-    <div {...stylex.attrs(servicesStyles.bookRow)}>
+    <div {...stylex.attrs(homeStyles.ctaActions)}>
       <a
-        {...stylex.attrs(buttons.small)}
         href="https://cal.com/yoosuf"
         target="_blank"
         rel="noopener"
+        {...stylex.attrs(buttons.primary)}
       >
         Book a call
       </a>
-      <a {...stylex.attrs(buttons.textLink)} href={`mailto:${SITE.email}`}>
-        Email me instead
+      <a href="/contact/" {...stylex.attrs(buttons.secondary)}>
+        Contact me
       </a>
     </div>
   </section>

@@ -160,6 +160,17 @@ test('ships a Mermaid diagram gallery covering the supported diagram forms', asy
   assert.match(gallery, /variant="pencil"/)
 })
 
+test('uses the homepage CTA pattern for services conversion', async () => {
+  const engagement = await readFile(new URL('../src/components/EngagementPricing.astro', import.meta.url), 'utf8')
+
+  assert.match(engagement, /homeStyles\.ctaBand/)
+  assert.match(engagement, /homeStyles\.ctaHeading/)
+  assert.match(engagement, /homeStyles\.ctaBody/)
+  assert.match(engagement, /homeStyles\.ctaActions/)
+  assert.match(engagement, /href="\/contact\/"/)
+  assert.doesNotMatch(engagement, /mailto:/)
+})
+
 test('keeps emitted content free of malformed attributes and duplicate classes', async () => {
   const dist = new URL('../dist/', import.meta.url)
   if (!existsSync(dist)) return

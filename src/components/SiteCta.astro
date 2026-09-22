@@ -1,0 +1,28 @@
+---
+import * as stylex from '@stylexjs/stylex'
+import { homeStyles } from './ui/home.stylex'
+import { buttons } from './ui/primitives'
+---
+
+<section {...stylex.attrs(homeStyles.ctaBand)} aria-labelledby="site-cta-heading">
+  <h2 id="site-cta-heading" {...stylex.attrs(homeStyles.ctaHeading)}>
+    Let's build something that scales.
+  </h2>
+  <p {...stylex.attrs(homeStyles.ctaBody)}>
+    Planning an AI product, automating a workflow, or taking a platform to production?
+    I'd love to hear what you're building.
+  </p>
+  <div {...stylex.attrs(homeStyles.ctaActions)}>
+    <a
+      href="https://cal.com/yoosuf"
+      target="_blank"
+      rel="noopener"
+      {...stylex.attrs(buttons.primary)}
+    >
+      Book a call
+    </a>
+    <a href="/contact/" {...stylex.attrs(buttons.secondary)}>
+      Contact me
+    </a>
+  </div>
+</section>

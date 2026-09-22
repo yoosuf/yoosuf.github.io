@@ -3,8 +3,10 @@ import { SITE, PERSON_JSON_LD, ORG_JSON_LD, WEBSITE_JSON_LD } from '../config'
 import { ClientRouter } from 'astro:transitions'
 import * as stylex from '@stylexjs/stylex'
 import { shellStyles } from '../components/ui/shell.stylex'
+import { pageStyles } from '../components/ui/page.stylex'
 import Header from '../components/header/Header'
 import Footer from '../components/Footer.astro'
+import SiteCta from '../components/SiteCta.astro'
 
 interface ArticleMeta {
   published?: string
@@ -469,6 +471,9 @@ const mainAttrs = stylex.attrs(shellStyles.main)
 
     <main id="site-main" {...mainAttrs} tabindex="-1">
       <slot />
+      <div {...stylex.attrs(pageStyles.container)}>
+        <SiteCta />
+      </div>
     </main>
 
     <Footer />

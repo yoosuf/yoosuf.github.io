@@ -192,14 +192,20 @@ test('ships a Mermaid diagram gallery covering the supported diagram forms', asy
 })
 
 test('uses the homepage CTA pattern for services conversion', async () => {
+  const cta = await readFile(new URL('../src/components/SiteCta.astro', import.meta.url), 'utf8')
+  const baseLayout = await readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8')
+  const home = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8')
   const engagement = await readFile(new URL('../src/components/EngagementPricing.astro', import.meta.url), 'utf8')
 
-  assert.match(engagement, /homeStyles\.ctaBand/)
-  assert.match(engagement, /homeStyles\.ctaHeading/)
-  assert.match(engagement, /homeStyles\.ctaBody/)
-  assert.match(engagement, /homeStyles\.ctaActions/)
-  assert.match(engagement, /href="\/contact\/"/)
-  assert.doesNotMatch(engagement, /mailto:/)
+  assert.match(cta, /homeStyles\.ctaBand/)
+  assert.match(cta, /homeStyles\.ctaHeading/)
+  assert.match(cta, /homeStyles\.ctaBody/)
+  assert.match(cta, /homeStyles\.ctaActions/)
+  assert.match(cta, /href="\/contact\/"/)
+  assert.doesNotMatch(cta, /mailto:/)
+  assert.match(baseLayout, /<SiteCta \/>/)
+  assert.doesNotMatch(home, /Let's build something that scales\./)
+  assert.doesNotMatch(engagement, /Let's build something that scales\./)
 })
 
 test('keeps the availability pulse animation idempotent and centered', async () => {

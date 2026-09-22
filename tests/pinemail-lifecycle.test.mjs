@@ -7,7 +7,9 @@ const source = await readFile(new URL('../src/scripts/pinemail.ts', import.meta.
 const blogRouteSource = await readFile(new URL('../src/components/BlogIndex.astro', import.meta.url), 'utf8')
 const infiniteSource = await readFile(new URL('../src/scripts/infiniteScroll.ts', import.meta.url), 'utf8')
 const postLayoutSource = await readFile(new URL('../src/layouts/PostLayout.astro', import.meta.url), 'utf8')
+const baseLayoutSource = await readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8')
 const mermaidSource = await readFile(new URL('../src/scripts/mermaid.ts', import.meta.url), 'utf8').catch(() => '')
+const mermaidRendererSource = await readFile(new URL('../src/lib/mermaid/render.ts', import.meta.url), 'utf8')
 
 test('Pine Mail page script is safe to reinitialize across Astro navigation', () => {
   assert.match(routeSource, /<script src="\.\.\/scripts\/pinemail\.ts"><\/script>/)
@@ -23,12 +25,13 @@ test('Pine Mail initial render does not start a compositor animation loop', () =
 
 test('Astro page scripts reinitialize and clean up across view transitions', () => {
   assert.match(blogRouteSource, /<script src="\.\.\/scripts\/infiniteScroll\.ts"><\/script>/)
+  assert.match(infiniteSource, /data-blog-page-list/)
+  assert.doesNotMatch(infiniteSource, /ul\.divide-y/)
   assert.match(infiniteSource, /astro:page-load/)
   assert.match(infiniteSource, /astro:before-swap/)
-  assert.match(postLayoutSource, /<script src="\.\.\/scripts\/mermaid\.ts"><\/script>/)
-  assert.match(mermaidSource, /astro:page-load/)
-  assert.match(mermaidSource, /astro:before-swap/)
-  assert.match(mermaidSource, /isActive/)
-  assert.match(mermaidSource, /originalBlocks/)
-  assert.match(mermaidSource, /replaceWith\(originalBlocks/)
+  assert.doesNotMatch(postLayoutSource, /<script src="\.\.\/scripts\/mermaid\.ts"><\/script>/)
+  assert.match(baseLayoutSource, /<script src="\.\.\/scripts\/mermaid\.ts"><\/script>/)
+  assert.match(mermaidRendererSource, /astro:page-load/)
+  assert.match(mermaidRendererSource, /astro:before-swap/)
+  assert.match(mermaidSource, /scheduleMermaidRender/)
 })

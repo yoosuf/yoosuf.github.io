@@ -61,7 +61,8 @@ export function initInfiniteScroll(): void {
       const html = await response.text()
       if (disposed) return
       const doc = new DOMParser().parseFromString(html, 'text/html')
-      const items = doc.querySelectorAll('ul.divide-y > li')
+      const items = doc.querySelectorAll<HTMLLIElement>('ul[data-blog-page-list] > li')
+      if (items.length === 0) throw new Error(`No posts found on page ${next}`)
       const fragment = document.createDocumentFragment()
       items.forEach((item) => fragment.appendChild(item))
       list.appendChild(fragment)

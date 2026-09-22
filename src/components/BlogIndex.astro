@@ -44,6 +44,7 @@ const end = start + posts.length - 1
   <ul
     {...stylex.attrs(blogStyles.list)}
     data-infinite-list
+    data-blog-page-list
     data-total={totalPosts}
   >
     {posts.map((post, index) => (

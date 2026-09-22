@@ -102,14 +102,6 @@ export const homeStyles = stylex.create({
     position: 'relative',
   },
 
-  /* Tertiary "More about me" link: keeps a balanced, button-height row when
-     the actions wrap onto a second line on narrow screens. */
-  heroMoreLink: {
-    alignItems: 'center',
-    display: 'inline-flex',
-    minHeight: '3rem',
-  },
-
   stats: {
     borderBlockStartColor: colors.border,
     borderBlockStartStyle: 'solid',

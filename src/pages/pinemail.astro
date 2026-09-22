@@ -282,7 +282,31 @@ const softwareJsonLd = {
           }, wait)
         }
 
-        setTimeout(send, 1200)
+        let started = false
+        const drive = () => {
+          if (started) {
+            if (active === 0 && !timer) schedule()
+          } else {
+            started = true
+            setTimeout(send, 900)
+          }
+        }
+
+        if (window.IntersectionObserver) {
+          new IntersectionObserver(
+            (entries) => {
+              const on = entries.some((e) => e.isIntersecting)
+              if (on) drive()
+              else if (timer) {
+                clearTimeout(timer)
+                timer = null
+              }
+            },
+            { threshold: 0.15 }
+          ).observe(flow)
+        } else {
+          drive()
+        }
 
         if (mq) {
           const onChange = (e) => {

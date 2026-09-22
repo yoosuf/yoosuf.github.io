@@ -88,9 +88,3 @@ const captionAttrs = stylex.attrs(mermaidDiagramStyles.caption)
 
   {caption && <figcaption id={captionId} {...captionAttrs}>{caption}</figcaption>}
 </figure>
-
-<script>
-  import { scheduleMermaidRender } from '../../lib/mermaid/render'
-
-  scheduleMermaidRender()
-</script>

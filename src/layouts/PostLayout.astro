@@ -55,7 +55,6 @@ const absoluteUrl = new URL(url, SITE.url).href
 const minutes = readingTime(entry.body)
 const words = entry.body.trim().split(/\s+/).length
 const isoDate = toISODate(date)
-const mermaid = /```mermaid/.test(entry.body)
 const postImage = entry.data.heroImage
   ? new URL(entry.data.heroImage, SITE.url).href
   : new URL(SITE.socialImage, SITE.url).href
@@ -158,5 +157,4 @@ const articleJsonLd = {
       )}
   </article>
 
-  {mermaid && <script src="../scripts/mermaid.ts"></script>}
 </BaseLayout>

@@ -129,6 +129,7 @@ test('gives pencil Mermaid labels a handwriting font fallback', async () => {
 test('provides one navigation-safe shared Mermaid renderer', async () => {
   const renderer = await readFile(new URL('../src/lib/mermaid/render.ts', import.meta.url), 'utf8')
   const bootstrap = await readFile(new URL('../src/scripts/mermaid.ts', import.meta.url), 'utf8')
+  const baseLayout = await readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8')
 
   assert.match(renderer, /import\(['"]mermaid['"]\)/)
   assert.match(renderer, /data-mermaid-target/)
@@ -137,6 +138,7 @@ test('provides one navigation-safe shared Mermaid renderer', async () => {
   assert.match(renderer, /astro:page-load/)
   assert.match(renderer, /astro:before-swap/)
   assert.doesNotMatch(bootstrap, /mermaid\.initialize\(/)
+  assert.match(baseLayout, /<script src="\.\.\/scripts\/mermaid\.ts"><\/script>/)
 })
 
 test('keeps Mermaid parser failures out of the rendered page', async () => {

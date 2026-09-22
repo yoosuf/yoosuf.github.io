@@ -79,12 +79,7 @@ export const mermaidDiagramStyles = stylex.create({
     opacity: 1,
   },
   error: {
-    color: diagramTokens.error,
-    fontFamily: fonts.mono,
-    fontSize: '0.8125rem',
-    lineHeight: 1.5,
-    opacity: 1,
-    paddingBlock: space['4'],
+    display: 'none',
   },
   caption: {
     color: colors.textDim,

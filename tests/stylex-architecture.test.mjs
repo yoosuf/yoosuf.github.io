@@ -139,6 +139,26 @@ test('provides one navigation-safe shared Mermaid renderer', async () => {
   assert.doesNotMatch(bootstrap, /mermaid\.initialize\(/)
 })
 
+test('keeps Mermaid parser failures out of the rendered page', async () => {
+  const renderer = await readFile(new URL('../src/lib/mermaid/render.ts', import.meta.url), 'utf8')
+  const styles = await readFile(new URL('../src/components/diagrams/MermaidDiagram.stylex.ts', import.meta.url), 'utf8')
+
+  assert.doesNotMatch(renderer, /Unable to render diagram\. Check the Mermaid syntax\./)
+  assert.match(renderer, /target\.replaceChildren\(\)/)
+  assert.match(renderer, /setAttribute\(['"]aria-hidden['"], ['"]true['"]\)/)
+  assert.match(styles, /error:\s*\{[\s\S]*display: ['"]none['"]/)
+})
+
+test('starts Mermaid rendering eagerly and retries lifecycle entry points', async () => {
+  const renderer = await readFile(new URL('../src/lib/mermaid/render.ts', import.meta.url), 'utf8')
+
+  assert.match(renderer, /Render eagerly/)
+  assert.match(renderer, /render\(\)\n  document\.addEventListener\(['"]DOMContentLoaded['"]/)
+  assert.match(renderer, /document\.addEventListener\(['"]astro:page-load['"]/)
+  assert.match(renderer, /renderMermaidDiagrams\(\)\.catch\(hideRenderFailure\)/)
+  assert.match(renderer, /mermaidRendering === ['"]true['"]|mermaidRendering/)
+})
+
 test('normalizes horizontal flowcharts to vertical Mermaid layouts', async () => {
   const renderer = await readFile(new URL('../src/lib/mermaid/render.ts', import.meta.url), 'utf8')
 

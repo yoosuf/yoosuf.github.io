@@ -2,10 +2,6 @@ import { configForVariant, type MermaidVariant } from './config'
 
 type MermaidApi = (typeof import('mermaid'))['default']
 type MermaidTarget = HTMLElement & { dataset: DOMStringMap }
-type IdleWindow = Window & {
-  requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number
-  cancelIdleCallback?: (handle: number) => void
-}
 
 let mermaidPromise: Promise<MermaidApi> | null = null
 let initialized = false
@@ -89,10 +85,15 @@ async function renderTarget(
   id: string,
   generation: number,
 ): Promise<void> {
-  if (generation !== renderGeneration || target.dataset.mermaidState === 'ready') return
+  if (
+    generation !== renderGeneration ||
+    target.dataset.mermaidState === 'ready' ||
+    target.dataset.mermaidRendering === 'true'
+  ) return
 
   const source = sourceFor(target)
   if (!source.trim()) return
+  target.dataset.mermaidRendering = 'true'
   const renderSource = normalizeDiagramSource(source)
   setState(target, 'pending')
 
@@ -105,9 +106,14 @@ async function renderTarget(
   } catch (error) {
     if (generation !== renderGeneration || !target.isConnected) return
     console.error(`Mermaid diagram ${id} failed to render:`, error)
-    target.textContent = 'Unable to render diagram. Check the Mermaid syntax.'
-    target.setAttribute('aria-live', 'polite')
+    // Keep parser failures out of the page. The diagram is optional content;
+    // diagnostics stay in the console without exposing implementation text to
+    // readers or leaving raw Mermaid source visible.
+    target.replaceChildren()
+    target.setAttribute('aria-hidden', 'true')
     setState(target, 'error')
+  } finally {
+    delete target.dataset.mermaidRendering
   }
 }
 
@@ -134,17 +140,28 @@ export function invalidateMermaidRender(): void {
   renderGeneration += 1
 }
 
+function hideRenderFailure(error: unknown): void {
+  console.error('Mermaid failed to load:', error)
+  targets().forEach((target) => {
+    if (target.dataset.mermaidState === 'ready') return
+    target.replaceChildren()
+    target.setAttribute('aria-hidden', 'true')
+    setState(target, 'error')
+  })
+}
+
 export function scheduleMermaidRender(): void {
   if (typeof window === 'undefined' || bootstrapRegistered) return
   bootstrapRegistered = true
 
-  const idleWindow = window as IdleWindow
-  const render = () => void renderMermaidDiagrams()
-  if (idleWindow.requestIdleCallback) {
-    idleWindow.requestIdleCallback(render, { timeout: 2500 })
-  } else {
-    window.setTimeout(render, 300)
+  const render = () => {
+    void renderMermaidDiagrams().catch(hideRenderFailure)
   }
+
+  // Render eagerly so the diagram does not depend on idle time, which can be
+  // postponed indefinitely on busy pages or constrained devices.
+  render()
+  document.addEventListener('DOMContentLoaded', render, { once: true })
 
   document.addEventListener('astro:page-load', render)
   document.addEventListener('astro:before-swap', invalidateMermaidRender)

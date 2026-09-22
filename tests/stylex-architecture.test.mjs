@@ -209,6 +209,7 @@ test('keeps the availability pulse animation idempotent and centered', async () 
   assert.match(motion, /pulseAnimations = new WeakMap<HTMLElement, Animation>\(\)/)
   assert.match(motion, /pulseAnimations\.has\(element\)/)
   assert.match(motion, /duration: 1600/)
+  assert.match(homeStyles, /inset: 0/)
   assert.match(homeStyles, /transformOrigin: 'center'/)
 })
 

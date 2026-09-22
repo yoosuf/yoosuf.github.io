@@ -113,6 +113,24 @@ const softwareJsonLd = {
         const logEl = flow.querySelector('.pm-flow-log')
         const countEl = flow.querySelector('.pm-flow-log-count')
 
+        // Fixed pool of log rows: the live simulator only rewrites text on
+        // pre-existing nodes, so no DOM nodes are added/removed after init —
+        // endless append/remove churn can push Chrome into layout bugs that
+        // kill the renderer ("Aw, Snap!" Error code 5).
+        const logPool = []
+        for (let i = 0; i < 6; i++) {
+          const li = document.createElement('li')
+          li.className = 'pm-flow-log-line'
+          const t = document.createElement('time')
+          t.textContent = '--:--:--'
+          const s = document.createElement('span')
+          s.textContent = ''
+          li.append(t, s)
+          logEl.appendChild(li)
+          logPool.push([li, t, s])
+        }
+        let logIndex = 0
+
         let seq = 421
         let inbox = 0
         let active = 0
@@ -130,21 +148,18 @@ const softwareJsonLd = {
         const rand = (a, b) => a + Math.random() * (b - a)
 
         function logLine(text, hit) {
-          const li = document.createElement('li')
-          li.className = 'pm-flow-log-line'
-          if (hit) li.classList.add('pm-log-hit')
-          const t = document.createElement('time')
+          const [li, t, s] = logPool[logIndex]
+          logIndex = (logIndex + 1) % logPool.length
+          li.classList.toggle('pm-log-hit', !!hit)
           t.textContent = now()
-          li.appendChild(t)
-          li.appendChild(document.createTextNode(' ' + text))
-          logEl.appendChild(li)
-          while (logEl.children.length > 12) logEl.firstChild.remove()
-          li.animate(
+          s.textContent = text
+          if (li._anim) li._anim.cancel()
+          li._anim = li.animate(
             [
-              { opacity: 0, transform: 'translateY(8px)' },
+              { opacity: 0.1, transform: 'translateY(4px)' },
               { opacity: 1, transform: 'translateY(0)' },
             ],
-            { duration: 450, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'backwards' }
+            { duration: 420, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'backwards' }
           )
           logEl.scrollTop = logEl.scrollHeight
         }
@@ -157,10 +172,14 @@ const softwareJsonLd = {
         }
 
         function flash(node) {
-          const rest = getComputedStyle(node)
-          const restShadow = rest.boxShadow
-          const restBg = rest.backgroundColor
-          const ringBase = restShadow && restShadow !== 'none' ? ', ' + restShadow : ''
+          let rest = flashCache.get(node)
+          if (!rest) {
+            const cs = getComputedStyle(node)
+            rest = { bg: cs.backgroundColor, shadow: cs.boxShadow }
+            flashCache.set(node, rest)
+          }
+          const ringBase =
+            rest.shadow && rest.shadow !== 'none' ? ', ' + rest.shadow : ''
           if (node._anim) node._anim.cancel()
           node._anim = node.animate(
             [
@@ -173,11 +192,12 @@ const softwareJsonLd = {
                 boxShadow: '0 0 0 3px rgba(16, 185, 129, 0.12)' + ringBase,
                 offset: 0.7,
               },
-              { backgroundColor: restBg, boxShadow: restShadow },
+              { backgroundColor: rest.bg, boxShadow: rest.shadow },
             ],
             { duration: 1500, easing: 'ease-out', fill: 'none' }
           )
         }
+        const flashCache = new WeakMap()
 
         function runPacket(arrow, pop) {
           const pkt = arrow.querySelector('.pm-flow-packet')

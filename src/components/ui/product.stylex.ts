@@ -18,15 +18,6 @@ import * as stylex from '@stylexjs/stylex'
  * dark hero/CTA bands.
  */
 
-const dashCore = stylex.keyframes({
-  to: { backgroundPosition: '16px calc(100% - 1px)' },
-})
-
-const glow = stylex.keyframes({
-  '0%, 100%': { boxShadow: '0 0 0 0 rgba(16, 185, 129, 0)' },
-  '50%': { boxShadow: '0 0 0 6px rgba(16, 185, 129, 0.22)' },
-})
-
 export const styles = stylex.create({
   /* Page shell — hard guarantee against horizontal page scroll from the
      animated flow diagram and wide code blocks (tables scroll internally). */
@@ -279,7 +270,6 @@ export const styles = stylex.create({
     top: 0,
     zIndex: 40,
     backgroundColor: 'var(--pm-nav-bg)',
-    backdropFilter: 'blur(8px)',
     borderBottom: '1px solid var(--pm-border)',
   },
 
@@ -862,16 +852,12 @@ export const styles = stylex.create({
     gap: '8px 12px',
     marginBottom: '14px',
     paddingBottom: '14px',
-    /* Animated flowing divider instead of a static dashed border. */
+    /* Static dashed flow divider — no per-frame animation (smooth scroll). */
     backgroundImage:
       'linear-gradient(90deg, color-mix(in srgb, var(--pm-accent) 50%, transparent) 50%, transparent 50%)',
     backgroundSize: '16px 2px',
     backgroundRepeat: 'repeat-x',
     backgroundPosition: '0 calc(100% - 1px)',
-    animationName: dashCore,
-    animationDuration: '1s',
-    animationTimingFunction: 'linear',
-    animationIterationCount: 'infinite',
   },
 
   pmFlowCoreTitle: {
@@ -932,10 +918,7 @@ export const styles = stylex.create({
     borderRadius: 10,
     color: 'var(--pm-on-accent)',
     backgroundColor: 'var(--pm-accent-strong)',
-    animationName: glow,
-    animationDuration: '3s',
-    animationTimingFunction: 'ease-in-out',
-    animationIterationCount: 'infinite',
+    boxShadow: '0 0 0 3px color-mix(in srgb, var(--pm-accent) 18%, transparent)',
   },
 
   pmFlowChannelText: {

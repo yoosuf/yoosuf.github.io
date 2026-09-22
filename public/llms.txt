@@ -56,6 +56,7 @@
 - [Beyond Email: SMS catching, 14 MCP tools, and email analysis in Pine Mail](https://yoosuf.me/blog/pinemail-sms-mcp-analysis): Pine Mail v0.2 adds dual-channel SMS catching with Twilio webhooks, 14 MCP tools for full MFA flows, and Litmus-style email analysis
 - [How ChatGPT helps me on day to day life](https://yoosuf.me/blog/chatgpt-daily-life): Practical uses of AI tools in daily workflows
 - [Make the Hard Decision Before the Product Fails](https://yoosuf.me/blog/perish-pivot-persevere): Perish, pivot, or persevere — deciding with evidence before failure becomes undeniable
+- [How to Make an MVP in the AI Era](https://yoosuf.me/blog/how-to-make-an-mvp-in-the-ai-era): Building an MVP when AI makes building nearly free — proven examples (Dropbox, Zappos, Groupon, Buffer, Midjourney, ChatGPT), failure cases (Juicero, Color, Quibi), the three traps, and testing assumptions with real customers
 
 ### Personal & Lifestyle
 

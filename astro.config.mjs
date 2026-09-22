@@ -45,6 +45,9 @@ export default defineConfig({
     mdx(),
     sitemap({
       entryLimit: 50_000,
+      // Page one is already represented by the canonical /blog/ route.
+      // Keeping /blog/page/1/ out avoids advertising a duplicate URL.
+      filter: (page) => !page.endsWith('/blog/page/1/'),
       serialize(item) {
         const path = pathFor(item.url)
         const post = postLastmod.get(path)

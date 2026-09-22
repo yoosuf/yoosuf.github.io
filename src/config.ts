@@ -6,7 +6,7 @@ export const SITE = {
   author: 'Yoosuf Mohamed',
   email: 'mayoosuf@gmail.com',
   description:
-    'Helping startups and enterprises build AI automation and AI-first products that scale. Systems Architect specializing in LLM, RAG, Go, Elixir, FastAPI, Node, NestJS, NextJS, ReactJS, and Flutter.',
+    'Systems Architect and AI engineer helping startups and enterprises build reliable AI automation, LLM/RAG products, and scalable software.',
   lang: 'en',
   locale: 'en_US',
   gaId: 'G-SJQ1MBM1PF',

@@ -45,7 +45,26 @@ const {
 
 const pageTitle = title ?? metaTitle ?? SITE.title
 const canonicalUrl = canonical ? new URL(canonical, SITE.url).href : null
+const pageUrl = canonicalUrl ?? new URL(Astro.url.pathname, SITE.url).href
 const imageUrl = image.startsWith('http') ? image : new URL(image, SITE.url).href
+
+const webPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${pageUrl}#webpage`,
+  url: pageUrl,
+  name: pageTitle,
+  description,
+  inLanguage: SITE.lang,
+  isPartOf: { '@id': `${SITE.url}/#website` },
+  about: { '@id': `${SITE.url}/#person` },
+  ...(article?.published
+    ? {
+        datePublished: article.published,
+        dateModified: article.modified ?? article.published,
+      }
+    : {}),
+}
 
 const og = {
   title: pageTitle,
@@ -404,6 +423,7 @@ const mainAttrs = stylex.attrs(shellStyles.main)
       <>
         <meta property="article:published_time" content={article.published} />
         <meta property="article:modified_time" content={article.modified ?? article.published} />
+        <meta property="og:updated_time" content={article.modified ?? article.published} />
         <meta property="article:author" content={`${SITE.url}/about/`} />
         {article.section && <meta property="article:section" content={article.section} />}
         {article.tags?.map((tag) => <meta property="article:tag" content={tag} />)}
@@ -413,6 +433,7 @@ const mainAttrs = stylex.attrs(shellStyles.main)
     <script type="application/ld+json" set:html={JSON.stringify(ORG_JSON_LD)} />
     <script type="application/ld+json" set:html={JSON.stringify(WEBSITE_JSON_LD)} />
     <script type="application/ld+json" set:html={JSON.stringify(PERSON_JSON_LD)} />
+    <script type="application/ld+json" set:html={JSON.stringify(webPageJsonLd)} />
     {jsonLd.map((block) => (
       <script type="application/ld+json" set:html={JSON.stringify(block)} />
     ))}

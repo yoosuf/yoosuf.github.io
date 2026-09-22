@@ -1,5 +1,6 @@
 ---
-import '../styles/product.css'
+import * as stylex from '@stylexjs/stylex'
+import { styles } from '../components/ui/product.stylex'
 import { SITE } from '../config'
 import type { Product, ProductAction } from '../data/product'
 
@@ -9,18 +10,66 @@ interface Props {
 
 const { product } = Astro.props
 
+/* Theme primitives: products supply their brand hue; the derived light-dark()
+   pairs follow the tokens that used to live in product.css. Applied as a single
+   inline style so both the StyleX atomics (var(--pm-*) refs) and the JS hooks
+   (getComputedStyle reads) see the same values. */
 const accentCss = product.accent
-  ? `--pm-accent: ${product.accent.accent ?? '#10b981'};` +
-    `--pm-accent-strong: ${product.accent.accentStrong ?? '#047857'};` +
-    `--pm-accent-deep: ${product.accent.accentDeep ?? '#065f46'};` +
-    `--pm-accent-soft: ${product.accent.accentSoft ?? '#d1fae5'};` +
-    `--pm-on-accent: ${product.accent.onAccent ?? '#ffffff'};`
+  ? `--pm-accent-light: ${product.accent.accent ?? '#10b981'};` +
+    `--pm-accent-strong-light: ${product.accent.accentStrong ?? '#059669'};` +
+    `--pm-accent-deep-light: ${product.accent.accentDeep ?? '#047857'};` +
+    `--pm-accent-soft-light: ${product.accent.accentSoft ?? '#d1fae5'};` +
+    `--pm-on-accent-light: ${product.accent.onAccent ?? '#ffffff'};`
   : ''
+
+const themeCss =
+  accentCss +
+  `--pm-accent: light-dark(var(--pm-accent-light), color-mix(in srgb, var(--pm-accent-light) 68%, #fff));` +
+  `--pm-accent-strong: light-dark(var(--pm-accent-strong-light), color-mix(in srgb, var(--pm-accent-light) 56%, #fff));` +
+  `--pm-accent-deep: light-dark(var(--pm-accent-deep-light), color-mix(in srgb, var(--pm-accent-light) 42%, #fff));` +
+  `--pm-accent-soft: light-dark(var(--pm-accent-soft-light), color-mix(in srgb, var(--pm-accent-light) 16%, transparent));` +
+  `--pm-on-accent: light-dark(var(--pm-on-accent-light), #0b1220);` +
+  `--pm-accent-glow: light-dark(color-mix(in srgb, var(--pm-accent-light) 30%, transparent), color-mix(in srgb, var(--pm-accent-light) 26%, transparent));` +
+  `--pm-ink: light-dark(#0b1220, #e6e6e6);` +
+  `--pm-ink-soft: light-dark(#475569, #b0b0b0);` +
+  `--pm-ink-faint: light-dark(#94a3b8, #858585);` +
+  `--pm-surface: light-dark(#ffffff, #161616);` +
+  `--pm-bg-soft: light-dark(#f8fafc, #171717);` +
+  `--pm-border: light-dark(#e2e8f0, #2b2b2b);` +
+  `--pm-border-strong: light-dark(#cbd5e1, #3d3d3d);` +
+  `--pm-band: light-dark(#0b1220, #0e1521);` +
+  `--pm-nav-bg: light-dark(rgba(255, 255, 255, 0.92), rgba(14, 14, 14, 0.88));` +
+  `--pm-wash-base: light-dark(#ffffff, transparent);` +
+  `--pm-logo-chip: light-dark(#f8fafc, #ffffff);` +
+  `--pm-shadow-card: light-dark(0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 12px -2px rgba(15, 23, 42, 0.06)), light-dark(0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 12px -2px rgba(0, 0, 0, 0.5));` +
+  `--pm-shadow-lift: light-dark(rgba(15, 23, 42, 0.32), rgba(0, 0, 0, 0.55));` +
+  `--pm-shadow-accent: light-dark(0 1px 2px rgba(4, 120, 87, 0.2), 0 1px 2px rgba(0, 0, 0, 0.3));` +
+  `--pm-term-bg: #0b1220;` +
+  `--pm-term-text: #cbd5e1;` +
+  `--pm-term-accent: #34d399;` +
+  `--pm-fs-hero: clamp(2.2rem, 3.6vw, 3rem);` +
+  `--pm-fs-display: 1.7rem;` +
+  `--pm-fs-lead: 1.05rem;` +
+  `--pm-fs-title: 1.1rem;` +
+  `--pm-fs-card: 1.05rem;` +
+  `--pm-fs-feature: 1.25rem;` +
+  `--pm-fs-body: 1rem;` +
+  `--pm-fs-small: 0.9rem;` +
+  `--pm-fs-xs: 0.85rem;` +
+  `--pm-fs-tiny: 0.78rem;` +
+  `--pm-lh-tight: 1.2;` +
+  `--pm-lh-heading: 1.35;` +
+  `--pm-lh-body: 1.6;`
 
 const brandUrl = new URL(product.homeHref, SITE.url).href
 
+const attrsOf = stylex.attrs
+const pmCls = (...keys) => attrsOf(...keys).class
+
 function actionClass(action: ProductAction) {
-  return action.variant === 'ghost' ? 'pm-cta pm-cta-ghost' : 'pm-cta'
+  return action.variant === 'ghost'
+    ? { stylex: pmCls(styles.pmCta, styles.pmCtaGhost), list: ['pm-cta', 'pm-cta-ghost'] }
+    : { stylex: pmCls(styles.pmCta), list: ['pm-cta'] }
 }
 
 function actionProps(action: ProductAction) {
@@ -29,33 +78,35 @@ function actionProps(action: ProductAction) {
 }
 ---
 
-<div class="pm-page" style={accentCss}>
-  <nav class="pm-subnav" aria-label={`${product.name} sections`}>
-    <div class="pm-container">
-      <a class="pm-brand" href={brandUrl} aria-label={`${product.name} home`}>
+<div class:list={['pm-page', pmCls(styles.pmPage)]} style={themeCss}>
+  <nav class:list={['pm-subnav', pmCls(styles.pmSubnav)]} aria-label={`${product.name} sections`}>
+    <div class:list={['pm-container', pmCls(styles.pmContainer, styles.pmSubnavContainer)]}>
+      <a class:list={['pm-brand', pmCls(styles.pmBrand)]} href={brandUrl} aria-label={`${product.name} home`}>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-hidden="true"><path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.6a1 1 0 0 1-.7-1.7L8 10h-.8a1 1 0 0 1-.7-1.6L11 5.5a1 1 0 0 1 1.4 0l4.5 2.9a1 1 0 0 1-.7 1.6H15l2.3 2.3a1 1 0 0 1-.7 1.7Z"/></svg>
         <span>{product.name}</span>
       </a>
-      <div class="pm-subnav-links">
+      <div class:list={['pm-subnav-links', pmCls(styles.pmSubnavLinks)]}>
         {
           product.navLinks.map((link) => (
-            <a href={link.href}>{link.label}</a>
+            <a class:list={['pm-subnav-link', pmCls(styles.pmSubnavLink)]} href={link.href}>
+              {link.label}
+            </a>
           ))
         }
       </div>
     </div>
   </nav>
 
-  <section class="pm-hero">
-    <div class="pm-hero-grid">
-      <div class="pm-hero-left">
-        <span class="pm-hero-tag">{product.hero.tag}</span>
-        <h1 class="pm-hero-title">{product.hero.title}</h1>
-        <p class="pm-hero-sub">{product.hero.sub}</p>
-        <div class="pm-hero-actions">
+  <section class:list={['pm-hero', pmCls(styles.pmHero)]}>
+    <div class:list={['pm-hero-grid', pmCls(styles.pmHeroGrid)]}>
+      <div class:list={['pm-hero-left', pmCls(styles.pmHeroLeft)]}>
+        <span class:list={['pm-hero-tag', pmCls(styles.pmHeroTag)]}>{product.hero.tag}</span>
+        <h1 class:list={['pm-hero-title', pmCls(styles.pmHeroTitle)]}>{product.hero.title}</h1>
+        <p class:list={['pm-hero-sub', pmCls(styles.pmHeroSub)]}>{product.hero.sub}</p>
+        <div class:list={['pm-hero-actions', pmCls(styles.pmHeroActions)]}>
           {
             product.hero.actions.map((action) => (
-              <a class={actionClass(action)} href={action.href} {...actionProps(action)}>
+              <a class:list={[actionClass(action).stylex, ...actionClass(action).list]} href={action.href} {...actionProps(action)}>
                 {action.icon === 'launch' && (
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 11 7-8 7 8"/><path d="M5 18h14"/><path d="M5 22h14"/></svg>
                 )}
@@ -67,12 +118,17 @@ function actionProps(action: ProductAction) {
             ))
           }
         </div>
-        <ul class="pm-hero-checks">
-          {product.hero.checks.map((check) => <li>{check}</li>)}
+        <ul class:list={['pm-hero-checks', pmCls(styles.pmHeroChecks)]}>
+          {product.hero.checks.map((check) => (
+            <li>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7" /></svg>
+              <span>{check}</span>
+            </li>
+          ))}
         </ul>
       </div>
 
-      <div class="pm-hero-right">
+      <div class:list={['pm-hero-right', pmCls(styles.pmHeroRight)]}>
         <slot name="media" />
       </div>
     </div>
@@ -80,15 +136,15 @@ function actionProps(action: ProductAction) {
 
   <slot />
 
-  <section class="pm-section">
-    <div class="pm-container">
-      <div class="pm-cta-box">
-        <h2 class="pm-cta-title">{product.cta.title}</h2>
-        <p class="pm-cta-text">{product.cta.text}</p>
-        <div class="pm-cta-actions">
+  <section class:list={['pm-section', pmCls(styles.pmSection)]}>
+    <div class:list={['pm-container', pmCls(styles.pmContainer)]}>
+      <div class:list={['pm-cta-box', pmCls(styles.pmCtaBox)]}>
+        <h2 class:list={['pm-cta-title', pmCls(styles.pmCtaTitle)]}>{product.cta.title}</h2>
+        <p class:list={['pm-cta-text', pmCls(styles.pmCtaText)]}>{product.cta.text}</p>
+        <div class:list={['pm-cta-actions', pmCls(styles.pmCtaActions)]}>
           {
             product.cta.actions.map((action) => (
-              <a class={actionClass(action)} href={action.href} {...actionProps(action)}>
+              <a class:list={[actionClass(action).stylex, ...actionClass(action).list]} href={action.href} {...actionProps(action)}>
                 {action.icon === 'launch' && (
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 11 7-8 7 8"/><path d="M5 18h14"/><path d="M5 22h14"/></svg>
                 )}

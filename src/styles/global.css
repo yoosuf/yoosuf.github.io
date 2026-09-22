@@ -893,3 +893,401 @@ video {
   animation: menu-link 0.4s ease-out both;
   animation-delay: calc(0.08s + (var(--i, 0) * 0.06s));
 }
+
+/* ===========================================================================
+   Pine Mail product page (`.pm-page`) — unlayered composites.
+   ---------------------------------------------------------------------------
+   Most of the page is styled by StyleX atomics compiled from
+   `src/components/ui/product.stylex.ts`. These unlayered rules intentionally
+   live OUTSIDE every cascade layer: StyleX atoms are unlayered too, so
+   unlayered author CSS wins by source order once this block starts, and the
+   `.pm-page`-scoped selectors (specificity (0,2,x)) beat the atomics (0,1,0).
+   We only use them for the shapes StyleX cannot express while staying stable:
+   descendant/hairline rules targeting classless elements (`<th>`, `<td>`,
+   `<summary>`, wrapped `<code>`), ancestor-driven pseudos (the animated
+   `::before` dash track on `.pm-flow-rail`, whose media variant nests
+   pseudo-inside-media), JS-toppled classes (`.pm-status-polling`,
+   `.pm-code-copy.is-copied`, `[aria-selected="true"]`, `.pm-flow-log-line`
+   DOM created at runtime), and child-position/relationship selectors
+   (`.pm-tool + .pm-tool`, `tbody tr:last-child`, the dark-band ghost CTA).
+   The `--pm-*` tokens these rules read are set inline on `.pm-page` by
+   ProductLayout.astro, matching the legacy product.css values 1:1.
+   =========================================================================== */
+
+/* Generic inline-code pill (product page only) */
+.pm-page code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 0.15em 0.4em;
+  background: color-mix(in srgb, var(--pm-accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--pm-accent) 20%, transparent);
+  border-radius: 6px;
+  color: var(--pm-ink);
+}
+
+/* Strip the pill where the surrounding chrome already styles the code */
+.pm-page .pm-path,
+.pm-page .pm-doc-base code,
+.pm-page .pm-doc-table th code,
+.pm-page .pm-doc-table td code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+.pm-page .pm-flow-list-text code {
+  font-size: var(--pm-fs-xs);
+}
+
+/* Hero checks */
+.pm-page .pm-hero-checks li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--pm-fs-small);
+  font-weight: 600;
+  color: #cbd5e1;
+}
+.pm-page .pm-hero-checks svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  color: var(--pm-term-accent);
+  stroke-width: 3;
+}
+
+/* Shell chrome */
+.pm-page .pm-brand svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.pm-page .pm-subnav-links::-webkit-scrollbar {
+  display: none;
+}
+
+/* Built-for icon strip glyphs */
+.pm-page .pm-builtfor-icon svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+  transition: transform 0.2s ease;
+}
+.pm-page .pm-builtfor-icon:hover svg,
+.pm-page .pm-builtfor-icon:focus-visible svg {
+  transform: scale(1.06);
+}
+@media (max-width: 767px) {
+  .pm-page .pm-builtfor-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Flow connector rails — static track with animated dashes. The `::before`
+   pseudo is drawn by the same orchestration as the WAAPI packet, so the
+   vertical track flips to horizontal at ≥1180px (mirroring the arrow layout
+   via `--pm-flow-axis`). */
+@keyframes pm-flow-dash-v {
+  to {
+    background-position: 0 14px;
+  }
+}
+@keyframes pm-flow-dash-h {
+  to {
+    background-position: 14px 0;
+  }
+}
+.pm-page .pm-flow-rail::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--pm-accent) 78%, transparent) 50%,
+    transparent 50%
+  );
+  background-size: 5px 14px;
+  background-repeat: repeat-y;
+  animation: pm-flow-dash-v 1s linear infinite;
+}
+
+/* Icon glyph sizes inside styled boxes */
+.pm-page .pm-flow-list-icon svg {
+  width: 17px;
+  height: 17px;
+}
+.pm-page .pm-flow-channel-icon svg {
+  width: 18px;
+  height: 18px;
+}
+.pm-page .pm-flow-arrow-icon svg {
+  width: 14px;
+  height: 14px;
+  transform: rotate(90deg);
+}
+.pm-page .pm-tool-icon svg {
+  width: 18px;
+  height: 18px;
+}
+.pm-page .pm-tool-arrow svg {
+  width: 14px;
+  height: 14px;
+}
+.pm-page .pm-flow-channels .pm-flow-channel:last-child .pm-flow-channel-icon {
+  animation-delay: 1.4s;
+}
+
+/* Long-poll wait: LED blinks softly while a consumer is connected */
+@keyframes pm-poll-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+.pm-page .pm-status-polling .pm-flow-status-msg::before {
+  animation: pm-poll-blink 2s ease-in-out infinite;
+}
+
+/* Live activity log — the WAAPI loop appends these nodes at runtime */
+.pm-page .pm-flow-log-line {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: var(--pm-fs-tiny);
+  line-height: 1.65;
+  color: #94a3b8;
+}
+.pm-page .pm-flow-log-line time {
+  margin-right: 8px;
+  color: #64748b;
+}
+.pm-page .pm-flow-log-line.pm-log-hit {
+  color: #34d399;
+}
+.pm-page .pm-flow-log-line.pm-log-hit time {
+  color: #10b981;
+}
+
+/* Tabs — selected state; copy button just copied */
+.pm-page .pm-tab[aria-selected="true"] {
+  color: var(--pm-accent-strong);
+  background: var(--pm-surface);
+  border-color: var(--pm-border-strong);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+  font-weight: 700;
+}
+.pm-page .pm-code-copy.is-copied {
+  color: var(--pm-term-accent);
+  border-color: color-mix(in srgb, var(--pm-accent) 45%, transparent);
+}
+
+/* Tool rows + hover inversion (children swap to on-accent) */
+.pm-page .pm-tool + .pm-tool {
+  border-top: 1px solid var(--pm-border);
+}
+.pm-page .pm-tool:hover,
+.pm-page .pm-tool:focus-within {
+  background: var(--pm-accent-strong);
+}
+.pm-page .pm-tool:hover .pm-tool-name,
+.pm-page .pm-tool:hover .pm-tool-desc,
+.pm-page .pm-tool:focus-within .pm-tool-name,
+.pm-page .pm-tool:focus-within .pm-tool-desc {
+  color: var(--pm-on-accent);
+}
+.pm-page .pm-tool:hover .pm-tool-icon,
+.pm-page .pm-tool:hover .pm-tool-arrow,
+.pm-page .pm-tool:focus-within .pm-tool-icon,
+.pm-page .pm-tool:focus-within .pm-tool-arrow {
+  color: var(--pm-on-accent);
+  background: color-mix(in srgb, #fff 16%, transparent);
+  border-color: color-mix(in srgb, #fff 28%, transparent);
+}
+
+/* Workflow step copy */
+.pm-page .pm-workflow-step p {
+  margin: 6px 0 0;
+  font-size: var(--pm-fs-small);
+  line-height: 1.55;
+  color: var(--pm-ink-soft);
+}
+
+/* FAQ details/summary — classless, so styled via relationship selectors */
+.pm-page .pm-faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0;
+  padding: 18px 22px;
+  font-size: var(--pm-fs-body);
+  font-weight: 700;
+  color: var(--pm-ink);
+  cursor: pointer;
+  list-style: none;
+  transition: background 0.2s ease;
+}
+.pm-page .pm-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.pm-page .pm-faq-item summary:hover {
+  background: var(--pm-bg-soft);
+}
+.pm-page .pm-faq-item .pm-faq-toggle {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: var(--pm-accent-strong);
+}
+.pm-page .pm-faq-item .pm-faq-toggle-minus {
+  display: none;
+}
+.pm-page .pm-faq-item[open] .pm-faq-toggle-plus {
+  display: none;
+}
+.pm-page .pm-faq-item[open] .pm-faq-toggle-minus {
+  display: block;
+}
+.pm-page .pm-faq-item p {
+  margin: 0;
+  padding: 0 22px 20px;
+  font-size: var(--pm-fs-body);
+  line-height: 1.6;
+  color: var(--pm-ink-soft);
+}
+
+/* Comparison table — classless th/td styled via relationship selectors */
+.pm-page .pm-compare th,
+.pm-page .pm-compare td {
+  padding: 13px 18px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--pm-border);
+}
+.pm-page .pm-compare thead th {
+  font-size: var(--pm-fs-small);
+  font-weight: 700;
+  color: var(--pm-ink);
+  background: var(--pm-bg-soft);
+}
+.pm-page .pm-compare thead th:first-child {
+  background: transparent;
+}
+.pm-page .pm-compare thead .pm-col-pine {
+  color: var(--pm-accent-strong);
+}
+.pm-page .pm-compare tbody th {
+  font-weight: 600;
+  color: var(--pm-ink-soft);
+}
+.pm-page .pm-compare tbody tr:last-child th,
+.pm-page .pm-compare tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Docs tables — classless th/td + narrow-screen scroll */
+.pm-page .pm-doc-table th,
+.pm-page .pm-doc-table td {
+  padding: 8px 14px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--pm-border);
+}
+.pm-page .pm-doc-table thead th {
+  font-size: var(--pm-fs-tiny);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--pm-ink-faint);
+  background: var(--pm-bg-soft);
+}
+.pm-page .pm-doc-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* CTA buttons — child svg slide + ghost variants (incl. dark bands) */
+.pm-page a.pm-cta svg {
+  transition: transform 0.2s ease;
+}
+.pm-page a.pm-cta:hover svg,
+.pm-page a.pm-cta:focus-visible svg {
+  transform: translateX(3px);
+}
+.pm-page a.pm-cta-ghost {
+  color: var(--pm-accent-strong);
+  background: var(--pm-surface);
+  border: 1px solid color-mix(in srgb, var(--pm-accent) 34%, var(--pm-border));
+  box-shadow: none;
+}
+.pm-page .pm-hero a.pm-cta-ghost,
+.pm-page .pm-cta-box a.pm-cta-ghost {
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.pm-page a.pm-cta-ghost:hover,
+.pm-page a.pm-cta-ghost:focus-visible {
+  color: var(--pm-accent-deep);
+  background: var(--pm-bg-soft);
+  border-color: color-mix(in srgb, var(--pm-accent) 52%, var(--pm-border));
+  box-shadow: 0 8px 20px -8px var(--pm-accent-glow);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+.pm-page .pm-hero a.pm-cta-ghost:hover,
+.pm-page .pm-hero a.pm-cta-ghost:focus-visible,
+.pm-page .pm-cta-box a.pm-cta-ghost:hover,
+.pm-page .pm-cta-box a.pm-cta-ghost:focus-visible {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(203, 213, 225, 0.5);
+  box-shadow: 0 10px 24px -10px rgba(16, 185, 129, 0.5);
+}
+.pm-page a.pm-cta-ghost:active {
+  color: var(--pm-accent-deep);
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Horizontal layout of the flow diagram (desktop) */
+@media (min-width: 1180px) {
+  .pm-page .pm-flow-arrow {
+    --pm-flow-axis: x;
+  }
+  .pm-page .pm-flow-node > .pm-flow-status {
+    margin-top: auto;
+  }
+  .pm-page .pm-flow-log {
+    margin-bottom: 16px;
+  }
+  .pm-page .pm-flow-rail::before {
+    background-image: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--pm-accent) 78%, transparent) 50%,
+      transparent 50%
+    );
+    background-size: 14px 6px;
+    background-repeat: repeat-x;
+    animation: pm-flow-dash-h 1s linear infinite;
+  }
+  .pm-page .pm-flow-arrow-icon svg {
+    width: 16px;
+    height: 16px;
+    transform: none;
+  }
+}
+
+/* Narrow screens */
+@media (max-width: 767px) {
+  .pm-page .pm-doc-table th,
+  .pm-page .pm-doc-table td {
+    white-space: nowrap;
+  }
+  .pm-page a.pm-cta {
+    width: 100%;
+  }
+}

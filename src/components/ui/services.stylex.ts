@@ -63,35 +63,41 @@ export const servicesStyles = stylex.create({
   },
 
   faqList: {
-    borderBlockEndColor: colors.border,
-    borderBlockEndStyle: 'solid',
-    borderBlockEndWidth: 1,
-    borderBlockStartColor: colors.border,
-    borderBlockStartStyle: 'solid',
-    borderBlockStartWidth: 1,
+    borderColor: colors.border,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRadius: 16,
+    boxShadow: 'var(--shadow-card)',
     marginBlockStart: space['5'],
+    overflow: 'hidden',
   },
 
   faqItem: {
-    borderBlockEndColor: colors.border,
-    borderBlockEndStyle: 'solid',
-    borderBlockEndWidth: 1,
+    backgroundColor: colors.bg,
+    borderWidth: 0,
+    transitionProperty: 'background-color',
+    transitionDuration: '0.2s',
+    transitionTimingFunction: 'ease',
+    ':hover': {
+      backgroundColor: colors.bgSoft,
+    },
   },
 
   summary: {
-    alignItems: 'baseline',
+    alignItems: 'center',
     cursor: 'pointer',
     display: 'flex',
     gap: space['4'],
     justifyContent: 'space-between',
     listStyleType: 'none',
-    paddingBlock: space['4'],
+    paddingBlock: space['5'],
+    paddingInline: space['5'],
   },
 
   summaryText: {
     color: colors.text,
     fontSize: '1rem',
-    fontWeight: weights.semibold,
+    fontWeight: weights.bold,
   },
 
   chevron: {

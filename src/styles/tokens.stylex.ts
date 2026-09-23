@@ -88,6 +88,7 @@ export const weights = stylex.defineVars({
   normal: '400',
   medium: '500',
   semibold: '600',
+  bold: '700',
 })
 
 export const letterSpacing = stylex.defineVars({

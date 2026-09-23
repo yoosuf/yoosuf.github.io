@@ -74,7 +74,14 @@ export default function ServicesAccordion({ services }: ServicesAccordionProps):
                 onClick={() => toggle(index)}
                 onKeyDown={(event) => onTriggerKeyDown(event, index)}
               >
-                <span {...stylex.props(servicesAccordionStyles.iconChip)} data-home-hook="svc-chip" aria-hidden="true">
+                <span
+                  {...stylex.props(
+                    servicesAccordionStyles.iconChip,
+                    expanded && servicesAccordionStyles.iconChipOpen,
+                  )}
+                  data-home-hook="svc-chip"
+                  aria-hidden="true"
+                >
                   <ReactIcon name={iconName} size={15} />
                 </span>
                 <span {...stylex.props(servicesAccordionStyles.name)} data-home-hook="svc-name">{service.name}</span>

@@ -366,6 +366,12 @@ const mainAttrs = stylex.attrs(shellStyles.main)
         scroll-margin-top: 6rem;
       }
 
+      /* Shiki code samples: contain long unbreakable lines in an internal
+         scroll strip instead of widening the page (site-wide no-overflow rule). */
+      .astro-code {
+        overflow-x: auto;
+      }
+
       /* Shiki dual themes: Astro emits the light colour inline and the dark
          colour in --shiki-dark; apply the dark palette under dark scheme. */
       @media (prefers-color-scheme: dark) {
@@ -379,7 +385,6 @@ const mainAttrs = stylex.attrs(shellStyles.main)
 
       /* Group-hover composites for the data-home-hook relationship classes. */
       [data-home-hook='product-card']:hover [data-home-hook='y-product-title'],
-      [data-home-hook='latest-wash']:hover [data-home-hook='y-latest-title'],
       [data-home-hook='y-post-card']:hover [data-home-hook='y-post-title'] {
         color: light-dark(#2563eb, #8bb0ff);
       }

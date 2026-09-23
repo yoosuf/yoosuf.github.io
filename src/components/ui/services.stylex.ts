@@ -18,7 +18,7 @@ export const servicesStyles = stylex.create({
   },
 
   section: {
-    marginBlockStart: space['12'],
+    marginBlockStart: { default: space['12'], '@media (min-width: 40rem)': space['16'] },
   },
 
   processList: {
@@ -27,7 +27,7 @@ export const servicesStyles = stylex.create({
     borderBlockStartWidth: 1,
     listStyleType: 'none',
     marginBlockEnd: 0,
-    marginBlockStart: space['6'],
+    marginBlockStart: space['5'],
     paddingInlineStart: 0,
   },
 
@@ -69,7 +69,7 @@ export const servicesStyles = stylex.create({
     borderBlockStartColor: colors.border,
     borderBlockStartStyle: 'solid',
     borderBlockStartWidth: 1,
-    marginBlockStart: space['4'],
+    marginBlockStart: space['5'],
   },
 
   faqItem: {

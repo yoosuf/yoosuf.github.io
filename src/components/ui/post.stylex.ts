@@ -41,7 +41,7 @@ export const postStyles = stylex.create({
     borderBlockStartColor: colors.border,
     borderBlockStartStyle: 'solid',
     borderBlockStartWidth: 1,
-    marginBlockStart: space['12'],
+    marginBlockStart: { default: space['12'], '@media (min-width: 40rem)': space['16'] },
     paddingBlockStart: space['6'],
   },
 

@@ -1,12 +1,18 @@
-import { configForVariant, type MermaidVariant } from './config'
+import {
+  configForVariant,
+  prefersDark,
+  type MermaidScheme,
+  type MermaidVariant,
+} from './config'
 
 type MermaidApi = (typeof import('mermaid'))['default']
 type MermaidTarget = HTMLElement & { dataset: DOMStringMap }
 
 let mermaidPromise: Promise<MermaidApi> | null = null
-let initialized = false
+let initializedScheme: 'light' | 'dark' | null = null
 let bootstrapRegistered = false
 let renderGeneration = 0
+let schemeListenerRegistered = false
 
 function targets(): MermaidTarget[] {
   return [...document.querySelectorAll<MermaidTarget>('[data-mermaid-target]')]
@@ -19,8 +25,31 @@ function variantFor(target: MermaidTarget): MermaidVariant {
 }
 
 async function loadMermaid(): Promise<MermaidApi> {
-  mermaidPromise ??= import('mermaid').then(({ default: mermaid }) => mermaid)
+  if (mermaidPromise) return mermaidPromise
+  mermaidPromise = import('mermaid')
+    .then(({ default: mermaid }) => mermaid)
+    .catch((error) => {
+      // One-shot: don't cache the rejection. The module is large and is split
+      // into many chunks, so a single dropped/failed fetch (slow networks,
+      // cold caches, flaky static hosts) must not poison every diagram on the
+      // page. Clear and retry so a second attempt can succeed.
+      mermaidPromise = null
+      throw error
+    })
   return mermaidPromise
+}
+
+async function loadMermaidWithRetries(retries = 2, delayMs = 600): Promise<MermaidApi> {
+  let lastError: unknown
+  for (let attempt = 0; attempt <= retries; attempt += 1) {
+    try {
+      return await loadMermaid()
+    } catch (error) {
+      lastError = error
+      if (attempt < retries) await new Promise((resolve) => setTimeout(resolve, delayMs * (attempt + 1)))
+    }
+  }
+  throw lastError
 }
 
 function setState(target: MermaidTarget, state: 'pending' | 'ready' | 'error'): void {
@@ -85,9 +114,13 @@ async function renderTarget(
   id: string,
   generation: number,
 ): Promise<void> {
+  const scheme = prefersDark() ? 'dark' : 'light'
+  // Re-render when the active color scheme no longer matches the last render,
+  // even if the target already shows a diagram (mermaid bakes colors into the
+  // SVG and can't re-resolve a CSS `light-dark()`).
   if (
     generation !== renderGeneration ||
-    target.dataset.mermaidState === 'ready' ||
+    (target.dataset.mermaidState === 'ready' && target.dataset.mermaidScheme === scheme) ||
     target.dataset.mermaidRendering === 'true'
   ) return
 
@@ -102,6 +135,7 @@ async function renderTarget(
     if (generation !== renderGeneration || !target.isConnected) return
     target.innerHTML = svg
     bindFunctions?.(target)
+    target.dataset.mermaidScheme = scheme
     setState(target, 'ready')
   } catch (error) {
     if (generation !== renderGeneration || !target.isConnected) return
@@ -124,10 +158,11 @@ export async function renderMermaidDiagrams(): Promise<void> {
 
   const generation = renderGeneration
   const firstVariant = variantFor(foundTargets[0])
-  const mermaid = await loadMermaid()
-  if (!initialized) {
-    mermaid.initialize(configForVariant(firstVariant))
-    initialized = true
+  const mermaid = await loadMermaidWithRetries()
+  const scheme = prefersDark() ? 'dark' : 'light'
+  if (initializedScheme !== scheme) {
+    mermaid.initialize(configForVariant(firstVariant, scheme))
+    initializedScheme = scheme
   }
 
   const usedIds = new Set<string>()
@@ -150,9 +185,19 @@ function hideRenderFailure(error: unknown): void {
   })
 }
 
+function watchSchemeChanges(): void {
+  if (schemeListenerRegistered || typeof window === 'undefined' || !window.matchMedia) return
+  schemeListenerRegistered = true
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    renderGeneration += 1
+    void renderMermaidDiagrams().catch(hideRenderFailure)
+  })
+}
+
 export function scheduleMermaidRender(): void {
   if (typeof window === 'undefined' || bootstrapRegistered) return
   bootstrapRegistered = true
+  watchSchemeChanges()
 
   const render = () => {
     void renderMermaidDiagrams().catch(hideRenderFailure)

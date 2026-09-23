@@ -16,13 +16,14 @@ export const servicesAccordionStyles = stylex.create({
     borderStyle: 'solid',
     borderWidth: 1,
     transitionDuration: '0.15s',
-    transitionProperty: 'border-color,box-shadow',
+    transitionProperty: 'background-color,border-color,box-shadow',
     ':hover': {
       borderColor: colors.borderStrong,
     },
   },
 
   itemOpen: {
+    backgroundColor: colors.washSoft,
     borderColor: colors.accentBorder,
     boxShadow: '0 0 0 1px color-mix(in srgb, light-dark(#2563eb, #8bb0ff) 16%, transparent)',
   },
@@ -62,8 +63,17 @@ export const servicesAccordionStyles = stylex.create({
     height: '2.25rem',
     justifyContent: 'center',
     transitionDuration: '0.15s',
-    transitionProperty: 'color',
+    transitionProperty: 'background-color,color',
     width: '2.25rem',
+    '@media (min-width: 40rem)': {
+      height: '2.5rem',
+      width: '2.5rem',
+    },
+  },
+
+  iconChipOpen: {
+    backgroundColor: colors.accentSoftBg,
+    color: colors.accent,
   },
 
   name: {
@@ -95,11 +105,13 @@ export const servicesAccordionStyles = stylex.create({
     animationName: panelEnter,
     animationTimingFunction: 'ease-out',
     paddingBlockEnd: '1.25rem',
-    paddingBlockStart: '0.1rem',
-    paddingInline: '1.1rem',
+    paddingBlockStart: '0.15rem',
+    paddingInlineEnd: space['4'],
+    paddingInlineStart: '4rem',
     '@media (min-width: 40rem)': {
       paddingBlockEnd: space['6'],
-      paddingInline: space['5'],
+      paddingInlineEnd: space['5'],
+      paddingInlineStart: '4.625rem',
     },
   },
 
@@ -154,7 +166,7 @@ export const servicesAccordionStyles = stylex.create({
   },
 
   footer: {
-    alignItems: 'baseline',
+    alignItems: 'center',
     borderBlockStartColor: colors.border,
     borderBlockStartStyle: 'solid',
     borderBlockStartWidth: 1,
@@ -162,7 +174,8 @@ export const servicesAccordionStyles = stylex.create({
     display: 'flex',
     flexWrap: 'wrap',
     fontSize: '0.85rem',
-    gap: '0.5rem 1.25rem',
+    gap: '0.75rem 1.25rem',
+    justifyContent: 'space-between',
     marginBlockStart: '1.1rem',
     paddingBlockStart: space['4'],
   },
@@ -177,11 +190,27 @@ export const servicesAccordionStyles = stylex.create({
   },
 
   cta: {
-    color: colors.accent,
+    alignItems: 'center',
+    backgroundColor: colors.accentSoftBg,
+    borderColor: colors.accentBorder,
+    borderRadius: radii.md,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    color: colors.accentStrong,
+    display: 'inline-flex',
+    flexShrink: 0,
+    fontSize: '0.875rem',
+    fontWeight: weights.medium,
+    gap: '0.375rem',
+    paddingBlock: '0.45rem',
+    paddingInline: '0.9rem',
     textDecorationLine: 'none',
+    transitionDuration: '0.15s',
+    transitionProperty: 'background-color,border-color',
     ':hover': {
-      textDecorationLine: 'underline',
-      textUnderlineOffset: 4,
+      backgroundColor: colors.accentStrong,
+      borderColor: colors.accentStrong,
+      color: colors.onAccent,
     },
   },
 })

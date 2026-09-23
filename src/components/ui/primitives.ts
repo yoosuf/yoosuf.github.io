@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex'
-import { colors, fonts, letterSpacing, lineHeights, radii, space, typeScale, weights } from '../../styles/tokens.stylex'
+import { colors, letterSpacing, lineHeights, radii, space, typeScale, weights } from '../../styles/tokens.stylex'
 
 // Shared semantic primitives — the building blocks pages compose. Tokens only;
 // no brand-specific values, so themes stay the single source of truth.
@@ -225,39 +225,6 @@ export const pills = stylex.create({
     lineHeight: 1.4,
     paddingBlock: '0.125rem',
     paddingInline: space['2'],
-  },
-})
-
-// Toolbox / tech chips.
-export const chips = stylex.create({
-  tech: {
-    backgroundColor: colors.washSoft,
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: colors.border,
-    borderRadius: '999px',
-    color: colors.textMuted,
-    fontFamily: fonts.mono,
-    fontSize: '0.78rem',
-    lineHeight: 1.5,
-    paddingBlock: '0.25rem',
-    paddingInline: '0.75rem',
-  },
-})
-
-export const stat = stylex.create({
-  value: {
-    color: colors.text,
-    fontSize: '1.35rem',
-    fontWeight: weights.semibold,
-    letterSpacing: '-0.02em',
-    lineHeight: 1.3,
-  },
-  label: {
-    color: colors.textDim,
-    fontSize: '0.85rem',
-    lineHeight: 1.6,
-    marginBlockStart: '0.125rem',
   },
 })
 

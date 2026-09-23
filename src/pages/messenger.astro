@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ProductLayout from '../layouts/ProductLayout.astro'
+import MessengerBody from '../components/product/MessengerBody.astro'
+import * as stylex from '@stylexjs/stylex'
+import { styles } from '../components/ui/product.stylex'
+import { messenger } from '../data/product'
+import { SITE } from '../config'
+
+const softwareJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Messenger',
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Linux, macOS, Windows',
+  description:
+    'An open source relational chat schema for one-to-one and group messaging: users, conversations, participants, messages, attachments, moderation (reports & blocks), device sessions, and per-user visibility. A database foundation for Node.js or Go chat backends on PostgreSQL or MySQL.',
+  url: `${SITE.url}/messenger/`,
+  isAccessibleForFree: true,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  featureList: [
+    'One-to-one and group chat models',
+    'Message persistence and relational integrity',
+    'Per-user delete visibility and conversation hide',
+    'Report and block models for moderation',
+    'Device registration and token access',
+    'Attachment and gallery tables for media messaging',
+    'Activity and audit logging',
+  ],
+  codeRepository: 'https://github.com/yoosuf/Messenger',
+  downloadUrl: 'https://github.com/yoosuf/Messenger/blob/master/messenger.sql',
+  author: { '@type': 'Person', name: 'Yoosuf Mohamed', url: SITE.url },
+  publisher: { '@type': 'Person', name: 'Yoosuf Mohamed', url: SITE.url },
+}
+---
+
+<BaseLayout
+  title={messenger.seo.title}
+  description={messenger.seo.description}
+  keywords={messenger.seo.keywords}
+  canonical={messenger.seo.canonical}
+  type="softwareApplication"
+  jsonLd={[softwareJsonLd]}
+>
+  <ProductLayout product={messenger}>
+    <div slot="media">
+      <div data-pm-hook="pm-terminal" {...stylex.attrs(styles.pmTerminal)} role="img" aria-label="Messenger schema import in a terminal">
+        <div data-pm-hook="pm-terminal-bar" {...stylex.attrs(styles.pmTerminalBar)}>
+          <span data-pm-hook="pm-terminal-dot pm-terminal-dot-red" {...stylex.attrs(styles.pmTerminalDotRed)}></span>
+          <span data-pm-hook="pm-terminal-dot pm-terminal-dot-yellow" {...stylex.attrs(styles.pmTerminalDotYellow)}></span>
+          <span data-pm-hook="pm-terminal-dot pm-terminal-dot-green" {...stylex.attrs(styles.pmTerminalDotGreen)}></span>
+          <span data-pm-hook="pm-terminal-title" {...stylex.attrs(styles.pmTerminalTitle)}>messenger.sql — schema</span>
+        </div>
+        <div data-pm-hook="pm-terminal-body" {...stylex.attrs(styles.pmTerminalBody)}>
+          <pre data-pm-hook="pm-terminal-lines" {...stylex.attrs(styles.pmTerminalLines)}><span data-pm-hook="pm-prompt" {...stylex.attrs(styles.pmPrompt)}>$</span> mysql -u app -p chatdb &lt; messenger.sql
+<span data-pm-hook="pm-ok" {...stylex.attrs(styles.pmOk)}>&#10003;</span> 16 tables created
+
+<span data-pm-hook="pm-prompt" {...stylex.attrs(styles.pmPrompt)}>$</span> SHOW TABLES;
+users                 user_verification
+contacts              user_contact
+conversation          participants
+messages              attachments
+deleted_messages      deleted_conversations
+block_list            reports
+devices               access
+activities
+
+<span data-pm-hook="pm-prompt" {...stylex.attrs(styles.pmPrompt)}>$</span> SELECT * FROM messages;
+<span data-pm-hook="pm-ok" {...stylex.attrs(styles.pmOk)}>&#10003;</span> ready for your API layer</pre>
+        </div>
+      </div>
+    </div>
+
+    <MessengerBody />
+  </ProductLayout>
+</BaseLayout>

@@ -1,4 +1,5 @@
 ---
-import MarkdownElement from './MarkdownElement.astro'
+import ForwardTag from './ForwardTag.astro'
+const { style: _style, ...attrs } = Astro.props
 ---
-<MarkdownElement tag="tableCell"><slot /></MarkdownElement>
+<ForwardTag tag="tableCell" {...attrs}><slot /></ForwardTag>

@@ -1,0 +1,10 @@
+---
+import MarkdownElement from './MarkdownElement.astro'
+interface Props {
+  tag: string
+  style?: unknown
+  [key: string]: unknown
+}
+const { tag, style: _style, ...attrs } = Astro.props
+---
+<MarkdownElement tag={tag} {...attrs}><slot /></MarkdownElement>

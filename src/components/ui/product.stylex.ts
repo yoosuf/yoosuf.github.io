@@ -45,10 +45,10 @@ export const styles = stylex.create({
     paddingTop: '84px',
     paddingBottom: '92px',
     backgroundImage:
-      'radial-gradient(1100px 460px at 78% -10%, color-mix(in srgb, var(--pm-accent) 17%, transparent), transparent 62%), linear-gradient(180deg, #0d1522 0%, var(--pm-term-bg) 100%)',
+      'linear-gradient(180deg, #141414 0%, var(--pm-term-bg) 100%)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    borderBottom: '1px solid rgba(148, 163, 184, 0.14)',
+    borderBottom: '1px solid rgba(160, 160, 160, 0.14)',
     '@media (max-width: 979px)': {
       paddingTop: '64px',
       paddingBottom: '68px',
@@ -105,11 +105,11 @@ export const styles = stylex.create({
     fontWeight: 700,
     letterSpacing: '0.08em',
     textTransform: 'uppercase',
-    color: 'var(--pm-term-accent)',
-    backgroundColor: 'color-mix(in srgb, var(--pm-accent) 15%, transparent)',
+    color: '#d6d6d6',
+    backgroundColor: 'rgba(160, 160, 160, 0.08)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'color-mix(in srgb, var(--pm-accent) 28%, transparent)',
+    borderColor: 'rgba(160, 160, 160, 0.22)',
     borderRadius: 999,
   },
 
@@ -122,7 +122,7 @@ export const styles = stylex.create({
     fontWeight: 700,
     lineHeight: 1.1,
     letterSpacing: '-0.035em',
-    color: '#f8fafc',
+    color: '#f6f6f6',
     '@media (max-width: 767px)': {
       fontSize: 'clamp(1.9rem, 5.5vw, 2.3rem)',
     },
@@ -136,7 +136,7 @@ export const styles = stylex.create({
     maxWidth: '560px',
     fontSize: 'var(--pm-fs-lead)',
     lineHeight: 1.6,
-    color: '#94a3b8',
+    color: '#b3b3b3',
     '@media (min-width: 980px)': {
       maxWidth: '520px',
     },
@@ -174,7 +174,7 @@ export const styles = stylex.create({
 
   pmHeroCheck: {
     alignItems: 'center',
-    color: '#cbd5e1',
+    color: '#d6d6d6',
     display: 'flex',
     fontSize: 'var(--pm-fs-small)',
     fontWeight: 600,
@@ -182,7 +182,7 @@ export const styles = stylex.create({
   },
 
   pmHeroCheckIcon: {
-    color: 'var(--pm-term-accent)',
+    color: '#b3b3b3',
     flexShrink: 0,
     height: 15,
     strokeWidth: 3,
@@ -204,10 +204,10 @@ export const styles = stylex.create({
     backgroundColor: 'var(--pm-term-bg)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'rgba(52, 211, 153, 0.25)',
+    borderColor: 'var(--pm-border)',
     borderRadius: 14,
     overflow: 'hidden',
-    boxShadow: '0 24px 60px -24px var(--pm-accent-glow), 0 0 1px rgba(0, 0, 0, 0.4)',
+    boxShadow: '0 24px 60px -24px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0.4)',
     fontFamily: 'var(--font-mono)',
   },
 
@@ -219,7 +219,7 @@ export const styles = stylex.create({
     paddingRight: '16px',
     paddingBottom: '12px',
     paddingLeft: '16px',
-    borderBottom: '1px solid rgba(148, 163, 184, 0.16)',
+    borderBottom: '1px solid rgba(160, 160, 160, 0.16)',
     backgroundColor: 'color-mix(in srgb, #fff 4%, transparent)',
   },
 
@@ -230,13 +230,13 @@ export const styles = stylex.create({
     flexShrink: 0,
   },
   pmTerminalDotRed: {
-    backgroundColor: '#f87171',
+    backgroundColor: '#52525b',
   },
   pmTerminalDotYellow: {
-    backgroundColor: '#fbbf24',
+    backgroundColor: '#44444c',
   },
   pmTerminalDotGreen: {
-    backgroundColor: '#34d399',
+    backgroundColor: '#3f3f46',
   },
 
   pmTerminalTitle: {
@@ -275,11 +275,11 @@ export const styles = stylex.create({
 
   pmPrompt: {
     fontWeight: 700,
-    color: 'var(--pm-term-accent)',
+    color: '#e2e8f0',
   },
   pmOk: {
     fontWeight: 700,
-    color: 'var(--pm-term-accent)',
+    color: '#e9eef3',
   },
 
   /* --- Subnav --- */
@@ -331,7 +331,7 @@ export const styles = stylex.create({
     color: 'var(--pm-ink-faint)',
     textDecoration: 'none',
     ':hover': {
-      color: 'var(--pm-accent-strong)',
+      color: 'var(--pm-ink)',
     },
   },
 
@@ -382,7 +382,7 @@ export const styles = stylex.create({
     height: 54,
     /* Brand logotype chips stay light in dark mode — the marks are drawn to be
        read on white; forcing them dark erases black glyphs. */
-    color: 'light-dark(var(--pm-ink), #0b1220)',
+    color: 'light-dark(var(--pm-ink), #1a1a1a)',
     backgroundColor: 'light-dark(var(--pm-bg-soft), var(--pm-logo-chip))',
     borderWidth: 1,
     borderStyle: 'solid',
@@ -394,14 +394,14 @@ export const styles = stylex.create({
     transitionTimingFunction: 'ease',
     ':hover': {
       backgroundColor: 'light-dark(#ffffff, var(--pm-logo-chip))',
-      borderColor: 'color-mix(in srgb, var(--pm-accent) 48%, var(--pm-border))',
-      boxShadow: '0 10px 22px -10px var(--pm-accent-glow)',
+      borderColor: 'var(--pm-border-strong)',
+      boxShadow: 'var(--pm-shadow-lift)',
       transform: 'translateY(-2px)',
     },
     ':focus-visible': {
       backgroundColor: 'light-dark(#ffffff, var(--pm-logo-chip))',
-      borderColor: 'color-mix(in srgb, var(--pm-accent) 48%, var(--pm-border))',
-      boxShadow: '0 10px 22px -10px var(--pm-accent-glow)',
+      borderColor: 'var(--pm-border-strong)',
+      boxShadow: 'var(--pm-shadow-lift)',
       transform: 'translateY(-2px)',
     },
     '@media (max-width: 767px)': {
@@ -410,21 +410,6 @@ export const styles = stylex.create({
       borderRadius: 13,
     },
   },
-
-  /* Official brand marks — fill = brand color (kept on hover). */
-  pmIcClaude: { color: '#d97757' },
-  pmIcCursor: { color: '#000000' },
-  pmIcWindsurf: { color: '#0d1b2a' },
-  pmIcCopilot: { color: '#6e40c9' },
-  pmIcOpenai: { color: '#10a37f' },
-  pmIcGemini: { color: '#1a73e8' },
-  pmIcGa: { color: '#2088ff' },
-  pmIcGitlab: { color: '#fc6d26' },
-  pmIcCircleci: { color: '#343434' },
-  pmIcJenkins: { color: '#d24939' },
-  pmIcApple: { color: '#000000' },
-  pmIcWindows: { color: '#0078d4' },
-  pmIcLinux: { color: '#fcc624' },
 
   /* --- Section layout --- */
   pmSection: {
@@ -489,8 +474,8 @@ export const styles = stylex.create({
     transitionProperty: 'border-color, box-shadow, transform',
     transitionDuration: '0.2s, 0.25s, 0.25s',
     ':hover': {
-      borderColor: 'color-mix(in srgb, var(--pm-accent) 40%, var(--pm-border))',
-      boxShadow: '0 16px 32px -16px var(--pm-accent-glow)',
+      borderColor: 'var(--pm-border-strong)',
+      boxShadow: 'var(--pm-shadow-lift)',
       transform: 'translateY(-3px)',
     },
   },
@@ -503,7 +488,7 @@ export const styles = stylex.create({
     height: 44,
     marginBottom: '16px',
     borderRadius: 12,
-    color: 'var(--pm-accent)',
+    color: 'var(--pm-ink-soft)',
     backgroundColor: 'var(--pm-bg-soft)',
     borderWidth: 1,
     borderStyle: 'solid',
@@ -557,9 +542,8 @@ export const styles = stylex.create({
     transitionDuration: '0.2s, 0.25s, 0.25s, 0.2s',
     ':hover': {
       backgroundColor: 'var(--pm-surface)',
-      borderColor: 'color-mix(in srgb, var(--pm-accent) 40%, var(--pm-border))',
-      boxShadow:
-        '0 16px 32px -16px var(--pm-shadow-lift), 0 0 0 1px color-mix(in srgb, var(--pm-accent) 14%, transparent)',
+      borderColor: 'var(--pm-border-strong)',
+      boxShadow: 'var(--pm-shadow-lift)',
       transform: 'translateY(-3px)',
     },
     '@media (max-width: 767px)': {
@@ -579,7 +563,7 @@ export const styles = stylex.create({
     fontWeight: 800,
     letterSpacing: '0.09em',
     textTransform: 'uppercase',
-    color: 'var(--pm-accent-strong)',
+    color: 'var(--pm-ink-faint)',
   },
 
   pmSwitchTitle: {
@@ -639,8 +623,11 @@ export const styles = stylex.create({
     fontFamily: 'var(--font-mono)',
     fontSize: 'var(--pm-fs-small)',
     fontWeight: 700,
-    color: 'var(--pm-on-accent)',
-    backgroundColor: 'var(--pm-accent-strong)',
+    color: 'var(--pm-ink-soft)',
+    backgroundColor: 'var(--pm-bg-soft)',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'var(--pm-border)',
     borderRadius: 9,
   },
 
@@ -708,27 +695,27 @@ export const styles = stylex.create({
     fontWeight: 700,
     letterSpacing: '0.08em',
     textTransform: 'uppercase',
-    color: 'var(--pm-accent-deep)',
-    backgroundColor: 'color-mix(in srgb, var(--pm-accent) 9%, var(--pm-wash-base))',
+    color: 'var(--pm-ink-soft)',
+    backgroundColor: 'var(--pm-bg-soft)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'color-mix(in srgb, var(--pm-accent) 20%, var(--pm-border))',
+    borderColor: 'var(--pm-border)',
     borderRadius: 999,
     ':before': {
       content: '""',
       width: 6,
       height: 6,
       borderRadius: '50%',
-      backgroundColor: 'var(--pm-accent)',
+      backgroundColor: 'var(--pm-ink-faint)',
     },
   },
 
   pmFlowNodeTagCore: {
-    color: 'var(--pm-on-accent)',
-    backgroundColor: 'var(--pm-accent-strong)',
+    color: 'var(--pm-surface)',
+    backgroundColor: 'var(--pm-ink)',
     borderColor: 'transparent',
     ':before': {
-      backgroundColor: 'var(--pm-on-accent)',
+      backgroundColor: 'var(--pm-surface)',
     },
   },
 
@@ -767,11 +754,11 @@ export const styles = stylex.create({
     height: 34,
     marginTop: '1px',
     borderRadius: 9,
-    color: 'var(--pm-accent-strong)',
-    backgroundColor: 'color-mix(in srgb, var(--pm-accent) 12%, transparent)',
+    color: 'var(--pm-ink-soft)',
+    backgroundColor: 'var(--pm-bg-soft)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'color-mix(in srgb, var(--pm-accent) 16%, transparent)',
+    borderColor: 'var(--pm-border)',
   },
 
   pmFlowListText: {
@@ -790,10 +777,9 @@ export const styles = stylex.create({
   /* Core node */
   pmFlowCore: {
     backgroundImage:
-      'linear-gradient(180deg, color-mix(in srgb, var(--pm-accent) 6%, var(--pm-wash-base)) 0%, var(--pm-bg-soft) 100%)',
-    borderColor: 'color-mix(in srgb, var(--pm-accent) 34%, var(--pm-border))',
-    boxShadow:
-      'var(--pm-shadow-card), 0 0 0 1px color-mix(in srgb, var(--pm-accent) 8%, transparent)',
+      'linear-gradient(180deg, var(--pm-surface) 0%, var(--pm-bg-soft) 100%)',
+    borderColor: 'var(--pm-border-strong)',
+    boxShadow: 'var(--pm-shadow-card)',
   },
 
   pmFlowCoreHeadMain: {
@@ -813,7 +799,7 @@ export const styles = stylex.create({
     paddingBottom: '14px',
     /* Static dashed flow divider — no per-frame animation (smooth scroll). */
     backgroundImage:
-      'linear-gradient(90deg, color-mix(in srgb, var(--pm-accent) 50%, transparent) 50%, transparent 50%)',
+      'linear-gradient(90deg, var(--pm-border-strong) 50%, transparent 50%)',
     backgroundSize: '16px 2px',
     backgroundRepeat: 'repeat-x',
     backgroundPosition: '0 calc(100% - 1px)',
@@ -823,7 +809,7 @@ export const styles = stylex.create({
     margin: 0,
     fontSize: 'var(--pm-fs-title)',
     fontWeight: 700,
-    color: 'var(--pm-accent-strong)',
+    color: 'var(--pm-ink)',
   },
 
   pmFlowBadge: {
@@ -835,11 +821,11 @@ export const styles = stylex.create({
     fontWeight: 700,
     letterSpacing: '0.04em',
     textTransform: 'uppercase',
-    color: 'var(--pm-accent-deep)',
-    backgroundColor: 'color-mix(in srgb, var(--pm-accent) 14%, var(--pm-wash-base))',
+    color: 'var(--pm-ink-soft)',
+    backgroundColor: 'var(--pm-bg-soft)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'color-mix(in srgb, var(--pm-accent) 22%, var(--pm-border))',
+    borderColor: 'var(--pm-border)',
     borderRadius: 999,
   },
 
@@ -863,7 +849,7 @@ export const styles = stylex.create({
     backgroundColor: 'var(--pm-surface)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'color-mix(in srgb, var(--pm-accent) 20%, var(--pm-border))',
+    borderColor: 'var(--pm-border)',
     borderRadius: 12,
   },
 
@@ -875,9 +861,11 @@ export const styles = stylex.create({
     width: 36,
     height: 36,
     borderRadius: 10,
-    color: 'var(--pm-on-accent)',
-    backgroundColor: 'var(--pm-accent-strong)',
-    boxShadow: '0 0 0 3px color-mix(in srgb, var(--pm-accent) 18%, transparent)',
+    color: 'var(--pm-ink-soft)',
+    backgroundColor: 'var(--pm-bg-soft)',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'var(--pm-border)',
   },
 
   pmFlowChannelText: {
@@ -921,7 +909,7 @@ export const styles = stylex.create({
     letterSpacing: 0,
     textTransform: 'none',
     fontVariantNumeric: 'tabular-nums',
-    color: 'var(--pm-accent-strong)',
+    color: 'var(--pm-term-text)',
   },
 
   pmFlowLog: {
@@ -939,7 +927,7 @@ export const styles = stylex.create({
     backgroundColor: 'var(--pm-term-bg)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'color-mix(in srgb, var(--pm-accent) 22%, var(--pm-border))',
+    borderColor: 'var(--pm-border)',
     borderRadius: 10,
   },
 
@@ -958,13 +946,13 @@ export const styles = stylex.create({
     marginLeft: 0,
     maxWidth: '100%',
     borderRadius: 999,
-    backgroundColor: 'color-mix(in srgb, var(--pm-accent) 9%, var(--pm-wash-base))',
+    backgroundColor: 'var(--pm-bg-soft)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'color-mix(in srgb, var(--pm-accent) 18%, var(--pm-border))',
+    borderColor: 'var(--pm-border)',
     fontSize: 'var(--pm-fs-tiny)',
     fontWeight: 700,
-    color: 'var(--pm-accent-deep)',
+    color: 'var(--pm-ink-soft)',
   },
 
   pmFlowStatusMsg: {
@@ -978,8 +966,8 @@ export const styles = stylex.create({
     width: 7,
     height: 7,
     borderRadius: '50%',
-    backgroundColor: 'var(--pm-accent)',
-    boxShadow: '0 0 6px 1px var(--pm-accent-glow)',
+    backgroundColor: 'var(--pm-ink-soft)',
+    boxShadow: 'none',
   },
 
   pmFlowLogLine: {
@@ -987,7 +975,7 @@ export const styles = stylex.create({
     fontFamily: 'var(--font-mono)',
     fontSize: 'var(--pm-fs-tiny)',
     lineHeight: 1.65,
-    color: '#94a3b8',
+    color: '#b3b3b3',
   },
 
   pmFlowLogTime: {
@@ -996,11 +984,11 @@ export const styles = stylex.create({
   },
 
   pmFlowLogHit: {
-    color: '#34d399',
+    color: '#e9eef3',
   },
 
   pmFlowLogHitTime: {
-    color: '#10b981',
+    color: '#b6bcc7',
   },
 
   /* Connector rail and its visible dash track are explicit child elements. */
@@ -1046,7 +1034,7 @@ export const styles = stylex.create({
     transform: 'translateX(-50%)',
     width: 5,
     borderRadius: 999,
-    backgroundColor: 'color-mix(in srgb, var(--pm-accent) 14%, transparent)',
+    backgroundColor: 'color-mix(in srgb, var(--pm-ink-soft) 24%, transparent)',
     '@media (min-width: 1180px)': {
       top: '50%',
       bottom: 'auto',
@@ -1062,11 +1050,11 @@ export const styles = stylex.create({
     position: 'absolute',
     inset: 0,
     borderRadius: 'inherit',
-    backgroundImage: 'linear-gradient(180deg, color-mix(in srgb, var(--pm-accent) 78%, transparent) 50%, transparent 50%)',
+    backgroundImage: 'linear-gradient(180deg, color-mix(in srgb, var(--pm-ink-soft) 55%, transparent) 50%, transparent 50%)',
     backgroundSize: '5px 14px',
     backgroundRepeat: 'repeat-y',
     '@media (min-width: 1180px)': {
-      backgroundImage: 'linear-gradient(90deg, color-mix(in srgb, var(--pm-accent) 78%, transparent) 50%, transparent 50%)',
+      backgroundImage: 'linear-gradient(90deg, color-mix(in srgb, var(--pm-ink-soft) 55%, transparent) 50%, transparent 50%)',
       backgroundSize: '14px 6px',
       backgroundRepeat: 'repeat-x',
     },
@@ -1093,10 +1081,10 @@ export const styles = stylex.create({
     justifyContent: 'center',
     width: 26,
     height: 26,
-    color: 'var(--pm-on-accent)',
-    backgroundColor: 'var(--pm-accent-strong)',
+    color: 'var(--pm-bg-soft)',
+    backgroundColor: 'var(--pm-ink)',
     borderRadius: '50%',
-    boxShadow: '0 6px 14px -6px var(--pm-accent-glow)',
+    boxShadow: 'none',
     '@media (min-width: 1180px)': {
       width: 30,
       height: 30,
@@ -1112,8 +1100,8 @@ export const styles = stylex.create({
     marginTop: '-5px',
     marginLeft: '-5px',
     borderRadius: '50%',
-    backgroundColor: '#fff',
-    boxShadow: '0 0 10px 3px var(--pm-accent-glow)',
+    backgroundColor: 'var(--pm-ink)',
+    boxShadow: '0 0 8px 2px color-mix(in srgb, var(--pm-ink) 35%, transparent)',
     opacity: 0,
     zIndex: 2,
     pointerEvents: 'none',
@@ -1129,11 +1117,11 @@ export const styles = stylex.create({
     fontWeight: 600,
     whiteSpace: 'nowrap',
     maxWidth: 120,
-    color: 'var(--pm-ink-faint)',
-    backgroundColor: 'color-mix(in srgb, var(--pm-accent) 9%, var(--pm-wash-base))',
+    color: 'var(--pm-ink-soft)',
+    backgroundColor: 'var(--pm-bg-soft)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'color-mix(in srgb, var(--pm-accent) 20%, var(--pm-border))',
+    borderColor: 'var(--pm-border)',
     borderRadius: 999,
   },
 
@@ -1165,8 +1153,8 @@ export const styles = stylex.create({
     transitionProperty: 'border-color, box-shadow, transform',
     transitionDuration: '0.2s, 0.25s, 0.25s',
     ':hover': {
-      borderColor: 'color-mix(in srgb, var(--pm-accent) 45%, var(--pm-border))',
-      boxShadow: '0 18px 36px -18px var(--pm-accent-glow)',
+      borderColor: 'var(--pm-border-strong)',
+      boxShadow: 'var(--pm-shadow-lift)',
       transform: 'translateY(-3px)',
     },
     '@media (max-width: 767px)': {
@@ -1182,9 +1170,12 @@ export const styles = stylex.create({
     height: 48,
     marginBottom: '18px',
     borderRadius: 14,
-    color: 'var(--pm-on-accent)',
-    backgroundColor: 'var(--pm-accent-strong)',
-    boxShadow: '0 10px 20px -8px var(--pm-accent-glow)',
+    color: 'var(--pm-ink-soft)',
+    backgroundColor: 'var(--pm-bg-soft)',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'var(--pm-border)',
+    boxShadow: 'none',
   },
 
   pmFeatureTitle: {
@@ -1224,9 +1215,9 @@ export const styles = stylex.create({
     backgroundColor: 'var(--pm-term-bg)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'rgba(16, 185, 129, 0.18)',
+    borderColor: 'var(--pm-border)',
     borderLeftWidth: 3,
-    borderLeftColor: 'var(--pm-accent)',
+    borderLeftColor: 'var(--pm-border-strong)',
     borderRadius: 10,
     boxShadow: '0 2px 6px -2px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.4)',
     whiteSpace: 'pre-wrap',
@@ -1254,11 +1245,11 @@ export const styles = stylex.create({
     fontWeight: 700,
     letterSpacing: '0.06em',
     textTransform: 'uppercase',
-    color: 'var(--pm-accent-strong)',
-    backgroundColor: 'color-mix(in srgb, var(--pm-accent) 12%, transparent)',
+    color: 'var(--pm-ink-faint)',
+    backgroundColor: 'var(--pm-bg-soft)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'color-mix(in srgb, var(--pm-accent) 18%, transparent)',
+    borderColor: 'var(--pm-border)',
     borderRadius: 6,
   },
 
@@ -1279,7 +1270,7 @@ export const styles = stylex.create({
     backgroundColor: 'var(--pm-term-bg)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'rgba(16, 185, 129, 0.18)',
+    borderColor: 'var(--pm-border)',
     borderRadius: 12,
   },
 
@@ -1341,7 +1332,7 @@ export const styles = stylex.create({
     backgroundColor: 'var(--pm-bg-soft)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'color-mix(in srgb, var(--pm-accent) 16%, var(--pm-border))',
+    borderColor: 'var(--pm-border)',
     borderRadius: 12,
   },
 
@@ -1399,8 +1390,11 @@ export const styles = stylex.create({
     fontSize: 'var(--pm-fs-tiny)',
     fontWeight: 700,
     letterSpacing: '0.04em',
-    color: 'var(--pm-on-accent)',
-    backgroundColor: 'var(--pm-accent-strong)',
+    color: 'var(--pm-ink-soft)',
+    backgroundColor: 'var(--pm-bg-soft)',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'var(--pm-border)',
     borderRadius: 6,
   },
 
@@ -1423,10 +1417,10 @@ export const styles = stylex.create({
     letterSpacing: '0.03em',
     textTransform: 'uppercase',
     color: 'var(--pm-ink-faint)',
-    backgroundColor: 'color-mix(in srgb, var(--pm-accent) 10%, var(--pm-wash-base))',
+    backgroundColor: 'var(--pm-bg-soft)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'color-mix(in srgb, var(--pm-accent) 16%, var(--pm-border))',
+    borderColor: 'var(--pm-border)',
     borderRadius: 999,
   },
 
@@ -1476,6 +1470,33 @@ export const styles = stylex.create({
     color: 'var(--pm-ink-faint)',
   },
 
+  /* --- Guide links + schema table (product docs) --- */
+  pmGuideLink: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '6px',
+    marginTop: '12px',
+    fontSize: 'var(--pm-fs-small)',
+    fontWeight: 600,
+    color: 'var(--pm-accent-strong)',
+    textDecoration: 'none',
+    transitionProperty: 'color',
+    transitionDuration: '0.15s',
+    ':hover': {
+      color: 'var(--pm-accent-deep)',
+      textDecorationLine: 'underline',
+      textUnderlineOffset: 3,
+    },
+  },
+
+  pmTableCode: {
+    fontFamily: 'var(--font-mono)',
+    fontSize: '0.95em',
+    fontWeight: 600,
+    whiteSpace: 'nowrap',
+    color: 'var(--pm-ink)',
+  },
+
   /* --- Comparison table --- */
   pmTableWrap: {
     maxWidth: '48rem',
@@ -1510,7 +1531,7 @@ export const styles = stylex.create({
   },
   pmSymPart: {
     fontWeight: 700,
-    color: '#d97706',
+    color: 'var(--pm-ink-soft)',
   },
 
   /* --- Install: tabbed quickstart --- */
@@ -1579,7 +1600,7 @@ export const styles = stylex.create({
     backgroundColor: 'var(--pm-term-bg)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'rgba(16, 185, 129, 0.18)',
+    borderColor: 'var(--pm-border)',
     borderRadius: 12,
     overflow: 'hidden',
   },
@@ -1594,14 +1615,14 @@ export const styles = stylex.create({
     paddingBottom: '8px',
     paddingLeft: '14px',
     backgroundColor: 'color-mix(in srgb, #ffffff 4%, transparent)',
-    borderBottom: '1px solid rgba(148, 163, 184, 0.14)',
+    borderBottom: '1px solid rgba(160, 160, 160, 0.14)',
   },
 
   pmCodeboxTitle: {
     fontFamily: 'var(--font-mono)',
     fontSize: '0.78rem',
     letterSpacing: '0.02em',
-    color: '#94a3b8',
+    color: '#b3b3b3',
   },
 
   pmCodeCopy: {
@@ -1612,11 +1633,11 @@ export const styles = stylex.create({
     fontSize: '0.78rem',
     fontWeight: 600,
     lineHeight: 1,
-    color: '#cbd5e1',
+    color: '#d6d6d6',
     backgroundColor: 'transparent',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'rgba(148, 163, 184, 0.3)',
+    borderColor: 'rgba(160, 160, 160, 0.3)',
     borderRadius: 6,
     cursor: 'pointer',
     transitionProperty: 'background-color, color, border-color',
@@ -1706,12 +1727,12 @@ export const styles = stylex.create({
     transitionTimingFunction: 'ease',
     color: 'var(--pm-ink)',
     ':hover': {
-      backgroundColor: 'var(--pm-accent-strong)',
-      color: 'var(--pm-on-accent)',
+      backgroundColor: 'var(--pm-bg-soft)',
+      color: 'var(--pm-ink)',
     },
     ':focus-within': {
-      backgroundColor: 'var(--pm-accent-strong)',
-      color: 'var(--pm-on-accent)',
+      backgroundColor: 'var(--pm-bg-soft)',
+      color: 'var(--pm-ink)',
     },
   },
 
@@ -1723,11 +1744,11 @@ export const styles = stylex.create({
     width: 38,
     height: 38,
     borderRadius: 10,
-    color: 'inherit',
-    backgroundColor: 'color-mix(in srgb, var(--pm-accent) 14%, transparent)',
+    color: 'var(--pm-ink-soft)',
+    backgroundColor: 'var(--pm-bg-soft)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'color-mix(in srgb, var(--pm-accent) 16%, transparent)',
+    borderColor: 'var(--pm-border)',
   },
 
   pmToolMain: {
@@ -1760,7 +1781,7 @@ export const styles = stylex.create({
     height: 26,
     borderRadius: 8,
     color: 'inherit',
-    backgroundColor: 'color-mix(in srgb, var(--pm-accent) 12%, transparent)',
+    backgroundColor: 'var(--pm-bg-soft)',
   },
 
   pmToolDesc: {
@@ -1815,7 +1836,7 @@ export const styles = stylex.create({
   pmWorkflowStep: {
     borderTopWidth: 3,
     borderTopStyle: 'solid',
-    borderTopColor: 'var(--pm-accent)',
+    borderTopColor: 'var(--pm-border-strong)',
     paddingTop: '14px',
   },
 
@@ -1823,7 +1844,7 @@ export const styles = stylex.create({
     fontFamily: 'var(--font-mono)',
     fontSize: 'var(--pm-fs-small)',
     fontWeight: 700,
-    color: 'var(--pm-accent-strong)',
+    color: 'var(--pm-ink-soft)',
   },
 
   /* --- Stats row --- */
@@ -1863,7 +1884,7 @@ export const styles = stylex.create({
     fontSize: 'var(--pm-fs-display)',
     fontWeight: 700,
     letterSpacing: '-0.02em',
-    color: 'var(--pm-accent-strong)',
+    color: 'var(--pm-ink)',
   },
 
   pmStatLabel: {
@@ -1936,7 +1957,7 @@ export const styles = stylex.create({
     flexShrink: 0,
     width: 18,
     height: 18,
-    color: 'var(--pm-accent-strong)',
+    color: 'var(--pm-ink-soft)',
   },
 
   pmFaqToggleHidden: {
@@ -1979,10 +2000,10 @@ export const styles = stylex.create({
     fontSize: '0.9em',
     paddingBlock: '0.15em',
     paddingInline: '0.4em',
-    backgroundColor: 'color-mix(in srgb, var(--pm-accent) 12%, transparent)',
+    backgroundColor: 'var(--pm-bg-soft)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'color-mix(in srgb, var(--pm-accent) 20%, transparent)',
+    borderColor: 'var(--pm-border)',
     borderRadius: 6,
     color: 'var(--pm-ink)',
   },
@@ -2007,12 +2028,12 @@ export const styles = stylex.create({
     paddingLeft: '40px',
     textAlign: 'center',
     backgroundImage:
-      'radial-gradient(760px 320px at 50% -40%, color-mix(in srgb, var(--pm-accent) 16%, transparent), transparent 70%), linear-gradient(180deg, #0d1522 0%, var(--pm-term-bg) 100%)',
+      'linear-gradient(180deg, #141414 0%, var(--pm-term-bg) 100%)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'rgba(148, 163, 184, 0.16)',
+    borderColor: 'rgba(160, 160, 160, 0.16)',
     borderRadius: 24,
     '@media (max-width: 767px)': {
       paddingTop: '32px',
@@ -2031,7 +2052,7 @@ export const styles = stylex.create({
     fontWeight: 700,
     lineHeight: 1.25,
     letterSpacing: '-0.02em',
-    color: '#f8fafc',
+    color: '#f6f6f6',
     '@media (max-width: 767px)': {
       fontSize: '1.55rem',
     },
@@ -2045,7 +2066,7 @@ export const styles = stylex.create({
     maxWidth: 520,
     fontSize: 'var(--pm-fs-card)',
     lineHeight: 1.6,
-    color: '#94a3b8',
+    color: '#b3b3b3',
   },
 
   pmCtaActions: {
@@ -2059,7 +2080,10 @@ export const styles = stylex.create({
     },
   },
 
-  /* --- Buttons (anchors, always inside `.pm-page`) --- */
+  /* --- Buttons (anchors, always inside `.pm-page`). Colors follow the site's
+     shared accent from tokens.stylex.ts (`colors.accent`/`accentStrong`/
+     `onAccent`) — an unshaded `light-dark()` blue, never the per-product
+     `--pm-accent` brand hue. --- */
   pmCta: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -2072,67 +2096,62 @@ export const styles = stylex.create({
     fontSize: 'var(--pm-fs-body)',
     fontWeight: 600,
     lineHeight: 1.2,
-    color: 'var(--pm-on-accent)',
-    backgroundColor: 'var(--pm-accent-strong)',
+    color: 'light-dark(#ffffff, #1a1a1a)',
+    backgroundColor: 'light-dark(#2563eb, #8bb0ff)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'color-mix(in srgb, var(--pm-accent-deep) 35%, transparent)',
+    borderColor: 'transparent',
     borderRadius: 999,
     textDecoration: 'none',
-    boxShadow: 'var(--pm-shadow-accent), inset 0 1px 0 rgba(255, 255, 255, 0.18)',
-    transitionProperty: 'box-shadow, transform, background-color, border-color',
+    transitionProperty: 'background-color, transform',
     transitionDuration: '0.2s',
     transitionTimingFunction: 'ease',
     ':hover': {
-      color: 'var(--pm-on-accent)',
-      backgroundColor: 'var(--pm-accent-deep)',
-      borderColor: 'var(--pm-accent-deep)',
-      boxShadow: '0 12px 26px -6px var(--pm-accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.18)',
+      color: 'light-dark(#ffffff, #1a1a1a)',
+      backgroundColor: 'light-dark(#1d4ed8, #a9c4ff)',
+      borderColor: 'transparent',
       transform: 'translateY(-2px)',
       textDecoration: 'none',
     },
     ':focus-visible': {
-      color: 'var(--pm-on-accent)',
-      backgroundColor: 'var(--pm-accent-deep)',
-      borderColor: 'var(--pm-accent-deep)',
-      boxShadow: '0 12px 26px -6px var(--pm-accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.18)',
+      color: 'light-dark(#ffffff, #1a1a1a)',
+      backgroundColor: 'light-dark(#1d4ed8, #a9c4ff)',
+      borderColor: 'transparent',
       transform: 'translateY(-2px)',
       textDecoration: 'none',
     },
     ':active': {
       transform: 'translateY(0)',
-      borderColor: 'var(--pm-accent-deep)',
-      boxShadow: '0 4px 12px -4px var(--pm-accent-glow), inset 0 2px 4px rgba(0, 0, 0, 0.18)',
-      backgroundColor: 'color-mix(in srgb, var(--pm-accent-strong) 92%, #000)',
+      backgroundColor: 'light-dark(#1d4ed8, #a9c4ff)',
     },
   },
 
   pmCtaGhost: {
-    color: 'var(--pm-accent-strong)',
-    backgroundColor: 'var(--pm-surface)',
-    borderColor: 'color-mix(in srgb, var(--pm-accent) 34%, var(--pm-border))',
+    color: 'var(--pm-term-text)',
+    backgroundColor: 'rgba(255, 255, 255, 0.02)',
+    borderColor: 'rgba(160, 160, 160, 0.35)',
     boxShadow: 'none',
     transitionProperty: 'box-shadow, transform, background-color, border-color, color',
     ':hover': {
-      color: 'var(--pm-accent-deep)',
-      backgroundColor: 'var(--pm-bg-soft)',
-      borderColor: 'color-mix(in srgb, var(--pm-accent) 52%, var(--pm-border))',
-      boxShadow: '0 8px 20px -8px var(--pm-accent-glow)',
+      color: '#ffffff',
+      backgroundColor: 'rgba(255, 255, 255, 0.08)',
+      borderColor: 'rgba(203, 213, 225, 0.55)',
+      boxShadow: 'none',
       transform: 'translateY(-2px)',
       filter: 'none',
       textDecoration: 'none',
     },
     ':focus-visible': {
-      color: 'var(--pm-accent-deep)',
-      backgroundColor: 'var(--pm-bg-soft)',
-      borderColor: 'color-mix(in srgb, var(--pm-accent) 52%, var(--pm-border))',
-      boxShadow: '0 8px 20px -8px var(--pm-accent-glow)',
+      color: '#ffffff',
+      backgroundColor: 'rgba(255, 255, 255, 0.08)',
+      borderColor: 'rgba(203, 213, 225, 0.55)',
+      boxShadow: 'none',
       transform: 'translateY(-2px)',
       filter: 'none',
       textDecoration: 'none',
     },
     ':active': {
-      color: 'var(--pm-accent-deep)',
+      color: 'var(--pm-term-text)',
       transform: 'translateY(0)',
       boxShadow: 'none',
     },

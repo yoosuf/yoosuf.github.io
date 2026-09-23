@@ -21,6 +21,11 @@
   - Product Hunt: https://www.producthunt.com/products/pinemail
   - [Announcement post](https://yoosuf.me/blog/introducing-pinemail): Why I built Pine Mail and how it works
   - Detailed docs: [llms-pinemail.txt](https://yoosuf.me/llms-pinemail.txt)
+- [Messenger](https://yoosuf.me/messenger/): An open-source relational chat schema for realtime messaging — one-to-one and group chat, participants, message persistence, per-user delete visibility, report/block moderation, multi-device sessions and access tokens, and attachment galleries. A database foundation for Node.js (Express + TypeScript + Socket.IO) or Go (PostgreSQL + WebSocket) chat backends.
+  - GitHub: https://github.com/yoosuf/Messenger
+  - SQL schema: https://github.com/yoosuf/Messenger/blob/master/messenger.sql
+  - Node.js guide: https://github.com/yoosuf/Messenger/blob/master/docs/NODE_EXPRESS_TYPESCRIPT_POSTGRES_SOCKET.md
+  - Go guide: https://github.com/yoosuf/Messenger/blob/master/docs/GO_POSTGRES_SOCKET.md
 
 ## Pages
 
@@ -36,6 +41,7 @@
 
 ### Software Engineering & Web Development
 
+- [Implementing Wizards the Right Way](https://yoosuf.me/blog/implementing-wizards-the-right-way): Multi-step flow UI/UX patterns — progress indicators, per-step validation, back navigation, branching logic, state persistence, review steps, and anti-patterns
 - [10 Event-Driven Architecture Questions That Separate Architects from Framework Users](https://yoosuf.me/blog/10-event-driven-architecture-questions): Idempotency, ordering, consistency boundaries, schema evolution, sagas, observability, and knowing when NOT to use events
 - [Setting Up a Legacy Rails 4.2.6 Project with Docker in 2024](https://yoosuf.me/blog/setting-up-legacy-rails-project-in-2024): Maintaining legacy Rails apps with Docker
 - [Becoming a ReactJS Expert](https://yoosuf.me/blog/become-a-reactjs-expert): Guide to mastering React and becoming an expert

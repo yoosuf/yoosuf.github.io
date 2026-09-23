@@ -17,8 +17,8 @@ export const pageStyles = stylex.create({
     width: '100%',
   },
   page: {
-    paddingBlockStart: { default: space['14'], '@media (min-width: 40rem)': space['20'] },
-    paddingBlockEnd: { default: space['14'], '@media (min-width: 40rem)': space['20'] },
+    paddingBlockStart: { default: space['12'], '@media (min-width: 40rem)': space['20'] },
+    paddingBlockEnd: { default: space['12'], '@media (min-width: 40rem)': space['20'] },
   },
   header: {
     marginBlockStart: space['8'],

@@ -8,7 +8,7 @@ export const blogStyles = stylex.create({
     fontSize: '0.95rem',
     lineHeight: lineHeights.relaxed,
     marginBlockEnd: 0,
-    marginBlockStart: space['4'],
+    marginBlockStart: space['10'],
     maxWidth: '42rem',
     textWrap: 'pretty',
   },
@@ -30,7 +30,7 @@ export const blogStyles = stylex.create({
     borderBlockStartWidth: 1,
     listStyleType: 'none',
     marginBlockEnd: 0,
-    marginBlockStart: space['10'],
+    marginBlockStart: space['5'],
     paddingInlineStart: 0,
   },
 
@@ -48,7 +48,7 @@ export const blogStyles = stylex.create({
     display: 'flex',
     flexDirection: 'column',
     gap: space['4'],
-    marginBlockStart: space['10'],
+    marginBlockStart: { default: space['12'], '@media (min-width: 40rem)': space['16'] },
     paddingBlockStart: space['8'],
   },
 

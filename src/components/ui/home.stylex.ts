@@ -10,7 +10,6 @@ export const homeStyles = stylex.create({
 
   /* Hero */
   hero: {
-    paddingBlock: { default: space['6'], '@media (min-width: 40rem)': space['10'] },
     position: 'relative',
   },
 
@@ -42,7 +41,8 @@ export const homeStyles = stylex.create({
     borderRadius: '999px',
     display: 'inline-flex',
     height: '0.5rem',
-    position: 'relative',
+    position: 'absolute',
+    inset: 0,
     width: '0.5rem',
   },
 
@@ -113,37 +113,9 @@ export const homeStyles = stylex.create({
     position: 'relative',
   },
 
-  stats: {
-    borderBlockStartColor: colors.border,
-    borderBlockStartStyle: 'solid',
-    borderBlockStartWidth: 1,
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '1.25rem 3rem',
-    marginBlockEnd: 0,
-    marginBlockStart: space['10'],
-    paddingBlockStart: '1.75rem',
-    position: 'relative',
-  },
-
-  toolboxWrap: {
-    marginBlockStart: space['10'],
-    position: 'relative',
-  },
-
-  toolboxList: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: space['2'],
-    listStyleType: 'none',
-    marginBlockEnd: 0,
-    marginBlockStart: space['3'],
-    paddingInlineStart: 0,
-  },
-
   /* Section rhythm + headers */
   section: {
-    marginBlockStart: space['14'],
+    marginBlockStart: { default: space['12'], '@media (min-width: 40rem)': space['16'] },
   },
 
   sectionHeader: {
@@ -174,7 +146,7 @@ export const homeStyles = stylex.create({
     gap: space['4'],
     listStyleType: 'none',
     marginBlockEnd: 0,
-    marginBlockStart: space['4'],
+    marginBlockStart: space['5'],
     paddingInlineStart: 0,
     '@media (min-width: 40rem)': {
       gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
@@ -282,65 +254,6 @@ export const homeStyles = stylex.create({
     transitionProperty: 'transform',
   },
 
-  /* Featured post */
-  latestCard: {
-    backgroundColor: colors.bg,
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: colors.accentBorder,
-    borderRadius: '1rem',
-    display: 'block',
-    marginBlockStart: space['4'],
-    padding: { default: space['6'], '@media (min-width: 40rem)': space['8'] },
-    textDecorationLine: 'none',
-    transitionDuration: '0.15s',
-    transitionProperty: 'background-color,border-color,color',
-    ':hover': {
-      borderColor: colors.accentBorderHover,
-    },
-  },
-
-  latestBadgeRow: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: space['2'],
-  },
-
-  latestDesc: {
-    color: colors.textMuted,
-    display: 'block',
-    fontSize: '0.95rem',
-    lineHeight: lineHeights.relaxed,
-    marginBlockEnd: 0,
-    marginBlockStart: '0.625rem',
-    maxWidth: '46rem',
-    textWrap: 'pretty',
-  },
-
-  latestTitle: {
-    color: colors.text,
-    fontSize: { default: '1.4rem', '@media (min-width: 40rem)': '1.7rem' },
-    fontWeight: weights.semibold,
-    letterSpacing: '-0.02em',
-    lineHeight: lineHeights.snug,
-    marginBlockEnd: 0,
-    marginBlockStart: space['4'],
-    textWrap: 'balance',
-    transitionDuration: '0.15s',
-    transitionProperty: 'color',
-  },
-
-  latestMeta: {
-    alignItems: 'center',
-    color: colors.textDim,
-    display: 'flex',
-    flexWrap: 'wrap',
-    fontSize: '0.82rem',
-    gap: '0.375rem 1rem',
-    marginBlockEnd: 0,
-    marginBlockStart: space['5'],
-  },
-
   postList: {
     borderBlockStartColor: colors.border,
     borderBlockStartStyle: 'solid',
@@ -359,18 +272,19 @@ export const homeStyles = stylex.create({
     borderBlockStartWidth: 1,
     listStyleType: 'none',
     marginBlockEnd: 0,
-    marginBlockStart: space['8'],
+    marginBlockStart: space['5'],
     paddingInlineStart: 0,
   },
 
   /* CTA band */
   ctaBand: {
-    backgroundColor: colors.bg,
+    backgroundColor: colors.wash,
     borderColor: colors.border,
     borderRadius: '1.25rem',
     borderStyle: 'solid',
     borderWidth: 1,
-    marginBlockStart: space['16'],
+    marginBlockEnd: { default: space['10'], '@media (min-width: 40rem)': space['14'] },
+    marginBlockStart: 0,
     paddingBlock: { default: space['14'], '@media (min-width: 40rem)': space['20'] },
     paddingInline: { default: space['6'], '@media (min-width: 40rem)': space['12'] },
     position: 'relative',

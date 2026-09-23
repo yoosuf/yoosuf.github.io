@@ -22,8 +22,8 @@ export interface ProductAccent {
 export interface ProductSeo {
   title: string
   description: string
-  image: string
-  imageAlt: string
+  image?: string
+  imageAlt?: string
   keywords: string
   canonical: string
 }
@@ -140,5 +140,90 @@ export const pinemail: Product = {
     keywords:
       'local auth testing, SMTP mail catcher, SMS catcher, Twilio webhook receiver, email testing tool, OTP testing, magic link testing, SMS 2FA testing, Playwright auth testing, CI email testing, Mailpit alternative, MailHog alternative, Mailtrap alternative, AI agent email testing, MCP email tools, MCP server, Rust, open source, E2E testing, email verification code',
     canonical: '/pinemail/',
+  },
+}
+
+export const messenger: Product = {
+  slug: 'messenger',
+  name: 'Messenger',
+  homeHref: '/messenger/',
+  accent: {
+    accent: '#7c3aed',
+    accentStrong: '#6d28d9',
+    accentDeep: '#5b21b6',
+    accentSoft: '#ede9fe',
+    onAccent: '#ffffff',
+  },
+  navLinks: [
+    { label: 'Capabilities', href: '#capabilities' },
+    { label: 'Use cases', href: '#usecases' },
+    { label: 'Schema', href: '#schema' },
+    { label: 'Guides', href: '#guides' },
+    { label: 'Quick start', href: '#quickstart' },
+  ],
+  hero: {
+    tag: 'Open Source · Chat Schema · PostgreSQL / MySQL',
+    title: 'The database core for realtime conversations',
+    sub: 'Ship chat products faster with a practical relational schema for one-to-one chat, group messaging, moderation, device sessions, and attachment workflows. Ready for Node.js or Go backends with PostgreSQL and socket support.',
+    actions: [
+      {
+        label: 'View Repository',
+        href: 'https://github.com/yoosuf/Messenger',
+        variant: 'primary',
+        icon: 'arrow',
+        external: true,
+      },
+      {
+        label: 'Explore SQL Schema',
+        href: 'https://github.com/yoosuf/Messenger/blob/master/messenger.sql',
+        variant: 'ghost',
+        icon: 'arrow',
+        external: true,
+      },
+    ],
+    checks: [
+      'One-to-one + group messaging',
+      'Report & block built in',
+      '16 relational tables',
+    ],
+  },
+  cta: {
+    title: 'Ship your chat backend on a proven schema.',
+    text: 'Messenger is an open-source relational design for modern messaging: one-to-one and group chat, media, moderation, and multi-device access. Import the SQL, wire your API layer, and go.',
+    actions: [
+      {
+        label: 'Star on GitHub',
+        href: 'https://github.com/yoosuf/Messenger',
+        variant: 'primary',
+        icon: 'launch',
+        external: true,
+      },
+      {
+        label: 'Read Documentation',
+        href: 'https://github.com/yoosuf/Messenger/blob/master/README.md',
+        variant: 'ghost',
+        external: true,
+      },
+      {
+        label: 'Node.js + Socket.IO guide',
+        href: 'https://github.com/yoosuf/Messenger/blob/master/docs/NODE_EXPRESS_TYPESCRIPT_POSTGRES_SOCKET.md',
+        variant: 'ghost',
+        external: true,
+      },
+      {
+        label: 'Go + WebSocket guide',
+        href: 'https://github.com/yoosuf/Messenger/blob/master/docs/GO_POSTGRES_SOCKET.md',
+        variant: 'ghost',
+        external: true,
+      },
+    ],
+  },
+  seo: {
+    title: 'Messenger — Open Source Chat Database Schema for Realtime Messaging',
+    description:
+      'Messenger is an open source relational chat schema: users, conversations, participants, messages, attachments, moderation (reports & blocks), device sessions, and per-user visibility. A database foundation for Node.js or Go chat backends on PostgreSQL or MySQL.',
+    keywords:
+      'chat database schema, messaging database design, group chat schema, one-to-one chat schema, PostgreSQL chat schema, MySQL chat schema, chat backend, realtime messaging, conversations table, participants table, message persistence, attachments table, moderation, block list, reports, devices, access tokens, Node.js chat, Go chat backend, Socket.IO, WebSocket, open source database design, Yoosuf Mohamed',
+    canonical: '/messenger/',
   },
 }

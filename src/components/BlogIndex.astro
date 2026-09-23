@@ -76,7 +76,7 @@ const end = start + posts.length - 1
 
           <noscript>
             <div {...stylex.attrs(blogStyles.noscriptStack)}>
-              {Array.from({ length: totalPages }, (_, i) => i + 2).map((n) => (
+              {Array.from({ length: totalPages - 1 }, (_, i) => i + 2).map((n) => (
                 <a href={pageUrl(n)} {...stylex.attrs(blogStyles.olderLink)}>
                   Older posts — page {n}
                 </a>

@@ -1,4 +1,5 @@
 ---
-import MarkdownElement from './MarkdownElement.astro'
+import ForwardTag from './ForwardTag.astro'
+const { style: _style, ...attrs } = Astro.props
 ---
-<MarkdownElement tag="video"><slot /></MarkdownElement>
+<ForwardTag tag="video" {...attrs}><slot /></ForwardTag>

@@ -6,27 +6,13 @@ import PostCard from '../components/PostCard.astro'
 import Icon from '../components/Icon.astro'
 import { homeStyles } from '../components/ui/home.stylex'
 import { pageStyles } from '../components/ui/page.stylex'
-import { a11y, buttons, chips, kicker, pills, stat } from '../components/ui/primitives'
-import { decodeEntities, ensureTrailingSlash, formatShortDate, readingTime, toISODate } from '../lib/utils'
+import { buttons, kicker, pills } from '../components/ui/primitives'
 import { SITE } from '../config'
 
 const posts = (await getCollection('blog'))
   .filter((post) => post.data.published !== false)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 const recent = posts.slice(0, 5)
-const [featured, ...more] = recent
-
-const toolbox = [
-  'LLMs & RAG',
-  'AI agents',
-  'Production AI',
-  'Go',
-  'Elixir',
-  'Python · FastAPI',
-  'TypeScript',
-  'React',
-  'Flutter',
-]
 ---
 
 <BaseLayout
@@ -91,35 +77,6 @@ const toolbox = [
             Explore services
           </a>
         </div>
-
-        <dl {...stylex.attrs(homeStyles.stats)}>
-          <div>
-            <dt {...stylex.attrs(a11y.srOnly)}>Experience</dt>
-            <dd {...stylex.attrs(stat.value)}>10+ years</dd>
-            <dd {...stylex.attrs(stat.label)}>building for startups &amp; enterprises</dd>
-          </div>
-          <div>
-            <dt {...stylex.attrs(a11y.srOnly)}>Focus</dt>
-            <dd {...stylex.attrs(stat.value)}>AI-first</dd>
-            <dd {...stylex.attrs(stat.label)}>LLM/RAG, automation, agent systems</dd>
-          </div>
-          <div>
-            <dt {...stylex.attrs(a11y.srOnly)}>Location</dt>
-            <dd {...stylex.attrs(stat.value)}>Colombo, LK</dd>
-            <dd {...stylex.attrs(stat.label)}>working with teams worldwide</dd>
-          </div>
-        </dl>
-
-        <div {...stylex.attrs(homeStyles.toolboxWrap)}>
-          <p {...stylex.attrs(kicker.eyebrow)}>Toolbox</p>
-          <ul {...stylex.attrs(homeStyles.toolboxList)}>
-            {toolbox.map((tool) => (
-              <li key={tool} {...stylex.attrs(chips.tech)}>
-                {tool}
-              </li>
-            ))}
-          </ul>
-        </div>
       </section>
 
       <section {...stylex.attrs(homeStyles.section)} aria-labelledby="products-heading">
@@ -127,9 +84,6 @@ const toolbox = [
           <h2 id="products-heading" {...stylex.attrs(kicker.eyebrow)}>
             Products & projects
           </h2>
-          <a href="/pinemail/" {...stylex.attrs(homeStyles.sectionLink)}>
-            About Pine Mail →
-          </a>
         </div>
 
         <ul {...stylex.attrs(homeStyles.productGrid)}>
@@ -175,20 +129,31 @@ const toolbox = [
             </span>
           </li>
 
-          <li {...stylex.attrs(homeStyles.productCardStatic)}>
-            <span {...stylex.attrs(homeStyles.productIconRow)}>
-              <span {...stylex.attrs(homeStyles.productIcon)} aria-hidden="true">
-                <Icon name="message-square" size={18} />
+          <li>
+            <a
+              href="/messenger/"
+              {...stylex.attrs(homeStyles.productCard)}
+              data-home-hook="product-card"
+            >
+              <span {...stylex.attrs(homeStyles.productIconRow)}>
+                <span {...stylex.attrs(homeStyles.productIcon)} aria-hidden="true">
+                  <Icon name="message-square" size={18} />
+                </span>
+                <span {...stylex.attrs(homeStyles.productTitleRow)}>
+                  <span {...stylex.attrs(homeStyles.productTitle)} data-home-hook="y-product-title">Messenger</span>
+                  <span {...stylex.attrs(pills.neutral)}>Open source</span>
+                </span>
               </span>
-              <span {...stylex.attrs(homeStyles.productTitleRow)}>
-                <span {...stylex.attrs(homeStyles.productTitle)}>Messenger DB Design</span>
-                <span {...stylex.attrs(pills.neutral)}>Design study</span>
+              <span {...stylex.attrs(homeStyles.productDesc)}>
+                An open-source relational chat schema — one-to-one and group
+                messaging, moderation, device sessions, and attachments for
+                Node.js or Go backends.
               </span>
-            </span>
-            <span {...stylex.attrs(homeStyles.productDesc)}>
-              A database design study for a messaging product at scale — schema, partitioning,
-              and delivery semantics for chat at millions of messages.
-            </span>
+              <span {...stylex.attrs(homeStyles.productCta)}>
+                View Messenger
+                <Icon name="arrow-right" size={15} {...stylex.attrs(homeStyles.productArrow)} data-home-hook="y-product-arrow" />
+              </span>
+            </a>
           </li>
         </ul>
       </section>
@@ -203,37 +168,8 @@ const toolbox = [
           </a>
         </div>
 
-        <a
-          href={ensureTrailingSlash(featured.data.permalink)}
-          {...stylex.attrs(homeStyles.latestCard)}
-          data-home-hook="latest-wash"
-        >
-          <span {...stylex.attrs(homeStyles.latestBadgeRow)}>
-            <span {...stylex.attrs(pills.accent)}>Latest</span>
-            {featured.data.categories.slice(0, 2).map((category) => (
-              <span key={category} {...stylex.attrs(pills.neutral)}>
-                {category}
-              </span>
-            ))}
-          </span>
-
-          <span {...stylex.attrs(homeStyles.latestTitle)} data-home-hook="y-latest-title">
-            {decodeEntities(featured.data.title)}
-          </span>
-
-          <span {...stylex.attrs(homeStyles.latestDesc)}>
-            {featured.data.description}
-          </span>
-
-          <span {...stylex.attrs(homeStyles.latestMeta)}>
-            <time datetime={toISODate(featured.data.date)}>{formatShortDate(featured.data.date)}</time>
-            <span aria-hidden="true">·</span>
-            <span>{readingTime(featured.body)} min read</span>
-          </span>
-        </a>
-
         <ul {...stylex.attrs(homeStyles.postListFull)}>
-          {more.map((post) => (
+          {recent.map((post) => (
             <PostCard post={post} headingLevel="h3" />
           ))}
         </ul>

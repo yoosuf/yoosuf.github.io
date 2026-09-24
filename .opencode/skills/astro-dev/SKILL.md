@@ -19,7 +19,7 @@ Only interactive components become React islands; everything else stays Astro/St
 
 - `header/Header.tsx` — `client:load`, full-page mobile dialog menu (`useMenuDialog`).
 - `services/ServicesAccordion.tsx` — `client:idle`, roving-tabindex accordion.
-- Keep mermaid and the pinemail WAAPI flow script vanilla — don't chase React for its own sake.
+- Keep mermaid and the postwire WAAPI flow script vanilla — don't chase React for its own sake.
 
 Dependencies for islands: `@astrojs/react` in `astro.config.mjs` `integrations`, `react`, `react-dom`, `@types/react`. If they're missing, that's the first thing to check.
 
@@ -40,7 +40,7 @@ Dependencies for islands: `@astrojs/react` in `astro.config.mjs` `integrations`,
 ## Responsive & layout (critical)
 
 - **No horizontal page scroll at any width** (320px up). The single content width comes from `pageStyles.container` in `src/components/ui/page.stylex.ts` (68rem max, auto-centred, responsive inline padding) — compose it onto any page/article shell.
-- Wide tables must be wrapped in a scroll container (`display:block; overflow-x:auto; white-space:nowrap` on cells) — see pinemail `.pm-doc-table`.
+- Wide tables must be wrapped in a scroll container (`display:block; overflow-x:auto; white-space:nowrap` on cells) — see postwire `.pm-doc-table`.
 - Verify after any layout change with the CDP overflow sweep: every page must report `innerW == htmlW == vw` at 320/375/768/1024.
 
 ## Load motion (single entrance, no jerk)

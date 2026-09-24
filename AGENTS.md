@@ -84,7 +84,7 @@ See the `astro-blog` skill for the full voice guide and workflow.
 
 - Islands for interaction: `services/ServicesAccordion.tsx` (`client:idle`). The header
   is deliberately **vanilla** (bundled script in `Header.astro`) so react-dom does not
-  ship on pages without islands. Keep mermaid + pinemail (`WAAPI`) logic vanilla — not every component needs React.
+  ship on pages without islands. Keep mermaid + postwire (`WAAPI`) logic vanilla — not every component needs React.
 - **Never call `window`/`document` during render.** SSR renders server-side; server-pinned
   values (like `currentPath`) must come in as props from the Astro wrapper.
 - Shared typed icons in `ReactIcon.tsx`. React island markup
@@ -103,7 +103,7 @@ See the `astro-blog` skill for the full voice guide and workflow.
 - Accordions: button triggers with `aria-expanded`/`aria-controls`, `role="region"`
   panel labelled by the trigger, roving tabindex + arrow/Home/End. Reference: `ServicesAccordion.tsx`.
 - **FAQ/disclosure lists:** there is ONE site-wide native-`<details>` FAQ design
-  (services `Common questions` + the pinemail FAQ). Use the shared hooks
+  (services `Common questions` + the postwire FAQ). Use the shared hooks
   `data-faq-item` / `data-faq-chevron` / `data-faq-body` — the open-state chrome
   (marker removal, item dividers, chevron rotate → accent, body reveal) is
   composited once in `BaseLayout.astro`. Don't fork a variant (no plus/minus
@@ -117,7 +117,7 @@ See the `astro-blog` skill for the full voice guide and workflow.
   responsive inline padding) — compose it onto any page/article shell (or use
   `primitives`/`page` keys) like `services.astro`, `BlogIndex.astro`, `PostLayout.astro`,
   `404.astro`, and `index.astro` do.
-- Wide tables/docs (e.g. pinemail `.pm-doc-table`) must be wrapped for contained
+- Wide tables/docs (e.g. postwire `.pm-doc-table`) must be wrapped for contained
   horizontal scrolling, never left loose in the page flow.
 - After layout changes, verify with the CDP overflow sweep across 320/375/768/1024:
   every page must report `innerW == htmlW == vw`.

@@ -64,7 +64,7 @@ export const PERSON_JSON_LD = {
   subjectOf: [
     { '@type': 'WebPage', name: 'About Yoosuf Mohamed', url: `${SITE.url}/about/` },
     { '@type': 'WebPage', name: 'Services by Yoosuf Mohamed', url: `${SITE.url}/services/` },
-    { '@type': 'SoftwareApplication', name: 'Pine Mail', url: `${SITE.url}/pinemail/` },
+    { '@type': 'SoftwareApplication', name: 'Postwire', url: `${SITE.url}/postwire/` },
   ],
   sameAs: [
     'https://twitter.com/aitchdei',

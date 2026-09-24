@@ -127,8 +127,8 @@ const mainAttrs = stylex.attrs(shellStyles.main)
         `@layer base` is declared FIRST so the compiled StyleX atoms (emitted
         into their own later `priority1`/`priority2` layers) out-cascade it
         wherever an atom exists. Only the narrow override rules below it are
-        unlayered (or !important) so they beat both atoms and Shiki's inline
-        span styles.
+        unlayered (or !important) so they beat both atoms and Prism's token
+        span colors.
       ------------------------------------------------------------------- */
       @layer base {
         *,
@@ -366,21 +366,97 @@ const mainAttrs = stylex.attrs(shellStyles.main)
         scroll-margin-top: 6rem;
       }
 
-      /* Shiki code samples: contain long unbreakable lines in an internal
-         scroll strip instead of widening the page (site-wide no-overflow rule). */
-      .astro-code {
+      /* Prism code samples: Prism replaces the markdown `<pre><code>` tree with
+         its own `class="language-*"` markup, so it bypasses the markdown
+         components' StyleX atomics. Replicate the markdown.stylex.ts pre/code
+         design here (same palette pairs, light-dark() resolved against the
+         `color-scheme: light dark` on the document shell), keep long
+         unbreakable tokens inside an internal scroll strip (site-wide
+         no-overflow rule), and paint the token spans. Mermaid pres are matched
+         by Pre.astro and never carry the `language-*` class. */
+      pre[class*='language-'] {
+        background-color: light-dark(#f6f6f6, #171717);
+        border: 1px solid light-dark(#e5e5e5, #2b2b2b);
+        border-radius: 8px;
+        color: light-dark(#1a1a1a, #e6e6e6);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+        font-size: 0.88em;
+        line-height: 1.7;
+        margin-block: 1.25em;
+        max-width: 100%;
         overflow-x: auto;
+        padding-block: 1em;
+        padding-inline: 1.25em;
+        text-align: left;
+        white-space: pre;
+      }
+      pre[class*='language-'] > code {
+        background: none;
+        border: 0;
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        padding: 0;
       }
 
-      /* Shiki dual themes: Astro emits the light colour inline and the dark
-         colour in --shiki-dark; apply the dark palette under dark scheme. */
-      @media (prefers-color-scheme: dark) {
-        .astro-code {
-          background-color: var(--shiki-dark-bg, #0d1117) !important;
-        }
-        .astro-code .line span {
-          color: var(--shiki-dark, #e6e6e6) !important;
-        }
+      /* Prism token palette — a restrained graphite + accent-blue theme tuned
+         to the site's tokens (see tokens.stylex.ts). */
+      code[class*='language-'] .token.comment,
+      code[class*='language-'] .token.prolog,
+      code[class*='language-'] .token.doctype,
+      code[class*='language-'] .token.cdata {
+        color: light-dark(#747474, #7f7f7f);
+        font-style: italic;
+      }
+      code[class*='language-'] .token.punctuation {
+        color: light-dark(#5e5e5e, #979797);
+      }
+      code[class*='language-'] .token.property,
+      code[class*='language-'] .token.attr-name {
+        color: light-dark(#2563eb, #8bb0ff);
+      }
+      code[class*='language-'] .token.tag,
+      code[class*='language-'] .token.boolean,
+      code[class*='language-'] .token.number,
+      code[class*='language-'] .token.constant,
+      code[class*='language-'] .token.symbol,
+      code[class*='language-'] .token.class-name,
+      code[class*='language-'] .token.this {
+        color: light-dark(#1d4ed8, #a9c4ff);
+      }
+      code[class*='language-'] .token.selector,
+      code[class*='language-'] .token.keyword,
+      code[class*='language-'] .token.atrule,
+      code[class*='language-'] .token.attr-name.keyword {
+        color: light-dark(#2563eb, #8bb0ff);
+      }
+      code[class*='language-'] .token.string,
+      code[class*='language-'] .token.char,
+      code[class*='language-'] .token.attr-value,
+      code[class*='language-'] .token.builtin,
+      code[class*='language-'] .token.inserted {
+        color: light-dark(#9a4f00, #dcb37f);
+      }
+      code[class*='language-'] .token.operator,
+      code[class*='language-'] .token.entity,
+      code[class*='language-'] .token.url,
+      code[class*='language-'] .token.deleted {
+        color: light-dark(#5e5e5e, #b0b0b0);
+      }
+      code[class*='language-'] .token.function,
+      code[class*='language-'] .token.variable {
+        color: light-dark(#1a1a1a, #e6e6e6);
+      }
+      code[class*='language-'] .token.regex,
+      code[class*='language-'] .token.important {
+        color: light-dark(#5e5e5e, #b0b0b0);
+        font-weight: 600;
+      }
+      code[class*='language-'] .token.bold {
+        font-weight: 700;
+      }
+      code[class*='language-'] .token.italic {
+        font-style: italic;
       }
 
       /* Group-hover composites for the data-home-hook relationship classes. */

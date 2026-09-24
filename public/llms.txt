@@ -15,12 +15,12 @@
 
 ## Products
 
-- [Pine Mail](https://yoosuf.me/pinemail/): A tiny, open-source, single-binary local auth testing tool in Rust: SMTP mail catcher, SMS catcher, Twilio webhook receiver, OTP and magic-link extractor, long-polling API, and native MCP server for Playwright tests, CI pipelines, and AI agents. A local-first MailHog, Mailpit, and Mailtrap alternative. Point your app at localhost:1025. (MIT license)
-  - GitHub: https://github.com/yoosuf/pinemail
-  - Docker Hub: https://hub.docker.com/r/yoosuf/pinemail
-  - Product Hunt: https://www.producthunt.com/products/pinemail
-  - [Announcement post](https://yoosuf.me/blog/introducing-pinemail): Why I built Pine Mail and how it works
-  - Detailed docs: [llms-pinemail.txt](https://yoosuf.me/llms-pinemail.txt)
+- [Postwire](https://yoosuf.me/postwire/): A tiny, open-source, single-binary local auth testing tool in Rust: SMTP mail catcher, SMS catcher, Twilio webhook receiver, OTP and magic-link extractor, long-polling API, and native MCP server for Playwright tests, CI pipelines, and AI agents. A local-first MailHog, Mailpit, and Mailtrap alternative. Point your app at localhost:1025. (MIT license)
+  - GitHub: https://github.com/yoosuf/postwire
+  - Docker Hub: https://hub.docker.com/r/yoosuf/postwire
+  - Product Hunt: https://www.producthunt.com/products/postwire
+  - [Announcement post](https://yoosuf.me/blog/introducing-postwire): Why I built Postwire and how it works
+  - Detailed docs: [llms-postwire.txt](https://yoosuf.me/llms-postwire.txt)
 - [Messenger](https://yoosuf.me/messenger/): An open-source relational chat schema for realtime messaging — one-to-one and group chat, participants, message persistence, per-user delete visibility, report/block moderation, multi-device sessions and access tokens, and attachment galleries. A database foundation for Node.js (Express + TypeScript + Socket.IO) or Go (PostgreSQL + WebSocket) chat backends.
   - GitHub: https://github.com/yoosuf/Messenger
   - SQL schema: https://github.com/yoosuf/Messenger/blob/master/messenger.sql
@@ -58,8 +58,8 @@
 
 ### AI & Technology
 
-- [Introducing Pine Mail](https://yoosuf.me/blog/introducing-pinemail): A tiny SMTP mail catcher in Rust with REST API and MCP server for automated testing and AI agents ([product page](https://yoosuf.me/pinemail/))
-- [Beyond Email: SMS catching, 14 MCP tools, and email analysis in Pine Mail](https://yoosuf.me/blog/pinemail-sms-mcp-analysis): Pine Mail v0.2 adds dual-channel SMS catching with Twilio webhooks, 14 MCP tools for full MFA flows, and Litmus-style email analysis
+- [Introducing Postwire](https://yoosuf.me/blog/introducing-postwire): A tiny SMTP mail catcher in Rust with REST API and MCP server for automated testing and AI agents ([product page](https://yoosuf.me/postwire/))
+- [Beyond Email: SMS catching, 14 MCP tools, and email analysis in Postwire](https://yoosuf.me/blog/postwire-sms-mcp-analysis): Postwire v0.2 adds dual-channel SMS catching with Twilio webhooks, 14 MCP tools for full MFA flows, and Litmus-style email analysis
 - [How ChatGPT helps me on day to day life](https://yoosuf.me/blog/chatgpt-daily-life): Practical uses of AI tools in daily workflows
 - [Make the Hard Decision Before the Product Fails](https://yoosuf.me/blog/perish-pivot-persevere): Perish, pivot, or persevere — deciding with evidence before failure becomes undeniable
 - [How to Make an MVP in the AI Era](https://yoosuf.me/blog/how-to-make-an-mvp-in-the-ai-era): Building an MVP when AI makes building nearly free — proven examples (Dropbox, Zappos, Groupon, Buffer, Midjourney, ChatGPT), failure cases (Juicero, Color, Quibi), the three traps, and testing assumptions with real customers

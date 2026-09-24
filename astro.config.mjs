@@ -25,7 +25,7 @@ for (const f of readdirSync(blogDir)) {
   postLastmod.set(`/blog/${slug}/`, { date: dateMatch[1], priority: 0.7 })
 }
 
-const HIGH_PRIORITY = new Set(['/', '/blog/', '/services/', '/about/', '/contact/', '/pinemail/'])
+const HIGH_PRIORITY = new Set(['/', '/blog/', '/services/', '/about/', '/contact/', '/postwire/'])
 
 function pathFor(url) {
   return new URL(url).pathname
@@ -101,9 +101,6 @@ export default defineConfig({
     ],
   },
   markdown: {
-    shikiConfig: {
-      themes: { light: 'github-light', dark: 'github-dark' },
-      wrap: true,
-    },
+    syntaxHighlight: 'prism',
   },
 })

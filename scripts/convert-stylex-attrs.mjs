@@ -2,7 +2,7 @@ import { readFile, writeFile } from 'node:fs/promises'
 
 const files = [
   new URL('../src/layouts/ProductLayout.astro', import.meta.url),
-  new URL('../src/pages/pinemail.astro', import.meta.url),
+  new URL('../src/pages/postwire.astro', import.meta.url),
 ]
 
 for (const path of files) {

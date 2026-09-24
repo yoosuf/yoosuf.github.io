@@ -186,7 +186,7 @@ window.innerWidth === document.documentElement.scrollWidth === viewport.width
 ```
 
 The browser check covers home, services, blog index, a Mermaid post, a normal
-post, Pinemail, and 404. It also confirms the page-load reveal remains opacity
+post, Postwire, and 404. It also confirms the page-load reveal remains opacity
 only, with the headline visible in the first frame.
 
 ## Implementation sequence

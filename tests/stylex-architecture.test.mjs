@@ -59,28 +59,28 @@ test('keeps services accordion presentation out of global CSS and literal class 
   assert.doesNotMatch(servicesIsland, /className=\{?['"`]svc-/)
 })
 
-test('keeps Markdown and generated Pinemail content on explicit StyleX attributes', async () => {
+test('keeps Markdown and generated Postwire content on explicit StyleX attributes', async () => {
   const postLayout = await readFile(new URL('../src/layouts/PostLayout.astro', import.meta.url), 'utf8')
-  const pinemailBody = await readFile(new URL('../src/components/product/PinemailBody.astro', import.meta.url), 'utf8')
-  const generator = await readFile(new URL('../scripts/generate-pinemail-body.mjs', import.meta.url), 'utf8')
+  const postwireBody = await readFile(new URL('../src/components/product/PostwireBody.astro', import.meta.url), 'utf8')
+  const generator = await readFile(new URL('../scripts/generate-postwire-body.mjs', import.meta.url), 'utf8')
 
   assert.match(postLayout, /<Content components=\{markdownComponents\}/)
   assert.doesNotMatch(postLayout, /class:list=\{\['prose'/)
-  assert.match(pinemailBody, /\{\.\.\.stylex\.attrs\(styles\./)
-  assert.doesNotMatch(pinemailBody, /pmCls\(/)
+  assert.match(postwireBody, /\{\.\.\.stylex\.attrs\(styles\./)
+  assert.doesNotMatch(postwireBody, /pmCls\(/)
   assert.match(generator, /class:list=/)
 })
 
-test('keeps Pinemail descendant presentation in StyleX keys', async () => {
+test('keeps Postwire descendant presentation in StyleX keys', async () => {
   const productStyles = await readFile(new URL('../src/components/ui/product.stylex.ts', import.meta.url), 'utf8')
-  const pinemailBody = await readFile(new URL('../src/components/product/PinemailBody.astro', import.meta.url), 'utf8')
+  const postwireBody = await readFile(new URL('../src/components/product/PostwireBody.astro', import.meta.url), 'utf8')
 
   assert.match(productStyles, /pmFaqSummary:/)
   assert.match(productStyles, /pmTableCell:/)
   assert.match(productStyles, /pmFlowLogLine:/)
-  assert.match(pinemailBody, /styles\.pmFaqSummary/)
-  assert.match(pinemailBody, /styles\.pmTableCell/)
-  assert.match(pinemailBody, /styles\.pmFlowLogLine/)
+  assert.match(postwireBody, /styles\.pmFaqSummary/)
+  assert.match(postwireBody, /styles\.pmTableCell/)
+  assert.match(postwireBody, /styles\.pmFlowLogLine/)
 })
 
 test('defines the Mermaid diagram visual system in StyleX modules', async () => {
@@ -223,7 +223,7 @@ test('keeps emitted content free of malformed attributes and duplicate classes',
   const dist = new URL('../dist/', import.meta.url)
   if (!existsSync(dist)) return
 
-  for (const route of ['index.html', 'blog/hello-you/index.html', 'terms/index.html', 'pinemail/index.html']) {
+  for (const route of ['index.html', 'blog/hello-you/index.html', 'terms/index.html', 'postwire/index.html']) {
     const html = await readFile(new URL(route, dist), 'utf8')
     assert.doesNotMatch(html, /\[object Object\]|<[^>]*class="[^"]*"[^>]*class="/)
   }

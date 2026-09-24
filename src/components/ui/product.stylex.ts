@@ -10,7 +10,7 @@ import * as stylex from '@stylexjs/stylex'
  * therefore theme-aware without a stylesheet.
  *
  * Runtime states are represented by explicit data/StyleX variants or by
- * vanilla event handlers. Generated Pinemail markup spreads these attrs.
+ * vanilla event handlers. Generated Postwire markup spreads these attrs.
  */
 
 export const styles = stylex.create({
@@ -1442,7 +1442,7 @@ export const styles = stylex.create({
     fontSize: 'var(--pm-fs-small)',
   },
 
-  pmColPine: {
+  pmColPostwire: {
     backgroundColor: 'color-mix(in srgb, var(--pm-accent) 7%, var(--pm-wash-base))',
     color: 'var(--pm-accent-strong)',
   },

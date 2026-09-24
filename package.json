@@ -8,7 +8,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "build:clean": "node scripts/build-without-warnings.mjs",
-    "generate:pinemail": "node scripts/generate-pinemail-body.mjs",
+    "generate:postwire": "node scripts/generate-postwire-body.mjs",
     "convert:stylex-attrs": "node scripts/convert-stylex-attrs.mjs",
     "check:architecture": "node scripts/check-stylex-architecture.mjs",
     "preview": "astro preview",

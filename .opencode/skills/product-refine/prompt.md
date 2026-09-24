@@ -1,13 +1,13 @@
 # product-refine prompt — simpler & more elegant, zero AI slop
 
 Use this prompt directly with a coding agent (or reference the `product-refine` skill when
-working inside the yoosuf.github.io repo) to refine the **Pinemail** and **Messenger**
+working inside the yoosuf.github.io repo) to refine the **Postwire** and **Messenger**
 product microsites. One pass, targeted, reviewable.
 
 ---
 
 ```
-Refine the Pinemail and Messenger product microsites (yoosuf.me) to look more
+Refine the Postwire and Messenger product microsites (yoosuf.me) to look more
 professional and complete — simpler, calmer, fewer competing elements, and with zero
 "AI-generated" feel.
 

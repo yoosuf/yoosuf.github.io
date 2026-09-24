@@ -54,10 +54,10 @@ export interface Product {
   seo: ProductSeo
 }
 
-export const pinemail: Product = {
-  slug: 'pinemail',
-  name: 'Pine Mail',
-  homeHref: '/pinemail/',
+export const postwire: Product = {
+  slug: 'postwire',
+  name: 'Postwire',
+  homeHref: '/postwire/',
   accent: {
     accent: '#2563eb',
     accentStrong: '#1d4ed8',
@@ -76,18 +76,18 @@ export const pinemail: Product = {
   hero: {
     tag: 'Open Source · MIT License · Rust',
     title: 'Local auth testing without the flaky inbox dance',
-    sub: 'Pine Mail catches email OTPs, magic links, password resets, and SMS 2FA codes for local development, Playwright tests, CI pipelines, and AI agents. One tiny Rust binary — long-polling waits, Twilio webhooks, and structured signal extraction.',
+    sub: 'Postwire catches email OTPs, magic links, password resets, and SMS 2FA codes for local development, Playwright tests, CI pipelines, and AI agents. One tiny Rust binary — long-polling waits, Twilio webhooks, and structured signal extraction.',
     actions: [
       {
         label: 'View on GitHub',
-        href: 'https://github.com/yoosuf/pinemail',
+        href: 'https://github.com/yoosuf/postwire',
         variant: 'primary',
         icon: 'arrow',
         external: true,
       },
       {
         label: 'Docker Hub',
-        href: 'https://hub.docker.com/r/yoosuf/pinemail',
+        href: 'https://hub.docker.com/r/yoosuf/postwire',
         variant: 'ghost',
         external: true,
       },
@@ -104,42 +104,42 @@ export const pinemail: Product = {
     actions: [
       {
         label: 'Upvote on Product Hunt',
-        href: 'https://www.producthunt.com/products/pinemail?launch=pinemail',
+        href: 'https://www.producthunt.com/products/postwire?launch=postwire',
         variant: 'primary',
         icon: 'launch',
         external: true,
       },
       {
         label: 'View on GitHub',
-        href: 'https://github.com/yoosuf/pinemail',
+        href: 'https://github.com/yoosuf/postwire',
         variant: 'ghost',
         icon: 'arrow',
         external: true,
       },
       {
         label: 'Docker Hub',
-        href: 'https://hub.docker.com/r/yoosuf/pinemail',
+        href: 'https://hub.docker.com/r/yoosuf/postwire',
         variant: 'ghost',
         external: true,
       },
       {
         label: 'Read the full story',
-        href: '/blog/pinemail-sms-mcp-analysis',
+        href: '/blog/postwire-sms-mcp-analysis',
         variant: 'ghost',
       },
     ],
   },
   seo: {
     title:
-      'Pine Mail — Local Auth Testing for Email OTP, Magic Links, SMS 2FA, and AI Agents',
+      'Postwire — Local Auth Testing for Email OTP, Magic Links, SMS 2FA, and AI Agents',
     description:
-      'Pine Mail is a free, open-source local auth testing tool: SMTP mail catcher, SMS catcher, Twilio webhook receiver, OTP and magic-link extractor, long-polling API, and native MCP server for AI agents. A single Rust binary for Playwright, CI, and developer workflows.',
-    image: '/assets/images/pinemail-og.png',
+      'Postwire is a free, open-source local auth testing tool: SMTP mail catcher, SMS catcher, Twilio webhook receiver, OTP and magic-link extractor, long-polling API, and native MCP server for AI agents. A single Rust binary for Playwright, CI, and developer workflows.',
+    image: '/assets/images/postwire-og.png',
     imageAlt:
-      'Pine Mail — local auth testing for email OTPs, magic links, SMS 2FA, Playwright tests, CI, and AI agents. Open source, MIT license, written in Rust.',
+      'Postwire — local auth testing for email OTPs, magic links, SMS 2FA, Playwright tests, CI, and AI agents. Open source, MIT license, written in Rust.',
     keywords:
       'local auth testing, SMTP mail catcher, SMS catcher, Twilio webhook receiver, email testing tool, OTP testing, magic link testing, SMS 2FA testing, Playwright auth testing, CI email testing, Mailpit alternative, MailHog alternative, Mailtrap alternative, AI agent email testing, MCP email tools, MCP server, Rust, open source, E2E testing, email verification code',
-    canonical: '/pinemail/',
+    canonical: '/postwire/',
   },
 }
 

@@ -537,7 +537,7 @@ cannot be verified.
 
 Use the project’s browser/CDP tooling at 320, 375, 768, and 1024px for `/`,
 `/services/`, `/blog/`, `/blog/10-event-driven-architecture-questions/`,
-`/blog/hello-you/`, `/pinemail/`, and `/404.html`. At every checkpoint evaluate:
+`/blog/hello-you/`, `/postwire/`, and `/404.html`. At every checkpoint evaluate:
 
 ```js
 ({

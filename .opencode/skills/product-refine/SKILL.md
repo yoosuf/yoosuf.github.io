@@ -1,6 +1,6 @@
 ---
 name: product-refine
-description: Simplify and polish the product microsites (Pinemail and Messenger product pages on yoosuf.me) toward a calmer, more elegant presentation with zero AI-generated feel. Use when a microsite "looks incomplete", "looks unfinished", "too busy", "feels AI", or when asked to refine/tidy/clean up the messaging, layout, icons, or styling of the Pinemail or Messenger product pages. Covers the authored source docs, the body generators, the StyleX product atoms, and the voice rules that keep copy human.
+description: Simplify and polish the product microsites (Postwire and Messenger product pages on yoosuf.me) toward a calmer, more elegant presentation with zero AI-generated feel. Use when a microsite "looks incomplete", "looks unfinished", "too busy", "feels AI", or when asked to refine/tidy/clean up the messaging, layout, icons, or styling of the Postwire or Messenger product pages. Covers the authored source docs, the body generators, the StyleX product atoms, and the voice rules that keep copy human.
 ---
 
 # product-refine — simpler + more elegant, no AI slop
@@ -10,7 +10,7 @@ here is a gate you must respect; the site already encodes most of it in `AGENTS.
 
 ## Ground truth (do this first, every time)
 
-1. **The `.astro` bodies are generated.** `PinemailBody.astro` and `MessengerBody.astro` say
+1. **The `.astro` bodies are generated.** `PostwireBody.astro` and `MessengerBody.astro` say
    "Do not edit by hand." Their real sources are the authored docs in `src/data/` plus the
    body generators in `scripts/generate-*-body.mjs`. Anyone hand-editing a body creates a
    file that the next `npm run generate:*` silently overwrites.
@@ -56,7 +56,7 @@ described as "AI-generated", it is wrong. Concretely:
 Paste this into a fresh code session to trigger the full refine pass:
 
 ```
-Refine the Pinemail and Messenger product microsites to look more professional and
+Refine the Postwire and Messenger product microsites to look more professional and
 complete — simpler, calmer, and with zero AI-generated feel.
 
 Follow the product-refine skill for the full checklist, but the non-negotiables are:

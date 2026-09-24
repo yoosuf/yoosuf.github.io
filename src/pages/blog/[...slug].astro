@@ -4,24 +4,34 @@ import type { CollectionEntry } from 'astro:content'
 import PostLayout from '../../layouts/PostLayout.astro'
 
 export async function getStaticPaths() {
-  const entries = await getCollection('blog')
-  return entries
+  const entries = (await getCollection('blog'))
     .filter((entry) => entry.data.published !== false)
-    .map((entry) => {
-      const path = entry.data.permalink
-        .replace(/^\/+/, '')
-        .replace(/\/+$/, '')
-        .replace(/^blog\/?/, '')
-      const slug = path
-      return { params: { slug }, props: { entry } }
-    })
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+
+  return entries.map((entry, index) => {
+    const path = entry.data.permalink
+      .replace(/^\/+/, '')
+      .replace(/\/+$/, '')
+      .replace(/^blog\/?/, '')
+    const slug = path
+    return {
+      params: { slug },
+      props: {
+        entry,
+        newer: index > 0 ? entries[index - 1] : null,
+        older: index < entries.length - 1 ? entries[index + 1] : null,
+      },
+    }
+  })
 }
 
 interface Props {
   entry: CollectionEntry<'blog'>
+  newer?: CollectionEntry<'blog'> | null
+  older?: CollectionEntry<'blog'> | null
 }
 
-const { entry } = Astro.props
+const { entry, newer, older } = Astro.props
 ---
 
-<PostLayout entry={entry} />
+<PostLayout entry={entry} newer={newer ?? null} older={older ?? null} />

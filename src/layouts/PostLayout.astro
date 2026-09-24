@@ -43,9 +43,11 @@ import Kbd from '../components/markdown/Kbd.astro'
 
 interface Props {
   entry: CollectionEntry<'blog'>
+  newer?: CollectionEntry<'blog'> | null
+  older?: CollectionEntry<'blog'> | null
 }
 
-const { entry } = Astro.props
+const { entry, newer, older } = Astro.props
 const { Content } = await render(entry)
 
 const { title, date, description, categories, tags, permalink } = entry.data
@@ -154,6 +156,41 @@ const articleJsonLd = {
             ))}
           </ul>
         </footer>
+      )}
+
+      {(newer || older) && (
+        <nav {...stylex.attrs(postStyles.pager)} aria-label="Post navigation">
+          {older && (
+            <a
+              href={ensureTrailingSlash(older.data.permalink)}
+              data-home-hook="post-pager-link"
+              {...stylex.attrs(postStyles.pagerLink, postStyles.pagerLinkOlder)}
+            >
+              <span {...stylex.attrs(postStyles.pagerLabel)}>← Older post</span>
+              <span
+                data-home-hook="post-pager-title"
+                {...stylex.attrs(postStyles.pagerTitle)}
+              >
+                {decodeEntities(older.data.title)}
+              </span>
+            </a>
+          )}
+          {newer && (
+            <a
+              href={ensureTrailingSlash(newer.data.permalink)}
+              data-home-hook="post-pager-link"
+              {...stylex.attrs(postStyles.pagerLink, postStyles.pagerLinkNewer)}
+            >
+              <span {...stylex.attrs(postStyles.pagerLabel)}>Newer post →</span>
+              <span
+                data-home-hook="post-pager-title"
+                {...stylex.attrs(postStyles.pagerTitle)}
+              >
+                {decodeEntities(newer.data.title)}
+              </span>
+            </a>
+          )}
+        </nav>
       )}
   </article>
 

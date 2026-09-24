@@ -10,6 +10,9 @@ export const headerStyles = stylex.create({
     borderBottomColor: colors.border,
     borderBottomStyle: 'solid',
     borderBottomWidth: 1,
+    position: 'sticky',
+    top: 0,
+    zIndex: 30,
   },
 
   container: {
@@ -73,9 +76,9 @@ export const headerStyles = stylex.create({
     borderRadius: radii.md,
     color: colors.text,
     display: 'flex',
-    height: '2.5rem',
+    height: '2.75rem',
     justifyContent: 'center',
-    width: '2.5rem',
+    width: '2.75rem',
     transitionDuration: '0.15s',
     transitionProperty: 'background-color,color',
     ':hover': {

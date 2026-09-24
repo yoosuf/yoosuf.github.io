@@ -42,6 +42,11 @@ const styles = stylex.create({
   },
   current: {
     color: colors.textDim,
+    display: 'inline-block',
+    maxWidth: 'min(20rem, 100%)',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
   },
   separator: {
     color: colors.textFaint,

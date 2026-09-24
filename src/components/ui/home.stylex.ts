@@ -249,6 +249,15 @@ export const homeStyles = stylex.create({
     paddingBlockStart: space['4'],
   },
 
+  productCtaStatic: {
+    color: colors.textFaint,
+    fontSize: '0.85rem',
+    fontWeight: weights.medium,
+    gap: '0.375rem',
+    marginBlockStart: 'auto',
+    paddingBlockStart: space['4'],
+  },
+
   productArrow: {
     transitionDuration: '0.2s',
     transitionProperty: 'transform',

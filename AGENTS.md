@@ -31,11 +31,13 @@ pages; the blog paginates 10 posts per page, so the total grows by one page per 
 
 - `src/layouts/` — `BaseLayout.astro` (shell, head/meta, GA, `ClientRouter`), `PostLayout.astro`, `post.html`/`blog.html` equivalents
 - `src/components/` — Astro components + React islands
-  - `header/Header.tsx` — React island (`client:load`): desktop nav + full-page dialog menu
+  - `header/Header.astro` — vanilla header (sticky bar, desktop nav, hamburger +
+    full-page dialog). Dialog behaviour (focus trap, Escape, scroll lock,
+    stagger entrance) is a bundled vanilla script inside the component — no
+    React runtime, so react-dom only ships to pages with actual islands.
   - `services/ServicesAccordion.tsx` — React island (`client:idle`): accessible accordion
   - `ReactIcon.tsx` — typed inline SVG icon set for React islands (Astro components use `Icon.astro`)
   - `EngagementPricing.astro` — structural component that mounts the services island
-- `src/hooks/` — `useMenuDialog.ts` (focus trap, Escape, scroll lock, focus restore)
 - `src/pages/` — route pages; `src/pages/blog/[...slug].astro` renders posts
 - `src/content/blog/*.md` — blog posts, named `YYYY-MM-DD-slug.md`
 - `src/content.config.ts` — content collection schemas (authoritative front matter contract)
@@ -80,11 +82,12 @@ See the `astro-blog` skill for the full voice guide and workflow.
 
 ## React + TypeScript conventions (islands)
 
-- Islands for interaction: `header/Header.tsx` (`client:load`), `services/ServicesAccordion.tsx`
-  (`client:idle`). Keep mermaid + pinemail (`WAAPI`) logic vanilla — not every component needs React.
+- Islands for interaction: `services/ServicesAccordion.tsx` (`client:idle`). The header
+  is deliberately **vanilla** (bundled script in `Header.astro`) so react-dom does not
+  ship on pages without islands. Keep mermaid + pinemail (`WAAPI`) logic vanilla — not every component needs React.
 - **Never call `window`/`document` during render.** SSR renders server-side; server-pinned
   values (like `currentPath`) must come in as props from the Astro wrapper.
-- Hooks in `src/hooks/`; shared typed icons in `ReactIcon.tsx`. React island markup
+- Shared typed icons in `ReactIcon.tsx`. React island markup
   uses `stylex.props(styles.key).className`; Astro components use
   `stylex.attrs(styles.key).class`. Put sophisticated island chrome (e.g. `.svc-*`)
   in `global.css` `@layer components` — scoped styles can't reach React-rendered DOM.
@@ -96,7 +99,7 @@ See the `astro-blog` skill for the full voice guide and workflow.
 
 - Modals (mobile menu): `role="dialog"` + `aria-modal="true"`, labelled,
   focus-trapped, `Escape` closes, scroll-lock, focus restores to trigger.
-  Reference implementation: `useMenuDialog.ts`.
+  Reference implementation: the bundled vanilla script in `Header.astro`.
 - Accordions: button triggers with `aria-expanded`/`aria-controls`, `role="region"`
   panel labelled by the trigger, roving tabindex + arrow/Home/End. Reference: `ServicesAccordion.tsx`.
 - Desktop nav links: `aria-current="page"`. Page shell: skip-link, landmarks, `main` focus target.
@@ -151,8 +154,8 @@ fired only on a true first load / hard reload (`.yt-first` is set synchronously 
 
 ## Gotchas
 
-- `transition:persist` on a React island header caused stale-hydration bugs — islands
-  re-hydrate fully per navigation, so the mobile menu is handled entirely in React state.
+- `transition:persist` on the former React header island caused stale-hydration bugs; the
+  header is now vanilla (no hydrating state), so the dialog restarts closed per navigation.
 - `@astrojs/react` must stay in `astro.config.mjs` `integrations`; removing it breaks the islands.
 - View transitions: `<ClientRouter/>` from `astro:transitions`; prefetch via config.
 - `build.inlineStylesheets: 'always'` inlines CSS into HTML (no render-blocking CSS request).

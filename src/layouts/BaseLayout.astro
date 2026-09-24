@@ -4,7 +4,7 @@ import { ClientRouter } from 'astro:transitions'
 import * as stylex from '@stylexjs/stylex'
 import { shellStyles } from '../components/ui/shell.stylex'
 import { pageStyles } from '../components/ui/page.stylex'
-import Header from '../components/header/Header'
+import Header from '../components/header/Header.astro'
 import Footer from '../components/Footer.astro'
 import SiteCta from '../components/SiteCta.astro'
 
@@ -402,6 +402,40 @@ const mainAttrs = stylex.attrs(shellStyles.main)
       [data-home-hook='svc-item']:hover [data-home-hook='svc-chip'] {
         color: light-dark(#2563eb, #8bb0ff);
       }
+      [data-home-hook='post-pager-link']:hover [data-home-hook='post-pager-title'] {
+        color: light-dark(#2563eb, #8bb0ff);
+      }
+
+      /* FAQ accordion (native `<details>`) — StyleX can't express the
+         `[open]` ancestor state, so chevron flip, item dividers, marker
+         removal, and the open animation are composited here. */
+      [data-faq-item] > summary::-webkit-details-marker {
+        display: none;
+      }
+      [data-faq-item] + [data-faq-item] {
+        border-top-color: light-dark(#e5e5e5, #2b2b2b);
+        border-top-style: solid;
+        border-top-width: 1px;
+      }
+      [data-faq-item][open] [data-faq-chevron] {
+        color: light-dark(#2563eb, #8bb0ff);
+        transform: rotate(180deg);
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        [data-faq-item][open] [data-faq-body] {
+          animation: faq-body-in 0.25s ease-out;
+        }
+      }
+      @keyframes faq-body-in {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
     </style>
 
     <meta property="og:title" content={og.title} />
@@ -493,7 +527,7 @@ const mainAttrs = stylex.attrs(shellStyles.main)
   <body {...stylex.attrs(shellStyles.body)}>
     <a {...stylex.attrs(shellStyles.skipLink)} href="#site-main">Skip to main content</a>
 
-    <Header currentPath={Astro.url.pathname} client:load />
+    <Header />
 
     <main id="site-main" {...mainAttrs} tabindex="-1">
       <slot />

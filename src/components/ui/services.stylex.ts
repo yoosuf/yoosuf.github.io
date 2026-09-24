@@ -79,7 +79,7 @@ export const servicesStyles = stylex.create({
     transitionDuration: '0.2s',
     transitionTimingFunction: 'ease',
     ':hover': {
-      backgroundColor: colors.bgSoft,
+      backgroundColor: colors.washSoft,
     },
   },
 
@@ -109,7 +109,8 @@ export const servicesStyles = stylex.create({
 
   faqBody: {
     paddingBlockEnd: space['5'],
-    paddingInline: '0.25rem',
+    paddingBlockStart: '0.15rem',
+    paddingInline: space['5'],
   },
 
   faqAnswer: {

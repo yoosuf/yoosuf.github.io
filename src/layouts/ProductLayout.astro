@@ -10,15 +10,16 @@ interface Props {
 
 const { product } = Astro.props
 
-/* Theme primitives: products supply their brand hue; the derived light-dark()
-   pairs follow the tokens that used to live in product.css. Applied as a single
-   inline style so both the StyleX atomics (var(--pm-*) refs) and the JS hooks
-   (getComputedStyle reads) see the same values. */
+/* Theme primitives: products share the site accent; the derived light-dark()
+   pairs follow the tokens in tokens.stylex.ts and the --color-* custom
+   properties in global.css. Applied as a single inline style so both the
+   StyleX atomics (var(--pm-*) refs) and the JS hooks (getComputedStyle reads)
+   see the same values. */
 const accentCss = product.accent
-  ? `--pm-accent-light: ${product.accent.accent ?? '#10b981'};` +
-    `--pm-accent-strong-light: ${product.accent.accentStrong ?? '#059669'};` +
-    `--pm-accent-deep-light: ${product.accent.accentDeep ?? '#047857'};` +
-    `--pm-accent-soft-light: ${product.accent.accentSoft ?? '#d1fae5'};` +
+  ? `--pm-accent-light: ${product.accent.accent ?? '#2563eb'};` +
+    `--pm-accent-strong-light: ${product.accent.accentStrong ?? '#1d4ed8'};` +
+    `--pm-accent-deep-light: ${product.accent.accentDeep ?? '#1e40af'};` +
+    `--pm-accent-soft-light: ${product.accent.accentSoft ?? '#e9effd'};` +
     `--pm-on-accent-light: ${product.accent.onAccent ?? '#ffffff'};`
   : ''
 
@@ -31,19 +32,19 @@ const themeCss =
   `--pm-on-accent: light-dark(var(--pm-on-accent-light), #1a1a1a);` +
   `--pm-accent-glow: light-dark(color-mix(in srgb, var(--pm-accent-light) 30%, transparent), color-mix(in srgb, var(--pm-accent-light) 26%, transparent));` +
   `--pm-ink: light-dark(#1a1a1a, #e6e6e6);` +
-  `--pm-ink-soft: light-dark(#4a4a4a, #b0b0b0);` +
-  `--pm-ink-faint: light-dark(#7a7a7a, #858585);` +
-  `--pm-surface: light-dark(#ffffff, #161616);` +
-  `--pm-bg-soft: light-dark(#f8fafc, #171717);` +
-  `--pm-border: light-dark(#e2e8f0, #2b2b2b);` +
-  `--pm-border-strong: light-dark(#d4d4d4, #3d3d3d);` +
+  `--pm-ink-soft: light-dark(#5e5e5e, #979797);` +
+  `--pm-ink-faint: light-dark(#747474, #7f7f7f);` +
+  `--pm-surface: light-dark(#ffffff, #0e0e0e);` +
+  `--pm-bg-soft: light-dark(#f6f6f6, #171717);` +
+  `--pm-border: light-dark(#e5e5e5, #2b2b2b);` +
+  `--pm-border-strong: light-dark(rgba(26, 26, 26, 0.3), rgba(230, 230, 230, 0.3));` +
   `--pm-band: light-dark(#161616, #0e0e0e);` +
   `--pm-nav-bg: light-dark(rgba(255, 255, 255, 0.92), rgba(14, 14, 14, 0.88));` +
   `--pm-wash-base: light-dark(#ffffff, transparent);` +
-  `--pm-logo-chip: light-dark(#f8fafc, #ffffff);` +
-  `--pm-shadow-card: light-dark(0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 12px -2px rgba(15, 23, 42, 0.06)), light-dark(0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 12px -2px rgba(0, 0, 0, 0.5));` +
-  `--pm-shadow-lift: light-dark(rgba(15, 23, 42, 0.32), rgba(0, 0, 0, 0.55));` +
-  `--pm-shadow-accent: light-dark(0 1px 2px rgba(4, 120, 87, 0.2), 0 1px 2px rgba(0, 0, 0, 0.3));` +
+  `--pm-logo-chip: light-dark(#f6f6f6, #ffffff);` +
+  `--pm-shadow-card: light-dark(0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px -2px rgba(0, 0, 0, 0.06)), light-dark(0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 12px -2px rgba(0, 0, 0, 0.5));` +
+  `--pm-shadow-lift: light-dark(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.55));` +
+  `--pm-shadow-accent: light-dark(0 1px 2px rgba(37, 99, 235, 0.22), 0 1px 2px rgba(0, 0, 0, 0.3));` +
   `--pm-term-bg: #101010;` +
   `--pm-term-text: #d6d6d6;` +
   `--pm-fs-hero: clamp(2.2rem, 3.6vw, 3rem);` +

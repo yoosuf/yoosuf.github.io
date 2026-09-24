@@ -35,6 +35,7 @@ export const postStyles = stylex.create({
 
   prose: {
     marginBlockStart: space['10'],
+    maxWidth: '46rem',
   },
 
   tags: {
@@ -52,5 +53,53 @@ export const postStyles = stylex.create({
     listStyleType: 'none',
     marginBlock: 0,
     paddingInlineStart: 0,
+  },
+
+  pager: {
+    borderBlockStartColor: colors.border,
+    borderBlockStartStyle: 'solid',
+    borderBlockStartWidth: 1,
+    display: 'grid',
+    gap: '0.75rem',
+    gridTemplateColumns: { default: '1fr', '@media (min-width: 40rem)': '1fr 1fr' },
+    marginBlockStart: space['6'],
+    paddingBlockStart: space['6'],
+  },
+
+  pagerLink: {
+    borderRadius: '0.5rem',
+    color: colors.text,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.25rem',
+    paddingBlock: '0.75rem',
+    paddingInline: '0.875rem',
+    textDecorationLine: 'none',
+    transitionDuration: '0.15s',
+    transitionProperty: 'background-color',
+    ':hover': {
+      backgroundColor: colors.wash,
+    },
+  },
+
+  pagerLinkNewer: {
+    alignItems: 'flex-end',
+    textAlign: 'right',
+  },
+
+  pagerLabel: {
+    color: colors.textFaint,
+    fontSize: '0.7rem',
+    fontWeight: weights.semibold,
+    letterSpacing: '0.1em',
+    textTransform: 'uppercase',
+  },
+
+  pagerTitle: {
+    color: colors.text,
+    fontSize: '1rem',
+    fontWeight: weights.medium,
+    lineHeight: 1.4,
+    textWrap: 'balance',
   },
 })

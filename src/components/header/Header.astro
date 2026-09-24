@@ -1,0 +1,241 @@
+---
+import * as stylex from '@stylexjs/stylex'
+import { NAV, SITE } from '../../config'
+import { headerStyles } from './header.stylex'
+import { a11y } from '../ui/primitives'
+
+const currentPath = Astro.url.pathname
+
+function isActive(href: string, path: string): boolean {
+  if (href === '/') return path === '/' || path === ''
+  return path === href || path.startsWith(href)
+}
+---
+
+<header {...stylex.attrs(headerStyles.bar)}>
+  <div {...stylex.attrs(headerStyles.container)}>
+    <a href="/" {...stylex.attrs(headerStyles.brand)}>
+      {SITE.title}
+    </a>
+
+    <nav aria-label="Primary" {...stylex.attrs(headerStyles.desktopNav)}>
+      <ul {...stylex.attrs(headerStyles.desktopList)}>
+        {NAV.map((item) => (
+          <li key={item.link}>
+            <a
+              href={item.link}
+              aria-current={isActive(item.link, currentPath) ? 'page' : undefined}
+              {...stylex.attrs(
+                headerStyles.desktopLink,
+                isActive(item.link, currentPath) && headerStyles.desktopLinkActive,
+              )}
+            >
+              {item.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <button
+      data-menu-trigger
+      type="button"
+      {...stylex.attrs(headerStyles.iconBtn, headerStyles.onlyMobile)}
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        aria-hidden="true"
+      >
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </button>
+  </div>
+
+  <div
+    data-menu-overlay
+    id="mobile-menu"
+    {...stylex.attrs(headerStyles.menuOverlay)}
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="mobile-menu-title"
+    hidden
+  >
+    <h2 id="mobile-menu-title" {...stylex.attrs(a11y.srOnly)}>
+      Menu
+    </h2>
+
+    <div {...stylex.attrs(headerStyles.container)}>
+      <span {...stylex.attrs(headerStyles.menuTitle)}>{SITE.title}</span>
+      <button
+        data-menu-close
+        type="button"
+        {...stylex.attrs(headerStyles.iconBtn)}
+        aria-label="Close menu"
+      >
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          aria-hidden="true"
+        >
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <nav aria-label="Mobile" {...stylex.attrs(headerStyles.menuNav)}>
+      <ul {...stylex.attrs(headerStyles.menuList)}>
+        {NAV.map((item) => (
+          <li
+            data-menu-link
+            key={item.link}
+            {...stylex.attrs(headerStyles.menuLinkItem)}
+          >
+            <a
+              href={item.link}
+              aria-current={isActive(item.link, currentPath) ? 'page' : undefined}
+              {...stylex.attrs(
+                headerStyles.menuLink,
+                isActive(item.link, currentPath) && headerStyles.menuLinkActive,
+              )}
+            >
+              {item.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div {...stylex.attrs(headerStyles.container, headerStyles.overlayCaption)}>
+      {SITE.description}
+    </div>
+  </div>
+</header>
+
+<style>
+  /* The overlay is hidden by default; JS reveals it on demand. The
+     !important beats the compiled `.menuOverlay` display:flex atom while the
+     `hidden` attribute is present. */
+  [hidden] {
+    display: none !important;
+  }
+</style>
+
+<script>
+  // Mobile menu dialog behaviour (vanilla — no React runtime needed):
+  // focus trap, Escape to close, body scroll lock, resize guard, focus
+  // restored to the trigger on close, and a WAAPI stagger entrance.
+  const trigger = document.querySelector<HTMLButtonElement>('[data-menu-trigger]')
+  const overlay = document.querySelector<HTMLElement>('[data-menu-overlay]')
+  const closeButton = document.querySelector<HTMLButtonElement>('[data-menu-close]')
+
+  if (trigger && overlay && closeButton) {
+    const FOCUSABLE_SELECTOR = [
+      'a[href]',
+      'button:not([disabled])',
+      'textarea:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(',')
+
+    const focusables = (): HTMLElement[] =>
+      Array.from(overlay.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR))
+
+    let previousFocus: HTMLElement | null = null
+    let openingFrame = 0
+
+    const openMenu = () => {
+      previousFocus = document.activeElement as HTMLElement | null
+      overlay.hidden = false
+      trigger.setAttribute('aria-expanded', 'true')
+      document.body.style.overflow = 'hidden'
+
+      openingFrame = requestAnimationFrame(() => {
+        focusables()[0]?.focus()
+      })
+
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        overlay.animate([{ opacity: 0 }, { opacity: 1 }], {
+          duration: 280,
+          easing: 'ease-out',
+          fill: 'both',
+        })
+        overlay.querySelectorAll<HTMLElement>('[data-menu-link]').forEach((link, index) => {
+          link.animate(
+            [
+              { opacity: 0, transform: 'translateY(12px)' },
+              { opacity: 1, transform: 'none' },
+            ],
+            { duration: 400, delay: 80 + index * 60, easing: 'ease-out', fill: 'both' },
+          )
+        })
+      }
+    }
+
+    const closeMenu = () => {
+      if (openingFrame) cancelAnimationFrame(openingFrame)
+      overlay.hidden = true
+      trigger.setAttribute('aria-expanded', 'false')
+      document.body.style.overflow = ''
+      previousFocus?.focus()
+      previousFocus = null
+    }
+
+    trigger.addEventListener('click', openMenu)
+    closeButton.addEventListener('click', closeMenu)
+
+    // Closing on a link tap keeps the dialog tidy even for same-page links
+    // (navigation swaps the DOM and starts closed anyway).
+    overlay.addEventListener('click', (event) => {
+      if ((event.target as HTMLElement).closest('a[href]')) closeMenu()
+    })
+
+    document.addEventListener('keydown', (event) => {
+      if (overlay.hidden) return
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        closeMenu()
+        return
+      }
+      if (event.key !== 'Tab') return
+      const items = focusables()
+      if (items.length === 0) {
+        event.preventDefault()
+        return
+      }
+      const first = items[0]
+      const last = items[items.length - 1]
+      const active = document.activeElement
+      if (event.shiftKey && active === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    })
+
+    const mq = window.matchMedia('(min-width: 48rem)')
+    const onViewportChange = (event: MediaQueryListEvent) => {
+      if (event.matches) closeMenu()
+    }
+    mq.addEventListener('change', onViewportChange)
+  }
+</script>

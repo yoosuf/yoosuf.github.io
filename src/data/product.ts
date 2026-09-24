@@ -59,10 +59,10 @@ export const pinemail: Product = {
   name: 'Pine Mail',
   homeHref: '/pinemail/',
   accent: {
-    accent: '#10b981',
-    accentStrong: '#059669',
-    accentDeep: '#047857',
-    accentSoft: '#d1fae5',
+    accent: '#2563eb',
+    accentStrong: '#1d4ed8',
+    accentDeep: '#1e40af',
+    accentSoft: '#e9effd',
     onAccent: '#ffffff',
   },
   navLinks: [
@@ -148,10 +148,10 @@ export const messenger: Product = {
   name: 'Messenger',
   homeHref: '/messenger/',
   accent: {
-    accent: '#7c3aed',
-    accentStrong: '#6d28d9',
-    accentDeep: '#5b21b6',
-    accentSoft: '#ede9fe',
+    accent: '#2563eb',
+    accentStrong: '#1d4ed8',
+    accentDeep: '#1e40af',
+    accentSoft: '#e9effd',
     onAccent: '#ffffff',
   },
   navLinks: [

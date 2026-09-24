@@ -275,11 +275,11 @@ export const styles = stylex.create({
 
   pmPrompt: {
     fontWeight: 700,
-    color: '#e2e8f0',
+    color: '#e5e5e5',
   },
   pmOk: {
     fontWeight: 700,
-    color: '#e9eef3',
+    color: '#f6f6f6',
   },
 
   /* --- Subnav --- */
@@ -336,81 +336,6 @@ export const styles = stylex.create({
   },
 
   /* --- "Built for" strip --- */
-  pmBuiltfor: {
-    paddingTop: '32px',
-    paddingBottom: '38px',
-    backgroundColor: 'var(--pm-surface)',
-    borderBottom: '1px solid var(--pm-border)',
-    '@media (max-width: 767px)': {
-      paddingTop: '26px',
-      paddingBottom: '32px',
-    },
-  },
-
-  pmBuiltforLabel: {
-    marginTop: 0,
-    marginRight: 0,
-    marginBottom: '18px',
-    marginLeft: 0,
-    textAlign: 'center',
-    fontSize: 'var(--pm-fs-xs)',
-    fontWeight: 700,
-    letterSpacing: '0.1em',
-    textTransform: 'uppercase',
-    color: 'var(--pm-ink-faint)',
-  },
-
-  pmBuiltforIcons: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    gap: '14px',
-    margin: 0,
-    padding: 0,
-    listStyle: 'none',
-    '@media (max-width: 767px)': {
-      gap: '10px',
-    },
-  },
-
-  pmBuiltforIcon: {
-    position: 'relative',
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 54,
-    height: 54,
-    /* Brand logotype chips stay light in dark mode — the marks are drawn to be
-       read on white; forcing them dark erases black glyphs. */
-    color: 'light-dark(var(--pm-ink), #1a1a1a)',
-    backgroundColor: 'light-dark(var(--pm-bg-soft), var(--pm-logo-chip))',
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: 'var(--pm-border)',
-    borderRadius: 15,
-    boxShadow: 'var(--pm-shadow-card)',
-    transitionProperty: 'border-color, box-shadow, transform, background-color',
-    transitionDuration: '0.2s',
-    transitionTimingFunction: 'ease',
-    ':hover': {
-      backgroundColor: 'light-dark(#ffffff, var(--pm-logo-chip))',
-      borderColor: 'var(--pm-border-strong)',
-      boxShadow: 'var(--pm-shadow-lift)',
-      transform: 'translateY(-2px)',
-    },
-    ':focus-visible': {
-      backgroundColor: 'light-dark(#ffffff, var(--pm-logo-chip))',
-      borderColor: 'var(--pm-border-strong)',
-      boxShadow: 'var(--pm-shadow-lift)',
-      transform: 'translateY(-2px)',
-    },
-    '@media (max-width: 767px)': {
-      width: 48,
-      height: 48,
-      borderRadius: 13,
-    },
-  },
-
   /* --- Section layout --- */
   pmSection: {
     marginTop: '64px',
@@ -980,15 +905,15 @@ export const styles = stylex.create({
 
   pmFlowLogTime: {
     marginRight: 8,
-    color: '#64748b',
+    color: '#8f8f8f',
   },
 
   pmFlowLogHit: {
-    color: '#e9eef3',
+    color: '#f6f6f6',
   },
 
   pmFlowLogHitTime: {
-    color: '#b6bcc7',
+    color: '#b3b3b3',
   },
 
   /* Connector rail and its visible dash track are explicit child elements. */
@@ -1527,7 +1452,7 @@ export const styles = stylex.create({
   },
   pmSymNo: {
     fontWeight: 700,
-    color: '#b6bcc7',
+    color: '#8f8f8f',
   },
   pmSymPart: {
     fontWeight: 700,
@@ -1561,9 +1486,9 @@ export const styles = stylex.create({
   pmTab: {
     display: 'inline-flex',
     alignItems: 'center',
-    paddingTop: '9px',
+    paddingTop: '11px',
     paddingRight: '16px',
-    paddingBottom: '9px',
+    paddingBottom: '11px',
     paddingLeft: '16px',
     fontSize: 'var(--pm-fs-small)',
     fontWeight: 600,
@@ -1626,9 +1551,11 @@ export const styles = stylex.create({
   },
 
   pmCodeCopy: {
-    paddingTop: '4px',
+    alignItems: 'center',
+    display: 'inline-flex',
+    paddingTop: '7px',
     paddingRight: '10px',
-    paddingBottom: '4px',
+    paddingBottom: '7px',
     paddingLeft: '10px',
     fontSize: '0.78rem',
     fontWeight: 600,
@@ -1646,7 +1573,7 @@ export const styles = stylex.create({
     ':hover': {
       color: '#ffffff',
       backgroundColor: 'rgba(255, 255, 255, 0.08)',
-      borderColor: 'rgba(203, 213, 225, 0.45)',
+      borderColor: 'rgba(160, 160, 160, 0.45)',
     },
     ':focus-visible': {
       outline: '2px solid var(--pm-accent)',
@@ -2135,7 +2062,7 @@ export const styles = stylex.create({
     ':hover': {
       color: '#ffffff',
       backgroundColor: 'rgba(255, 255, 255, 0.08)',
-      borderColor: 'rgba(203, 213, 225, 0.55)',
+      borderColor: 'rgba(160, 160, 160, 0.55)',
       boxShadow: 'none',
       transform: 'translateY(-2px)',
       filter: 'none',
@@ -2144,7 +2071,7 @@ export const styles = stylex.create({
     ':focus-visible': {
       color: '#ffffff',
       backgroundColor: 'rgba(255, 255, 255, 0.08)',
-      borderColor: 'rgba(203, 213, 225, 0.55)',
+      borderColor: 'rgba(160, 160, 160, 0.55)',
       boxShadow: 'none',
       transform: 'translateY(-2px)',
       filter: 'none',

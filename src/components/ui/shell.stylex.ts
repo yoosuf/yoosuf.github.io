@@ -54,5 +54,6 @@ export const shellStyles = stylex.create({
 
   prose: {
     marginBlockStart: space['10'],
+    maxWidth: '46rem',
   },
 })

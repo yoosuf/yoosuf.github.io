@@ -78,14 +78,14 @@ const faqs = [
     </h3>
     <div {...stylex.attrs(servicesStyles.faqList)}>
       {faqs.map((faq) => (
-        <details {...stylex.attrs(servicesStyles.faqItem)}>
+        <details {...stylex.attrs(servicesStyles.faqItem)} data-faq-item>
           <summary {...stylex.attrs(servicesStyles.summary)}>
             <span {...stylex.attrs(servicesStyles.summaryText)}>{faq.q}</span>
-            <span {...stylex.attrs(servicesStyles.chevron)}>
+            <span {...stylex.attrs(servicesStyles.chevron)} data-faq-chevron>
               <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
             </span>
           </summary>
-          <div {...stylex.attrs(servicesStyles.faqBody)}>
+          <div {...stylex.attrs(servicesStyles.faqBody)} data-faq-body>
             <p {...stylex.attrs(servicesStyles.faqAnswer)}>{faq.a}</p>
           </div>
         </details>

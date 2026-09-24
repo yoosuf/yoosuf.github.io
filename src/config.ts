@@ -12,7 +12,7 @@ export const SITE = {
   gaId: 'G-SJQ1MBM1PF',
   logo: '/assets/images/yoosuf.jpg',
   logoMark: '/assets/images/icon-512.png',
-  socialImage: '/assets/images/social-card.png',
+  socialImage: '/assets/images/social-card.jpg',
   date: { currentYear: new Date().getFullYear() },
 } as const
 

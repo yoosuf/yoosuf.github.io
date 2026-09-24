@@ -1,5 +1,10 @@
 ---
 import ForwardTag from './ForwardTag.astro'
-const { style: _style, ...attrs } = Astro.props
+const { style: _style, loading, decoding, ...attrs } = Astro.props
+const forwarded = {
+  ...attrs,
+  loading: loading ?? 'lazy',
+  decoding: decoding ?? 'async',
+}
 ---
-<ForwardTag tag="image" {...attrs}><slot /></ForwardTag>
+<ForwardTag tag="image" {...forwarded}><slot /></ForwardTag>

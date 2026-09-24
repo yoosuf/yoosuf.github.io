@@ -375,6 +375,24 @@ const mainAttrs = stylex.attrs(shellStyles.main)
         scroll-margin-top: 6rem;
       }
 
+      /* Site header height the product subnav sits below (hamburger makes the
+         mobile bar taller; breakpoint parity with the 48rem nav switch). */
+      :root {
+        --site-header-h: 77px;
+      }
+
+      @media (min-width: 48rem) {
+        :root {
+          --site-header-h: 64px;
+        }
+      }
+
+      /* Product microsites: the subnav sticks below the site header, so
+         anchored targets must clear the taller sticky stack (header+subnav). */
+      [data-pm-hook='pm-page'] [id] {
+        scroll-margin-top: calc(var(--site-header-h) + 3.25rem);
+      }
+
       /* Prism code samples: Prism replaces the markdown `<pre><code>` tree with
          its own `class="language-*"` markup, so it bypasses the markdown
          components' StyleX atomics. Replicate the markdown.stylex.ts pre/code

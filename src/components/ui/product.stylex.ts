@@ -285,7 +285,7 @@ export const styles = stylex.create({
   /* --- Subnav --- */
   pmSubnav: {
     position: 'sticky',
-    top: 0,
+    top: 'var(--site-header-h)',
     zIndex: 40,
     backgroundColor: 'var(--pm-nav-bg)',
     borderBottom: '1px solid var(--pm-border)',

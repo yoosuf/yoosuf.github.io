@@ -22,11 +22,10 @@ export const footerStyles = stylex.create({
   },
 
   row: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
     display: 'flex',
-    flexWrap: 'wrap',
-    gap: '0.75rem 1.5rem',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
+    gap: '1.5rem',
   },
 
   legal: {
@@ -34,6 +33,7 @@ export const footerStyles = stylex.create({
     fontSize: '0.8rem',
     lineHeight: 1.7,
     marginBlock: 0,
+    textWrap: 'balance',
   },
 
   brandLink: {
@@ -58,16 +58,14 @@ export const footerStyles = stylex.create({
   },
 
   nav: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
     color: colors.textMuted,
     display: 'flex',
-    flexWrap: 'wrap',
+    flexDirection: 'column',
     fontSize: '0.825rem',
-    gap: '0.5rem 1.25rem',
-    justifyContent: 'flex-end',
+    gap: '0.5rem',
     marginBlockEnd: 0,
     marginBlockStart: 0,
-    marginInlineStart: 'auto',
   },
 
   navLink: {

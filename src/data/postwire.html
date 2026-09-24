@@ -1,0 +1,798 @@
+<section class="pm-section pm-switch-section">
+  <div class="pm-container">
+    <h2 class="pm-section-title">Why developers switch to Postwire</h2>
+    <p class="pm-section-sub">
+      It replaces the messy parts of auth testing with one local tool: email testing, SMS 2FA testing,
+      webhook capture, OTP extraction, and agent-readable APIs in the same process.
+    </p>
+    <ul class="pm-switch-grid">
+      <li class="pm-switch-card">
+        <p class="pm-switch-kicker">For local dev</p>
+        <h3 class="pm-switch-title">A MailHog and Mailpit alternative that understands modern auth</h3>
+        <p class="pm-switch-desc">
+          Catch SMTP like the classic tools, then go further: parse verification codes, magic links,
+          reset URLs, and SMS messages without asking your app or your browser to pretend.
+        </p>
+      </li>
+      <li class="pm-switch-card">
+        <p class="pm-switch-kicker">For E2E and CI</p>
+        <h3 class="pm-switch-title">Deterministic Playwright auth tests with zero <code>sleep()</code></h3>
+        <p class="pm-switch-desc">
+          Long-polling waits return when the matching email or text arrives. Use <code>since</code>,
+          assert the extracted code, clean the inbox, and keep the pipeline boring.
+        </p>
+      </li>
+      <li class="pm-switch-card">
+        <p class="pm-switch-kicker">For AI agents</p>
+        <h3 class="pm-switch-title">MCP-native email and SMS tools for full MFA flows</h3>
+        <p class="pm-switch-desc">
+          Agents can wait for email, extract a link, wait for SMS, read the OTP, and finish login
+          through 14 structured MCP tools instead of screen-scraping webmail.
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="pm-section" id="problem">
+  <div class="pm-container">
+    <h2 class="pm-section-title">The problem: auth testing is still too fragile</h2>
+    <p class="pm-section-sub">
+      Your test suite signs up a user. The app sends an email verification code, then a text-message 2FA code.
+      The whole thing should take seconds, but it often turns into waits, retries, inbox scraping, and one very suspicious timeout.
+    </p>
+    <ul class="pm-problems">
+      <li class="pm-problem">
+        <div class="pm-problem-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="pm-problem-name">Cloud sandboxes add coupling</h3>
+        <p class="pm-problem-desc">
+          Mailtrap, SendGrid, and phone-verification SaaS reduce the blast radius, but your local suite still depends on the network, API keys, account state, and a pricing tier.
+        </p>
+      </li>
+      <li class="pm-problem">
+        <div class="pm-problem-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 class="pm-problem-name">Classic catchers are email-only</h3>
+        <p class="pm-problem-desc">
+          MailHog and Mailpit are great SMTP catchers, but they stop at email. Modern auth testing needs SMS, OTP extraction, magic links, and clean wait APIs too.
+        </p>
+      </li>
+      <li class="pm-problem">
+        <div class="pm-problem-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+        </div>
+        <h3 class="pm-problem-name">Agents hit a wall at OTPs</h3>
+        <p class="pm-problem-desc">
+          An autonomous agent can't casually read a phone or browse webmail like a patient human. It needs a native, structured channel for email and SMS.
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="pm-section" id="howitworks">
+  <div class="pm-container">
+    <h2 class="pm-section-title">How it works</h2>
+    <p class="pm-section-sub">
+      One binary, two channels, one long-polling engine. Point your app at the listeners &mdash; your tests and agents just wait and read.
+    </p>
+  </div>
+  <div class="pm-container">
+<div class="pm-flow" aria-label="How Postwire works: your app sends email over SMTP on port 1025 and SMS via Twilio webhook or REST into Postwire. Postwire stores both channels in SQLite, runs long-polling and auto signal extraction. Your tests and agents then consume them through 14 MCP tools, the wait APIs, the web UI, or raw REST.">
+      <div class="pm-flow-node pm-flow-app">
+        <span class="pm-flow-node-tag">Producer</span>
+        <h3 class="pm-flow-node-title">Your app</h3>
+        <ul class="pm-flow-list">
+          <li class="pm-flow-list-item">
+            <span class="pm-flow-list-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </span>
+            <span class="pm-flow-list-text"><code>SMTP &middot; :1025</code><span class="pm-flow-list-sub">email triggers</span></span>
+          </li>
+          <li class="pm-flow-list-item">
+            <span class="pm-flow-list-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </span>
+            <span class="pm-flow-list-text"><code>Twilio &rarr; /api/sms/webhook</code><span class="pm-flow-list-sub">form + JSON parsing</span></span>
+          </li>
+          <li class="pm-flow-list-item">
+            <span class="pm-flow-list-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+            </span>
+            <span class="pm-flow-list-text"><code>REST &middot; POST /api/sms</code><span class="pm-flow-list-sub">direct push</span></span>
+          </li>
+        </ul>
+        <div class="pm-flow-status" aria-hidden="true">
+          <span class="pm-flow-status-msg">ready</span>
+        </div>
+      </div>
+
+      <div class="pm-flow-arrow pm-arrow-out">
+        <span class="pm-flow-rail-wrap" aria-hidden="true">
+          <span class="pm-flow-rail"></span>
+          <span class="pm-flow-arrow-head">
+            <span class="pm-flow-arrow-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+            </span>
+          </span>
+          <span class="pm-flow-packet"></span>
+        </span>
+        <span class="pm-flow-arrow-label">emails &amp; SMS</span>
+      </div>
+
+      <div class="pm-flow-node pm-flow-core">
+        <div class="pm-flow-core-head">
+          <div class="pm-flow-core-head-main">
+            <span class="pm-flow-node-tag pm-flow-node-tag-core">Core engine</span>
+            <h3 class="pm-flow-core-title">Postwire</h3>
+          </div>
+          <span class="pm-flow-badge">single binary &middot; Rust &middot; SQLite</span>
+        </div>
+        <ul class="pm-flow-channels">
+          <li class="pm-flow-channel">
+            <span class="pm-flow-channel-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            </span>
+            <span class="pm-flow-channel-text"><span class="pm-flow-channel-name">Email store</span><span class="pm-flow-channel-sub">MIME &amp; HTML &middot; auto signal extraction</span></span>
+          </li>
+          <li class="pm-flow-channel">
+            <span class="pm-flow-channel-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 2v4"/><path d="M16 2v4"/></svg>
+            </span>
+            <span class="pm-flow-channel-text"><span class="pm-flow-channel-name">SMS store</span><span class="pm-flow-channel-sub">JSON &amp; Twilio &middot; auto signal extraction</span></span>
+          </li>
+        </ul>
+        <div class="pm-flow-log-head">
+          <span>activity</span>
+          <span class="pm-flow-log-count">inbox 0</span>
+        </div>
+        <ol class="pm-flow-log" role="log" aria-live="polite" aria-label="Recent Postwire activity">
+          <li class="pm-flow-log-line"><time>14:02:11</time>SMTP 0421 &middot; received</li>
+          <li class="pm-flow-log-line pm-log-hit"><time>14:02:12</time>extract &rarr; OTP 812904</li>
+          <li class="pm-flow-log-line"><time>14:02:12</time>analysis &middot; spam 0.02</li>
+          <li class="pm-flow-log-line"><time>14:02:13</time>delivered &rarr; agent 7712</li>
+          <li class="pm-flow-log-line"><time>14:02:14</time>mailbox idle &middot; 0 waiting</li>
+        </ol>
+        <div class="pm-flow-status" aria-hidden="true">
+          <span class="pm-flow-status-msg">ready</span>
+        </div>
+      </div>
+
+      <div class="pm-flow-arrow pm-arrow-in">
+        <span class="pm-flow-rail-wrap" aria-hidden="true">
+          <span class="pm-flow-rail"></span>
+          <span class="pm-flow-arrow-head">
+            <span class="pm-flow-arrow-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+            </span>
+          </span>
+          <span class="pm-flow-packet"></span>
+        </span>
+        <span class="pm-flow-arrow-label">structured JSON</span>
+      </div>
+
+      <div class="pm-flow-node pm-flow-consume">
+        <span class="pm-flow-node-tag">Consumer</span>
+        <h3 class="pm-flow-node-title">Tests &amp; agents</h3>
+        <ul class="pm-flow-list pm-flow-list-checks">
+          <li class="pm-flow-list-item">
+            <span class="pm-flow-list-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            <span class="pm-flow-list-text"><code>14 MCP tools</code><span class="pm-flow-list-sub">native stdio server</span></span>
+          </li>
+          <li class="pm-flow-list-item">
+            <span class="pm-flow-list-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            <span class="pm-flow-list-text"><code>/api/wait &middot; /api/sms/wait</code><span class="pm-flow-list-sub">long-poll, zero sleep()</span></span>
+          </li>
+          <li class="pm-flow-list-item">
+            <span class="pm-flow-list-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            <span class="pm-flow-list-text"><code>Web UI &middot; :8025</code><span class="pm-flow-list-sub">dual-tab dashboard</span></span>
+          </li>
+        </ul>
+        <div class="pm-flow-status pm-status-polling" aria-hidden="true">
+          <span class="pm-flow-status-msg">long-polling&hellip;</span>
+        </div>
+      </div>
+    </div>
+    <ol class="pm-steps">
+      <li class="pm-step">
+        <span class="pm-step-num">1</span>
+        <h3 class="pm-step-title">Point your app at Postwire</h3>
+        <p class="pm-step-desc">SMTP relay at <code>localhost:1025</code>; Twilio webhook at <code>/api/sms/webhook</code>.</p>
+      </li>
+      <li class="pm-step">
+        <span class="pm-step-num">2</span>
+        <h3 class="pm-step-title">It catches and parses everything</h3>
+        <p class="pm-step-desc">Stores messages in SQLite and extracts codes, magic links, and reset URLs automatically.</p>
+      </li>
+      <li class="pm-step">
+        <span class="pm-step-num">3</span>
+        <h3 class="pm-step-title">Your test or agent waits, then reads</h3>
+        <p class="pm-step-desc">Long-poll <code>/api/wait</code> or <code>/api/sms/wait</code>, pull the OTP, keep going. Zero sleep().</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="pm-section" id="features">
+  <div class="pm-container">
+    <h2 class="pm-section-title">Everything you need, nothing you don't</h2>
+    <p class="pm-section-sub">
+      Four capabilities that make Postwire feel boring in the best developer-product sense: predictable, local, scriptable, and easy to delete from your mental stack.
+    </p>
+    <div class="pm-features">
+      <div class="pm-feature">
+        <div class="pm-feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 class="pm-feature-title">Long-polling wait API</h3>
+        <p class="pm-feature-desc">
+          <code>/api/wait</code> and <code>/api/sms/wait</code> hold the request open until the matching message arrives. Use <code>since</code> timestamps so fast delivery never slips through the gap.
+        </p>
+      </div>
+      <div class="pm-feature">
+        <div class="pm-feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3 class="pm-feature-title">Signal extraction</h3>
+        <p class="pm-feature-desc">
+          Pull OTP codes, email verification links, magic login links, and reset URLs out of email bodies and SMS text. Structured JSON &mdash; no regex, no MIME debugging.
+        </p>
+      </div>
+      <div class="pm-feature">
+        <div class="pm-feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3 class="pm-feature-title">SMS + Twilio webhooks</h3>
+        <p class="pm-feature-desc">
+          Catch texts via JSON or a native Twilio webhook parser. Full SMS 2FA flows locally &mdash; no phone, no SMS gateway in your test path.
+        </p>
+      </div>
+      <div class="pm-feature">
+        <div class="pm-feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9c0-1-.16-1.96-.46-2.86A2 2 0 0 0 18.72 8H16"/><path d="M8 11h.01"/><path d="M12 11h.01"/><path d="M16 11h.01"/></svg>
+        </div>
+        <h3 class="pm-feature-title">Email analysis</h3>
+        <p class="pm-feature-desc">
+          Run an 11-factor HTML email compatibility check plus a SpamAssassin-style score. Assert template quality before a broken transactional email ships.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pm-section" id="docs">
+  <div class="pm-container">
+    <h2 class="pm-section-title">Developer guide</h2>
+    <p class="pm-section-sub">
+      Plain HTTP with JSON responses on <code>localhost:8025</code>. No SDK, no auth, no API keys &mdash; just curl, or whatever your test suite already speaks.
+    </p>
+  </div>
+  <div class="pm-container">
+    <div class="pm-doc">
+      <p class="pm-doc-base"><span class="pm-doc-base-label">Base URL</span><code>http://localhost:8025</code></p>
+
+      <div class="pm-doc-block">
+        <h3 class="pm-doc-title">Conventions</h3>
+        <ul class="pm-doc-conventions">
+          <li class="pm-doc-convention">
+            <h4 class="pm-doc-convention-title">Long-polling waits</h4>
+            <p class="pm-doc-convention-desc">
+              <code>/api/wait</code> and <code>/api/sms/wait</code> hold the request open and resolve the instant a matching message lands. On timeout they return a clean <code>408</code> &mdash; no hangs, no polling loops.
+            </p>
+          </li>
+          <li class="pm-doc-convention">
+            <h4 class="pm-doc-convention-title">Race-free <code>since</code></h4>
+            <p class="pm-doc-convention-desc">
+              Both wait endpoints accept an ISO-8601 <code>since</code> timestamp. Capture it before triggering the action, and a message that lands before your fetch connects still gets returned (<code>received_at &gt;= since</code>).
+            </p>
+          </li>
+          <li class="pm-doc-convention">
+            <h4 class="pm-doc-convention-title">Error codes</h4>
+            <p class="pm-doc-convention-desc">
+              <code>400</code> for invalid parameters, <code>404</code> for unknown message IDs, <code>408</code> on wait timeout.
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="pm-doc-block">
+        <h3 class="pm-doc-group-title">Email</h3>
+
+        <div class="pm-doc-endpoint">
+          <h4 class="pm-doc-head"><span class="pm-method">GET</span><code class="pm-path">/api/wait</code><span class="pm-tag">long-poll</span></h4>
+          <p class="pm-doc-desc">Wait for an email matching the filters, then return it.</p>
+          <pre class="pm-code-block">curl "http://localhost:8025/api/wait?to=user@example.com&amp;subject=Verify&amp;since=2026-09-04T10:00:00Z&amp;timeout_ms=15000"</pre>
+          <table class="pm-doc-table">
+            <thead>
+              <tr><th>Query param</th><th>Type</th><th>Required</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>to</code></td><td>string</td><td>no</td><td>Filter by recipient address.</td></tr>
+              <tr><td><code>subject</code></td><td>string</td><td>no</td><td>Filter by subject substring.</td></tr>
+              <tr><td><code>since</code></td><td>ISO-8601</td><td>no</td><td>Only messages with <code>received_at &gt;= since</code>.</td></tr>
+              <tr><td><code>timeout_ms</code></td><td>int</td><td>no</td><td>Max wait before returning <code>408</code>.</td></tr>
+            </tbody>
+          </table>
+          <h5 class="pm-doc-subhead">Response &mdash; the full message payload</h5>
+          <pre class="pm-code-block">{
+  "id": "msg_01J6XYZ",
+  "from": "no-reply@yourapp.dev",
+  "to": "user@example.com",
+  "subject": "Confirm your account",
+  "text": "Your verification code is 849201",
+  "html": "&lt;html&gt;&lt;body&gt;...&lt;/body&gt;&lt;/html&gt;",
+  "received_at": "2026-09-04T10:00:01.123Z"
+}</pre>
+        </div>
+
+        <div class="pm-doc-endpoint">
+          <h4 class="pm-doc-head"><span class="pm-method">GET</span><code class="pm-path">/api/messages/:id</code><span class="pm-tag">fetch</span></h4>
+          <p class="pm-doc-desc">Fetch a single stored email by ID, including the raw HTML body.</p>
+          <pre class="pm-code-block">curl "http://localhost:8025/api/messages/msg_01J6XYZ"</pre>
+        </div>
+
+        <div class="pm-doc-endpoint">
+          <h4 class="pm-doc-head"><span class="pm-method">GET</span><code class="pm-path">/api/messages/:id/extract</code><span class="pm-tag">signals</span></h4>
+          <p class="pm-doc-desc">
+            Pull verification codes, magic login links, and password reset URLs into structured JSON. Recognizes 4&ndash;8 digit numeric and alphanumeric OTPs.
+          </p>
+          <pre class="pm-code-block">curl "http://localhost:8025/api/messages/msg_01J6XYZ/extract"
+
+{
+  "codes": ["849201"],
+  "links": ["http://localhost:3000/auth/verify?token=d8f1e09a8b2c4d5e"],
+  "action_urls": ["http://localhost:3000/auth/verify?token=d8f1e09a8b2c4d5e"]
+}</pre>
+        </div>
+
+        <div class="pm-doc-endpoint">
+          <h4 class="pm-doc-head"><span class="pm-method">GET</span><code class="pm-path">/api/messages/:id/analysis</code><span class="pm-tag">CI assertions</span></h4>
+          <p class="pm-doc-desc">
+            11-factor compatibility check for legacy clients plus a heuristic spam score. Deterministic enough to assert against in CI before merge.
+          </p>
+          <pre class="pm-code-block">curl "http://localhost:8025/api/messages/msg_01J6XYZ/analysis"
+
+{
+  "spam_score": 12,
+  "issues": ["missing doctype", "un-inlined styles"]
+}</pre>
+        </div>
+
+        <p class="pm-doc-footnote">
+          Cleanup: <code>POST /api/messages/bulk-delete</code> and <code>PATCH /api/messages/bulk-read</code> reset or mark inbox state between test runs.
+        </p>
+      </div>
+
+      <div class="pm-doc-block">
+        <h3 class="pm-doc-group-title">SMS</h3>
+
+        <div class="pm-doc-endpoint">
+          <h4 class="pm-doc-head"><span class="pm-method">POST</span><code class="pm-path">/api/sms</code><span class="pm-tag">ingest</span></h4>
+          <p class="pm-doc-desc">Push a structured SMS straight from a test driver or notification service.</p>
+          <pre class="pm-code-block">curl -X POST "http://localhost:8025/api/sms" \
+  -H "Content-Type: application/json" \
+  -d '{"from": "+15550199", "to": "+15550100", "body": "Your code is 839201"}'</pre>
+        </div>
+
+        <div class="pm-doc-endpoint">
+          <h4 class="pm-doc-head"><span class="pm-method">POST</span><code class="pm-path">/api/sms/webhook</code><span class="pm-tag">Twilio</span></h4>
+          <p class="pm-doc-desc">
+            Point your app's Twilio client or webhook dispatcher here. Standard <code>x-www-form-urlencoded</code> fields (<code>From</code>, <code>To</code>, <code>Body</code>) are parsed automatically.
+          </p>
+          <pre class="pm-code-block">curl -X POST "http://localhost:8025/api/sms/webhook" \
+  -d "From=%2B15550199" -d "To=%2B15550100" \
+  -d "Body=Your verification code is 839201"</pre>
+        </div>
+
+        <div class="pm-doc-endpoint">
+          <h4 class="pm-doc-head"><span class="pm-method">GET</span><code class="pm-path">/api/sms/wait</code><span class="pm-tag">long-poll</span></h4>
+          <p class="pm-doc-desc">Long-poll for an SMS sent to a number. Same <code>since</code> and <code>timeout_ms</code> semantics as email.</p>
+          <pre class="pm-code-block">curl "http://localhost:8025/api/sms/wait?to=%2B15550100&amp;since=2026-09-04T10:00:00Z&amp;timeout_ms=10000"</pre>
+        </div>
+
+        <div class="pm-doc-endpoint">
+          <h4 class="pm-doc-head"><span class="pm-method">GET</span><code class="pm-path">/api/sms/:id/extract</code><span class="pm-tag">signals</span></h4>
+          <p class="pm-doc-desc">Extract the OTP and any embedded URLs from an SMS body.</p>
+          <pre class="pm-code-block">curl "http://localhost:8025/api/sms/sms_01A2B3/extract"
+
+{ "codes": ["839201"], "links": [] }</pre>
+        </div>
+
+        <p class="pm-doc-footnote">
+          Cleanup: <code>POST /api/sms/bulk-delete</code> and <code>PATCH /api/sms/bulk-read</code>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pm-section">
+  <div class="pm-container">
+    <h2 class="pm-section-title">Postwire vs. MailHog, Mailpit, and Mailtrap</h2>
+    <p class="pm-section-sub">
+      Honest comparison. MailHog and Mailpit are still useful. Mailtrap is polished. Postwire is built for the local auth-testing jobs they were never quite designed to own.
+    </p>
+    <div class="pm-table-wrap">
+      <table class="pm-compare">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="pm-col-postwire" scope="col">Postwire</th>
+            <th scope="col">MailHog</th>
+            <th scope="col">Mailpit</th>
+            <th scope="col">Mailtrap</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Email catching</th>
+            <td class="pm-col-postwire pm-sym-ok">&#10003;</td>
+            <td class="pm-sym-ok">&#10003;</td>
+            <td class="pm-sym-ok">&#10003;</td>
+            <td class="pm-sym-part">&#8764;</td>
+          </tr>
+          <tr>
+            <th scope="row">SMS catching + Twilio webhooks</th>
+            <td class="pm-col-postwire pm-sym-ok">&#10003;</td>
+            <td class="pm-sym-no">&#10007;</td>
+            <td class="pm-sym-no">&#10007;</td>
+            <td class="pm-sym-part">&#8764;</td>
+          </tr>
+          <tr>
+            <th scope="row">Long-polling wait API (<code>/api/wait</code>, <code>/api/sms/wait</code>)</th>
+            <td class="pm-col-postwire pm-sym-ok">&#10003;</td>
+            <td class="pm-sym-no">&#10007;</td>
+            <td class="pm-sym-part">&#8764;</td>
+            <td class="pm-sym-no">&#10007;</td>
+          </tr>
+          <tr>
+            <th scope="row">Signal extraction (OTP / magic links)</th>
+            <td class="pm-col-postwire pm-sym-ok">&#10003;</td>
+            <td class="pm-sym-no">&#10007;</td>
+            <td class="pm-sym-no">&#10007;</td>
+            <td class="pm-sym-no">&#10007;</td>
+          </tr>
+          <tr>
+            <th scope="row">Litmus-style email analysis</th>
+            <td class="pm-col-postwire pm-sym-ok">&#10003;</td>
+            <td class="pm-sym-no">&#10007;</td>
+            <td class="pm-sym-no">&#10007;</td>
+            <td class="pm-sym-no">&#10007;</td>
+          </tr>
+          <tr>
+            <th scope="row">14 MCP tools for AI agents</th>
+            <td class="pm-col-postwire pm-sym-ok">&#10003;</td>
+            <td class="pm-sym-no">&#10007;</td>
+            <td class="pm-sym-no">&#10007;</td>
+            <td class="pm-sym-no">&#10007;</td>
+          </tr>
+          <tr>
+            <th scope="row">Single static binary (&lt;15 MB)</th>
+            <td class="pm-col-postwire pm-sym-ok">&#10003;</td>
+            <td class="pm-sym-no">&#10007;</td>
+            <td class="pm-sym-ok">&#10003;</td>
+            <td class="pm-sym-no">&#10007;</td>
+          </tr>
+          <tr>
+            <th scope="row">Free &amp; open source (MIT)</th>
+            <td class="pm-col-postwire pm-sym-ok">&#10003;</td>
+            <td class="pm-sym-ok">&#10003;</td>
+            <td class="pm-sym-ok">&#10003;</td>
+            <td class="pm-sym-no">&#10007;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="pm-section" id="install">
+  <div class="pm-container">
+    <h2 class="pm-section-title">Running locally in under 30 seconds</h2>
+    <p class="pm-section-sub">
+      Same binary, several install paths. Start with Docker, Homebrew, Cargo, or the one-liner and point your app at <code>localhost:1025</code>.
+    </p>
+    <div class="pm-tabs" id="pmInstallTabs">
+      <div class="pm-tablist" role="tablist" aria-label="Install methods">
+        <button class="pm-tab" id="pmTabDocker" type="button" role="tab" aria-selected="true" aria-controls="pmPanelDocker" data-tabname="Docker">
+          Docker
+        </button>
+        <button class="pm-tab" id="pmTabHomebrew" type="button" role="tab" aria-selected="false" aria-controls="pmPanelHomebrew" data-tabname="Homebrew" tabindex="-1">
+          Homebrew
+        </button>
+        <button class="pm-tab" id="pmTabOneLiner" type="button" role="tab" aria-selected="false" aria-controls="pmPanelOneLiner" data-tabname="One-liner" tabindex="-1">
+          One-liner
+        </button>
+        <button class="pm-tab" id="pmTabCargo" type="button" role="tab" aria-selected="false" aria-controls="pmPanelCargo" data-tabname="Cargo" tabindex="-1">
+          Cargo
+        </button>
+      </div>
+
+      <div class="pm-tabpanel" id="pmPanelDocker" role="tabpanel" aria-labelledby="pmTabDocker" data-tabname="Docker">
+        <div class="pm-codebox">
+          <div class="pm-codebox-head">
+            <span class="pm-codebox-title">Docker</span>
+            <button type="button" class="pm-code-copy">Copy</button>
+          </div>
+          <pre class="pm-install-code">docker run -d --name postwire \
+  -p 1025:1025 -p 8025:8025 \
+  yoosuf/postwire:latest</pre>
+        </div>
+        <p class="pm-install-note">Pulls the image from Docker Hub and starts in one shot &mdash; SMTP on <code>1025</code>, dashboard on <code>8025</code>.</p>
+      </div>
+
+      <div class="pm-tabpanel" id="pmPanelHomebrew" role="tabpanel" aria-labelledby="pmTabHomebrew" data-tabname="Homebrew" hidden>
+        <div class="pm-codebox">
+          <div class="pm-codebox-head">
+            <span class="pm-codebox-title">Homebrew</span>
+            <button type="button" class="pm-code-copy">Copy</button>
+          </div>
+          <pre class="pm-install-code">brew tap yoosuf/tap
+brew install postwire</pre>
+        </div>
+        <p class="pm-install-note">Runs as a service with <code>brew services start postwire</code> &mdash; no container runtime needed.</p>
+      </div>
+
+      <div class="pm-tabpanel" id="pmPanelOneLiner" role="tabpanel" aria-labelledby="pmTabOneLiner" data-tabname="One-liner" hidden>
+        <div class="pm-codebox">
+          <div class="pm-codebox-head">
+            <span class="pm-codebox-title">One-liner</span>
+            <button type="button" class="pm-code-copy">Copy</button>
+          </div>
+          <pre class="pm-install-code">curl -fsSL https://raw.githubusercontent.com/\
+yoosuf/postwire/main/install.sh | sh</pre>
+        </div>
+        <p class="pm-install-note">Installs the server and MCP binary to <code>~/.local/bin</code> &mdash; no root, no dependencies.</p>
+      </div>
+
+      <div class="pm-tabpanel" id="pmPanelCargo" role="tabpanel" aria-labelledby="pmTabCargo" data-tabname="Cargo" hidden>
+        <div class="pm-codebox">
+          <div class="pm-codebox-head">
+            <span class="pm-codebox-title">Cargo</span>
+            <button type="button" class="pm-code-copy">Copy</button>
+          </div>
+          <pre class="pm-install-code">cargo install --git \
+  https://github.com/yoosuf/postwire \
+  postwire-server postwire-mcp</pre>
+        </div>
+        <p class="pm-install-note">Builds <code>postwire-server</code> and <code>postwire-mcp</code> from source; requires a Rust toolchain.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pm-section" id="mcp">
+  <div class="pm-container">
+    <h2 class="pm-section-title">Built for AI agents</h2>
+    <p class="pm-section-sub">
+      A native Model Context Protocol (MCP) server exposes the whole local inbox as 14 tools &mdash; 7 for email, 7 for SMS.
+      An agent can complete signup, email verification, password reset, and SMS 2FA without touching a browser inbox.
+    </p>
+  </div>
+  <div class="pm-container">
+    <div class="pm-code-label">MCP config&nbsp;&mdash;&nbsp;Claude Desktop, Cursor, Windsurf, Claude Code</div>
+    <pre class="pm-code-block">{
+  "mcpServers": {
+    "postwire": {
+      "command": "postwire-mcp",
+      "env": {
+        "POSTWIRE_URL": "http://localhost:8025"
+      }
+    }
+  }
+}</pre>
+
+    <div class="pm-tools-grid">
+      <div class="pm-tools-group">
+        <h4 class="pm-tools-group-title">Email tools</h4>
+        <ul class="pm-tools">
+          <li class="pm-tool">
+            <div class="pm-tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="pm-tool-main"><h3 class="pm-tool-name">wait_for_email</h3><p class="pm-tool-desc">Long-poll until a matching email arrives.</p></div>
+            <span class="pm-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
+          </li>
+          <li class="pm-tool">
+            <div class="pm-tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div class="pm-tool-main"><h3 class="pm-tool-name">extract_signals</h3><p class="pm-tool-desc">Pull OTP codes and URLs from an email.</p></div>
+            <span class="pm-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
+          </li>
+          <li class="pm-tool">
+            <div class="pm-tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+            <div class="pm-tool-main"><h3 class="pm-tool-name">list_emails</h3><p class="pm-tool-desc">Query emails with search &amp; pagination.</p></div>
+            <span class="pm-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
+          </li>
+          <li class="pm-tool">
+            <div class="pm-tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/></svg></div>
+            <div class="pm-tool-main"><h3 class="pm-tool-name">get_email</h3><p class="pm-tool-desc">Full HTML, text, and attachment data.</p></div>
+            <span class="pm-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
+          </li>
+          <li class="pm-tool">
+            <div class="pm-tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div class="pm-tool-main"><h3 class="pm-tool-name">send_test_email</h3><p class="pm-tool-desc">Inject a synthetic test email.</p></div>
+            <span class="pm-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
+          </li>
+          <li class="pm-tool">
+            <div class="pm-tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></div>
+            <div class="pm-tool-main"><h3 class="pm-tool-name">delete_email</h3><p class="pm-tool-desc">Delete a specific email by ID.</p></div>
+            <span class="pm-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
+          </li>
+          <li class="pm-tool">
+            <div class="pm-tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
+            <div class="pm-tool-main"><h3 class="pm-tool-name">clear_inbox</h3><p class="pm-tool-desc">Reset email state between runs.</p></div>
+            <span class="pm-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
+          </li>
+        </ul>
+      </div>
+      <div class="pm-tools-group">
+        <h4 class="pm-tools-group-title">SMS tools</h4>
+        <ul class="pm-tools">
+          <li class="pm-tool">
+            <div class="pm-tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <div class="pm-tool-main"><h3 class="pm-tool-name">wait_for_sms</h3><p class="pm-tool-desc">Long-poll until a matching SMS arrives.</p></div>
+            <span class="pm-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
+          </li>
+          <li class="pm-tool">
+            <div class="pm-tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div class="pm-tool-main"><h3 class="pm-tool-name">extract_sms_signals</h3><p class="pm-tool-desc">Pull OTP codes and links from an SMS.</p></div>
+            <span class="pm-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
+          </li>
+          <li class="pm-tool">
+            <div class="pm-tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+            <div class="pm-tool-main"><h3 class="pm-tool-name">list_sms</h3><p class="pm-tool-desc">Query captured SMS with pagination.</p></div>
+            <span class="pm-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
+          </li>
+          <li class="pm-tool">
+            <div class="pm-tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <div class="pm-tool-main"><h3 class="pm-tool-name">get_sms</h3><p class="pm-tool-desc">Get a single SMS message details.</p></div>
+            <span class="pm-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
+          </li>
+          <li class="pm-tool">
+            <div class="pm-tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 2v4"/><path d="M16 2v4"/></svg></div>
+            <div class="pm-tool-main"><h3 class="pm-tool-name">send_test_sms</h3><p class="pm-tool-desc">Inject a synthetic test SMS.</p></div>
+            <span class="pm-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
+          </li>
+          <li class="pm-tool">
+            <div class="pm-tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></div>
+            <div class="pm-tool-main"><h3 class="pm-tool-name">delete_sms</h3><p class="pm-tool-desc">Delete a specific SMS by ID.</p></div>
+            <span class="pm-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
+          </li>
+          <li class="pm-tool">
+            <div class="pm-tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 18-5v12L3 14v-3z"/><rect x="7" y="14" width="8" height="5" rx="1"/></svg></div>
+            <div class="pm-tool-main"><h3 class="pm-tool-name">clear_sms_inbox</h3><p class="pm-tool-desc">Reset SMS state between runs.</p></div>
+            <span class="pm-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pm-workflow">
+      <h3 class="pm-workflow-title">One prompt, a full multi-factor flow</h3>
+      <ol class="pm-workflow-steps">
+        <li class="pm-workflow-step">
+          <span class="pm-workflow-num">01</span>
+          <p>Agent signs up a user in the browser.</p>
+        </li>
+        <li class="pm-workflow-step">
+          <span class="pm-workflow-num">02</span>
+          <p>Call <code>wait_for_email</code> &rarr; <code>extract_signals</code> &rarr; open the confirmation link.</p>
+        </li>
+        <li class="pm-workflow-step">
+          <span class="pm-workflow-num">03</span>
+          <p>Call <code>wait_for_sms</code> &rarr; <code>extract_sms_signals</code> &rarr; grab the OTP.</p>
+        </li>
+        <li class="pm-workflow-step">
+          <span class="pm-workflow-num">04</span>
+          <p>Submit the code, complete login, and assert the dashboard. Seconds, not flaky minutes.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="pm-section">
+  <div class="pm-container">
+    <h2 class="pm-section-title">In your test suite</h2>
+    <p class="pm-section-sub">
+      Deterministic, race-free, and fast. If delivery fails, the test fails on a clean timeout &mdash; it never hangs and never waits on someone else's API.
+    </p>
+    <div class="pm-code-label">Node.js &middot; email verification</div>
+    <pre class="pm-code-block">const since = new Date().toISOString();   // capture BEFORE triggering
+
+await fetch("http://localhost:3000/api/signup", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ email: "sarah@company.test", password: "..." }),
+});
+
+const email = await (await fetch(
+  `http://localhost:8025/api/wait?to=sarah@company.test&since=${since}&timeout_ms=10000`
+)).json();
+
+const { codes } = await (await fetch(
+  `http://localhost:8025/api/messages/${email.id}/extract`
+)).json();
+
+await fetch("http://localhost:3000/api/verify-email", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ email: "sarah@company.test", code: codes[0] }),
+});
+console.log("verified with code", codes[0]);</pre>
+  </div>
+</section>
+
+<section class="pm-section">
+  <div class="pm-container">
+    <ul class="pm-stats">
+      <li class="pm-stat">
+        <p class="pm-stat-value">&lt;15 MB</p>
+        <p class="pm-stat-label">Single binary</p>
+      </li>
+      <li class="pm-stat">
+        <p class="pm-stat-value">&lt;5 ms</p>
+        <p class="pm-stat-label">Startup time</p>
+      </li>
+      <li class="pm-stat">
+        <p class="pm-stat-value">2</p>
+        <p class="pm-stat-label">Channels: email + SMS</p>
+      </li>
+      <li class="pm-stat">
+        <p class="pm-stat-value">14</p>
+        <p class="pm-stat-label">MCP tools for AI agents</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="pm-section" id="faq">
+  <div class="pm-container">
+    <h2 class="pm-section-title">Frequently asked questions</h2>
+    <div class="pm-faq">
+      <details class="pm-faq-item" data-faq-item>
+        <summary>Does Postwire need Docker, Mailtrap, or a cloud account?<svg class="pm-faq-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg></summary>
+        <div data-faq-body>
+          <p>Neither. It's a single static binary with embedded SQLite and an embedded web UI. Docker is one convenient install option among several &mdash; Homebrew, one-liners, and Cargo all work too.</p>
+        </div>
+      </details>
+      <details class="pm-faq-item" data-faq-item>
+        <summary>Is Postwire a MailHog or Mailpit alternative?<svg class="pm-faq-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg></summary>
+        <div data-faq-body>
+          <p>Yes, if you want a local SMTP mail catcher with a sharper testing API. Postwire catches email like those tools, but also adds SMS catching, Twilio webhook parsing, OTP and magic-link extraction, race-free long-polling waits, email analysis, and MCP tools for agents.</p>
+        </div>
+      </details>
+      <details class="pm-faq-item" data-faq-item>
+        <summary>How does SMS catching actually work?<svg class="pm-faq-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg></summary>
+        <div data-faq-body>
+          <p>Two ways: POST structured JSON to <code>/api/sms</code>, or point your app's Twilio client at <code>/api/sms/webhook</code> &mdash; Postwire parses standard form payloads (From/To/Body) automatically. Then long-poll <code>/api/sms/wait</code> and extract OTPs via <code>/api/sms/:id/extract</code>.</p>
+        </div>
+      </details>
+      <details class="pm-faq-item" data-faq-item>
+        <summary>Can AI agents really use this?<svg class="pm-faq-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg></summary>
+        <div data-faq-body>
+          <p>Yes. The <code>postwire-mcp</code> server exposes 7 email and 7 SMS tools over Model Context Protocol. Configure it once in Claude Desktop, Cursor, Windsurf, or Claude Code, and agents can wait, extract, and assert &mdash; all natively.</p>
+        </div>
+      </details>
+      <details class="pm-faq-item" data-faq-item>
+        <summary>Is it safe to run in CI?<svg class="pm-faq-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg></summary>
+        <div data-faq-body>
+          <p>Yes. Pass <code>--memory</code> for an in-memory database, long-poll with a timeout (clean 408 on miss), and use the bulk read/delete endpoints to reset between tests. No temp files left on disk.</p>
+        </div>
+      </details>
+      <details class="pm-faq-item" data-faq-item>
+        <summary>Will it accidentally send real emails or relay spam?<svg class="pm-faq-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg></summary>
+        <div data-faq-body>
+          <p>No. It's a dead-end local SMTP listener with no auth, no relaying, and no external calls. That's exactly what makes it safe for test environments.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>

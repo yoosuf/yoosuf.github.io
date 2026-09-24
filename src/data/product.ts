@@ -100,7 +100,7 @@ export const pinemail: Product = {
   },
   cta: {
     title: 'Make auth testing boring again.',
-    text: 'Pine Mail catches email OTPs, magic links, password resets, and SMS 2FA codes — free, open source under the MIT license, running locally in under 30 seconds.',
+    text: 'Free and MIT-licensed. One command gets you a working inbox dashboard and API — point your app or agent at it and finish your auth test suite in a single sitting.',
     actions: [
       {
         label: 'Upvote on Product Hunt',
@@ -160,11 +160,12 @@ export const messenger: Product = {
     { label: 'Schema', href: '#schema' },
     { label: 'Guides', href: '#guides' },
     { label: 'Quick start', href: '#quickstart' },
+    { label: 'FAQ', href: '#faq' },
   ],
   hero: {
     tag: 'Open Source · Chat Schema · PostgreSQL / MySQL',
     title: 'The database core for realtime conversations',
-    sub: 'Ship chat products faster with a practical relational schema for one-to-one chat, group messaging, moderation, device sessions, and attachment workflows. Ready for Node.js or Go backends with PostgreSQL and socket support.',
+    sub: 'Ship chat products faster with a practical relational schema for one-to-one chat, group messaging, moderation, device sessions, and attachment workflows. Ready for Node.js or Go backends on PostgreSQL or MySQL, over Socket.IO or WebSocket.',
     actions: [
       {
         label: 'View Repository',
@@ -189,7 +190,7 @@ export const messenger: Product = {
   },
   cta: {
     title: 'Ship your chat backend on a proven schema.',
-    text: 'Messenger is an open-source relational design for modern messaging: one-to-one and group chat, media, moderation, and multi-device access. Import the SQL, wire your API layer, and go.',
+    text: 'MIT-licensed, MySQL- and PostgreSQL-friendly. Import messenger.sql, review the ER diagram in MySQL Workbench, and start adding realtime endpoints against tables that already model the hard parts — soft deletes, moderation, and sessions.',
     actions: [
       {
         label: 'Star on GitHub',

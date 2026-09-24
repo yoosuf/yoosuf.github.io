@@ -444,3 +444,101 @@ import { styles } from '../ui/product.stylex'
     </div>
   </div>
 </section>
+
+<section data-pm-hook="pm-section" {...stylex.attrs(styles.pmSection)} id="faq">
+  <div data-pm-hook="pm-container" {...stylex.attrs(styles.pmContainer)}>
+    <h2 data-pm-hook="pm-section-title" {...stylex.attrs(styles.pmSectionTitle)}>
+      Common questions
+    </h2>
+    <p data-pm-hook="pm-section-sub" {...stylex.attrs(styles.pmSectionSub)}>
+      Straight answers about the schema, the stack, and where it stops.
+    </p>
+
+    <div data-pm-hook="pm-faq" {...stylex.attrs(styles.pmFaq)}>
+      <details data-faq-item data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
+        <summary {...stylex.attrs(styles.pmFaqSummary)}>
+          Why MySQL and PostgreSQL instead of one engine?
+          <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </span>
+        </summary>
+        <div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
+          <p {...stylex.attrs(styles.pmFaqAnswer)}>
+            The design stays on relational features both engines speak fluently, and the
+            repo ships one <code {...stylex.attrs(styles.pmInlineCode)}>messenger.sql</code>{' '}
+            that imports cleanly on either. Pick the database your stack already runs —
+            there's no lock-in.
+          </p>
+        </div>
+      </details>
+
+      <details data-faq-item data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
+        <summary {...stylex.attrs(styles.pmFaqSummary)}>
+          Is this production-ready or more of a blueprint?
+          <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </span>
+        </summary>
+        <div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
+          <p {...stylex.attrs(styles.pmFaqAnswer)}>
+            It's a migration-ready starting schema rather than an ORM. Column types,
+            keys, indexes, and constraints are laid out so a backend can ship against
+            them directly — you own the migrations your product will eventually need.
+          </p>
+        </div>
+      </details>
+
+      <details data-faq-item data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
+        <summary {...stylex.attrs(styles.pmFaqSummary)}>
+          How do per-user deletes actually work?
+          <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </span>
+        </summary>
+        <div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
+          <p {...stylex.attrs(styles.pmFaqAnswer)}>
+            Messages and conversations are never hard-deleted from the audit trail.
+            <code {...stylex.attrs(styles.pmInlineCode)}>deleted_messages</code> and{' '}
+            <code {...stylex.attrs(styles.pmInlineCode)}>deleted_conversations</code>{' '}
+            record who hid what and when, so visibility stays per-user while moderators
+            keep the history.
+          </p>
+        </div>
+      </details>
+
+      <details data-faq-item data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
+        <summary {...stylex.attrs(styles.pmFaqSummary)}>
+          Does it handle end-to-end encryption?
+          <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </span>
+        </summary>
+        <div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
+          <p {...stylex.attrs(styles.pmFaqAnswer)}>
+            No. The schema models devices, sessions, and token-based access so key
+            management has a home, but message bodies are stored in plaintext. Wire TLS
+            at the transport and decide on E2EE at the application layer.
+          </p>
+        </div>
+      </details>
+
+      <details data-faq-item data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
+        <summary {...stylex.attrs(styles.pmFaqSummary)}>
+          Can I bolt this onto an existing auth system?
+          <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </span>
+        </summary>
+        <div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
+          <p {...stylex.attrs(styles.pmFaqAnswer)}>
+            Yes. <code {...stylex.attrs(styles.pmInlineCode)}>users</code> and{' '}
+            <code {...stylex.attrs(styles.pmInlineCode)}>user_verification</code> are
+            deliberately simple — phone or email registration plus temporary
+            verification codes — so you can map them onto your own identity tables and
+            skip the built-in flows.
+          </p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>

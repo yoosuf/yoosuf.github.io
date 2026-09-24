@@ -223,7 +223,7 @@ export const pills = stylex.create({
     color: colors.textDim,
     fontSize: '0.725rem',
     lineHeight: 1.4,
-    paddingBlock: '0.125rem',
+    paddingBlock: '0.25rem',
     paddingInline: space['2'],
   },
 })

@@ -50,6 +50,7 @@ const targetAttrs = stylex.attrs(
   size === 'wide' ? mermaidDiagramStyles.wide : mermaidDiagramStyles.defaultSize,
   mermaidDiagramStyles.pending,
 )
+const pendingAttrs = stylex.attrs(mermaidDiagramStyles.pending)
 const readyAttrs = stylex.attrs(mermaidDiagramStyles.ready)
 const errorAttrs = stylex.attrs(mermaidDiagramStyles.error)
 const captionAttrs = stylex.attrs(mermaidDiagramStyles.caption)
@@ -76,7 +77,7 @@ const captionAttrs = stylex.attrs(mermaidDiagramStyles.caption)
       data-mermaid-target
       data-mermaid-id={baseId}
       data-mermaid-state="pending"
-      data-mermaid-pending-class={targetAttrs.class}
+      data-mermaid-pending-class={pendingAttrs.class}
       data-mermaid-ready-class={readyAttrs.class}
       data-mermaid-error-class={errorAttrs.class}
       aria-label={ariaLabel ?? title ?? 'Mermaid diagram'}

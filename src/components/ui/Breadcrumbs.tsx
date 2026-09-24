@@ -28,6 +28,8 @@ const styles = stylex.create({
     display: 'flex',
     alignItems: 'center',
     columnGap: space['2'],
+    flexShrink: 1,
+    minWidth: 0,
   },
   link: {
     color: colors.textFaint,
@@ -42,8 +44,10 @@ const styles = stylex.create({
   },
   current: {
     color: colors.textDim,
-    display: 'inline-block',
+    display: 'block',
+    flexShrink: 1,
     maxWidth: 'min(20rem, 100%)',
+    minWidth: 0,
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',

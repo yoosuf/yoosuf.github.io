@@ -202,7 +202,7 @@ export const servicesAccordionStyles = stylex.create({
     fontSize: '0.875rem',
     fontWeight: weights.medium,
     gap: '0.375rem',
-    paddingBlock: '0.45rem',
+    paddingBlock: '0.5rem',
     paddingInline: '0.9rem',
     textDecorationLine: 'none',
     transitionDuration: '0.15s',

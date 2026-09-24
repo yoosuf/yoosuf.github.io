@@ -4,26 +4,35 @@ import MarkdownElement from './MarkdownElement.astro'
 import { mermaidDiagramStyles } from '../diagrams/MermaidDiagram.stylex'
 const { style: _style, ...attrs } = Astro.props
 const isMermaid = attrs['data-language'] === 'mermaid'
-const mermaidSurfaceAttrs = isMermaid
-  ? stylex.attrs(mermaidDiagramStyles.surface, mermaidDiagramStyles.pencil)
-  : {}
-const mermaidTargetAttrs = isMermaid
-  ? stylex.attrs(mermaidDiagramStyles.target, mermaidDiagramStyles.defaultSize, mermaidDiagramStyles.pending)
-  : {}
-const mermaidReadyAttrs = isMermaid ? stylex.attrs(mermaidDiagramStyles.ready) : {}
-const mermaidErrorAttrs = isMermaid ? stylex.attrs(mermaidDiagramStyles.error) : {}
+// One merged class for the whole pre so the always-on chrome (surface box,
+// pencil surface, flex centering, min-height) is never clobbered by the
+// state class. The pending atom is baked in so the raw highlighted source
+// stays invisible until mermaid mounts; the renderer only swaps the
+// state atoms (pending -> ready/error) via classList, and `surface` keeps
+// `overflow-x: auto` to contain the wide source pre-render.
+const mermaidStaticClass = isMermaid
+  ? stylex.attrs(
+      mermaidDiagramStyles.surface,
+      mermaidDiagramStyles.pencil,
+      mermaidDiagramStyles.target,
+      mermaidDiagramStyles.defaultSize,
+      mermaidDiagramStyles.pending,
+    ).class
+  : undefined
+const mermaidPendingClass = isMermaid ? stylex.attrs(mermaidDiagramStyles.pending).class : undefined
+const mermaidReadyClass = isMermaid ? stylex.attrs(mermaidDiagramStyles.ready).class : undefined
+const mermaidErrorClass = isMermaid ? stylex.attrs(mermaidDiagramStyles.error).class : undefined
 const forwarded = isMermaid
   ? {
       ...attrs,
-      ...mermaidSurfaceAttrs,
-      ...mermaidTargetAttrs,
+      class: mermaidStaticClass,
       'data-mermaid-target': true,
       'data-mermaid-variant': 'pencil',
       'data-mermaid-id': 'mermaid-markdown',
       'data-mermaid-state': 'pending',
-      'data-mermaid-pending-class': mermaidTargetAttrs.class,
-      'data-mermaid-ready-class': mermaidReadyAttrs.class,
-      'data-mermaid-error-class': mermaidErrorAttrs.class,
+      'data-mermaid-pending-class': mermaidPendingClass,
+      'data-mermaid-ready-class': mermaidReadyClass,
+      'data-mermaid-error-class': mermaidErrorClass,
     }
   : attrs
 ---

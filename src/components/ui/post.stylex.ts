@@ -49,7 +49,7 @@ export const postStyles = stylex.create({
   tagList: {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: '0.375rem',
+    gap: '0.5rem 0.375rem',
     listStyleType: 'none',
     marginBlock: 0,
     paddingInlineStart: 0,

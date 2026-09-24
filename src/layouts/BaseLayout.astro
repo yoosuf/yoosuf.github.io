@@ -294,6 +294,15 @@ const mainAttrs = stylex.attrs(shellStyles.main)
           cursor: pointer;
         }
 
+        /* Touch targets: drop the 300ms double-tap zoom delay on mobile. */
+        a,
+        button,
+        summary,
+        [role='button'],
+        [role='tab'] {
+          touch-action: manipulation;
+        }
+
         :disabled {
           cursor: default;
         }

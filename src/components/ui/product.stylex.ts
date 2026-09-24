@@ -1486,9 +1486,9 @@ export const styles = stylex.create({
   pmTab: {
     display: 'inline-flex',
     alignItems: 'center',
-    paddingTop: '11px',
+    paddingTop: { default: '11px', '@media (max-width: 767px)': '14px' },
     paddingRight: '16px',
-    paddingBottom: '11px',
+    paddingBottom: { default: '11px', '@media (max-width: 767px)': '14px' },
     paddingLeft: '16px',
     fontSize: 'var(--pm-fs-small)',
     fontWeight: 600,
@@ -1553,9 +1553,9 @@ export const styles = stylex.create({
   pmCodeCopy: {
     alignItems: 'center',
     display: 'inline-flex',
-    paddingTop: '7px',
+    paddingTop: { default: '7px', '@media (max-width: 767px)': '11px' },
     paddingRight: '10px',
-    paddingBottom: '7px',
+    paddingBottom: { default: '7px', '@media (max-width: 767px)': '11px' },
     paddingLeft: '10px',
     fontSize: '0.78rem',
     fontWeight: 600,

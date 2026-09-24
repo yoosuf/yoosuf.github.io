@@ -97,6 +97,7 @@ export const headerStyles = stylex.create({
     display: 'flex',
     flexDirection: 'column',
     inset: 0,
+    overflowY: 'auto',
     position: 'fixed',
     zIndex: 50,
     '@media (min-width: 48rem)': {
@@ -122,15 +123,20 @@ export const headerStyles = stylex.create({
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
-    gap: '1.75rem',
+    gap: space['5'],
     listStyleType: 'none',
     marginBlock: 0,
     paddingInlineStart: 0,
   },
 
   menuLink: {
+    alignItems: 'center',
     color: colors.text,
+    display: 'inline-flex',
     fontSize: typeScale.xl,
+    minHeight: '2.75rem',
+    paddingBlock: '0.75rem',
+    paddingInline: space['4'],
     textDecorationLine: 'none',
     ':hover': {
       color: colors.accent,

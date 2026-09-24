@@ -51,6 +51,7 @@ export const footerStyles = stylex.create({
   },
 
   legalLink: {
+    paddingBlock: '0.375rem',
     ':hover': {
       color: colors.text,
     },
@@ -70,6 +71,7 @@ export const footerStyles = stylex.create({
   },
 
   navLink: {
+    paddingBlock: '0.375rem',
     textDecorationLine: 'none',
     ':hover': {
       color: colors.text,

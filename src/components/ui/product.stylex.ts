@@ -1827,7 +1827,7 @@ export const styles = stylex.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 0,
-    marginTop: '8px',
+    marginTop: '1.25rem',
     backgroundColor: 'var(--pm-surface)',
     borderWidth: 1,
     borderStyle: 'solid',
@@ -1850,45 +1850,41 @@ export const styles = stylex.create({
   },
 
   pmFaqSummary: {
-    display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    cursor: 'pointer',
+    display: 'flex',
     gap: 16,
+    justifyContent: 'space-between',
+    listStyleType: 'none',
     margin: 0,
-    paddingBlock: 18,
-    paddingInline: 22,
+    paddingBlock: '1.25rem',
+    paddingInline: '1.25rem',
     fontSize: 'var(--pm-fs-body)',
     fontWeight: 700,
     color: 'var(--pm-ink)',
-    cursor: 'pointer',
-    listStyleType: 'none',
-    transitionProperty: 'background-color',
-    transitionDuration: '0.2s',
-    ':hover': {
-      backgroundColor: 'var(--pm-bg-soft)',
-    },
+  },
+
+  pmFaqBody: {
+    paddingBlockEnd: '1.25rem',
+    paddingBlockStart: '0.15rem',
+    paddingInline: '1.25rem',
   },
 
   pmFaqAnswer: {
+    color: 'var(--pm-ink-soft)',
+    fontSize: '0.925rem',
+    lineHeight: 1.625,
     margin: 0,
-    paddingTop: 0,
-    paddingRight: 22,
-    paddingBottom: 20,
-    paddingLeft: 22,
-    fontSize: 'var(--pm-fs-body)',
-    lineHeight: 1.6,
-    color: 'var(--pm-ink-soft)',
+    maxWidth: '44rem',
+    padding: 0,
+    textWrap: 'pretty',
   },
 
-  pmFaqToggle: {
+  pmFaqChevron: {
+    color: 'var(--pm-ink-soft)',
     flexShrink: 0,
-    width: 18,
-    height: 18,
-    color: 'var(--pm-ink-soft)',
-  },
-
-  pmFaqToggleHidden: {
-    display: 'none',
+    transitionDuration: '0.2s',
+    transitionProperty: 'transform,color',
   },
 
   pmTableCell: {

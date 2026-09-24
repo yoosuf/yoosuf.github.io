@@ -757,29 +757,41 @@ console.log("verified with code", codes[0]);</pre>
   <div class="pm-container">
     <h2 class="pm-section-title">Frequently asked questions</h2>
     <div class="pm-faq">
-      <details class="pm-faq-item">
-        <summary>Does Pine Mail need Docker, Mailtrap, or a cloud account?</summary>
-        <p>Neither. It's a single static binary with embedded SQLite and an embedded web UI. Docker is one convenient install option among several &mdash; Homebrew, one-liners, and Cargo all work too.</p>
+      <details class="pm-faq-item" data-faq-item>
+        <summary>Does Pine Mail need Docker, Mailtrap, or a cloud account?<svg class="pm-faq-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg></summary>
+        <div data-faq-body>
+          <p>Neither. It's a single static binary with embedded SQLite and an embedded web UI. Docker is one convenient install option among several &mdash; Homebrew, one-liners, and Cargo all work too.</p>
+        </div>
       </details>
-      <details class="pm-faq-item">
-        <summary>Is Pine Mail a MailHog or Mailpit alternative?</summary>
-        <p>Yes, if you want a local SMTP mail catcher with a sharper testing API. Pine Mail catches email like those tools, but also adds SMS catching, Twilio webhook parsing, OTP and magic-link extraction, race-free long-polling waits, email analysis, and MCP tools for agents.</p>
+      <details class="pm-faq-item" data-faq-item>
+        <summary>Is Pine Mail a MailHog or Mailpit alternative?<svg class="pm-faq-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg></summary>
+        <div data-faq-body>
+          <p>Yes, if you want a local SMTP mail catcher with a sharper testing API. Pine Mail catches email like those tools, but also adds SMS catching, Twilio webhook parsing, OTP and magic-link extraction, race-free long-polling waits, email analysis, and MCP tools for agents.</p>
+        </div>
       </details>
-      <details class="pm-faq-item">
-        <summary>How does SMS catching actually work?</summary>
-        <p>Two ways: POST structured JSON to <code>/api/sms</code>, or point your app's Twilio client at <code>/api/sms/webhook</code> &mdash; Pine Mail parses standard form payloads (From/To/Body) automatically. Then long-poll <code>/api/sms/wait</code> and extract OTPs via <code>/api/sms/:id/extract</code>.</p>
+      <details class="pm-faq-item" data-faq-item>
+        <summary>How does SMS catching actually work?<svg class="pm-faq-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg></summary>
+        <div data-faq-body>
+          <p>Two ways: POST structured JSON to <code>/api/sms</code>, or point your app's Twilio client at <code>/api/sms/webhook</code> &mdash; Pine Mail parses standard form payloads (From/To/Body) automatically. Then long-poll <code>/api/sms/wait</code> and extract OTPs via <code>/api/sms/:id/extract</code>.</p>
+        </div>
       </details>
-      <details class="pm-faq-item">
-        <summary>Can AI agents really use this?</summary>
-        <p>Yes. The <code>pinemail-mcp</code> server exposes 7 email and 7 SMS tools over Model Context Protocol. Configure it once in Claude Desktop, Cursor, Windsurf, or Claude Code, and agents can wait, extract, and assert &mdash; all natively.</p>
+      <details class="pm-faq-item" data-faq-item>
+        <summary>Can AI agents really use this?<svg class="pm-faq-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg></summary>
+        <div data-faq-body>
+          <p>Yes. The <code>pinemail-mcp</code> server exposes 7 email and 7 SMS tools over Model Context Protocol. Configure it once in Claude Desktop, Cursor, Windsurf, or Claude Code, and agents can wait, extract, and assert &mdash; all natively.</p>
+        </div>
       </details>
-      <details class="pm-faq-item">
-        <summary>Is it safe to run in CI?</summary>
-        <p>Yes. Pass <code>--memory</code> for an in-memory database, long-poll with a timeout (clean 408 on miss), and use the bulk read/delete endpoints to reset between tests. No temp files left on disk.</p>
+      <details class="pm-faq-item" data-faq-item>
+        <summary>Is it safe to run in CI?<svg class="pm-faq-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg></summary>
+        <div data-faq-body>
+          <p>Yes. Pass <code>--memory</code> for an in-memory database, long-poll with a timeout (clean 408 on miss), and use the bulk read/delete endpoints to reset between tests. No temp files left on disk.</p>
+        </div>
       </details>
-      <details class="pm-faq-item">
-        <summary>Will it accidentally send real emails or relay spam?</summary>
-        <p>No. It's a dead-end local SMTP listener with no auth, no relaying, and no external calls. That's exactly what makes it safe for test environments.</p>
+      <details class="pm-faq-item" data-faq-item>
+        <summary>Will it accidentally send real emails or relay spam?<svg class="pm-faq-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg></summary>
+        <div data-faq-body>
+          <p>No. It's a dead-end local SMTP listener with no auth, no relaying, and no external calls. That's exactly what makes it safe for test environments.</p>
+        </div>
       </details>
     </div>
   </div>

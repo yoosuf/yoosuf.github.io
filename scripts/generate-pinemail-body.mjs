@@ -79,15 +79,4 @@ if (!source.includes('styles.pmFaqSummary')) {
   )
 }
 
-if (!source.includes('styles.pmFaqToggle')) {
-  source = source.replace(
-    /<svg class="pm-faq-toggle pm-faq-toggle-plus"/g,
-    '<svg data-pm-hook="pm-faq-toggle pm-faq-toggle-plus" {...stylex.attrs(styles.pmFaqToggle)}',
-  )
-  source = source.replace(
-    /<svg class="pm-faq-toggle pm-faq-toggle-minus"/g,
-    '<svg data-pm-hook="pm-faq-toggle pm-faq-toggle-minus" {...stylex.attrs(styles.pmFaqToggle, styles.pmFaqToggleHidden)}',
-  )
-}
-
 await writeFile(path, source)

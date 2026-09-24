@@ -71,16 +71,6 @@ function setupInstallTabs(): void {
 
 function setupPage(): void {
   setupInstallTabs()
-  document.querySelectorAll<HTMLDetailsElement>('[data-pm-hook~="pm-faq-item"]').forEach((item) => {
-    const plus = item.querySelector<SVGElement>('[data-pm-hook~="pm-faq-toggle-plus"]')
-    const minus = item.querySelector<SVGElement>('[data-pm-hook~="pm-faq-toggle-minus"]')
-    const sync = () => {
-      plus?.toggleAttribute('hidden', item.open)
-      minus?.toggleAttribute('hidden', !item.open)
-    }
-    item.addEventListener('toggle', sync)
-    sync()
-  })
 }
 
 document.addEventListener('astro:page-load', setupPage)

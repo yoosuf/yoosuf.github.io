@@ -55,6 +55,13 @@ const styles = stylex.create({
 
 export function Breadcrumbs({ items, baseUrl }: Props) {
   const trail: Crumb[] = [{ label: 'Home', href: `${baseUrl}/` }, ...items]
+  const toAbsolute = (href: string) => {
+    try {
+      return new URL(href, baseUrl).href
+    } catch {
+      return href
+    }
+  }
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -62,7 +69,7 @@ export function Breadcrumbs({ items, baseUrl }: Props) {
       '@type': 'ListItem',
       position: i + 1,
       name: crumb.label,
-      ...(crumb.href ? { item: crumb.href } : {}),
+      ...(crumb.href ? { item: toAbsolute(crumb.href) } : {}),
     })),
   }
 

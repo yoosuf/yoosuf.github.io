@@ -2909,55 +2909,63 @@ import { styles } from '../ui/product.stylex'
 <div data-pm-hook="pm-faq" {...stylex.attrs(styles.pmFaq)}>
 
       
-<details data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
+<details data-faq-item data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
 
         
 <summary {...stylex.attrs(styles.pmFaqSummary)}>
 {"Does Pine Mail need Docker, Mailtrap, or a cloud account?"}
 
-  <svg data-pm-hook="pm-faq-toggle pm-faq-toggle-plus" {...stylex.attrs(styles.pmFaqToggle)} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14" /><path d="M5 12h14" /></svg>
-  <svg data-pm-hook="pm-faq-toggle pm-faq-toggle-minus" {...stylex.attrs(styles.pmFaqToggle, styles.pmFaqToggleHidden)} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14" /></svg>
+  <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+  </span>
 </summary>
 
         
+<div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
 <p {...stylex.attrs(styles.pmFaqAnswer)}>
 {"Neither. It's a single static binary with embedded SQLite and an embedded web UI. Docker is one convenient install option among several — Homebrew, one-liners, and Cargo all work too."}
 </p>
+</div>
 
       
 </details>
 
       
-<details data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
+<details data-faq-item data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
 
         
 <summary {...stylex.attrs(styles.pmFaqSummary)}>
 {"Is Pine Mail a MailHog or Mailpit alternative?"}
 
-  <svg data-pm-hook="pm-faq-toggle pm-faq-toggle-plus" {...stylex.attrs(styles.pmFaqToggle)} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14" /><path d="M5 12h14" /></svg>
-  <svg data-pm-hook="pm-faq-toggle pm-faq-toggle-minus" {...stylex.attrs(styles.pmFaqToggle, styles.pmFaqToggleHidden)} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14" /></svg>
+  <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+  </span>
 </summary>
 
         
+<div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
 <p {...stylex.attrs(styles.pmFaqAnswer)}>
 {"Yes, if you want a local SMTP mail catcher with a sharper testing API. Pine Mail catches email like those tools, but also adds SMS catching, Twilio webhook parsing, OTP and magic-link extraction, race-free long-polling waits, email analysis, and MCP tools for agents."}
 </p>
+</div>
 
       
 </details>
 
       
-<details data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
+<details data-faq-item data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
 
         
 <summary {...stylex.attrs(styles.pmFaqSummary)}>
 {"How does SMS catching actually work?"}
 
-  <svg data-pm-hook="pm-faq-toggle pm-faq-toggle-plus" {...stylex.attrs(styles.pmFaqToggle)} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14" /><path d="M5 12h14" /></svg>
-  <svg data-pm-hook="pm-faq-toggle pm-faq-toggle-minus" {...stylex.attrs(styles.pmFaqToggle, styles.pmFaqToggleHidden)} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14" /></svg>
+  <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+  </span>
 </summary>
 
         
+<div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
 <p {...stylex.attrs(styles.pmFaqAnswer)}>
 {"Two ways: POST structured JSON to "}
 <code {...stylex.attrs(styles.pmInlineCode)}>
@@ -2977,22 +2985,25 @@ import { styles } from '../ui/product.stylex'
 </code>
 {"."}
 </p>
+</div>
 
       
 </details>
 
       
-<details data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
+<details data-faq-item data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
 
         
 <summary {...stylex.attrs(styles.pmFaqSummary)}>
 {"Can AI agents really use this?"}
 
-  <svg data-pm-hook="pm-faq-toggle pm-faq-toggle-plus" {...stylex.attrs(styles.pmFaqToggle)} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14" /><path d="M5 12h14" /></svg>
-  <svg data-pm-hook="pm-faq-toggle pm-faq-toggle-minus" {...stylex.attrs(styles.pmFaqToggle, styles.pmFaqToggleHidden)} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14" /></svg>
+  <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+  </span>
 </summary>
 
         
+<div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
 <p {...stylex.attrs(styles.pmFaqAnswer)}>
 {"Yes. The "}
 <code {...stylex.attrs(styles.pmInlineCode)}>
@@ -3000,22 +3011,25 @@ import { styles } from '../ui/product.stylex'
 </code>
 {" server exposes 7 email and 7 SMS tools over Model Context Protocol. Configure it once in Claude Desktop, Cursor, Windsurf, or Claude Code, and agents can wait, extract, and assert — all natively."}
 </p>
+</div>
 
       
 </details>
 
       
-<details data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
+<details data-faq-item data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
 
         
 <summary {...stylex.attrs(styles.pmFaqSummary)}>
 {"Is it safe to run in CI?"}
 
-  <svg data-pm-hook="pm-faq-toggle pm-faq-toggle-plus" {...stylex.attrs(styles.pmFaqToggle)} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14" /><path d="M5 12h14" /></svg>
-  <svg data-pm-hook="pm-faq-toggle pm-faq-toggle-minus" {...stylex.attrs(styles.pmFaqToggle, styles.pmFaqToggleHidden)} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14" /></svg>
+  <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+  </span>
 </summary>
 
         
+<div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
 <p {...stylex.attrs(styles.pmFaqAnswer)}>
 {"Yes. Pass "}
 <code {...stylex.attrs(styles.pmInlineCode)}>
@@ -3023,25 +3037,29 @@ import { styles } from '../ui/product.stylex'
 </code>
 {" for an in-memory database, long-poll with a timeout (clean 408 on miss), and use the bulk read/delete endpoints to reset between tests. No temp files left on disk."}
 </p>
+</div>
 
       
 </details>
 
       
-<details data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
+<details data-faq-item data-pm-hook="pm-faq-item" {...stylex.attrs(styles.pmFaqItem)}>
 
         
 <summary {...stylex.attrs(styles.pmFaqSummary)}>
 {"Will it accidentally send real emails or relay spam?"}
 
-  <svg data-pm-hook="pm-faq-toggle pm-faq-toggle-plus" {...stylex.attrs(styles.pmFaqToggle)} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14" /><path d="M5 12h14" /></svg>
-  <svg data-pm-hook="pm-faq-toggle pm-faq-toggle-minus" {...stylex.attrs(styles.pmFaqToggle, styles.pmFaqToggleHidden)} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14" /></svg>
+  <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+  </span>
 </summary>
 
         
+<div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
 <p {...stylex.attrs(styles.pmFaqAnswer)}>
 {"No. It's a dead-end local SMTP listener with no auth, no relaying, and no external calls. That's exactly what makes it safe for test environments."}
 </p>
+</div>
 
       
 </details>

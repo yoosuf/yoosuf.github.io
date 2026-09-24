@@ -141,19 +141,29 @@ function isActive(href: string, path: string): boolean {
   // Mobile menu dialog behaviour (vanilla — no React runtime needed):
   // focus trap, Escape to close, body scroll lock, resize guard, focus
   // restored to the trigger on close, and a WAAPI stagger entrance.
-  const trigger = document.querySelector<HTMLButtonElement>('[data-menu-trigger]')
-  const overlay = document.querySelector<HTMLElement>('[data-menu-overlay]')
-  const closeButton = document.querySelector<HTMLButtonElement>('[data-menu-close]')
+  //
+  // The ClientRouter swaps the whole header DOM on every view-transition
+  // navigation, so bindings must be re-created against fresh nodes on each
+  // `astro:page-load` — otherwise taps on the new hamburger go nowhere.
+  const FOCUSABLE_SELECTOR = [
+    'a[href]',
+    'button:not([disabled])',
+    'textarea:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])',
+  ].join(',')
 
-  if (trigger && overlay && closeButton) {
-    const FOCUSABLE_SELECTOR = [
-      'a[href]',
-      'button:not([disabled])',
-      'textarea:not([disabled])',
-      'input:not([disabled])',
-      'select:not([disabled])',
-      '[tabindex]:not([tabindex="-1"])',
-    ].join(',')
+  let unbind: (() => void) | null = null
+
+  const bindMenu = () => {
+    if (unbind) unbind()
+
+    const trigger = document.querySelector<HTMLButtonElement>('[data-menu-trigger]')
+    const overlay = document.querySelector<HTMLElement>('[data-menu-overlay]')
+    const closeButton = document.querySelector<HTMLButtonElement>('[data-menu-close]')
+
+    if (!trigger || !overlay || !closeButton) return
 
     const focusables = (): HTMLElement[] =>
       Array.from(overlay.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR))
@@ -194,20 +204,20 @@ function isActive(href: string, path: string): boolean {
       overlay.hidden = true
       trigger.setAttribute('aria-expanded', 'false')
       document.body.style.overflow = ''
-      previousFocus?.focus()
+      if (previousFocus?.isConnected) previousFocus.focus()
       previousFocus = null
     }
 
-    trigger.addEventListener('click', openMenu)
-    closeButton.addEventListener('click', closeMenu)
+    const onTriggerClick = () => openMenu()
+    const onCloseClick = () => closeMenu()
 
     // Closing on a link tap keeps the dialog tidy even for same-page links
     // (navigation swaps the DOM and starts closed anyway).
-    overlay.addEventListener('click', (event) => {
+    const onOverlayClick = (event: MouseEvent) => {
       if ((event.target as HTMLElement).closest('a[href]')) closeMenu()
-    })
+    }
 
-    document.addEventListener('keydown', (event) => {
+    const onKeydown = (event: KeyboardEvent) => {
       if (overlay.hidden) return
       if (event.key === 'Escape') {
         event.preventDefault()
@@ -230,12 +240,28 @@ function isActive(href: string, path: string): boolean {
         event.preventDefault()
         first.focus()
       }
-    })
+    }
 
     const mq = window.matchMedia('(min-width: 48rem)')
     const onViewportChange = (event: MediaQueryListEvent) => {
       if (event.matches) closeMenu()
     }
+
+    trigger.addEventListener('click', onTriggerClick)
+    closeButton.addEventListener('click', onCloseClick)
+    overlay.addEventListener('click', onOverlayClick)
+    document.addEventListener('keydown', onKeydown)
     mq.addEventListener('change', onViewportChange)
+
+    unbind = () => {
+      trigger.removeEventListener('click', onTriggerClick)
+      closeButton.removeEventListener('click', onCloseClick)
+      overlay.removeEventListener('click', onOverlayClick)
+      document.removeEventListener('keydown', onKeydown)
+      mq.removeEventListener('change', onViewportChange)
+    }
   }
+
+  document.addEventListener('astro:page-load', bindMenu)
+  bindMenu()
 </script>

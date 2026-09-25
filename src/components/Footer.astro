@@ -1,35 +1,70 @@
 ---
 import * as stylex from '@stylexjs/stylex'
-import { SITE } from '../config'
+import { FOOTER_LINKS, SITE } from '../config'
 import { footerStyles } from './footer.stylex'
 import { a11y } from './ui/primitives'
 
 const year = SITE.date.currentYear
 ---
 
-<footer transition:persist {...stylex.attrs(footerStyles.bar)}>
+<footer id="site-footer" transition:persist {...stylex.attrs(footerStyles.bar)}>
   <div {...stylex.attrs(footerStyles.container)}>
-    <div {...stylex.attrs(footerStyles.row)}>
-      <p {...stylex.attrs(footerStyles.legal)}>
-        © 2007–{year} <a href="/" {...stylex.attrs(footerStyles.brandLink)}>{SITE.title}</a>.
-        <span {...stylex.attrs(footerStyles.sep)} aria-hidden>&middot;</span>
-        <a {...stylex.attrs(footerStyles.legalLink)} href="/terms/">Terms</a>
-        <span {...stylex.attrs(footerStyles.sep)} aria-hidden>&middot;</span>
-        <a {...stylex.attrs(footerStyles.legalLink)} href="/privacy/">Privacy</a>
-      </p>
+    <div {...stylex.attrs(footerStyles.layout)}>
+      <section {...stylex.attrs(footerStyles.identity)} aria-labelledby="footer-title">
+        <h2 id="footer-title" {...stylex.attrs(footerStyles.brand)}>
+          <a href="/" {...stylex.attrs(footerStyles.brandLink)}>{SITE.title}</a>
+        </h2>
+        <p {...stylex.attrs(footerStyles.description)}>
+          I build reliable software systems and AI products, from architecture and automation to the code that ships.
+        </p>
+      </section>
 
-      <nav {...stylex.attrs(footerStyles.nav)} aria-label="Footer">
-        <a {...stylex.attrs(footerStyles.navLink)} href="/feed.xml">RSS</a>
-        <a {...stylex.attrs(footerStyles.navLink)} href={`mailto:${SITE.email}`}>Email</a>
-        <a {...stylex.attrs(footerStyles.navLink)} href="https://twitter.com/aitchdei" target="_blank" rel="noopener">
-          X <span {...stylex.attrs(a11y.srOnly)}>(opens in new tab)</span>
-        </a>
-        <a {...stylex.attrs(footerStyles.navLink)} href="https://github.com/yoosuf" target="_blank" rel="noopener">
-          GitHub <span {...stylex.attrs(a11y.srOnly)}>(opens in new tab)</span>
-        </a>
-        <a {...stylex.attrs(footerStyles.navLink)} href="https://www.linkedin.com/in/yoosufm" target="_blank" rel="noopener">
-          LinkedIn <span {...stylex.attrs(a11y.srOnly)}>(opens in new tab)</span>
-        </a>
+      <nav {...stylex.attrs(footerStyles.navGroup)} aria-labelledby="footer-explore">
+        <h3 id="footer-explore" {...stylex.attrs(footerStyles.groupTitle)}>Explore</h3>
+        <ul {...stylex.attrs(footerStyles.navList)}>
+          {FOOTER_LINKS.site.map((link) => (
+            <li key={link.href} {...stylex.attrs(footerStyles.navItem)}>
+              <a href={link.href} {...stylex.attrs(footerStyles.navLink)}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <nav {...stylex.attrs(footerStyles.navGroup)} aria-labelledby="footer-connect">
+        <h3 id="footer-connect" {...stylex.attrs(footerStyles.groupTitle)}>Connect</h3>
+        <ul {...stylex.attrs(footerStyles.navList)}>
+          {FOOTER_LINKS.connect.map((link) => (
+            <li key={link.href} {...stylex.attrs(footerStyles.navItem)}>
+              <a
+                href={link.href}
+                rel={link.rel}
+                target={link.opensNewTab ? '_blank' : undefined}
+                {...stylex.attrs(footerStyles.navLink)}
+              >
+                {link.label}
+                {link.opensNewTab && (
+                  <>
+                    {' '}
+                    <span {...stylex.attrs(a11y.srOnly)}>{link.context} (opens in new tab)</span>
+                  </>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+
+    <div {...stylex.attrs(footerStyles.bottom)}>
+      <p {...stylex.attrs(footerStyles.copyright)}>© 2007–{year} {SITE.title}.</p>
+      <nav aria-label="Legal and feed links">
+        <ul {...stylex.attrs(footerStyles.utilityList)}>
+          {FOOTER_LINKS.utility.map((link) => (
+            <li key={link.href} {...stylex.attrs(footerStyles.utilityItem)}>
+              <a href={link.href} {...stylex.attrs(footerStyles.utilityLink)}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
       </nav>
     </div>
   </div>

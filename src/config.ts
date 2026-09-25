@@ -24,15 +24,25 @@ export const NAV = [
   { name: 'Contact', link: '/contact/' },
 ] as const
 
-export const FOOTER_LINKS = [
-  { label: 'Schedule a Call', href: 'https://cal.com/yoosuf', icon: 'calendar' },
-  { label: 'Email', href: 'mailto:mayoosuf@gmail.com', icon: 'mail' },
-  { label: 'X', href: 'https://twitter.com/aitchdei', icon: 'x' },
-  { label: 'GitHub', href: 'https://github.com/yoosuf', icon: 'github' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/yoosufm', icon: 'linkedin' },
-  { label: 'Yoosuf', href: '/yoosuf/', icon: null },
-  { label: 'Medium', href: 'https://yoosuf.medium.com', icon: 'medium' },
-] as const
+export const FOOTER_LINKS = {
+  site: [
+    ...NAV.map(({ name, link }) => ({ label: name, href: link })),
+    { label: 'Profile', href: '/yoosuf/' },
+  ],
+  connect: [
+    { label: 'Schedule a call', href: 'https://cal.com/yoosuf', rel: 'noopener noreferrer', opensNewTab: true, context: '' },
+    { label: 'Email', href: `mailto:${SITE.email}`, rel: 'me', opensNewTab: false, context: '' },
+    { label: 'X', href: 'https://twitter.com/aitchdei', rel: 'me noopener noreferrer', opensNewTab: true, context: 'profile' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/yoosufm', rel: 'me noopener noreferrer', opensNewTab: true, context: 'profile' },
+    { label: 'GitHub', href: 'https://github.com/yoosuf', rel: 'me noopener noreferrer', opensNewTab: true, context: 'profile' },
+    { label: 'Medium', href: 'https://yoosuf.medium.com', rel: 'me noopener noreferrer', opensNewTab: true, context: 'profile' },
+  ],
+  utility: [
+    { label: 'RSS', href: '/feed.xml' },
+    { label: 'Terms', href: '/terms/' },
+    { label: 'Privacy', href: '/privacy/' },
+  ],
+} as const
 
 export const PERSON_JSON_LD = {
   '@context': 'https://schema.org',

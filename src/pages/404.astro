@@ -8,7 +8,12 @@ import { buttons } from '../components/ui/primitives'
 export const prerender = true
 ---
 
-<BaseLayout title="Page not found" canonical="" noIndex>
+<BaseLayout
+  title="Page not found"
+  description="That page does not exist on yoosuf.me. Try the blog, the services page, or the contact form to get in touch."
+  canonical=""
+  noIndex
+>
   <article {...stylex.attrs(notFoundStyles.article, pageStyles.container)}>
     <h1 {...stylex.attrs(notFoundStyles.title)}>404</h1>
     <p {...stylex.attrs(notFoundStyles.lead)}>

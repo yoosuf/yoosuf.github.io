@@ -6,8 +6,12 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     subTitle: z.string().optional(),
+    /** Search/OG title when the visible headline is too long to display well. */
+    seoTitle: z.string().optional(),
     author: z.string().default('Yoosuf Mohamed'),
     date: z.coerce.date(),
+    /** Set when an existing post is meaningfully revised. Drives dateModified. */
+    updated: z.coerce.date().optional(),
     excerpt: z.string().optional().default(''),
     heroImage: z.string().optional(),
     heroAlt: z.string().optional(),

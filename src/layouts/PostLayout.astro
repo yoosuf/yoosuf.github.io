@@ -8,6 +8,7 @@ import { pageStyles } from '../components/ui/page.stylex'
 import { postStyles } from '../components/ui/post.stylex'
 import { kicker, pills } from '../components/ui/primitives'
 import Icon from '../components/Icon.astro'
+import PostCard from '../components/PostCard.astro'
 import {
   decodeEntities,
   ensureTrailingSlash,
@@ -45,18 +46,20 @@ interface Props {
   entry: CollectionEntry<'blog'>
   newer?: CollectionEntry<'blog'> | null
   older?: CollectionEntry<'blog'> | null
+  related?: CollectionEntry<'blog'>[]
 }
 
-const { entry, newer, older } = Astro.props
+const { entry, newer, older, related = [] } = Astro.props
 const { Content } = await render(entry)
 
-const { title, date, description, categories, tags, permalink } = entry.data
+const { title, date, updated, description, categories, tags, permalink, seoTitle } = entry.data
 const decodedTitle = decodeEntities(title)
 const url = ensureTrailingSlash(permalink)
 const absoluteUrl = new URL(url, SITE.url).href
 const minutes = readingTime(entry.body)
 const words = entry.body.trim().split(/\s+/).length
 const isoDate = toISODate(date)
+const isoUpdated = updated ? toISODate(updated) : null
 const postImage = entry.data.heroImage
   ? new URL(entry.data.heroImage, SITE.url).href
   : new URL(SITE.socialImage, SITE.url).href
@@ -79,7 +82,7 @@ const articleJsonLd = {
   image: postImage,
   inLanguage: 'en',
   datePublished: isoDate,
-  dateModified: isoDate,
+  dateModified: isoUpdated ?? isoDate,
   articleSection: categories[0] ?? 'Blog',
   keywords: tags.join(','),
   wordCount: words,
@@ -108,14 +111,35 @@ const articleJsonLd = {
 
 <BaseLayout
   title={decodedTitle}
+  metaTitle={seoTitle}
   description={description ?? decodedTitle}
   image={postImage}
   imageAlt={postImageAlt}
   canonical={url}
   type="article"
-  jsonLd={[articleJsonLd]}
+  jsonLd={[
+    articleJsonLd,
+    ...(related.length > 0
+      ? [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            '@id': `${absoluteUrl}#related`,
+            name: 'Related reading',
+            itemListOrder: 'https://schema.org/ItemListUnordered',
+            itemListElement: related.map((post, position) => ({
+              '@type': 'ListItem',
+              position: position + 1,
+              url: new URL(ensureTrailingSlash(post.data.permalink), SITE.url).href,
+              name: decodeEntities(post.data.title),
+            })),
+          },
+        ]
+      : []),
+  ]}
   article={{
     published: isoDate,
+    modified: isoUpdated ?? undefined,
     section: categories[0],
     tags,
   }}
@@ -136,6 +160,15 @@ const articleJsonLd = {
 
         <p {...stylex.attrs(postStyles.meta)}>
           <time datetime={isoDate}>{formatShortDate(date)}</time>
+          {isoUpdated && (
+            <>
+              <span aria-hidden="true">&middot;</span>
+              <span>
+                Updated{' '}
+                <time datetime={isoUpdated}>{formatShortDate(new Date(isoUpdated))}</time>
+              </span>
+            </>
+          )}
           <span aria-hidden="true">&middot;</span>
           <span {...stylex.attrs(postStyles.metaItem)}>
             <Icon name="clock" size={13} />
@@ -156,6 +189,19 @@ const articleJsonLd = {
             ))}
           </ul>
         </footer>
+      )}
+
+      {related.length > 0 && (
+        <section {...stylex.attrs(postStyles.related)} aria-labelledby="related-heading">
+          <h2 id="related-heading" {...stylex.attrs(postStyles.relatedHeading)}>
+            Related reading
+          </h2>
+          <ul {...stylex.attrs(postStyles.relatedList)}>
+            {related.map((post) => (
+              <PostCard post={post} headingLevel="h3" divider />
+            ))}
+          </ul>
+        </section>
       )}
 
       {(newer || older) && (

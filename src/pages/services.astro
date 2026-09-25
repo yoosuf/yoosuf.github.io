@@ -5,13 +5,66 @@ import { Breadcrumbs } from '../components/ui/Breadcrumbs'
 import EngagementPricing from '../components/EngagementPricing.astro'
 import { pageStyles } from '../components/ui/page.stylex'
 import { servicesStyles } from '../components/ui/services.stylex'
-import { SITE } from '../config'
+import { SERVICES, SERVICES_FAQS } from '../data/services'
+import { SCHEMA_IDS, SITE } from '../config'
+
+const servicesUrl = new URL('/services/', SITE.url).href
+
+// The accordion copy is the same source the visible page renders, so the
+// structured data can never drift from what a reader (or a crawler) sees.
+const servicesJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  '@id': `${servicesUrl}#services`,
+  name: 'Consulting and engineering services',
+  itemListOrder: 'https://schema.org/ItemListUnordered',
+  numberOfItems: SERVICES.length,
+  itemListElement: SERVICES.map((service, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'Service',
+      '@id': `${servicesUrl}#${service.tab.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+      name: service.name,
+      serviceType: service.name,
+      description: service.description,
+      provider: { '@id': SCHEMA_IDS.person },
+      areaServed: { '@type': 'AdministrativeArea', name: 'Worldwide (remote)' },
+      availableChannel: {
+        '@type': 'ServiceChannel',
+        serviceUrl: new URL('/contact/', SITE.url).href,
+        availableLanguage: { '@type': 'Language', name: 'English' },
+      },
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: `${service.name} deliverables`,
+        itemListElement: service.includes.map((item) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: item },
+        })),
+      },
+    },
+  })),
+}
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${servicesUrl}#faq`,
+  mainEntity: SERVICES_FAQS.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: { '@type': 'Answer', text: faq.a },
+  })),
+}
 ---
 
 <BaseLayout
   title="Services — Yoosuf Mohamed"
   description="Consulting, architecture audits, AI integration, product development, and fractional tech leadership — scoped in writing and delivered by Yoosuf Mohamed."
   canonical="/services/"
+  mainEntity={`${servicesUrl}#services`}
+  jsonLd={[servicesJsonLd, faqJsonLd]}
 >
   <article {...stylex.attrs(pageStyles.page, pageStyles.container)}>
     <Breadcrumbs items={[{ label: 'Services' }]} baseUrl={SITE.url} />

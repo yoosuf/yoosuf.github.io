@@ -24,6 +24,11 @@ export interface Props {
   keywords?: string
   canonical?: string
   type?: 'website' | 'article' | 'profile' | 'softwareApplication'
+  /** Schema.org type for the page node. `WebPage` is the safe default; use a
+   *  more specific subtype (e.g. `CollectionPage`) where it is accurate. */
+  pageType?: 'WebPage' | 'CollectionPage' | 'ItemPage' | 'ProfilePage' | 'AboutPage' | 'ContactPage'
+  /** `@id` of the node this page is really about, when it differs from the page. */
+  mainEntity?: string
   jsonLd?: object[]
   article?: ArticleMeta
   noIndex?: boolean
@@ -38,19 +43,23 @@ const {
   keywords,
   canonical,
   type = 'website',
+  pageType = 'WebPage',
+  mainEntity,
   jsonLd = [],
   article,
   noIndex = false,
 } = Astro.props
 
-const pageTitle = title ?? metaTitle ?? SITE.title
+// `metaTitle` wins when a page needs a shorter search/social title than its
+// visible headline.
+const pageTitle = metaTitle ?? title ?? SITE.title
 const canonicalUrl = canonical ? new URL(canonical, SITE.url).href : null
 const pageUrl = canonicalUrl ?? new URL(Astro.url.pathname, SITE.url).href
 const imageUrl = image.startsWith('http') ? image : new URL(image, SITE.url).href
 
 const webPageJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebPage',
+  '@type': pageType,
   '@id': `${pageUrl}#webpage`,
   url: pageUrl,
   name: pageTitle,
@@ -58,6 +67,7 @@ const webPageJsonLd = {
   inLanguage: SITE.lang,
   isPartOf: { '@id': `${SITE.url}/#website` },
   about: { '@id': `${SITE.url}/#person` },
+  ...(mainEntity ? { mainEntity: { '@id': mainEntity } } : {}),
   ...(article?.published
     ? {
         datePublished: article.published,

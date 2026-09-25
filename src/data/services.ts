@@ -102,3 +102,29 @@ export const SERVICE_ICONS: Record<string, string> = {
   'Product Development': 'code',
   'Fractional Tech Lead': 'users',
 }
+
+export interface Faq {
+  q: string
+  a: string
+}
+
+/** Engagement questions rendered as the native-`<details>` FAQ and published as
+ *  FAQPage structured data, so both views always come from the same copy. */
+export const SERVICES_FAQS: Faq[] = [
+  {
+    q: 'Do you work with startups or only enterprises?',
+    a: 'Both. Most of my work is with startups scaling past an MVP, but I regularly take on enterprise engagements for AI, modernization, and performance work.',
+  },
+  {
+    q: 'How are engagements priced?',
+    a: 'Every engagement is scoped and quoted individually based on complexity, timeline, and requirements. You always get a written proposal with a fixed price before any work begins.',
+  },
+  {
+    q: 'Do you work alongside my existing team?',
+    a: "Usually, yes — that's the point. I can lead, review, mentor, or just be the senior engineer your team is missing, working inside your existing stack and workflow.",
+  },
+  {
+    q: 'What happens when the engagement ends?',
+    a: 'You own everything we build. Delivery includes documentation and a proper handover, and most clients keep me on a lighter retainer or move to a fractional arrangement.',
+  },
+]

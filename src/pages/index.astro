@@ -7,7 +7,7 @@ import Icon from '../components/Icon.astro'
 import { homeStyles } from '../components/ui/home.stylex'
 import { pageStyles } from '../components/ui/page.stylex'
 import { buttons, kicker, pills } from '../components/ui/primitives'
-import { SITE } from '../config'
+import { SCHEMA_IDS, SITE } from '../config'
 
 const posts = (await getCollection('blog'))
   .filter((post) => post.data.published !== false)
@@ -16,10 +16,11 @@ const recent = posts.slice(0, 5)
 ---
 
 <BaseLayout
-  title="Yoosuf Mohamed — Systems Architect, AI Engineer & Technical Consultant"
+  title="Yoosuf Mohamed — Systems Architect & AI Engineer"
   description={SITE.description}
   keywords="Yoosuf Mohamed, systems architect, AI engineer, LLM, RAG, Go, Elixir, FastAPI, Next.js, React, Flutter, Colombo Sri Lanka"
   canonical="/"
+  mainEntity={SCHEMA_IDS.person}
   imageAlt="Yoosuf Mohamed, systems architect and AI engineer."
 >
   <article {...stylex.attrs(homeStyles.article, pageStyles.container)}>

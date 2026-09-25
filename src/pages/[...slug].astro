@@ -2,8 +2,8 @@
 import { getCollection } from 'astro:content'
 import { render } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
-import PageLayout from '../layouts/PageLayout.astro'
-import { SITE } from '../config'
+import PageLayout, { type PageType } from '../layouts/PageLayout.astro'
+import { SCHEMA_IDS, SITE } from '../config'
 import Paragraph from '../components/markdown/Paragraph.astro'
 import Heading2 from '../components/markdown/Heading2.astro'
 import Heading3 from '../components/markdown/Heading3.astro'
@@ -36,46 +36,27 @@ export async function getStaticPaths() {
     '/yoosuf/': 'Yoosuf — Yoosuf Mohamed, Systems Architect & AI Engineer',
   }
 
-  const profileJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'ProfilePage',
-    name: 'Yoosuf',
-    url: `${SITE.url}/yoosuf/`,
-    mainEntity: {
-      '@type': 'Person',
-      name: 'Yoosuf Mohamed',
-      alternateName: ['Yoosuf', 'Yoosuf Mo', 'aitchdei'],
-      url: SITE.url,
-      image: `${SITE.url}/assets/images/yoosuf.jpg`,
-      jobTitle: ['Systems Architect', 'AI Engineer', 'Software Architect', 'Technical Consultant'],
-      description:
-        'Yoosuf is Yoosuf Mohamed, also known as Yoosuf Mo and aitchdei. He is a systems architect, AI engineer, software architect, and technical consultant based in Colombo, Sri Lanka.',
-      knowsAbout: [
-        'AI automation', 'LLM', 'RAG', 'AI agents', 'systems architecture',
-        'software architecture', 'SaaS architecture', 'Go', 'Elixir', 'FastAPI',
-        'Node.js', 'Next.js', 'React', 'Flutter', 'AWS',
-      ],
-      sameAs: [
-        'https://twitter.com/aitchdei',
-        'https://www.linkedin.com/in/yoosufm',
-        'https://github.com/yoosuf',
-        'https://www.instagram.com/aitchdei',
-        'https://www.youtube.com/@YoosufMo',
-        'https://yoosuf.medium.com',
-      ],
-    },
+  // Each page gets the schema type that actually describes it, and points at
+  // the entity it is about so the person/site graph stays connected.
+  const pageTypes: Record<string, { pageType?: PageType; mainEntity?: string }> = {
+    '/about/': { pageType: 'AboutPage', mainEntity: SCHEMA_IDS.person },
+    '/contact/': { pageType: 'ContactPage', mainEntity: SCHEMA_IDS.person },
+    '/yoosuf/': { pageType: 'ProfilePage', mainEntity: SCHEMA_IDS.person },
   }
 
   const entries = await getCollection('pages')
   return entries.map((entry) => {
     const { permalink } = entry.data
     const slug = permalink.replace(/^\/+|\/+$/g, '')
+    const types = pageTypes[permalink] ?? {}
     return {
       params: { slug },
       props: {
         entry,
         metaTitle: metaTitles[permalink] ?? null,
-        jsonLd: permalink === '/yoosuf/' ? [profileJsonLd] : [],
+        pageType: types.pageType ?? ('WebPage' as PageType),
+        mainEntity: types.mainEntity ?? null,
+        jsonLd: [],
       },
     }
   })
@@ -84,10 +65,12 @@ export async function getStaticPaths() {
 interface Props {
   entry: CollectionEntry<'pages'>
   metaTitle: string | null
+  pageType: PageType
+  mainEntity: string | null
   jsonLd: object[]
 }
 
-const { entry, metaTitle, jsonLd } = Astro.props
+const { entry, metaTitle, pageType, mainEntity, jsonLd } = Astro.props
 const { Content } = await render(entry)
 const { title, description, permalink } = entry.data
 const markdownComponents = {
@@ -103,6 +86,8 @@ const markdownComponents = {
   metaTitle={metaTitle ?? title}
   description={description}
   canonical={permalink}
+  pageType={pageType}
+  mainEntity={mainEntity ?? undefined}
   jsonLd={jsonLd}
 >
   <Content components={markdownComponents} />

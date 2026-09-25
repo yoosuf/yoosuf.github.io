@@ -3,8 +3,8 @@ import { getCollection } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import BlogIndex from '../../components/BlogIndex.astro'
 import { POSTS_PER_PAGE } from '../../lib/pagination'
-import { decodeEntities, ensureTrailingSlash } from '../../lib/utils'
-import { SITE } from '../../config'
+import { decodeEntities, ensureTrailingSlash, toISODate } from '../../lib/utils'
+import { SCHEMA_IDS, SITE } from '../../config'
 
 const posts = (await getCollection('blog'))
   .filter((post) => post.data.published !== false)
@@ -14,6 +14,10 @@ const totalPosts = posts.length
 const totalPages = Math.max(1, Math.ceil(totalPosts / POSTS_PER_PAGE))
 const firstPage = posts.slice(0, POSTS_PER_PAGE)
 
+const blogUrl = new URL('/blog/', SITE.url).href
+const postUrl = (post: (typeof posts)[number]) =>
+  new URL(ensureTrailingSlash(post.data.permalink), SITE.url).href
+
 const itemListJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
@@ -22,8 +26,30 @@ const itemListJsonLd = {
   itemListElement: firstPage.map((post, i) => ({
     '@type': 'ListItem',
     position: i + 1,
-    url: new URL(ensureTrailingSlash(post.data.permalink), SITE.url).href,
+    url: postUrl(post),
     name: decodeEntities(post.data.title),
+  })),
+}
+
+// A named Blog node keeps the archive as one citable entity instead of a loose
+// list of links, which is what answer engines reach for when citing "his blog".
+const blogJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  '@id': `${blogUrl}#blog`,
+  name: `${SITE.title} — Blog`,
+  description:
+    'Articles on AI, systems architecture, software engineering, and personal topics.',
+  url: blogUrl,
+  inLanguage: SITE.lang,
+  publisher: { '@id': SCHEMA_IDS.organization },
+  author: { '@id': SCHEMA_IDS.person },
+  blogPost: firstPage.map((post) => ({
+    '@type': 'BlogPosting',
+    '@id': postUrl(post),
+    url: postUrl(post),
+    headline: decodeEntities(post.data.title),
+    datePublished: toISODate(post.data.date),
   })),
 }
 ---
@@ -32,7 +58,9 @@ const itemListJsonLd = {
   title="Blog — Yoosuf Mohamed"
   description="Read the blog of Yoosuf Mohamed, covering AI, systems architecture, and software engineering."
   canonical="/blog/"
-  jsonLd={[itemListJsonLd]}
+  pageType="CollectionPage"
+  mainEntity={`${blogUrl}#blog`}
+  jsonLd={[itemListJsonLd, blogJsonLd]}
 >
   <BlogIndex
     posts={firstPage}

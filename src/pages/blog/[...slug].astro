@@ -14,12 +14,41 @@ export async function getStaticPaths() {
       .replace(/\/+$/, '')
       .replace(/^blog\/?/, '')
     const slug = path
+
+    // Related reading is topical, not chronological: shared tags count double
+    // and a shared category breaks the tie. The pager already covers "next in
+    // time", so these links build a second, denser crawl path through the
+    // archive.
+    const related = entries
+      .filter((candidate) => candidate.id !== entry.id)
+      .map((candidate) => {
+        const sharedTags = candidate.data.tags.filter((tag) =>
+          entry.data.tags.includes(tag),
+        ).length
+        const sharedCategory = candidate.data.categories.some((category) =>
+          entry.data.categories.includes(category),
+        )
+          ? 1
+          : 0
+
+        return { candidate, score: sharedTags * 2 + sharedCategory }
+      })
+      .filter(({ score }) => score > 0)
+      .sort(
+        (a, b) =>
+          b.score - a.score ||
+          b.candidate.data.date.getTime() - a.candidate.data.date.getTime(),
+      )
+      .slice(0, 3)
+      .map(({ candidate }) => candidate)
+
     return {
       params: { slug },
       props: {
         entry,
         newer: index > 0 ? entries[index - 1] : null,
         older: index < entries.length - 1 ? entries[index + 1] : null,
+        related,
       },
     }
   })
@@ -29,9 +58,10 @@ interface Props {
   entry: CollectionEntry<'blog'>
   newer?: CollectionEntry<'blog'> | null
   older?: CollectionEntry<'blog'> | null
+  related?: CollectionEntry<'blog'>[]
 }
 
-const { entry, newer, older } = Astro.props
+const { entry, newer, older, related = [] } = Astro.props
 ---
 
-<PostLayout entry={entry} newer={newer ?? null} older={older ?? null} />
+<PostLayout entry={entry} newer={newer ?? null} older={older ?? null} related={related} />

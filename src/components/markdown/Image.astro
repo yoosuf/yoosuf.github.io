@@ -3,8 +3,18 @@ import ForwardTag from './ForwardTag.astro'
 const { style: _style, loading, decoding, ...attrs } = Astro.props
 const forwarded = {
   ...attrs,
+  ...intrinsicSize(attrs.src),
   loading: loading ?? 'lazy',
   decoding: decoding ?? 'async',
+}
+
+// WordPress-style uploads carry their intrinsic size in the filename
+// (`...-1024x790.webp`). Emitting width/height lets the browser reserve the box
+// before a lazy image loads, so the article never shifts under the reader.
+function intrinsicSize(src: unknown) {
+  if (typeof src !== 'string') return {}
+  const match = src.match(/-(\d{2,5})x(\d{2,5})\.(?:avif|gif|jpe?g|png|webp)$/i)
+  return match ? { width: Number(match[1]), height: Number(match[2]) } : {}
 }
 ---
 <ForwardTag tag="image" {...forwarded}><slot /></ForwardTag>

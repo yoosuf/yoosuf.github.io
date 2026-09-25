@@ -19,7 +19,7 @@
   - GitHub: https://github.com/yoosuf/postwire
   - Docker Hub: https://hub.docker.com/r/yoosuf/postwire
   - Product Hunt: https://www.producthunt.com/products/postwire
-  - [Announcement post](https://yoosuf.me/blog/introducing-postwire): Why I built Postwire and how it works
+  - [Announcement post](https://yoosuf.me/blog/introducing-postwire/): Why I built Postwire and how it works
   - Detailed docs: [llms-postwire.txt](https://yoosuf.me/llms-postwire.txt)
 - [Messenger](https://yoosuf.me/messenger/): An open-source relational chat schema for realtime messaging — one-to-one and group chat, participants, message persistence, per-user delete visibility, report/block moderation, multi-device sessions and access tokens, and attachment galleries. A database foundation for Node.js (Express + TypeScript + Socket.IO) or Go (PostgreSQL + WebSocket) chat backends.
   - GitHub: https://github.com/yoosuf/Messenger
@@ -34,58 +34,63 @@
 - [About](https://yoosuf.me/about/): Background, skills, and architectural philosophy
 - [Services](https://yoosuf.me/services/): Engagement models and starting prices — architecture consulting, performance audits, AI integration, product development, and fractional tech leadership
 - [Terms & Payments](https://yoosuf.me/terms-payments/): Full details on pricing, quotes, deposits, milestone payments, invoicing, taxes, refunds, and termination
+- [Terms of Service](https://yoosuf.me/terms/): Scope, intellectual property, confidentiality, liability, and dispute resolution
+- [Privacy](https://yoosuf.me/privacy/): What is collected, why, and the rights available to you
+- [Diagram examples](https://yoosuf.me/examples/diagrams/): Mermaid diagram gallery — flowcharts, sequence, state, and architecture diagrams
 - [Blog](https://yoosuf.me/blog/): Articles on AI, systems architecture, software engineering, and personal topics
 - [Contact](https://yoosuf.me/contact/): Ways to get in touch or book an appointment
+- [Full post text](https://yoosuf.me/llms-full.txt): Every published post as plain text, generated from the content collection
 
 ## Blog Posts
 
 ### Software Engineering & Web Development
 
-- [Implementing Wizards the Right Way](https://yoosuf.me/blog/implementing-wizards-the-right-way): Multi-step flow UI/UX patterns — progress indicators, per-step validation, back navigation, branching logic, state persistence, review steps, and anti-patterns
-- [10 Event-Driven Architecture Questions That Separate Architects from Framework Users](https://yoosuf.me/blog/10-event-driven-architecture-questions): Idempotency, ordering, consistency boundaries, schema evolution, sagas, observability, and knowing when NOT to use events
-- [Setting Up a Legacy Rails 4.2.6 Project with Docker in 2024](https://yoosuf.me/blog/setting-up-legacy-rails-project-in-2024): Maintaining legacy Rails apps with Docker
-- [Becoming a ReactJS Expert](https://yoosuf.me/blog/become-a-reactjs-expert): Guide to mastering React and becoming an expert
-- [HTTP2 for Front-End Web Developers](https://yoosuf.me/blog/http2-for-front-end-web-developers): Performance improvements with HTTP/2
-- [Component-based Architectures in Ruby and Rails](https://yoosuf.me/blog/component-based-architectures-ruby-rails): Architectural patterns in Rails applications
-- [Performance Checklist for the Mobile Web](https://yoosuf.me/blog/performance-checklist-for-the-mobile-web): Mobile performance best practices
-- [CSS3: text-shadow](https://yoosuf.me/blog/css3-text-shadow): CSS3 text-shadow techniques
-- [Rails Apps: Rails Application Composer](https://yoosuf.me/blog/rails-apps-rails-application-composer): Building Rails apps with Application Composer
-- [Ruby 2](https://yoosuf.me/blog/ruby-2): Thoughts on Ruby 2 release
-- [Menus/Navigation handlers in mobile](https://yoosuf.me/blog/menus-navigation-handlers-in-mobile): Mobile navigation patterns
-- [A Better Way to Show WordPress Database Errors](https://yoosuf.me/blog/a-better-way-to-show-wordpress-database-errors): WordPress debugging tips
-- [WordPress: How to trigger the Post publish event](https://yoosuf.me/blog/wordpress-how-to-trigger-the-post-publish-event): WordPress hooks and events
-- [Trigger and Shoot – Slim WordPress plugin](https://yoosuf.me/blog/trigger-shoot-slim-wordpress-plugin): A lightweight WordPress plugin
+- [Implementing Wizards the Right Way](https://yoosuf.me/blog/implementing-wizards-the-right-way/): Multi-step flow UI/UX patterns — progress indicators, per-step validation, back navigation, branching logic, state persistence, review steps, and anti-patterns
+- [10 Event-Driven Architecture Questions That Separate Architects from Framework Users](https://yoosuf.me/blog/10-event-driven-architecture-questions/): Idempotency, ordering, consistency boundaries, schema evolution, sagas, observability, and knowing when NOT to use events
+- [Setting Up a Legacy Rails 4.2.6 Project with Docker in 2024](https://yoosuf.me/blog/setting-up-legacy-rails-project-in-2024/): Maintaining legacy Rails apps with Docker
+- [Becoming a ReactJS Expert](https://yoosuf.me/blog/become-a-reactjs-expert/): Guide to mastering React and becoming an expert
+- [HTTP2 for Front-End Web Developers](https://yoosuf.me/blog/http2-for-front-end-web-developers/): Performance improvements with HTTP/2
+- [Component-based Architectures in Ruby and Rails](https://yoosuf.me/blog/component-based-architectures-ruby-rails/): Architectural patterns in Rails applications
+- [Performance Checklist for the Mobile Web](https://yoosuf.me/blog/performance-checklist-for-the-mobile-web/): Mobile performance best practices
+- [CSS3: text-shadow](https://yoosuf.me/blog/css3-text-shadow/): CSS3 text-shadow techniques
+- [Rails Apps: Rails Application Composer](https://yoosuf.me/blog/rails-apps-rails-application-composer/): Building Rails apps with Application Composer
+- [Ruby 2](https://yoosuf.me/blog/ruby-2/): Thoughts on Ruby 2 release
+- [Menus/Navigation handlers in mobile](https://yoosuf.me/blog/menus-navigation-handlers-in-mobile/): Mobile navigation patterns
+- [A Better Way to Show WordPress Database Errors](https://yoosuf.me/blog/a-better-way-to-show-wordpress-database-errors/): WordPress debugging tips
+- [WordPress: How to trigger the Post publish event](https://yoosuf.me/blog/wordpress-how-to-trigger-the-post-publish-event/): WordPress hooks and events
+- [Trigger and Shoot – Slim WordPress plugin](https://yoosuf.me/blog/trigger-shoot-slim-wordpress-plugin/): A lightweight WordPress plugin
 
 ### AI & Technology
 
-- [Introducing Postwire](https://yoosuf.me/blog/introducing-postwire): A tiny SMTP mail catcher in Rust with REST API and MCP server for automated testing and AI agents ([product page](https://yoosuf.me/postwire/))
-- [Beyond Email: SMS catching, 14 MCP tools, and email analysis in Postwire](https://yoosuf.me/blog/postwire-sms-mcp-analysis): Postwire v0.2 adds dual-channel SMS catching with Twilio webhooks, 14 MCP tools for full MFA flows, and Litmus-style email analysis
-- [How ChatGPT helps me on day to day life](https://yoosuf.me/blog/chatgpt-daily-life): Practical uses of AI tools in daily workflows
-- [Make the Hard Decision Before the Product Fails](https://yoosuf.me/blog/perish-pivot-persevere): Perish, pivot, or persevere — deciding with evidence before failure becomes undeniable
-- [How to Make an MVP in the AI Era](https://yoosuf.me/blog/how-to-make-an-mvp-in-the-ai-era): Building an MVP when AI makes building nearly free — proven examples (Dropbox, Zappos, Groupon, Buffer, Midjourney, ChatGPT), failure cases (Juicero, Color, Quibi), the three traps, and testing assumptions with real customers
+- [Introducing Postwire](https://yoosuf.me/blog/introducing-postwire/): A tiny SMTP mail catcher in Rust with REST API and MCP server for automated testing and AI agents ([product page](https://yoosuf.me/postwire/))
+- [Beyond Email: SMS catching, 14 MCP tools, and email analysis in Postwire](https://yoosuf.me/blog/postwire-sms-mcp-analysis/): Postwire v0.2 adds dual-channel SMS catching with Twilio webhooks, 14 MCP tools for full MFA flows, and Litmus-style email analysis
+- [How ChatGPT helps me on day to day life](https://yoosuf.me/blog/chatgpt-daily-life/): Practical uses of AI tools in daily workflows
+- [AI didn't cause every layoff, management did](https://yoosuf.me/blog/ai-didnt-cause-every-layoff-management-did/): How much of the AI layoff era is automation, and how much is management using AI as the excuse
+- [Make the Hard Decision Before the Product Fails](https://yoosuf.me/blog/perish-pivot-persevere/): Perish, pivot, or persevere — deciding with evidence before failure becomes undeniable
+- [How to Make an MVP in the AI Era](https://yoosuf.me/blog/how-to-make-an-mvp-in-the-ai-era/): Building an MVP when AI makes building nearly free — proven examples (Dropbox, Zappos, Groupon, Buffer, Midjourney, ChatGPT), failure cases (Juicero, Color, Quibi), the three traps, and testing assumptions with real customers
 
 ### Personal & Lifestyle
 
-- [How I managed a year by living a frugal lifestyle](https://yoosuf.me/blog/frugal-lifestyle): Personal finance and frugal living
-- [Why I am practising 24-hour water fasting 2 days a week](https://yoosuf.me/blog/24-hours-water-fasting): Intermittent fasting experience
-- [How I do water fasting](https://yoosuf.me/blog/how-to-water-fasting): Water fasting guide and methodology
-- [I don't use Tea bags for my pot of Tea](https://yoosuf.me/blog/i-dont-use-tea-bags): Loose-leaf tea brewing
-- [Good Product Manager, Bad Product Manager](https://yoosuf.me/blog/good-product-manager-bad-product-manager): Product management insights
-- [The Secret to Making Money by starting a small business](https://yoosuf.me/blog/the-secret-to-making-money-by-starting-a-small-business): Entrepreneurship and small business
-- [Respect people with less power than you](https://yoosuf.me/blog/respect-people-with-less-power-than-you): Leadership and interpersonal values
-- [Just do it](https://yoosuf.me/blog/just-do-it): Motivation and taking action
-- [Stand Against Racism](https://yoosuf.me/blog/stand-against-racism): Thoughts on racism and equality
-- [The Setup](https://yoosuf.me/blog/the-setup): Developer tools and workspace setup
-- [Going back to Sri Lanka](https://yoosuf.me/blog/going-back-to-sri-lanka): Personal reflections on returning home
-- [What happened to my .me domain](https://yoosuf.me/blog/what-happened-to-my-dot-me-domain): Domain management story
-- [Now I am on Github as Yoosuf](https://yoosuf.me/blog/now-i-am-on-github-as-yoosuf): Joining GitHub
-- [Work – Beaufort House Chelsea – Redesign](https://yoosuf.me/blog/beaufort-house-chelsea-redesign): Website redesign project
+- [How I managed a year by living a frugal lifestyle](https://yoosuf.me/blog/frugal-lifestyle/): Personal finance and frugal living
+- [Why I am practising 24-hour water fasting 2 days a week](https://yoosuf.me/blog/24-hours-water-fasting/): Intermittent fasting experience
+- [How I do water fasting](https://yoosuf.me/blog/how-to-water-fasting/): Water fasting guide and methodology
+- [I don't use Tea bags for my pot of Tea](https://yoosuf.me/blog/i-dont-use-tea-bags/): Loose-leaf tea brewing
+- [Good Product Manager, Bad Product Manager](https://yoosuf.me/blog/good-product-manager-bad-product-manager/): Product management insights
+- [The Secret to Making Money by starting a small business](https://yoosuf.me/blog/the-secret-to-making-money-by-starting-a-small-business/): Entrepreneurship and small business
+- [Respect people with less power than you](https://yoosuf.me/blog/respect-people-with-less-power-than-you/): Leadership and interpersonal values
+- [Just do it](https://yoosuf.me/blog/just-do-it/): Motivation and taking action
+- [Stand Against Racism](https://yoosuf.me/blog/stand-against-racism/): Thoughts on racism and equality
+- [The Setup](https://yoosuf.me/blog/the-setup/): Developer tools and workspace setup
+- [Going back to Sri Lanka](https://yoosuf.me/blog/going-back-to-sri-lanka/): Personal reflections on returning home
+- [What happened to my .me domain](https://yoosuf.me/blog/what-happened-to-my-dot-me-domain/): Domain management story
+- [Now I am on Github as Yoosuf](https://yoosuf.me/blog/now-i-am-on-github-as-yoosuf/): Joining GitHub
+- [Work – Beaufort House Chelsea – Redesign](https://yoosuf.me/blog/beaufort-house-chelsea-redesign/): Website redesign project
 
 ### Photography
 
-- [Photography with iPhone 5](https://yoosuf.me/blog/photography-with-iphone-5): iPhone photography techniques
-- [Photography, My second passion](https://yoosuf.me/blog/photography-my-second-passion): Personal love for photography
-- [Yoosuf's iPhone Photography](https://yoosuf.me/blog/yoosuf-iphone-photography): iPhone photography collection
+- [Photography with iPhone 5](https://yoosuf.me/blog/photography-with-iphone-5/): iPhone photography techniques
+- [Photography, My second passion](https://yoosuf.me/blog/photography-my-second-passion/): Personal love for photography
+- [Yoosuf's iPhone Photography](https://yoosuf.me/blog/yoosuf-iphone-photography/): iPhone photography collection
 - [Hello you!](https://yoosuf.me/blog/hello-you/): First blog post from 2007
 
 ## Social Profiles

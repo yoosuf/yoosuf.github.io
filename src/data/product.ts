@@ -130,10 +130,9 @@ export const postwire: Product = {
     ],
   },
   seo: {
-    title:
-      'Postwire — Local Auth Testing for Email OTP, Magic Links, SMS 2FA, and AI Agents',
+    title: 'Postwire — Local Auth Testing for Email, SMS & AI Agents',
     description:
-      'Postwire is a free, open-source local auth testing tool: SMTP mail catcher, SMS catcher, Twilio webhook receiver, OTP and magic-link extractor, long-polling API, and native MCP server for AI agents. A single Rust binary for Playwright, CI, and developer workflows.',
+      'Postwire is a free, open-source local auth testing tool: SMTP and SMS catchers, OTP extractor, long-polling API, and a native MCP server for AI agents.',
     image: '/assets/images/postwire-og.png',
     imageAlt:
       'Postwire — local auth testing for email OTPs, magic links, SMS 2FA, Playwright tests, CI, and AI agents. Open source, MIT license, written in Rust.',
@@ -220,9 +219,9 @@ export const messenger: Product = {
     ],
   },
   seo: {
-    title: 'Messenger — Open Source Chat Database Schema for Realtime Messaging',
+    title: 'Messenger — Open-Source Chat Schema for Realtime Apps',
     description:
-      'Messenger is an open source relational chat schema: users, conversations, participants, messages, attachments, moderation (reports & blocks), device sessions, and per-user visibility. A database foundation for Node.js or Go chat backends on PostgreSQL or MySQL.',
+      'Messenger is an open-source relational chat schema: users, conversations, messages, moderation, and device sessions. A foundation for Node.js or Go chat backends.',
     keywords:
       'chat database schema, messaging database design, group chat schema, one-to-one chat schema, PostgreSQL chat schema, MySQL chat schema, chat backend, realtime messaging, conversations table, participants table, message persistence, attachments table, moderation, block list, reports, devices, access tokens, Node.js chat, Go chat backend, Socket.IO, WebSocket, open source database design, Yoosuf Mohamed',
     canonical: '/messenger/',

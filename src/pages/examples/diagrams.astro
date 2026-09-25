@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import MermaidDiagram from '../../components/diagrams/MermaidDiagram.astro'
 import { body, headings } from '../../components/ui/primitives'
 import { pageStyles } from '../../components/ui/page.stylex'
+import { SITE } from '../../config'
 
 const flowchart = `flowchart LR
     User --> Web
@@ -49,12 +50,36 @@ config:
 ---
 flowchart LR
     Source --> Override`
+const galleryUrl = new URL('/examples/diagrams/', SITE.url).href
+
+const galleryJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  '@id': `${galleryUrl}#diagrams`,
+  name: 'Hand-drawn Mermaid diagram examples',
+  numberOfItems: 5,
+  itemListElement: [
+    { title: 'Request flow', caption: 'A small flowchart in the pencil variant.' },
+    { title: 'Application architecture', caption: 'The marker variant uses stronger ink and a cleaner whiteboard surface.' },
+    { title: 'Order submission sequence', caption: 'A sequence diagram between a user, the web app, the API, and the database.' },
+    { title: 'Order lifecycle', caption: 'State diagrams use the same renderer and fixed hand-drawn seed.' },
+    { title: 'Native Mermaid override', caption: 'This diagram opts out of the global hand-drawn look through Mermaid frontmatter.' },
+  ].map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.title,
+    description: item.caption,
+  })),
+}
 ---
 
 <BaseLayout
   title="Mermaid Diagram Examples — Yoosuf Mohamed"
   description="Hand-drawn Mermaid diagram examples using the site's Astro and StyleX system."
   canonical="/examples/diagrams/"
+  pageType="CollectionPage"
+  mainEntity={`${galleryUrl}#diagrams`}
+  jsonLd={[galleryJsonLd]}
 >
   <article {...stylex.attrs(pageStyles.page, pageStyles.container)}>
     <header>

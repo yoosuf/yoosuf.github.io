@@ -9,20 +9,24 @@ import { join } from 'node:path'
 
 const blogDir = join(process.cwd(), 'src/content/blog')
 
-// lastmod for every blog post URL, derived from the post date in front matter.
-// Sitemaps should only advertise change when content actually changes; posts
-// are immutable, so mark them yearly. Reads the markdown at config time.
+// lastmod for every blog post URL, derived from the front matter. A post is
+// immutable until it declares `updated`, so an untouched post advertises its
+// publish date with a yearly changefreq, while a revised post advertises the
+// real edit date and can be crawled more often. Reads the markdown at config
+// time.
 const postLastmod = new Map()
 for (const f of readdirSync(blogDir)) {
   if (!f.endsWith('.mdx')) continue
   const md = readFileSync(join(blogDir, f), 'utf8')
   const dateMatch = md.match(/^date:\s*["']?([\d-]+)/m)
+  const updatedMatch = md.match(/^updated:\s*["']?([\d-]+)/m)
   const permMatch = md.match(/^permalink:\s*"?([^"\s]+)"?/m)
   if (!dateMatch) continue
   const slug = permMatch
     ? permMatch[1].replace(/^\/?blog\//, '').replace(/\/+$/, '')
     : f.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '')
-  postLastmod.set(`/blog/${slug}/`, { date: dateMatch[1], priority: 0.7 })
+  const lastmod = updatedMatch && updatedMatch[1] > dateMatch[1] ? updatedMatch[1] : dateMatch[1]
+  postLastmod.set(`/blog/${slug}/`, { date: lastmod, revised: lastmod !== dateMatch[1] })
 }
 
 const HIGH_PRIORITY = new Set(['/', '/blog/', '/services/', '/about/', '/contact/', '/postwire/'])
@@ -53,8 +57,8 @@ export default defineConfig({
         const post = postLastmod.get(path)
         if (post) {
           item.lastmod = `${post.date}T00:00:00Z`
-          item.changefreq = 'yearly'
-          item.priority = post.priority
+          item.changefreq = post.revised ? 'monthly' : 'yearly'
+          item.priority = 0.7
         } else if (path === '/') {
           item.priority = 1.0
           item.changefreq = 'weekly'

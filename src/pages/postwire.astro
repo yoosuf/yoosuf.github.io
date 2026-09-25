@@ -1,4 +1,5 @@
 ---
+import postwireDoc from '../data/postwire.html?raw'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import ProductLayout from '../layouts/ProductLayout.astro'
 import PostwireBody from '../components/product/PostwireBody.astro'
@@ -6,11 +7,27 @@ import * as stylex from '@stylexjs/stylex'
 import { styles } from '../components/ui/product.stylex'
 import { postwire } from '../data/product'
 import { SITE } from '../config'
+import { extractFaqItems } from '../data/faq'
 
+
+const postwireFaqs = extractFaqItems(postwireDoc, 'postwire')
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${SITE.url}/postwire/#faq`,
+  isPartOf: { '@id': `${SITE.url}/postwire/` },
+  mainEntity: postwireFaqs.map(({ question, answer }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: { '@type': 'Answer', text: answer },
+  })),
+}
 
 const softwareJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
+  '@id': `${SITE.url}/postwire/#software`,
   name: 'Postwire',
   applicationCategory: 'DeveloperApplication',
   operatingSystem: 'Linux, macOS, Windows',
@@ -57,7 +74,8 @@ const softwareJsonLd = {
   keywords={postwire.seo.keywords}
   canonical={postwire.seo.canonical}
   type="softwareApplication"
-  jsonLd={[softwareJsonLd]}
+  mainEntity={`${SITE.url}/postwire/#software`}
+  jsonLd={[softwareJsonLd, faqJsonLd]}
 >
   <ProductLayout product={postwire}>
     <div slot="media">

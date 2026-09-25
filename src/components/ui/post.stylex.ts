@@ -55,6 +55,29 @@ export const postStyles = stylex.create({
     paddingInlineStart: 0,
   },
 
+  related: {
+    borderBlockStartColor: colors.border,
+    borderBlockStartStyle: 'solid',
+    borderBlockStartWidth: 1,
+    marginBlockStart: space['6'],
+    paddingBlockStart: space['6'],
+  },
+
+  relatedHeading: {
+    color: colors.textFaint,
+    fontSize: '0.7rem',
+    fontWeight: weights.semibold,
+    letterSpacing: '0.1em',
+    marginBlock: '0 0.25rem',
+    textTransform: 'uppercase',
+  },
+
+  relatedList: {
+    listStyleType: 'none',
+    marginBlock: 0,
+    paddingInlineStart: 0,
+  },
+
   pager: {
     borderBlockStartColor: colors.border,
     borderBlockStartStyle: 'solid',

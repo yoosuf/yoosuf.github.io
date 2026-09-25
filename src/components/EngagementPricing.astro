@@ -1,7 +1,7 @@
 ---
 import * as stylex from '@stylexjs/stylex'
 import ServicesAccordion from './services/ServicesAccordion'
-import { SERVICES } from '../data/services'
+import { SERVICES, SERVICES_FAQS } from '../data/services'
 import { servicesStyles } from './ui/services.stylex'
 import { kicker } from './ui/primitives'
 import { a11y } from './ui/primitives'
@@ -22,25 +22,6 @@ const steps = [
   {
     name: 'Handoff & support',
     desc: 'Code, docs, and knowledge transfer — plus optional ongoing support when you need it.',
-  },
-] as const
-
-const faqs = [
-  {
-    q: 'Do you work with startups or only enterprises?',
-    a: 'Both. Most of my work is with startups scaling past an MVP, but I regularly take on enterprise engagements for AI, modernization, and performance work.',
-  },
-  {
-    q: 'How are engagements priced?',
-    a: 'Every engagement is scoped and quoted individually based on complexity, timeline, and requirements. You always get a written proposal with a fixed price before any work begins.',
-  },
-  {
-    q: 'Do you work alongside my existing team?',
-    a: "Usually, yes — that's the point. I can lead, review, mentor, or just be the senior engineer your team is missing, working inside your existing stack and workflow.",
-  },
-  {
-    q: 'What happens when the engagement ends?',
-    a: 'You own everything we build. Delivery includes documentation and a proper handover, and most clients keep me on a lighter retainer or move to a fractional arrangement.',
   },
 ] as const
 ---
@@ -77,7 +58,7 @@ const faqs = [
       Common questions
     </h3>
     <div {...stylex.attrs(servicesStyles.faqList)}>
-      {faqs.map((faq) => (
+      {SERVICES_FAQS.map((faq) => (
         <details {...stylex.attrs(servicesStyles.faqItem)} data-faq-item>
           <summary {...stylex.attrs(servicesStyles.summary)}>
             <span {...stylex.attrs(servicesStyles.summaryText)}>{faq.q}</span>

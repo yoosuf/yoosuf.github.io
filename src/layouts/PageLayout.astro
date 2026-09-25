@@ -6,16 +6,35 @@ import { pageStyles } from '../components/ui/page.stylex'
 import { shellStyles } from '../components/ui/shell.stylex'
 import { SITE } from '../config'
 
+export type PageType =
+  | 'WebPage'
+  | 'CollectionPage'
+  | 'ItemPage'
+  | 'ProfilePage'
+  | 'AboutPage'
+  | 'ContactPage'
+
 interface Props {
   title: string
   metaTitle?: string
   description?: string
   canonical: string
+  pageType?: PageType
+  mainEntity?: string
   jsonLd?: object[]
   type?: 'website' | 'article' | 'profile' | 'softwareApplication'
 }
 
-const { title, metaTitle, description, canonical, jsonLd = [], type = 'website' } = Astro.props
+const {
+  title,
+  metaTitle,
+  description,
+  canonical,
+  pageType = 'WebPage',
+  mainEntity,
+  jsonLd = [],
+  type = 'website',
+} = Astro.props
 const proseAttrs = stylex.attrs(shellStyles.prose)
 ---
 
@@ -23,6 +42,8 @@ const proseAttrs = stylex.attrs(shellStyles.prose)
   title={metaTitle ?? title}
   description={description}
   canonical={canonical}
+  pageType={pageType}
+  mainEntity={mainEntity}
   type={type}
   jsonLd={jsonLd}
 >

@@ -35,8 +35,13 @@ const itemListJsonLd = {
   title={
     currentPage > 1 ? `Blog Page ${currentPage} — Yoosuf Mohamed` : 'Blog — Yoosuf Mohamed'
   }
-  description="Read the blog of Yoosuf Mohamed, covering AI, systems architecture, and software engineering."
+  description={
+    currentPage > 1
+      ? `Blog archive page ${currentPage} of ${page.lastPage}: older articles by Yoosuf Mohamed on AI, systems architecture, and software engineering.`
+      : 'Read the blog of Yoosuf Mohamed, covering AI, systems architecture, and software engineering.'
+  }
   canonical={currentPage > 1 ? `/blog/page/${currentPage}/` : '/blog/'}
+  pageType="CollectionPage"
   jsonLd={[itemListJsonLd]}
 >
   <BlogIndex

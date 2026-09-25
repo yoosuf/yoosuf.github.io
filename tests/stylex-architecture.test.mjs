@@ -123,7 +123,9 @@ test('gives pencil Mermaid labels a handwriting font fallback', async () => {
   assert.match(config, /pencilFontFamily/)
   assert.match(config, /Segoe Print/)
   assert.match(config, /Bradley Hand/)
-  assert.match(config, /fontFamily: pencilFontFamily/)
+  // The font is picked per variant (pencil vs marker), so only require that the
+  // `fontFamily` value resolves to the pencil token, not a fixed literal.
+  assert.match(config, /fontFamily:[^,\n]*pencilFontFamily/)
 })
 
 test('provides one navigation-safe shared Mermaid renderer', async () => {
@@ -217,6 +219,22 @@ test('keeps the availability pulse animation idempotent and centered', async () 
   assert.match(motion, /duration: 1600/)
   assert.match(homeStyles, /inset: 0/)
   assert.match(homeStyles, /transformOrigin: 'center'/)
+})
+
+test('starts the first-load reveal in CSS so it cannot flash after paint', async () => {
+  const baseLayout = await readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8')
+  const motion = await readFile(new URL('../src/scripts/motion.ts', import.meta.url), 'utf8')
+
+  assert.match(baseLayout, /classList\.add\(['"]yt-first['"]\)/)
+  assert.match(
+    baseLayout,
+    /@media \(prefers-reduced-motion: no-preference\) \{\s*\.yt-first main#site-main \{\s*animation: page-fade 0\.45s ease-out both;/,
+  )
+  assert.match(
+    baseLayout,
+    /@keyframes page-fade \{\s*from \{\s*opacity: 0;\s*\}\s*to \{\s*opacity: 1;\s*\}/,
+  )
+  assert.doesNotMatch(motion, /site-main/)
 })
 
 test('keeps emitted content free of malformed attributes and duplicate classes', async () => {

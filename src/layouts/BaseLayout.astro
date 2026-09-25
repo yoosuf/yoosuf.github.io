@@ -358,6 +358,21 @@ const mainAttrs = stylex.attrs(shellStyles.main)
             animation-duration: 0s !important;
           }
         }
+
+        @media (prefers-reduced-motion: no-preference) {
+          .yt-first main#site-main {
+            animation: page-fade 0.45s ease-out both;
+          }
+        }
+
+        @keyframes page-fade {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
       }
 
       /* Selection + focus ring: keep unlayered so they outrank any atom. */
@@ -615,8 +630,8 @@ const mainAttrs = stylex.attrs(shellStyles.main)
     )}
 
     <script is:inline>
-      // Flag the true initial load (or a hard reload) so the page-enter
-      // entrance animation doesn't double up with view transitions.
+      // Flag the true initial load (or a hard reload) so the CSS page-fade
+      // starts before first paint and never doubles up with view transitions.
       {
         const nav = performance.getEntriesByType('navigation')[0]
         const reload = nav && nav.type === 'reload'

@@ -45,6 +45,7 @@
 
 ### Software Engineering & Web Development
 
+- [Answer Engine Optimization Is an Architecture Problem](https://yoosuf.me/blog/answer-engine-optimization-architecture/): How AEO actually works — the indexing plane, the query plane, query fan-out, hybrid retrieval, reranking, chunking as the real unit of ranking, retrieval vs. citation, crawler taxonomy, llms.txt, and measuring AEO lift with a control group
 - [Implementing Wizards the Right Way](https://yoosuf.me/blog/implementing-wizards-the-right-way/): Multi-step flow UI/UX patterns — progress indicators, per-step validation, back navigation, branching logic, state persistence, review steps, and anti-patterns
 - [10 Event-Driven Architecture Questions That Separate Architects from Framework Users](https://yoosuf.me/blog/10-event-driven-architecture-questions/): Idempotency, ordering, consistency boundaries, schema evolution, sagas, observability, and knowing when NOT to use events
 - [Setting Up a Legacy Rails 4.2.6 Project with Docker in 2024](https://yoosuf.me/blog/setting-up-legacy-rails-project-in-2024/): Maintaining legacy Rails apps with Docker

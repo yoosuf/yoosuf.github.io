@@ -91,68 +91,284 @@ import CodeBlock from './CodeBlock.astro'
       consumer social — without redesigning the data layer later.
     </p>
 
-    <p data-pm-hook="pm-doc-group-title" {...stylex.attrs(styles.pmDocGroupTitle)}>
+    <h3 data-pm-hook="pm-use-case-group-title" {...stylex.attrs(styles.pmDocTitle)}>
       SaaS collaboration
-    </p>
-    <ul data-pm-hook="pm-switch-grid" {...stylex.attrs(styles.pmSwitchGrid)}>
-      <li {...stylex.attrs(styles.pmSwitchCard)}>
-        <p {...stylex.attrs(styles.pmSwitchTitle)}>Team workspace channels</p>
-        <p {...stylex.attrs(styles.pmSwitchDesc)}>
-          Rooms for product, support, and operations communication with persistent,
-          searchable history.
-        </p>
-      </li>
-      <li {...stylex.attrs(styles.pmSwitchCard)}>
-        <p {...stylex.attrs(styles.pmSwitchTitle)}>Customer-account chat</p>
-        <p {...stylex.attrs(styles.pmSwitchDesc)}>
-          Workflows between users and success teams that keep context across the
-          whole account lifecycle.
-        </p>
-      </li>
-      <li {...stylex.attrs(styles.pmSwitchCard)}>
-        <p {...stylex.attrs(styles.pmSwitchTitle)}>Compliance-aware trails</p>
-        <p {...stylex.attrs(styles.pmSwitchDesc)}>
-          Activity and moderation entities preserve audit-friendly message trails
-          for review.
-        </p>
-      </li>
-      <li {...stylex.attrs(styles.pmSwitchCard)}>
-        <p {...stylex.attrs(styles.pmSwitchTitle)}>Tenant-driven API layers</p>
-        <p {...stylex.attrs(styles.pmSwitchDesc)}>
-          Role-driven or tenant-driven services built directly on top of the schema.
-        </p>
-      </li>
-    </ul>
+    </h3>
+    <div data-pm-hook="pm-use-case-subaccordion" {...stylex.attrs(styles.pmFaq)}>
+      <details data-ref-item data-pm-hook="pm-use-case-item" {...stylex.attrs(styles.pmFaqItem)}>
+        <summary data-pm-hook="pm-use-case-item-summary" {...stylex.attrs(styles.pmFaqSummary)}>
+          Team workspace channels
+          <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </span>
+        </summary>
+        <div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
+          <p {...stylex.attrs(styles.pmFaqAnswer)}>
+            Rooms for product, support, and operations communication with persistent,
+            searchable history.
+          </p>
+        </div>
+      </details>
+      <details data-ref-item data-pm-hook="pm-use-case-item" {...stylex.attrs(styles.pmFaqItem)}>
+        <summary data-pm-hook="pm-use-case-item-summary" {...stylex.attrs(styles.pmFaqSummary)}>
+          Customer-account chat
+          <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </span>
+        </summary>
+        <div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
+          <p {...stylex.attrs(styles.pmFaqAnswer)}>
+            Workflows between users and success teams that keep context across the
+            whole account lifecycle.
+          </p>
+        </div>
+      </details>
+      <details data-ref-item data-pm-hook="pm-use-case-item" {...stylex.attrs(styles.pmFaqItem)}>
+        <summary data-pm-hook="pm-use-case-item-summary" {...stylex.attrs(styles.pmFaqSummary)}>
+          Compliance-aware trails
+          <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </span>
+        </summary>
+        <div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
+          <p {...stylex.attrs(styles.pmFaqAnswer)}>
+            Activity and moderation entities preserve audit-friendly message trails
+            for review.
+          </p>
+        </div>
+      </details>
+      <details data-ref-item data-pm-hook="pm-use-case-item" {...stylex.attrs(styles.pmFaqItem)}>
+        <summary data-pm-hook="pm-use-case-item-summary" {...stylex.attrs(styles.pmFaqSummary)}>
+          Tenant-driven API layers
+          <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </span>
+        </summary>
+        <div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
+          <p {...stylex.attrs(styles.pmFaqAnswer)}>
+            Role-driven or tenant-driven services built directly on top of the schema.
+          </p>
+        </div>
+      </details>
+    </div>
 
-    <p data-pm-hook="pm-doc-group-title" {...stylex.attrs(styles.pmDocGroupTitle)}>
+    <h3 data-pm-hook="pm-use-case-group-title" {...stylex.attrs(styles.pmDocTitle, styles.pmDocTitleSpaced)}>
       Dating app integration
+    </h3>
+    <div data-pm-hook="pm-use-case-subaccordion" {...stylex.attrs(styles.pmFaq)}>
+      <details data-ref-item data-pm-hook="pm-use-case-item" {...stylex.attrs(styles.pmFaqItem)}>
+        <summary data-pm-hook="pm-use-case-item-summary" {...stylex.attrs(styles.pmFaqSummary)}>
+          Match-to-chat activation
+          <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </span>
+        </summary>
+        <div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
+          <p {...stylex.attrs(styles.pmFaqAnswer)}>
+            Create a direct conversation the moment a match event fires.
+          </p>
+        </div>
+      </details>
+      <details data-ref-item data-pm-hook="pm-use-case-item" {...stylex.attrs(styles.pmFaqItem)}>
+        <summary data-pm-hook="pm-use-case-item-summary" {...stylex.attrs(styles.pmFaqSummary)}>
+          Secure one-to-one messaging
+          <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </span>
+        </summary>
+        <div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
+          <p {...stylex.attrs(styles.pmFaqAnswer)}>
+            Private conversations with media sharing between matched users.
+          </p>
+        </div>
+      </details>
+      <details data-ref-item data-pm-hook="pm-use-case-item" {...stylex.attrs(styles.pmFaqItem)}>
+        <summary data-pm-hook="pm-use-case-item-summary" {...stylex.attrs(styles.pmFaqSummary)}>
+          Report &amp; block flows
+          <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </span>
+        </summary>
+        <div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
+          <p {...stylex.attrs(styles.pmFaqAnswer)}>
+            Safety workflows for abuse prevention, tracked from pending to resolved.
+          </p>
+        </div>
+      </details>
+      <details data-ref-item data-pm-hook="pm-use-case-item" {...stylex.attrs(styles.pmFaqItem)}>
+        <summary data-pm-hook="pm-use-case-item-summary" {...stylex.attrs(styles.pmFaqSummary)}>
+          Privacy-centric controls
+          <span data-faq-chevron {...stylex.attrs(styles.pmFaqChevron)}>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+          </span>
+        </summary>
+        <div data-faq-body {...stylex.attrs(styles.pmFaqBody)}>
+          <p {...stylex.attrs(styles.pmFaqAnswer)}>
+            Per-user message and conversation hide behavior for privacy expectations.
+          </p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section data-pm-hook="pm-section" {...stylex.attrs(styles.pmSection)} id="quickstart">
+  <div data-pm-hook="pm-container" {...stylex.attrs(styles.pmContainer)}>
+    <h2 data-pm-hook="pm-section-title" {...stylex.attrs(styles.pmSectionTitle)}>
+      Quick start
+    </h2>
+    <p data-pm-hook="pm-section-sub" {...stylex.attrs(styles.pmSectionSub)}>
+      From an empty database to a ready-to-wire messaging model in three steps.
     </p>
-    <ul data-pm-hook="pm-switch-grid" {...stylex.attrs(styles.pmSwitchGrid)}>
-      <li {...stylex.attrs(styles.pmSwitchCard)}>
-        <p {...stylex.attrs(styles.pmSwitchTitle)}>Match-to-chat activation</p>
-        <p {...stylex.attrs(styles.pmSwitchDesc)}>
-          Create a direct conversation the moment a match event fires.
+
+    <ol data-pm-hook="pm-steps" {...stylex.attrs(styles.pmSteps)}>
+      <li data-pm-hook="pm-step" {...stylex.attrs(styles.pmStep)}>
+        <span data-pm-hook="pm-step-num" {...stylex.attrs(styles.pmStepNum)}>1</span>
+        <h3 data-pm-hook="pm-step-title" {...stylex.attrs(styles.pmStepTitle)}>
+          Import the schema
+        </h3>
+        <p data-pm-hook="pm-step-desc" {...stylex.attrs(styles.pmStepDesc)}>
+          Run <code {...stylex.attrs(styles.pmInlineCode)}>messenger.sql</code> against your
+          database. MySQL-first, PostgreSQL-friendly.
         </p>
       </li>
-      <li {...stylex.attrs(styles.pmSwitchCard)}>
-        <p {...stylex.attrs(styles.pmSwitchTitle)}>Secure one-to-one messaging</p>
-        <p {...stylex.attrs(styles.pmSwitchDesc)}>
-          Private conversations with media sharing between matched users.
+      <li data-pm-hook="pm-step" {...stylex.attrs(styles.pmStep)}>
+        <span data-pm-hook="pm-step-num" {...stylex.attrs(styles.pmStepNum)}>2</span>
+        <h3 data-pm-hook="pm-step-title" {...stylex.attrs(styles.pmStepTitle)}>
+          Inspect the ER model
+        </h3>
+        <p data-pm-hook="pm-step-desc" {...stylex.attrs(styles.pmStepDesc)}>
+          Open <code {...stylex.attrs(styles.pmInlineCode)}>Messenger.mwb</code> in MySQL
+          Workbench to see and extend the design visually.
         </p>
       </li>
-      <li {...stylex.attrs(styles.pmSwitchCard)}>
-        <p {...stylex.attrs(styles.pmSwitchTitle)}>Report &amp; block flows</p>
-        <p {...stylex.attrs(styles.pmSwitchDesc)}>
-          Safety workflows for abuse prevention, tracked from pending to resolved.
+      <li data-pm-hook="pm-step" {...stylex.attrs(styles.pmStep)}>
+        <span data-pm-hook="pm-step-num" {...stylex.attrs(styles.pmStepNum)}>3</span>
+        <h3 data-pm-hook="pm-step-title" {...stylex.attrs(styles.pmStepTitle)}>
+          Wire your API layer
+        </h3>
+        <p data-pm-hook="pm-step-desc" {...stylex.attrs(styles.pmStepDesc)}>
+          Connect Node.js + Socket.IO or Go + WebSocket and implement your messaging
+          logic on the tables.
         </p>
       </li>
-      <li {...stylex.attrs(styles.pmSwitchCard)}>
-        <p {...stylex.attrs(styles.pmSwitchTitle)}>Privacy-centric controls</p>
-        <p {...stylex.attrs(styles.pmSwitchDesc)}>
-          Per-user message and conversation hide behavior for privacy expectations.
+    </ol>
+
+    <CodeBlock
+      code={`# Import the schema
+mysql -u app -p chatdb < messenger.sql
+
+# Core tables are ready:
+# users, conversations, participants,
+# messages, attachments, devices, access`}
+      lang="bash"
+      label="Database"
+    />
+  </div>
+</section>
+
+<section data-pm-hook="pm-section" {...stylex.attrs(styles.pmSection)} id="guides">
+  <div data-pm-hook="pm-container" {...stylex.attrs(styles.pmContainer)}>
+    <h2 data-pm-hook="pm-section-title" {...stylex.attrs(styles.pmSectionTitle)}>
+      Implementation guides
+    </h2>
+    <p data-pm-hook="pm-section-sub" {...stylex.attrs(styles.pmSectionSub)}>
+      Step-by-step guides for wiring the schema into realtime backends, plus
+      reference architecture and a prompt pack for agentic development.
+    </p>
+
+    <div data-pm-hook="pm-doc-conventions" {...stylex.attrs(styles.pmDocConventions)}>
+      <div data-pm-hook="pm-doc-convention" {...stylex.attrs(styles.pmDocConvention)}>
+        <p data-pm-hook="pm-doc-convention-title" {...stylex.attrs(styles.pmDocConventionTitle)}>
+          Node.js + Express + TypeScript + PostgreSQL + Socket.IO
         </p>
-      </li>
-    </ul>
+        <p data-pm-hook="pm-doc-convention-desc" {...stylex.attrs(styles.pmDocConventionDesc)}>
+          A full walkthrough for a realtime Node backend using the schema as its
+          database core.
+        </p>
+        <a
+          data-pm-hook="pm-guide-link"
+          href="https://github.com/yoosuf/Messenger/blob/master/docs/NODE_EXPRESS_TYPESCRIPT_POSTGRES_SOCKET.md"
+          target="_blank"
+          rel="noopener noreferrer"
+          {...stylex.attrs(styles.pmGuideLink)}
+        >
+          Read the Node.js guide
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14" />
+            <path d="m13 5 7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <div data-pm-hook="pm-doc-convention" {...stylex.attrs(styles.pmDocConvention)}>
+        <p data-pm-hook="pm-doc-convention-title" {...stylex.attrs(styles.pmDocConventionTitle)}>
+          Go + PostgreSQL + WebSocket
+        </p>
+        <p data-pm-hook="pm-doc-convention-desc" {...stylex.attrs(styles.pmDocConventionDesc)}>
+          The same schema wired into a Go backend with native WebSocket transport.
+        </p>
+        <a
+          data-pm-hook="pm-guide-link"
+          href="https://github.com/yoosuf/Messenger/blob/master/docs/GO_POSTGRES_SOCKET.md"
+          target="_blank"
+          rel="noopener noreferrer"
+          {...stylex.attrs(styles.pmGuideLink)}
+        >
+          Read the Go guide
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14" />
+            <path d="m13 5 7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <div data-pm-hook="pm-doc-convention" {...stylex.attrs(styles.pmDocConvention)}>
+        <p data-pm-hook="pm-doc-convention-title" {...stylex.attrs(styles.pmDocConventionTitle)}>
+          Architecture &amp; lifecycle diagrams
+        </p>
+        <p data-pm-hook="pm-doc-convention-desc" {...stylex.attrs(styles.pmDocConventionDesc)}>
+          Table domains, relationships, and design notes from user registration
+          through report and block.
+        </p>
+        <a
+          data-pm-hook="pm-guide-link"
+          href="https://github.com/yoosuf/Messenger/blob/master/ARCHITECTURE.md"
+          target="_blank"
+          rel="noopener noreferrer"
+          {...stylex.attrs(styles.pmGuideLink)}
+        >
+          Open ARCHITECTURE.md
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14" />
+            <path d="m13 5 7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <div data-pm-hook="pm-doc-convention" {...stylex.attrs(styles.pmDocConvention)}>
+        <p data-pm-hook="pm-doc-convention-title" {...stylex.attrs(styles.pmDocConventionTitle)}>
+          Prompt pack for agentic development
+        </p>
+        <p data-pm-hook="pm-doc-convention-desc" {...stylex.attrs(styles.pmDocConventionDesc)}>
+          Repository prompts that scaffold a Node or Go backend, or a phased
+          dual-backend roadmap, with your AI agent.
+        </p>
+        <a
+          data-pm-hook="pm-guide-link"
+          href="https://github.com/yoosuf/Messenger/tree/master/.github/prompts"
+          target="_blank"
+          rel="noopener noreferrer"
+          {...stylex.attrs(styles.pmGuideLink)}
+        >
+          Browse the prompt pack
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14" />
+            <path d="m13 5 7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -162,9 +378,9 @@ import CodeBlock from './CodeBlock.astro'
       Schema at a glance
     </h2>
     <p data-pm-hook="pm-section-sub" {...stylex.attrs(styles.pmSectionSub)}>
-      Sixteen tables across five domains — identity, contact network, conversation,
-      messaging, and moderation. A full ER-style diagram ships with the repository
-      as <code {...stylex.attrs(styles.pmInlineCode)}>Messenger.mwb</code> and{' '}
+      Fifteen tables across seven domains — identity, contact network, conversation,
+      messaging, device &amp; session, moderation, and engagement. A full ER-style
+      diagram ships with the repository as <code {...stylex.attrs(styles.pmInlineCode)}>Messenger.mwb</code> and{' '}
       <code {...stylex.attrs(styles.pmInlineCode)}>Messenger.png</code>.
     </p>
 
@@ -282,166 +498,6 @@ import CodeBlock from './CodeBlock.astro'
         </tbody>
       </table>
     </div>
-  </div>
-</section>
-
-<section data-pm-hook="pm-section" {...stylex.attrs(styles.pmSection)} id="guides">
-  <div data-pm-hook="pm-container" {...stylex.attrs(styles.pmContainer)}>
-    <h2 data-pm-hook="pm-section-title" {...stylex.attrs(styles.pmSectionTitle)}>
-      Implementation guides
-    </h2>
-    <p data-pm-hook="pm-section-sub" {...stylex.attrs(styles.pmSectionSub)}>
-      Step-by-step guides for wiring the schema into realtime backends, plus
-      reference architecture and a prompt pack for agentic development.
-    </p>
-
-    <div data-pm-hook="pm-doc-conventions" {...stylex.attrs(styles.pmDocConventions)}>
-      <div data-pm-hook="pm-doc-convention" {...stylex.attrs(styles.pmDocConvention)}>
-        <p data-pm-hook="pm-doc-convention-title" {...stylex.attrs(styles.pmDocConventionTitle)}>
-          Node.js + Express + TypeScript + PostgreSQL + Socket.IO
-        </p>
-        <p data-pm-hook="pm-doc-convention-desc" {...stylex.attrs(styles.pmDocConventionDesc)}>
-          A full walkthrough for a realtime Node backend using the schema as its
-          database core.
-        </p>
-        <a
-          data-pm-hook="pm-guide-link"
-          href="https://github.com/yoosuf/Messenger/blob/master/docs/NODE_EXPRESS_TYPESCRIPT_POSTGRES_SOCKET.md"
-          target="_blank"
-          rel="noopener noreferrer"
-          {...stylex.attrs(styles.pmGuideLink)}
-        >
-          Read the Node.js guide
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14" />
-            <path d="m13 5 7 7-7 7" />
-          </svg>
-        </a>
-      </div>
-
-      <div data-pm-hook="pm-doc-convention" {...stylex.attrs(styles.pmDocConvention)}>
-        <p data-pm-hook="pm-doc-convention-title" {...stylex.attrs(styles.pmDocConventionTitle)}>
-          Go + PostgreSQL + WebSocket
-        </p>
-        <p data-pm-hook="pm-doc-convention-desc" {...stylex.attrs(styles.pmDocConventionDesc)}>
-          The same schema wired into a Go backend with native WebSocket transport.
-        </p>
-        <a
-          data-pm-hook="pm-guide-link"
-          href="https://github.com/yoosuf/Messenger/blob/master/docs/GO_POSTGRES_SOCKET.md"
-          target="_blank"
-          rel="noopener noreferrer"
-          {...stylex.attrs(styles.pmGuideLink)}
-        >
-          Read the Go guide
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14" />
-            <path d="m13 5 7 7-7 7" />
-          </svg>
-        </a>
-      </div>
-
-      <div data-pm-hook="pm-doc-convention" {...stylex.attrs(styles.pmDocConvention)}>
-        <p data-pm-hook="pm-doc-convention-title" {...stylex.attrs(styles.pmDocConventionTitle)}>
-          Architecture &amp; lifecycle diagrams
-        </p>
-        <p data-pm-hook="pm-doc-convention-desc" {...stylex.attrs(styles.pmDocConventionDesc)}>
-          Table domains, relationships, and design notes from user registration
-          through report and block.
-        </p>
-        <a
-          data-pm-hook="pm-guide-link"
-          href="https://github.com/yoosuf/Messenger/blob/master/ARCHITECTURE.md"
-          target="_blank"
-          rel="noopener noreferrer"
-          {...stylex.attrs(styles.pmGuideLink)}
-        >
-          Open ARCHITECTURE.md
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14" />
-            <path d="m13 5 7 7-7 7" />
-          </svg>
-        </a>
-      </div>
-
-      <div data-pm-hook="pm-doc-convention" {...stylex.attrs(styles.pmDocConvention)}>
-        <p data-pm-hook="pm-doc-convention-title" {...stylex.attrs(styles.pmDocConventionTitle)}>
-          Prompt pack for agentic development
-        </p>
-        <p data-pm-hook="pm-doc-convention-desc" {...stylex.attrs(styles.pmDocConventionDesc)}>
-          Repository prompts that scaffold a Node or Go backend, or a phased
-          dual-backend roadmap, with your AI agent.
-        </p>
-        <a
-          data-pm-hook="pm-guide-link"
-          href="https://github.com/yoosuf/Messenger/tree/master/.github/prompts"
-          target="_blank"
-          rel="noopener noreferrer"
-          {...stylex.attrs(styles.pmGuideLink)}
-        >
-          Browse the prompt pack
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14" />
-            <path d="m13 5 7 7-7 7" />
-          </svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section data-pm-hook="pm-section" {...stylex.attrs(styles.pmSection)} id="quickstart">
-  <div data-pm-hook="pm-container" {...stylex.attrs(styles.pmContainer)}>
-    <h2 data-pm-hook="pm-section-title" {...stylex.attrs(styles.pmSectionTitle)}>
-      Quick start
-    </h2>
-    <p data-pm-hook="pm-section-sub" {...stylex.attrs(styles.pmSectionSub)}>
-      From an empty database to a ready-to-wire messaging model in three steps.
-    </p>
-
-    <ol data-pm-hook="pm-steps" {...stylex.attrs(styles.pmSteps)}>
-      <li data-pm-hook="pm-step" {...stylex.attrs(styles.pmStep)}>
-        <span data-pm-hook="pm-step-num" {...stylex.attrs(styles.pmStepNum)}>1</span>
-        <h3 data-pm-hook="pm-step-title" {...stylex.attrs(styles.pmStepTitle)}>
-          Import the schema
-        </h3>
-        <p data-pm-hook="pm-step-desc" {...stylex.attrs(styles.pmStepDesc)}>
-          Run <code {...stylex.attrs(styles.pmInlineCode)}>messenger.sql</code> against your
-          database. MySQL-first, PostgreSQL-friendly.
-        </p>
-      </li>
-      <li data-pm-hook="pm-step" {...stylex.attrs(styles.pmStep)}>
-        <span data-pm-hook="pm-step-num" {...stylex.attrs(styles.pmStepNum)}>2</span>
-        <h3 data-pm-hook="pm-step-title" {...stylex.attrs(styles.pmStepTitle)}>
-          Inspect the ER model
-        </h3>
-        <p data-pm-hook="pm-step-desc" {...stylex.attrs(styles.pmStepDesc)}>
-          Open <code {...stylex.attrs(styles.pmInlineCode)}>Messenger.mwb</code> in MySQL
-          Workbench to see and extend the design visually.
-        </p>
-      </li>
-      <li data-pm-hook="pm-step" {...stylex.attrs(styles.pmStep)}>
-        <span data-pm-hook="pm-step-num" {...stylex.attrs(styles.pmStepNum)}>3</span>
-        <h3 data-pm-hook="pm-step-title" {...stylex.attrs(styles.pmStepTitle)}>
-          Wire your API layer
-        </h3>
-        <p data-pm-hook="pm-step-desc" {...stylex.attrs(styles.pmStepDesc)}>
-          Connect Node.js + Socket.IO or Go + WebSocket and implement your messaging
-          logic on the tables.
-        </p>
-      </li>
-    </ol>
-
-    <CodeBlock
-      code={`# Import the schema
-mysql -u app -p chatdb < messenger.sql
-
-# Core tables are ready:
-# users, conversations, participants,
-# messages, attachments, devices, access`}
-      lang="bash"
-      label="Database"
-    />
   </div>
 </section>
 

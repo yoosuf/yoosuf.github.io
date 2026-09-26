@@ -68,9 +68,9 @@ export const postwire: Product = {
   navLinks: [
     { label: 'Features', href: '#features' },
     { label: 'How it works', href: '#howitworks' },
-    { label: 'Docs', href: '#docs' },
     { label: 'Install', href: '#install' },
     { label: 'AI agents', href: '#mcp' },
+    { label: 'Docs', href: '#docs' },
     { label: 'FAQ', href: '#faq' },
   ],
   hero: {
@@ -156,9 +156,9 @@ export const messenger: Product = {
   navLinks: [
     { label: 'Capabilities', href: '#capabilities' },
     { label: 'Use cases', href: '#usecases' },
-    { label: 'Schema', href: '#schema' },
-    { label: 'Guides', href: '#guides' },
     { label: 'Quick start', href: '#quickstart' },
+    { label: 'Guides', href: '#guides' },
+    { label: 'Schema', href: '#schema' },
     { label: 'FAQ', href: '#faq' },
   ],
   hero: {

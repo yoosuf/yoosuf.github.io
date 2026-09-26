@@ -534,23 +534,44 @@ const mainAttrs = stylex.attrs(shellStyles.main)
         color: light-dark(#2563eb, #8bb0ff);
       }
 
-      /* FAQ accordion (native `<details>`) — StyleX can't express the
-         `[open]` ancestor state, so chevron flip, item dividers, marker
-         removal, and the open animation are composited here. */
-      [data-faq-item] > summary::-webkit-details-marker {
+      /* StyleX sets `display` on these, which outranks the user agent's
+         `[hidden] { display: none }`. Without this the endpoint filter marks
+         rows hidden while still painting them, and the search block would show
+         for visitors with no JavaScript. `pm-tabpanel` is included so a panel
+         stays collapsed even if it later picks up a StyleX `display`. */
+      [data-pm-hook='pm-doc-search'][hidden],
+      [data-pm-hook='pm-doc-index-item'][hidden],
+      [data-pm-hook='pm-doc-search-empty'][hidden],
+      [data-pm-hook='pm-tabpanel'][hidden] {
         display: none;
       }
-      [data-faq-item] + [data-faq-item] {
+
+      /* Disclosure chrome (native `<details>`) — StyleX can't express the
+         `[open]` ancestor state, so chevron flip, item dividers, marker
+         removal, and the open animation are composited here.
+         `data-faq-item` is reserved for real FAQ questions, because
+         `extractFaqItems` turns every one of those into a FAQPage entry.
+         `data-ref-item` is the product reference disclosure: same chrome,
+         but deliberately outside the FAQ contract so it never becomes a
+         schema.org question. */
+      [data-faq-item] > summary::-webkit-details-marker,
+      [data-ref-item] > summary::-webkit-details-marker {
+        display: none;
+      }
+      [data-faq-item] + [data-faq-item],
+      [data-ref-item] + [data-ref-item] {
         border-top-color: light-dark(#e5e5e5, #2b2b2b);
         border-top-style: solid;
         border-top-width: 1px;
       }
-      [data-faq-item][open] [data-faq-chevron] {
+      [data-faq-item][open] [data-faq-chevron],
+      [data-ref-item][open] [data-faq-chevron] {
         color: light-dark(#2563eb, #8bb0ff);
         transform: rotate(180deg);
       }
       @media (prefers-reduced-motion: no-preference) {
-        [data-faq-item][open] [data-faq-body] {
+        [data-faq-item][open] [data-faq-body],
+        [data-ref-item][open] [data-faq-body] {
           animation: faq-body-in 0.25s ease-out;
         }
       }

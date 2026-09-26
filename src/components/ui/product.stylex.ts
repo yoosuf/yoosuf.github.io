@@ -380,8 +380,15 @@ export const styles = stylex.create({
 
   /* --- "Built for" strip --- */
   /* --- Section layout --- */
+  /* Section rhythm scales with the viewport. A flat 64px read as cramped
+     between two heavy sections on a desktop and as a waste on a 320px phone,
+     so the gap now opens up as there's room for it. */
   pmSection: {
-    marginTop: '64px',
+    marginTop: {
+      default: '96px',
+      '@media (max-width: 979px)': '72px',
+      '@media (max-width: 767px)': '48px',
+    },
   },
   pmSwitchSection: {
     marginTop: '56px',
@@ -390,7 +397,7 @@ export const styles = stylex.create({
   pmSectionTitle: {
     marginTop: 0,
     marginRight: 0,
-    marginBottom: '12px',
+    marginBottom: '16px',
     marginLeft: 0,
     fontSize: 'var(--pm-fs-display)',
     fontWeight: 700,
@@ -552,12 +559,16 @@ export const styles = stylex.create({
     color: 'var(--pm-ink-soft)',
   },
 
-  /* --- How it works: steps --- */
+  /* --- How it works: steps ---
+     A rule-and-number timeline, not a card row: three boxes of prose under
+     three boxes of the diagram above read as filler, and each card ended up
+     two-thirds empty because the grid stretched it to the tallest sibling.
+     Same treatment as the agent workflow timeline further down the page. */
   pmSteps: {
     display: 'grid',
     gridTemplateColumns: '1fr',
-    gap: '16px',
-    marginTop: '24px',
+    gap: '22px',
+    marginTop: '30px',
     paddingTop: 0,
     paddingRight: 0,
     paddingBottom: 0,
@@ -565,47 +576,34 @@ export const styles = stylex.create({
     listStyle: 'none',
     '@media (min-width: 900px)': {
       gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: '28px',
     },
   },
 
   pmStep: {
-    paddingTop: '24px',
-    paddingRight: '26px',
-    paddingBottom: '24px',
-    paddingLeft: '26px',
-    backgroundColor: 'var(--pm-surface)',
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: 'var(--pm-border)',
-    borderRadius: 16,
-    boxShadow: 'var(--pm-shadow-card)',
+    borderTopWidth: 3,
+    borderTopStyle: 'solid',
+    borderTopColor: 'var(--pm-border-strong)',
+    paddingTop: '14px',
   },
 
   pmStepNum: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 32,
-    height: 32,
-    marginBottom: '14px',
+    display: 'block',
+    marginBottom: '6px',
     fontFamily: fonts.mono,
     fontSize: 'var(--pm-fs-small)',
     fontWeight: 700,
     color: 'var(--pm-ink-soft)',
-    backgroundColor: 'var(--pm-bg-soft)',
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: 'var(--pm-border)',
-    borderRadius: 9,
   },
 
   pmStepTitle: {
     marginTop: 0,
     marginRight: 0,
-    marginBottom: '8px',
+    marginBottom: '7px',
     marginLeft: 0,
     fontSize: 'var(--pm-fs-card)',
     fontWeight: 700,
+    lineHeight: 1.3,
     color: 'var(--pm-ink)',
   },
 
@@ -624,6 +622,7 @@ export const styles = stylex.create({
     marginTop: '24px',
     '@media (min-width: 1180px)': {
       display: 'flex',
+      flexWrap: 'wrap',
       alignItems: 'stretch',
       gap: 0,
     },
@@ -854,15 +853,25 @@ export const styles = stylex.create({
     color: 'var(--pm-ink-faint)',
   },
 
-  /* Live log (element, container; the initial rows are authored in the page
-     markup and stay on global composites since atomic classes can't reach
-     them). */
+  /* Live log. It sits under the whole pipeline rather than inside the core
+     card: at column width the five lines wrapped and forced the two side
+     cards to carry ~300px of dead space each. Full width it reads as one
+     event strip, and the entries sit two or three per row instead of
+     stacking. */
+  pmFlowConsole: {
+    minWidth: 0,
+    '@media (min-width: 1180px)': {
+      flex: '1 1 100%',
+      marginTop: '18px',
+    },
+  },
+
   pmFlowLogHead: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: '10px',
-    marginTop: '16px',
+    marginTop: 0,
     marginRight: 0,
     marginBottom: '6px',
     marginLeft: 0,
@@ -871,6 +880,9 @@ export const styles = stylex.create({
     letterSpacing: '0.08em',
     textTransform: 'uppercase',
     color: 'var(--pm-ink-faint)',
+    '@media (max-width: 1179px)': {
+      marginTop: '14px',
+    },
   },
 
   pmFlowLogCount: {
@@ -881,22 +893,27 @@ export const styles = stylex.create({
   },
 
   pmFlowLog: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '4px',
-    height: 126,
+    display: 'grid',
+    gridTemplateColumns: '1fr',
+    gap: '4px 24px',
     overflow: 'hidden',
     margin: 0,
-    paddingTop: '10px',
-    paddingRight: '12px',
-    paddingBottom: '10px',
-    paddingLeft: '12px',
+    paddingTop: '12px',
+    paddingRight: '14px',
+    paddingBottom: '12px',
+    paddingLeft: '14px',
     listStyle: 'none',
     backgroundColor: 'var(--pm-term-bg)',
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: 'var(--pm-border)',
-    borderRadius: 10,
+    borderRadius: 12,
+    '@media (min-width: 560px)': {
+      gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+    },
+    '@media (min-width: 900px)': {
+      gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+    },
   },
 
   pmFlowStatus: {
@@ -938,8 +955,15 @@ export const styles = stylex.create({
     boxShadow: 'none',
   },
 
+  /* Pins a node's status pill to the bottom edge. The three cards are the same
+     height, so the pills land on one line and the leftover room reads as
+     intentional instead of as content that stopped early. */
+  pmFlowFoot: {
+    marginTop: 'auto',
+    paddingTop: '16px',
+  },
+
   pmFlowLogLine: {
-    flexShrink: 0,
     fontFamily: fonts.mono,
     fontSize: 'var(--pm-fs-tiny)',
     lineHeight: 1.65,
@@ -959,7 +983,10 @@ export const styles = stylex.create({
     color: '#b3b3b3',
   },
 
-  /* Connector rail and its visible dash track are explicit child elements. */
+  /* Connector rail and its visible dash track are explicit child elements.
+     The column stays narrow on purpose: at 136px the two connectors ate a
+     quarter of the diagram and squeezed the node text until every endpoint
+     wrapped onto two or three lines. */
   pmFlowArrow: {
     position: 'relative',
     zIndex: 2,
@@ -977,7 +1004,7 @@ export const styles = stylex.create({
       alignItems: 'center',
       justifyContent: 'center',
       gap: '10px',
-      width: 136,
+      width: 116,
       margin: 0,
       padding: 0,
     },
@@ -1077,14 +1104,14 @@ export const styles = stylex.create({
 
   pmFlowArrowLabel: {
     paddingTop: '4px',
-    paddingRight: '13px',
+    paddingRight: '11px',
     paddingBottom: '4px',
-    paddingLeft: '13px',
+    paddingLeft: '11px',
     textAlign: 'center',
-    fontSize: 'var(--pm-fs-xs)',
+    fontSize: 'var(--pm-fs-tiny)',
     fontWeight: 600,
-    whiteSpace: 'nowrap',
-    maxWidth: 120,
+    lineHeight: 1.35,
+    maxWidth: '100%',
     color: 'var(--pm-ink-soft)',
     backgroundColor: 'var(--pm-bg-soft)',
     borderWidth: 1,
@@ -1265,8 +1292,11 @@ export const styles = stylex.create({
     opacity: 0.7,
   },
 
+  /* The three API cards are the top-level units of the developer guide, so the
+     gap between them is wider than the padding inside them. At 24px the cards
+     ran together into one 3500px wall instead of reading as separate groups. */
   pmDocBlock: {
-    marginTop: '24px',
+    marginTop: '44px',
     paddingTop: '28px',
     paddingRight: '32px',
     paddingBottom: '28px',
@@ -1293,6 +1323,12 @@ export const styles = stylex.create({
     fontSize: 'var(--pm-fs-card)',
     fontWeight: 700,
     color: 'var(--pm-ink)',
+  },
+
+  /* Extra air above a second titled block (use-case groups) so the two
+     subgroups read as separate blocks under one section heading. */
+  pmDocTitleSpaced: {
+    marginTop: '2.25rem',
   },
 
   pmDocConventions: {
@@ -1328,6 +1364,10 @@ export const styles = stylex.create({
 
   pmDocConventionDesc: {
     margin: 0,
+    /* These ran the full 982px of the container — roughly 130 characters a
+       line. Capped to match pmSectionSub so the guides read at the same
+       measure as the rest of the page. */
+    maxWidth: '620px',
     fontSize: 'var(--pm-fs-small)',
     lineHeight: 1.55,
     color: 'var(--pm-ink-soft)',
@@ -1415,6 +1455,158 @@ export const styles = stylex.create({
     color: 'var(--pm-ink-soft)',
   },
 
+  /* Filter for the endpoint list. Progressive enhancement: the block ships
+     `hidden` and the page script reveals it, so a no-JS visitor never meets a
+     dead input. */
+  pmDocSearch: {
+    display: 'flex',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: '10px',
+    marginTop: '20px',
+  },
+
+  pmDocSearchInput: {
+    flex: '1 1 15rem',
+    minWidth: 0,
+    margin: 0,
+    paddingTop: '9px',
+    paddingRight: '12px',
+    paddingBottom: '9px',
+    paddingLeft: '12px',
+    fontFamily: 'inherit',
+    fontSize: 'var(--pm-fs-small)',
+    lineHeight: 1.4,
+    color: 'var(--pm-ink)',
+    backgroundColor: 'var(--pm-surface)',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'var(--pm-border)',
+    borderRadius: 8,
+    appearance: 'none',
+    '::placeholder': {
+      color: 'var(--pm-ink-faint)',
+    },
+    /* The native clear affordance duplicates our own result count. */
+    '::-webkit-search-cancel-button': {
+      appearance: 'none',
+    },
+    ':focus-visible': {
+      outline: '2px solid var(--pm-accent)',
+      outlineOffset: '1px',
+      borderColor: 'var(--pm-accent)',
+    },
+  },
+
+  pmDocSearchCount: {
+    margin: 0,
+    fontSize: 'var(--pm-fs-tiny)',
+    fontWeight: 600,
+    letterSpacing: '0.02em',
+    color: 'var(--pm-ink-faint)',
+    whiteSpace: 'nowrap',
+  },
+
+  pmDocSearchEmpty: {
+    margin: 0,
+    paddingTop: '16px',
+    fontSize: 'var(--pm-fs-small)',
+    color: 'var(--pm-ink-soft)',
+  },
+
+  /* The API surface, flattened: every endpoint on one calm list so the
+     reference is scannable without opening anything. The request samples and
+     param tables live behind the single disclosure below it.
+     Dividers come from a 1px gap over a border-coloured background rather than
+     per-row borders, so they stay correct as rows are filtered out. */
+  pmDocIndex: {
+    display: 'grid',
+    gridTemplateColumns: 'minmax(0, 1fr)',
+    gap: '1px',
+    marginTop: '12px',
+    backgroundColor: 'var(--pm-border)',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'var(--pm-border)',
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+
+  pmDocIndexItem: {
+    display: 'flex',
+    alignItems: 'baseline',
+    flexWrap: 'wrap',
+    columnGap: '10px',
+    rowGap: '4px',
+    minWidth: 0,
+    paddingTop: '13px',
+    paddingRight: '18px',
+    paddingBottom: '13px',
+    paddingLeft: '18px',
+    backgroundColor: 'var(--pm-surface)',
+    '@media (max-width: 480px)': {
+      paddingTop: '12px',
+      paddingRight: '14px',
+      paddingBottom: '12px',
+      paddingLeft: '14px',
+    },
+  },
+
+  pmDocIndexHead: {
+    display: 'flex',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: '8px',
+    minWidth: 0,
+    flexShrink: 0,
+  },
+
+  pmDocIndexDesc: {
+    flex: '1 1 22rem',
+    margin: 0,
+    minWidth: 0,
+    fontSize: 'var(--pm-fs-small)',
+    lineHeight: 1.55,
+    color: 'var(--pm-ink-soft)',
+  },
+
+  /* One disclosure for the whole reference. The chevron and body reveal come
+     from the shared data-faq-* chrome in BaseLayout, so this reuses the
+     site-wide disclosure behaviour rather than forking a variant. */
+  pmRefPanel: {
+    marginTop: '20px',
+    backgroundColor: 'var(--pm-surface)',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'var(--pm-border)',
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+
+  pmRefSummary: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 16,
+    cursor: 'pointer',
+    listStyleType: 'none',
+    margin: 0,
+    paddingTop: '1.05rem',
+    paddingRight: '1.25rem',
+    paddingBottom: '1.05rem',
+    paddingLeft: '1.25rem',
+    fontSize: 'var(--pm-fs-body)',
+    fontWeight: 700,
+    color: 'var(--pm-ink)',
+  },
+
+  pmRefBody: {
+    paddingTop: '0.25rem',
+    paddingRight: '1.25rem',
+    paddingBottom: '1.5rem',
+    paddingLeft: '1.25rem',
+  },
+
   pmDocTable: {
     width: '100%',
     marginTop: '12px',
@@ -1445,6 +1637,7 @@ export const styles = stylex.create({
     marginRight: 0,
     marginBottom: 0,
     marginLeft: 0,
+    maxWidth: '620px',
     fontSize: 'var(--pm-fs-small)',
     lineHeight: 1.55,
     color: 'var(--pm-ink-faint)',
@@ -1478,8 +1671,10 @@ export const styles = stylex.create({
   },
 
   /* --- Comparison table --- */
+  /* The card spans the container: capped at 48rem it left a third of the
+     measure empty on a desktop and read as an unfinished block. Prose tables
+     that do need a narrower measure compose pmTableWrapNarrow. */
   pmTableWrap: {
-    maxWidth: '48rem',
     marginTop: '8px',
     overflowX: 'auto',
     backgroundColor: 'var(--pm-surface)',
@@ -1490,27 +1685,62 @@ export const styles = stylex.create({
     boxShadow: 'var(--pm-shadow-card)',
   },
 
+  pmTableWrapNarrow: {
+    maxWidth: '48rem',
+  },
+
+  /* Fixed layout so the declared column shares survive the stretch: auto
+     layout would hand every extra pixel to the label column and push the four
+     product columns into the far corner. */
   pmCompare: {
     width: '100%',
     minWidth: 680,
+    tableLayout: 'fixed',
     borderCollapse: 'collapse',
     fontSize: 'var(--pm-fs-small)',
   },
 
+  pmCompareFeature: {
+    width: '38%',
+  },
+
+  pmCompareCol: {
+    width: '15.5%',
+    textAlign: 'center',
+  },
+
+  /* Also the Postwire column's body cells, so its marks sit like the rest of
+     the matrix. The marks are SVG now, so no font weight to carry. */
   pmColPostwire: {
+    verticalAlign: 'middle',
+    textAlign: 'center',
     backgroundColor: 'color-mix(in srgb, var(--pm-accent) 7%, var(--pm-wash-base))',
     color: 'var(--pm-accent-strong)',
   },
+  /* The reset hands every svg a block box, which ignores the cell's centring,
+     so each mark carries its own inline-block box. */
+  pmSymIcon: {
+    display: 'inline-block',
+    verticalAlign: 'middle',
+    width: 18,
+    height: 18,
+  },
+
+  /* Centred in their column rather than hugging the left edge of a 170px cell,
+     and aligned to the middle so the tall label row still reads straight. */
   pmSymOk: {
-    fontWeight: 700,
+    verticalAlign: 'middle',
+    textAlign: 'center',
     color: 'var(--pm-accent-strong)',
   },
   pmSymNo: {
-    fontWeight: 700,
+    verticalAlign: 'middle',
+    textAlign: 'center',
     color: '#8f8f8f',
   },
   pmSymPart: {
-    fontWeight: 700,
+    verticalAlign: 'middle',
+    textAlign: 'center',
     color: 'var(--pm-ink-soft)',
   },
 
@@ -1653,49 +1883,37 @@ export const styles = stylex.create({
     marginRight: 0,
     marginBottom: 0,
     marginLeft: 0,
+    maxWidth: '620px',
     fontSize: 'var(--pm-fs-small)',
     lineHeight: 1.55,
     color: 'var(--pm-ink-faint)',
   },
 
-  /* --- MCP tools: grouped columns --- */
-  pmToolsGrid: {
-    display: 'grid',
-    gridTemplateColumns: '1fr',
-    gap: '20px',
-    marginTop: '24px',
-    alignItems: 'start',
-    '@media (min-width: 900px)': {
-      gridTemplateColumns: 'repeat(2, 1fr)',
-    },
+  /* --- MCP tools: one channel per tab --- */
+  pmToolPanelNote: {
+    margin: 0,
+    maxWidth: '62ch',
+    paddingBottom: '18px',
+    fontSize: 'var(--pm-fs-small)',
+    lineHeight: 1.6,
+    color: 'var(--pm-ink-soft)',
   },
 
-  pmToolsGroupTitle: {
-    marginTop: 0,
-    marginRight: 0,
-    marginBottom: '10px',
-    marginLeft: 0,
-    fontSize: 'var(--pm-fs-xs)',
-    fontWeight: 700,
-    letterSpacing: '0.08em',
-    textTransform: 'uppercase',
-    color: 'var(--pm-ink-faint)',
-  },
-
+  /* The tool list is deliberately not a card. An enclosing border drew a box
+     around what is really a plain reading list, and the surface fill was a
+     no-op anyway — `--pm-surface` is the page background. Rows separate
+     themselves on spacing plus the icon tile, so there is no box to draw. */
   pmTools: {
     display: 'flex',
     flexDirection: 'column',
     margin: 0,
     padding: 0,
     listStyle: 'none',
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: 'var(--pm-border)',
-    borderRadius: 14,
-    overflow: 'hidden',
-    backgroundColor: 'var(--pm-surface)',
   },
 
+  /* A tool row is a flat list item, not a link — there is nothing to click, so
+     it carries no hover tint and no pointer. The old chevron badge and hover
+     state both implied an interaction that does not exist. */
   pmTool: {
     display: 'flex',
     alignItems: 'center',
@@ -1704,20 +1922,12 @@ export const styles = stylex.create({
     paddingRight: '22px',
     paddingBottom: '16px',
     paddingLeft: '22px',
-    transitionProperty: 'background-color, color',
-    transitionDuration: '0.25s',
-    transitionTimingFunction: 'ease',
     color: 'var(--pm-ink)',
-    ':hover': {
-      backgroundColor: 'var(--pm-bg-soft)',
-      color: 'var(--pm-ink)',
-    },
-    ':focus-within': {
-      backgroundColor: 'var(--pm-bg-soft)',
-      color: 'var(--pm-ink)',
-    },
   },
 
+  /* Icon tiles keep the soft-tinted rounded box used by pmFeatureIcon,
+     pmProblemIcon and pmFlowChannelIcon — it is the shared icon language
+     here, not per-call chrome. */
   pmToolIcon: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -1736,9 +1946,40 @@ export const styles = stylex.create({
   pmToolMain: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '2px',
+    gap: '5px',
     minWidth: 0,
     flex: '1 1 auto',
+  },
+
+  /* Name plus the role it plays in an auth flow. The role is what an agent
+     integrator scans for, so it sits on the same line as the name. */
+  pmToolHead: {
+    display: 'flex',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: '10px',
+    minWidth: 0,
+  },
+
+  pmToolRole: {
+    flexShrink: 0,
+    paddingTop: '2px',
+    paddingRight: '8px',
+    paddingBottom: '2px',
+    paddingLeft: '8px',
+    fontSize: 'var(--pm-fs-tiny)',
+    fontWeight: 600,
+    letterSpacing: '0.04em',
+    textTransform: 'uppercase',
+    /* --pm-ink-faint lands at 4.32:1 on the light pill, which misses AA for a
+       12.5px label. --pm-ink-soft reads at 6:1 and matches the tab and the
+       panel note, so the hierarchy is carried by the pill, not by dim text. */
+    color: 'var(--pm-ink-soft)',
+    backgroundColor: 'var(--pm-bg-soft)',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'var(--pm-border)',
+    borderRadius: 999,
   },
 
   pmToolName: {
@@ -1752,18 +1993,6 @@ export const styles = stylex.create({
     color: 'inherit',
     fontFamily: fonts.mono,
     wordBreak: 'break-word',
-  },
-
-  pmToolArrow: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
-    width: 26,
-    height: 26,
-    borderRadius: 8,
-    color: 'inherit',
-    backgroundColor: 'var(--pm-bg-soft)',
   },
 
   pmToolDesc: {

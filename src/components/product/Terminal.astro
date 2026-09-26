@@ -1,0 +1,90 @@
+---
+/**
+ * macOS-style terminal mockup for the product hero.
+ *
+ * Owns three things the StyleX layer can't:
+ *   1. The window chrome (traffic lights + centred title) — StyleX atoms.
+ *   2. Build-time syntax highlighting. Prism tokenises each line at build
+ *      time and the HTML is injected with `set:html`, so no highlighter ships
+ *      to the browser. Lines are highlighted per-line because a session mixes
+ *      languages (bash commands, JSON output, SQL) inside one continuous
+ *      scrollback.
+ *   3. The token palette. Prism's spans are emitted as raw class names inside
+ *      `set:html`, so StyleX cannot see them and they must be styled from a
+ *      global block — same reason BaseLayout styles the markdown Prism theme.
+ *      Those colours are fixed rather than `light-dark()`: the window is a dark
+ *      mockup in both colour schemes, so it needs one dark palette, not a
+ *      themed one. The palette is shared with `CodeBlock.astro` and lives in
+ *      BaseLayout's global block, since the microsite's code panels are dark
+ *      in both colour schemes too.
+ *
+ * The whole widget is `role="img"` with an `aria-label`, so the highlighted
+ * text is decorative and never announced as a wall of code.
+ */
+import * as stylex from '@stylexjs/stylex'
+import { styles } from '../ui/product.stylex'
+import { highlightLine, type CodeLang } from '../../lib/highlight'
+
+type Line =
+  /** A command the user typed — rendered behind a `$` prompt. Defaults to
+      bash; pass `lang` for a prompt that runs something else (e.g. `sql`). */
+  | { kind: 'cmd'; code: string; lang?: CodeLang }
+  /** Program output. `lang` is optional; omit it for plain text. */
+  | { kind: 'out'; code: string; lang?: CodeLang }
+  /** A success line, rendered behind a `✓`. */
+  | { kind: 'ok'; code: string }
+
+interface Props {
+  /** Window title, shown centred in the title bar. */
+  title: string
+  /** Accessible name for the whole mockup. */
+  ariaLabel: string
+  lines: Line[]
+}
+
+const { title, ariaLabel, lines } = Astro.props
+
+/*
+ * Rows are inline spans joined by a literal "\n" rather than block elements:
+ * inside `white-space: pre-wrap` that renders one row per line *and* keeps
+ * the newlines intact when a visitor selects and copies the session, which
+ * `display: block` rows would swallow.
+ *
+ * Injected wholesale via set:html — an Astro expression inside <pre> would
+ * turn every template newline in this file into a rendered line break.
+ */
+const scrollback = lines
+  .map((line) => {
+    if (line.kind === 'cmd') {
+      return `<span data-pm-hook="pm-prompt">$</span> ${highlightLine(line.code, line.lang ?? 'bash')}`
+    }
+    if (line.kind === 'ok') {
+      return `<span data-pm-hook="pm-ok">&#10003;</span> ${highlightLine(line.code)}`
+    }
+    return highlightLine(line.code, line.lang)
+  })
+  .join('\n')
+---
+
+<div
+  data-pm-hook="pm-terminal"
+  {...stylex.attrs(styles.pmTerminal)}
+  role="img"
+  aria-label={ariaLabel}
+>
+  <div data-pm-hook="pm-terminal-bar" {...stylex.attrs(styles.pmTerminalBar)}>
+    <span data-pm-hook="pm-terminal-lights" {...stylex.attrs(styles.pmTerminalLights)}>
+      <span data-pm-hook="pm-terminal-dot-red" {...stylex.attrs(styles.pmTerminalDot, styles.pmTerminalDotRed)}></span>
+      <span data-pm-hook="pm-terminal-dot-yellow" {...stylex.attrs(styles.pmTerminalDot, styles.pmTerminalDotYellow)}></span>
+      <span data-pm-hook="pm-terminal-dot-green" {...stylex.attrs(styles.pmTerminalDot, styles.pmTerminalDotGreen)}></span>
+    </span>
+    <span data-pm-hook="pm-terminal-title" {...stylex.attrs(styles.pmTerminalTitle)}>{title}</span>
+  </div>
+  <div data-pm-hook="pm-terminal-body" {...stylex.attrs(styles.pmTerminalBody)}>
+    <pre
+      data-pm-hook="pm-terminal-lines"
+      {...stylex.attrs(styles.pmTerminalLines)}
+      set:html={scrollback}
+    ></pre>
+  </div>
+</div>

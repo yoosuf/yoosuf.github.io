@@ -1,0 +1,57 @@
+---
+/**
+ * A dark code panel for the product microsites.
+ *
+ * Every code surface on these pages — the API reference snippets and the
+ * install command boxes — is a dark mockup in both colour schemes, so they all
+ * share the one fixed-dark token palette that lives in BaseLayout's global
+ * block. That palette is a plain-CSS composite rather than StyleX because the
+ * token spans are injected through `set:html` and StyleX cannot see them; this
+ * is the same reason BaseLayout styles the markdown Prism theme.
+ *
+ * Highlighting itself happens at build time in `lib/highlight`, so Prism never
+ * reaches the browser. Unlike the hero terminal (which is `role="img"`), these
+ * panels are real content: they stay selectable, copyable, and searchable.
+ */
+import * as stylex from '@stylexjs/stylex'
+import { styles } from '../ui/product.stylex'
+import { highlightBlock, type CodeLang } from '../../lib/highlight'
+
+interface Props {
+  /** The snippet source. Leading/trailing newlines are trimmed. */
+  code: string
+  /**
+   * Base language for the block. Always authored explicitly — `highlightBlock`
+   * never guesses it, it only switches to `json` once a shell snippet starts
+   * emitting a JSON payload.
+   */
+  lang: CodeLang
+  /** `install` reuses the install box atom; `block` is the API reference panel. */
+  variant?: 'block' | 'install'
+  /** Optional caption rendered above the code (Messenger's "Database" label). */
+  label?: string
+}
+
+const { code, lang, variant = 'block', label } = Astro.props
+
+const hook = variant === 'install' ? 'pm-install-code' : 'pm-code-block'
+const atom = variant === 'install' ? styles.pmInstallCode : styles.pmCodeBlock
+const html = highlightBlock(code.trim(), lang)
+---
+
+{
+  label ? (
+    <div data-pm-hook={hook} {...stylex.attrs(atom, styles.pmCodeBlockWithLabel)}>
+      <span data-pm-hook="pm-code-label" {...stylex.attrs(styles.pmCodeLabel)}>
+        {label}
+      </span>
+      <code
+        data-pm-hook="pm-code-content"
+        {...stylex.attrs(styles.pmCodeContent)}
+        set:html={html}
+      />
+    </div>
+  ) : (
+    <pre data-pm-hook={hook} data-pm-lang={lang} {...stylex.attrs(atom)} set:html={html} />
+  )
+}

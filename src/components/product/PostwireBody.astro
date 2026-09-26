@@ -1,6 +1,7 @@
 ---
 import * as stylex from '@stylexjs/stylex'
 import { styles } from '../ui/product.stylex'
+import CodeBlock from './CodeBlock.astro'
 
 ---
 
@@ -1164,9 +1165,7 @@ import { styles } from '../ui/product.stylex'
 </p>
 
           
-<pre data-pm-hook="pm-code-block" {...stylex.attrs(styles.pmCodeBlock)}>
-{"curl \"http://localhost:8025/api/wait?to=user@example.com&subject=Verify&since=2026-09-04T10:00:00Z&timeout_ms=15000\""}
-</pre>
+<CodeBlock code={"curl \"http://localhost:8025/api/wait?to=user@example.com&subject=Verify&since=2026-09-04T10:00:00Z&timeout_ms=15000\""} lang="bash" variant="block" />
 
           
 <table data-pm-hook="pm-doc-table" {...stylex.attrs(styles.pmDocTable)}>
@@ -1288,9 +1287,7 @@ import { styles } from '../ui/product.stylex'
 </h5>
 
           
-<pre data-pm-hook="pm-code-block" {...stylex.attrs(styles.pmCodeBlock)}>
-{"{\n  \"id\": \"msg_01J6XYZ\",\n  \"from\": \"no-reply@yourapp.dev\",\n  \"to\": \"user@example.com\",\n  \"subject\": \"Confirm your account\",\n  \"text\": \"Your verification code is 849201\",\n  \"html\": \"<html><body>...</body></html>\",\n  \"received_at\": \"2026-09-04T10:00:01.123Z\"\n}"}
-</pre>
+<CodeBlock code={"{\n  \"id\": \"msg_01J6XYZ\",\n  \"from\": \"no-reply@yourapp.dev\",\n  \"to\": \"user@example.com\",\n  \"subject\": \"Confirm your account\",\n  \"text\": \"Your verification code is 849201\",\n  \"html\": \"<html><body>...</body></html>\",\n  \"received_at\": \"2026-09-04T10:00:01.123Z\"\n}"} lang="json" variant="block" />
 
         
 </div>
@@ -1318,9 +1315,7 @@ import { styles } from '../ui/product.stylex'
 </p>
 
           
-<pre data-pm-hook="pm-code-block" {...stylex.attrs(styles.pmCodeBlock)}>
-{"curl \"http://localhost:8025/api/messages/msg_01J6XYZ\""}
-</pre>
+<CodeBlock code={"curl \"http://localhost:8025/api/messages/msg_01J6XYZ\""} lang="bash" variant="block" />
 
         
 </div>
@@ -1348,9 +1343,7 @@ import { styles } from '../ui/product.stylex'
 </p>
 
           
-<pre data-pm-hook="pm-code-block" {...stylex.attrs(styles.pmCodeBlock)}>
-{"curl \"http://localhost:8025/api/messages/msg_01J6XYZ/extract\"\n\n{\n  \"codes\": [\"849201\"],\n  \"links\": [\"http://localhost:3000/auth/verify?token=d8f1e09a8b2c4d5e\"],\n  \"action_urls\": [\"http://localhost:3000/auth/verify?token=d8f1e09a8b2c4d5e\"]\n}"}
-</pre>
+<CodeBlock code={"curl \"http://localhost:8025/api/messages/msg_01J6XYZ/extract\"\n\n{\n  \"codes\": [\"849201\"],\n  \"links\": [\"http://localhost:3000/auth/verify?token=d8f1e09a8b2c4d5e\"],\n  \"action_urls\": [\"http://localhost:3000/auth/verify?token=d8f1e09a8b2c4d5e\"]\n}"} lang="bash" variant="block" />
 
         
 </div>
@@ -1378,9 +1371,7 @@ import { styles } from '../ui/product.stylex'
 </p>
 
           
-<pre data-pm-hook="pm-code-block" {...stylex.attrs(styles.pmCodeBlock)}>
-{"curl \"http://localhost:8025/api/messages/msg_01J6XYZ/analysis\"\n\n{\n  \"spam_score\": 12,\n  \"issues\": [\"missing doctype\", \"un-inlined styles\"]\n}"}
-</pre>
+<CodeBlock code={"curl \"http://localhost:8025/api/messages/msg_01J6XYZ/analysis\"\n\n{\n  \"spam_score\": 12,\n  \"issues\": [\"missing doctype\", \"un-inlined styles\"]\n}"} lang="bash" variant="block" />
 
         
 </div>
@@ -1434,9 +1425,7 @@ import { styles } from '../ui/product.stylex'
 </p>
 
           
-<pre data-pm-hook="pm-code-block" {...stylex.attrs(styles.pmCodeBlock)}>
-{"curl -X POST \"http://localhost:8025/api/sms\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"from\": \"+15550199\", \"to\": \"+15550100\", \"body\": \"Your code is 839201\"}'"}
-</pre>
+<CodeBlock code={"curl -X POST \"http://localhost:8025/api/sms\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"from\": \"+15550199\", \"to\": \"+15550100\", \"body\": \"Your code is 839201\"}'"} lang="bash" variant="block" />
 
         
 </div>
@@ -1480,9 +1469,7 @@ import { styles } from '../ui/product.stylex'
 </p>
 
           
-<pre data-pm-hook="pm-code-block" {...stylex.attrs(styles.pmCodeBlock)}>
-{"curl -X POST \"http://localhost:8025/api/sms/webhook\" \\\n  -d \"From=%2B15550199\" -d \"To=%2B15550100\" \\\n  -d \"Body=Your verification code is 839201\""}
-</pre>
+<CodeBlock code={"curl -X POST \"http://localhost:8025/api/sms/webhook\" \\\n  -d \"From=%2B15550199\" -d \"To=%2B15550100\" \\\n  -d \"Body=Your verification code is 839201\""} lang="bash" variant="block" />
 
         
 </div>
@@ -1518,9 +1505,7 @@ import { styles } from '../ui/product.stylex'
 </p>
 
           
-<pre data-pm-hook="pm-code-block" {...stylex.attrs(styles.pmCodeBlock)}>
-{"curl \"http://localhost:8025/api/sms/wait?to=%2B15550100&since=2026-09-04T10:00:00Z&timeout_ms=10000\""}
-</pre>
+<CodeBlock code={"curl \"http://localhost:8025/api/sms/wait?to=%2B15550100&since=2026-09-04T10:00:00Z&timeout_ms=10000\""} lang="bash" variant="block" />
 
         
 </div>
@@ -1548,9 +1533,7 @@ import { styles } from '../ui/product.stylex'
 </p>
 
           
-<pre data-pm-hook="pm-code-block" {...stylex.attrs(styles.pmCodeBlock)}>
-{"curl \"http://localhost:8025/api/sms/sms_01A2B3/extract\"\n\n{ \"codes\": [\"839201\"], \"links\": [] }"}
-</pre>
+<CodeBlock code={"curl \"http://localhost:8025/api/sms/sms_01A2B3/extract\"\n\n{ \"codes\": [\"839201\"], \"links\": [] }"} lang="bash" variant="block" />
 
         
 </div>
@@ -1989,9 +1972,7 @@ import { styles } from '../ui/product.stylex'
 </div>
 
           
-<pre data-pm-hook="pm-install-code" {...stylex.attrs(styles.pmInstallCode)}>
-{"docker run -d --name postwire \\\n  -p 1025:1025 -p 8025:8025 \\\n  yoosuf/postwire:latest"}
-</pre>
+<CodeBlock code={"docker run -d --name postwire \\\n  -p 1025:1025 -p 8025:8025 \\\n  yoosuf/postwire:latest"} lang="bash" variant="install" />
 
         
 </div>
@@ -2036,9 +2017,7 @@ import { styles } from '../ui/product.stylex'
 </div>
 
           
-<pre data-pm-hook="pm-install-code" {...stylex.attrs(styles.pmInstallCode)}>
-{"brew tap yoosuf/tap\nbrew install postwire"}
-</pre>
+<CodeBlock code={"brew tap yoosuf/tap\nbrew install postwire"} lang="bash" variant="install" />
 
         
 </div>
@@ -2079,9 +2058,7 @@ import { styles } from '../ui/product.stylex'
 </div>
 
           
-<pre data-pm-hook="pm-install-code" {...stylex.attrs(styles.pmInstallCode)}>
-{"curl -fsSL https://raw.githubusercontent.com/\\\nyoosuf/postwire/main/install.sh | sh"}
-</pre>
+<CodeBlock code={"curl -fsSL https://raw.githubusercontent.com/\\\nyoosuf/postwire/main/install.sh | sh"} lang="bash" variant="install" />
 
         
 </div>
@@ -2122,9 +2099,7 @@ import { styles } from '../ui/product.stylex'
 </div>
 
           
-<pre data-pm-hook="pm-install-code" {...stylex.attrs(styles.pmInstallCode)}>
-{"cargo install --git \\\n  https://github.com/yoosuf/postwire \\\n  postwire-server postwire-mcp"}
-</pre>
+<CodeBlock code={"cargo install --git \\\n  https://github.com/yoosuf/postwire \\\n  postwire-server postwire-mcp"} lang="bash" variant="install" />
 
         
 </div>
@@ -2183,9 +2158,7 @@ import { styles } from '../ui/product.stylex'
 </div>
 
     
-<pre data-pm-hook="pm-code-block" {...stylex.attrs(styles.pmCodeBlock)}>
-{"{\n  \"mcpServers\": {\n    \"postwire\": {\n      \"command\": \"postwire-mcp\",\n      \"env\": {\n        \"POSTWIRE_URL\": \"http://localhost:8025\"\n      }\n    }\n  }\n}"}
-</pre>
+<CodeBlock code={"{\n  \"mcpServers\": {\n    \"postwire\": {\n      \"command\": \"postwire-mcp\",\n      \"env\": {\n        \"POSTWIRE_URL\": \"http://localhost:8025\"\n      }\n    }\n  }\n}"} lang="json" variant="block" />
 
 
     
@@ -2800,9 +2773,7 @@ import { styles } from '../ui/product.stylex'
 </div>
 
     
-<pre data-pm-hook="pm-code-block" {...stylex.attrs(styles.pmCodeBlock)}>
-{"const since = new Date().toISOString();   // capture BEFORE triggering\n\nawait fetch(\"http://localhost:3000/api/signup\", {\n  method: \"POST\",\n  headers: { \"Content-Type\": \"application/json\" },\n  body: JSON.stringify({ email: \"sarah@company.test\", password: \"...\" }),\n});\n\nconst email = await (await fetch(\n  `http://localhost:8025/api/wait?to=sarah@company.test&since=${since}&timeout_ms=10000`\n)).json();\n\nconst { codes } = await (await fetch(\n  `http://localhost:8025/api/messages/${email.id}/extract`\n)).json();\n\nawait fetch(\"http://localhost:3000/api/verify-email\", {\n  method: \"POST\",\n  headers: { \"Content-Type\": \"application/json\" },\n  body: JSON.stringify({ email: \"sarah@company.test\", code: codes[0] }),\n});\nconsole.log(\"verified with code\", codes[0]);"}
-</pre>
+<CodeBlock code={"const since = new Date().toISOString();   // capture BEFORE triggering\n\nawait fetch(\"http://localhost:3000/api/signup\", {\n  method: \"POST\",\n  headers: { \"Content-Type\": \"application/json\" },\n  body: JSON.stringify({ email: \"sarah@company.test\", password: \"...\" }),\n});\n\nconst email = await (await fetch(\n  `http://localhost:8025/api/wait?to=sarah@company.test&since=${since}&timeout_ms=10000`\n)).json();\n\nconst { codes } = await (await fetch(\n  `http://localhost:8025/api/messages/${email.id}/extract`\n)).json();\n\nawait fetch(\"http://localhost:3000/api/verify-email\", {\n  method: \"POST\",\n  headers: { \"Content-Type\": \"application/json\" },\n  body: JSON.stringify({ email: \"sarah@company.test\", code: codes[0] }),\n});\nconsole.log(\"verified with code\", codes[0]);"} lang="javascript" variant="block" />
 
   
 </div>

@@ -13,6 +13,13 @@ export const headerStyles = stylex.create({
     position: 'sticky',
     top: 0,
     zIndex: 30,
+    /* --site-header-h (BaseLayout) is what the product subnav sticks at, so
+       the bar must resolve to exactly that height or a sub-pixel seam of page
+       content shows through between them. The bar's natural height is
+       font-metric derived (~63.6px on desktop vs the 64px token), hence
+       minHeight rather than height: it pins the seam closed without ever
+       clipping the bar if its content ever grows. */
+    minHeight: 'var(--site-header-h, auto)',
   },
 
   container: {

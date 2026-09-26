@@ -3,8 +3,7 @@ import messengerBodySource from '../components/product/MessengerBody.astro?raw'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import ProductLayout from '../layouts/ProductLayout.astro'
 import MessengerBody from '../components/product/MessengerBody.astro'
-import * as stylex from '@stylexjs/stylex'
-import { styles } from '../components/ui/product.stylex'
+import Terminal from '../components/product/Terminal.astro'
 import { messenger } from '../data/product'
 import { SITE } from '../config'
 import { extractFaqItems } from '../data/faq'
@@ -62,31 +61,30 @@ const softwareJsonLd = {
 >
   <ProductLayout product={messenger}>
     <div slot="media">
-      <div data-pm-hook="pm-terminal" {...stylex.attrs(styles.pmTerminal)} role="img" aria-label="Messenger schema import in a terminal">
-        <div data-pm-hook="pm-terminal-bar" {...stylex.attrs(styles.pmTerminalBar)}>
-          <span data-pm-hook="pm-terminal-dot pm-terminal-dot-red" {...stylex.attrs(styles.pmTerminalDotRed)}></span>
-          <span data-pm-hook="pm-terminal-dot pm-terminal-dot-yellow" {...stylex.attrs(styles.pmTerminalDotYellow)}></span>
-          <span data-pm-hook="pm-terminal-dot pm-terminal-dot-green" {...stylex.attrs(styles.pmTerminalDotGreen)}></span>
-          <span data-pm-hook="pm-terminal-title" {...stylex.attrs(styles.pmTerminalTitle)}>messenger.sql — schema</span>
-        </div>
-        <div data-pm-hook="pm-terminal-body" {...stylex.attrs(styles.pmTerminalBody)}>
-          <pre data-pm-hook="pm-terminal-lines" {...stylex.attrs(styles.pmTerminalLines)}><span data-pm-hook="pm-prompt" {...stylex.attrs(styles.pmPrompt)}>$</span> mysql -u app -p chatdb &lt; messenger.sql
-<span data-pm-hook="pm-ok" {...stylex.attrs(styles.pmOk)}>&#10003;</span> 16 tables created
-
-<span data-pm-hook="pm-prompt" {...stylex.attrs(styles.pmPrompt)}>$</span> SHOW TABLES;
-users                 user_verification
-contacts              user_contact
-conversation          participants
-messages              attachments
-deleted_messages      deleted_conversations
-block_list            reports
-devices               access
-activities
-
-<span data-pm-hook="pm-prompt" {...stylex.attrs(styles.pmPrompt)}>$</span> SELECT * FROM messages;
-<span data-pm-hook="pm-ok" {...stylex.attrs(styles.pmOk)}>&#10003;</span> ready for your API layer</pre>
-        </div>
-      </div>
+      <Terminal
+        title="messenger.sql — schema"
+        ariaLabel="Messenger schema import in a terminal"
+        lines={[
+          { kind: 'cmd', code: 'mysql -u app -p chatdb < messenger.sql' },
+          { kind: 'ok', code: '16 tables created' },
+          { kind: 'out', code: '' },
+          { kind: 'cmd', lang: 'sql', code: 'SELECT * FROM messages;' },
+          {
+            kind: 'out',
+            code: [
+              'users                 user_verification',
+              'contacts              user_contact',
+              'conversation          participants',
+              'messages              attachments',
+              'deleted_messages      deleted_conversations',
+              'block_list            reports',
+              'devices               access',
+              'activities',
+            ].join('\n'),
+          },
+          { kind: 'ok', code: 'ready for your API layer' },
+        ]}
+      />
     </div>
 
     <MessengerBody />

@@ -1,6 +1,7 @@
 ---
 import * as stylex from '@stylexjs/stylex'
 import { styles } from '../ui/product.stylex'
+import CodeBlock from './CodeBlock.astro'
 ---
 
 <section data-pm-hook="pm-section" {...stylex.attrs(styles.pmSection)} id="capabilities">
@@ -431,17 +432,16 @@ import { styles } from '../ui/product.stylex'
       </li>
     </ol>
 
-    <div data-pm-hook="pm-code-block" {...stylex.attrs(styles.pmCodeBlock)}>
-      <span data-pm-hook="pm-code-label" {...stylex.attrs(styles.pmCodeLabel)}>
-        Database
-      </span>
-      # Import the schema
-      mysql -u app -p chatdb &lt; messenger.sql
+    <CodeBlock
+      code={`# Import the schema
+mysql -u app -p chatdb < messenger.sql
 
-      # Core tables are ready:
-      # users, conversations, participants,
-      # messages, attachments, devices, access
-    </div>
+# Core tables are ready:
+# users, conversations, participants,
+# messages, attachments, devices, access`}
+      lang="bash"
+      label="Database"
+    />
   </div>
 </section>
 

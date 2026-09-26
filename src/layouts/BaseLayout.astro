@@ -564,6 +564,129 @@ const mainAttrs = stylex.attrs(shellStyles.main)
           transform: none;
         }
       }
+
+      /* Dark code palette — the product microsites' fixed-dark surfaces.
+         The terminal scrollback and the API/install code panels are all dark
+         mockups in both colour schemes, so they share one palette instead of
+         the `light-dark()` markdown theme above. A GitHub Dark-derived set:
+         every value clears 4.5:1 on --pm-term-bg (#101010). Plain CSS rather
+         than StyleX because the token spans are injected via `set:html` and
+         StyleX cannot see inside them. */
+      [data-pm-hook='pm-terminal-lines'] .token.comment,
+      [data-pm-hook='pm-terminal-lines'] .token.prolog,
+      [data-pm-hook='pm-terminal-lines'] .token.doctype,
+      [data-pm-hook='pm-terminal-lines'] .token.cdata,
+      [data-pm-hook='pm-code-block'] .token.comment,
+      [data-pm-hook='pm-code-block'] .token.prolog,
+      [data-pm-hook='pm-code-block'] .token.doctype,
+      [data-pm-hook='pm-code-block'] .token.cdata,
+      [data-pm-hook='pm-install-code'] .token.comment,
+      [data-pm-hook='pm-install-code'] .token.prolog,
+      [data-pm-hook='pm-install-code'] .token.doctype,
+      [data-pm-hook='pm-install-code'] .token.cdata {
+        color: #7d8590;
+        font-style: italic;
+      }
+      [data-pm-hook='pm-terminal-lines'] .token.punctuation,
+      [data-pm-hook='pm-terminal-lines'] .token.operator,
+      [data-pm-hook='pm-terminal-lines'] .token.entity,
+      [data-pm-hook='pm-terminal-lines'] .token.url,
+      [data-pm-hook='pm-code-block'] .token.punctuation,
+      [data-pm-hook='pm-code-block'] .token.operator,
+      [data-pm-hook='pm-code-block'] .token.entity,
+      [data-pm-hook='pm-code-block'] .token.url,
+      [data-pm-hook='pm-install-code'] .token.punctuation,
+      [data-pm-hook='pm-install-code'] .token.operator,
+      [data-pm-hook='pm-install-code'] .token.entity,
+      [data-pm-hook='pm-install-code'] .token.url {
+        color: #8b949e;
+      }
+      [data-pm-hook='pm-terminal-lines'] .token.keyword,
+      [data-pm-hook='pm-terminal-lines'] .token.atrule,
+      [data-pm-hook='pm-terminal-lines'] .token.important,
+      [data-pm-hook='pm-terminal-lines'] .token.bold,
+      [data-pm-hook='pm-code-block'] .token.keyword,
+      [data-pm-hook='pm-code-block'] .token.atrule,
+      [data-pm-hook='pm-code-block'] .token.important,
+      [data-pm-hook='pm-code-block'] .token.bold,
+      [data-pm-hook='pm-install-code'] .token.keyword,
+      [data-pm-hook='pm-install-code'] .token.atrule,
+      [data-pm-hook='pm-install-code'] .token.important,
+      [data-pm-hook='pm-install-code'] .token.bold {
+        color: #ff7b72;
+        font-weight: 600;
+      }
+      [data-pm-hook='pm-terminal-lines'] .token.function,
+      [data-pm-hook='pm-terminal-lines'] .token.class-name,
+      [data-pm-hook='pm-code-block'] .token.function,
+      [data-pm-hook='pm-code-block'] .token.class-name,
+      [data-pm-hook='pm-install-code'] .token.function,
+      [data-pm-hook='pm-install-code'] .token.class-name {
+        color: #d2a8ff;
+      }
+      [data-pm-hook='pm-terminal-lines'] .token.property,
+      [data-pm-hook='pm-terminal-lines'] .token.attr-name,
+      [data-pm-hook='pm-terminal-lines'] .token.constant,
+      [data-pm-hook='pm-terminal-lines'] .token.boolean,
+      [data-pm-hook='pm-terminal-lines'] .token.inserted,
+      [data-pm-hook='pm-code-block'] .token.property,
+      [data-pm-hook='pm-code-block'] .token.attr-name,
+      [data-pm-hook='pm-code-block'] .token.constant,
+      [data-pm-hook='pm-code-block'] .token.boolean,
+      [data-pm-hook='pm-code-block'] .token.inserted,
+      [data-pm-hook='pm-install-code'] .token.property,
+      [data-pm-hook='pm-install-code'] .token.attr-name,
+      [data-pm-hook='pm-install-code'] .token.constant,
+      [data-pm-hook='pm-install-code'] .token.boolean,
+      [data-pm-hook='pm-install-code'] .token.inserted {
+        color: #7ee787;
+      }
+      [data-pm-hook='pm-terminal-lines'] .token.string,
+      [data-pm-hook='pm-terminal-lines'] .token.char,
+      [data-pm-hook='pm-terminal-lines'] .token.attr-value,
+      [data-pm-hook='pm-code-block'] .token.string,
+      [data-pm-hook='pm-code-block'] .token.char,
+      [data-pm-hook='pm-code-block'] .token.attr-value,
+      [data-pm-hook='pm-install-code'] .token.string,
+      [data-pm-hook='pm-install-code'] .token.char,
+      [data-pm-hook='pm-install-code'] .token.attr-value {
+        color: #a5d6ff;
+      }
+      [data-pm-hook='pm-terminal-lines'] .token.number,
+      [data-pm-hook='pm-terminal-lines'] .token.symbol,
+      [data-pm-hook='pm-terminal-lines'] .token.regex,
+      [data-pm-hook='pm-terminal-lines'] .token.builtin,
+      [data-pm-hook='pm-code-block'] .token.number,
+      [data-pm-hook='pm-code-block'] .token.symbol,
+      [data-pm-hook='pm-code-block'] .token.regex,
+      [data-pm-hook='pm-code-block'] .token.builtin,
+      [data-pm-hook='pm-install-code'] .token.number,
+      [data-pm-hook='pm-install-code'] .token.symbol,
+      [data-pm-hook='pm-install-code'] .token.regex,
+      [data-pm-hook='pm-install-code'] .token.builtin {
+        color: #79c0ff;
+      }
+      /* Command flags (`-d`, `--name`, `-p`) tokenise as `parameter variable`. */
+      [data-pm-hook='pm-terminal-lines'] .token.parameter,
+      [data-pm-hook='pm-terminal-lines'] .token.variable,
+      [data-pm-hook='pm-code-block'] .token.parameter,
+      [data-pm-hook='pm-code-block'] .token.variable,
+      [data-pm-hook='pm-install-code'] .token.parameter,
+      [data-pm-hook='pm-install-code'] .token.variable {
+        color: #ffa657;
+      }
+
+      /* Prompt and success glyphs in the terminal. These live here rather than
+         in the StyleX module because both are injected through set:html
+         alongside the token spans, so they are styled by the same mechanism. */
+      [data-pm-hook='pm-prompt'] {
+        color: var(--pm-term-prompt);
+        font-weight: 700;
+      }
+      [data-pm-hook='pm-ok'] {
+        color: var(--pm-term-ok);
+        font-weight: 700;
+      }
     </style>
 
     <meta property="og:title" content={og.title} />

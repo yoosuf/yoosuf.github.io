@@ -1,4 +1,5 @@
 import * as stylex from '@stylexjs/stylex'
+import { fonts } from '../../styles/tokens.stylex'
 
 /**
  * Product marketing microsite — StyleX layer.
@@ -40,15 +41,19 @@ export const styles = stylex.create({
     },
   },
 
-  /* --- Hero split (copy + terminal) --- */
+  /* --- Hero split (copy + terminal) ---
+     The hero is a themed surface, not a dark band: it uses the same
+     surface → bg-soft wash as pmFlowCore so light mode reads as the rest of
+     the page. The terminal in the media slot stays dark in both schemes —
+     that is the mockup, not the theme. */
   pmHero: {
     paddingTop: '84px',
     paddingBottom: '92px',
     backgroundImage:
-      'linear-gradient(180deg, #141414 0%, var(--pm-term-bg) 100%)',
+      'linear-gradient(180deg, var(--pm-surface) 0%, var(--pm-bg-soft) 100%)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    borderBottom: '1px solid rgba(160, 160, 160, 0.14)',
+    borderBottom: '1px solid var(--pm-border)',
     '@media (max-width: 979px)': {
       paddingTop: '64px',
       paddingBottom: '68px',
@@ -105,11 +110,11 @@ export const styles = stylex.create({
     fontWeight: 700,
     letterSpacing: '0.08em',
     textTransform: 'uppercase',
-    color: '#d6d6d6',
-    backgroundColor: 'rgba(160, 160, 160, 0.08)',
+    color: 'var(--pm-ink-soft)',
+    backgroundColor: 'var(--pm-surface)',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'rgba(160, 160, 160, 0.22)',
+    borderColor: 'var(--pm-border)',
     borderRadius: 999,
   },
 
@@ -122,7 +127,7 @@ export const styles = stylex.create({
     fontWeight: 700,
     lineHeight: 1.1,
     letterSpacing: '-0.035em',
-    color: '#f6f6f6',
+    color: 'var(--pm-ink)',
     '@media (max-width: 767px)': {
       fontSize: 'clamp(1.9rem, 5.5vw, 2.3rem)',
     },
@@ -136,7 +141,7 @@ export const styles = stylex.create({
     maxWidth: '560px',
     fontSize: 'var(--pm-fs-lead)',
     lineHeight: 1.6,
-    color: '#b3b3b3',
+    color: 'var(--pm-ink-soft)',
     '@media (min-width: 980px)': {
       maxWidth: '520px',
     },
@@ -174,7 +179,7 @@ export const styles = stylex.create({
 
   pmHeroCheck: {
     alignItems: 'center',
-    color: '#d6d6d6',
+    color: 'var(--pm-ink)',
     display: 'flex',
     fontSize: 'var(--pm-fs-small)',
     fontWeight: 600,
@@ -182,7 +187,7 @@ export const styles = stylex.create({
   },
 
   pmHeroCheckIcon: {
-    color: '#b3b3b3',
+    color: 'var(--pm-accent)',
     flexShrink: 0,
     height: 15,
     strokeWidth: 3,
@@ -199,87 +204,125 @@ export const styles = stylex.create({
     width: 22,
   },
 
-  /* --- Terminal mockup --- */
+  /* --- Terminal mockup (macOS Terminal.app) ---
+     Chrome follows the real thing: saturated traffic lights in Apple's system
+     colours (not the desaturated greys this wore before, which read as a fake
+     Linux window), a title centred over the bar the way Terminal.app centres
+     it regardless of how many controls sit at the left, and SF Mono at a
+     tighter leading. The hover glyphs on the lights are the detail that sells
+     it — CSS-only, no script. */
   pmTerminal: {
     backgroundColor: 'var(--pm-term-bg)',
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: 'var(--pm-border)',
-    borderRadius: 14,
+    borderRadius: 10,
     overflow: 'hidden',
     boxShadow: '0 24px 60px -24px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0.4)',
-    fontFamily: 'var(--font-mono)',
+    fontFamily: fonts.mono,
   },
 
   pmTerminalBar: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    paddingTop: '11px',
+    paddingRight: '14px',
+    paddingBottom: '11px',
+    paddingLeft: '14px',
+    borderBottom: '1px solid rgba(160, 160, 160, 0.16)',
+    backgroundColor: 'color-mix(in srgb, #fff 5%, transparent)',
+  },
+
+  pmTerminalLights: {
     display: 'flex',
     alignItems: 'center',
     gap: '8px',
-    paddingTop: '12px',
-    paddingRight: '16px',
-    paddingBottom: '12px',
-    paddingLeft: '16px',
-    borderBottom: '1px solid rgba(160, 160, 160, 0.16)',
-    backgroundColor: 'color-mix(in srgb, #fff 4%, transparent)',
+    flexShrink: 0,
   },
 
   pmTerminalDot: {
+    position: 'relative',
+    display: 'grid',
+    placeItems: 'center',
     width: 12,
     height: 12,
     borderRadius: '50%',
     flexShrink: 0,
+    boxShadow: 'inset 0 0 0 0.5px rgba(0, 0, 0, 0.14)',
+    /* The ×/−/+ glyphs Terminal.app paints on hover. Decorative only — the
+       whole window is role="img", so this is never announced. */
+    '::after': {
+      fontSize: 9,
+      lineHeight: 1,
+      fontWeight: 700,
+      color: 'rgba(0, 0, 0, 0.55)',
+      opacity: 0,
+      transitionProperty: 'opacity',
+      transitionDuration: '120ms',
+    },
+    ':hover::after': {
+      opacity: 1,
+    },
   },
   pmTerminalDotRed: {
-    backgroundColor: '#52525b',
+    backgroundColor: '#ff5f57',
+    '::after': {
+      content: '"\\00d7"',
+    },
   },
   pmTerminalDotYellow: {
-    backgroundColor: '#44444c',
+    backgroundColor: '#febc2e',
+    '::after': {
+      content: '"\\2212"',
+    },
   },
   pmTerminalDotGreen: {
-    backgroundColor: '#3f3f46',
+    backgroundColor: '#28c840',
+    '::after': {
+      content: '"+"',
+    },
   },
 
   pmTerminalTitle: {
-    marginLeft: '10px',
+    position: 'absolute',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    maxWidth: '68%',
     fontSize: 'var(--pm-fs-xs)',
+    fontWeight: 500,
     color: 'var(--pm-term-text)',
-    opacity: 0.75,
+    opacity: 0.7,
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+    textAlign: 'center',
   },
 
   pmTerminalBody: {
-    paddingTop: '18px',
-    paddingRight: '20px',
-    paddingBottom: '20px',
-    paddingLeft: '20px',
+    paddingTop: '16px',
+    paddingRight: '18px',
+    paddingBottom: '18px',
+    paddingLeft: '18px',
     '@media (max-width: 767px)': {
-      paddingTop: '14px',
-      paddingRight: '16px',
+      paddingTop: '13px',
+      paddingRight: '14px',
       paddingBottom: '14px',
-      paddingLeft: '16px',
+      paddingLeft: '14px',
     },
   },
 
   pmTerminalLines: {
     margin: 0,
-    fontFamily: 'var(--font-mono)',
+    fontFamily: fonts.mono,
     fontSize: 'var(--pm-fs-xs)',
-    lineHeight: 1.8,
+    /* Terminal.app sets mono at a tight leading; the old 1.8 was sized for
+       the sans fallback and reads as loose once a real mono font lands. */
+    lineHeight: 1.55,
     color: 'var(--pm-term-text)',
     whiteSpace: 'pre-wrap',
     wordBreak: 'break-word',
     tabSize: 4,
-  },
-
-  pmPrompt: {
-    fontWeight: 700,
-    color: '#e5e5e5',
-  },
-  pmOk: {
-    fontWeight: 700,
-    color: '#f6f6f6',
   },
 
   /* --- Subnav --- */
@@ -545,7 +588,7 @@ export const styles = stylex.create({
     width: 32,
     height: 32,
     marginBottom: '14px',
-    fontFamily: 'var(--font-mono)',
+    fontFamily: fonts.mono,
     fontSize: 'var(--pm-fs-small)',
     fontWeight: 700,
     color: 'var(--pm-ink-soft)',
@@ -897,7 +940,7 @@ export const styles = stylex.create({
 
   pmFlowLogLine: {
     flexShrink: 0,
-    fontFamily: 'var(--font-mono)',
+    fontFamily: fonts.mono,
     fontSize: 'var(--pm-fs-tiny)',
     lineHeight: 1.65,
     color: '#b3b3b3',
@@ -1133,7 +1176,7 @@ export const styles = stylex.create({
     paddingLeft: '24px',
     overflowX: 'auto',
     color: 'var(--pm-term-text)',
-    fontFamily: 'var(--font-mono)',
+    fontFamily: fonts.mono,
     fontSize: 'var(--pm-fs-small)',
     lineHeight: 1.6,
     tabSize: 2,
@@ -1153,6 +1196,18 @@ export const styles = stylex.create({
     marginRight: 0,
     marginBottom: 0,
     marginLeft: 0,
+  },
+
+  /* A labelled code panel keeps `pre-wrap` off the container so the whitespace
+     between the label and the code collapses normally instead of rendering as a
+     blank line; the formatting then comes from `pmCodeContent` on the inside. */
+  pmCodeBlockWithLabel: {
+    whiteSpace: 'normal',
+  },
+
+  pmCodeContent: {
+    display: 'block',
+    whiteSpace: 'pre-wrap',
   },
 
   pmCodeLabel: {
@@ -1189,7 +1244,7 @@ export const styles = stylex.create({
     paddingRight: '20px',
     paddingBottom: '14px',
     paddingLeft: '20px',
-    fontFamily: 'var(--font-mono)',
+    fontFamily: fonts.mono,
     fontSize: 'var(--pm-fs-body)',
     color: 'var(--pm-term-text)',
     backgroundColor: 'var(--pm-term-bg)',
@@ -1311,7 +1366,7 @@ export const styles = stylex.create({
     paddingRight: '10px',
     paddingBottom: '4px',
     paddingLeft: '10px',
-    fontFamily: 'var(--font-mono)',
+    fontFamily: fonts.mono,
     fontSize: 'var(--pm-fs-tiny)',
     fontWeight: 700,
     letterSpacing: '0.04em',
@@ -1324,7 +1379,7 @@ export const styles = stylex.create({
   },
 
   pmPath: {
-    fontFamily: 'var(--font-mono)',
+    fontFamily: fonts.mono,
     fontSize: 'var(--pm-fs-small)',
     fontWeight: 600,
     lineHeight: 1.4,
@@ -1415,7 +1470,7 @@ export const styles = stylex.create({
   },
 
   pmTableCode: {
-    fontFamily: 'var(--font-mono)',
+    fontFamily: fonts.mono,
     fontSize: '0.95em',
     fontWeight: 600,
     whiteSpace: 'nowrap',
@@ -1544,7 +1599,7 @@ export const styles = stylex.create({
   },
 
   pmCodeboxTitle: {
-    fontFamily: 'var(--font-mono)',
+    fontFamily: fonts.mono,
     fontSize: '0.78rem',
     letterSpacing: '0.02em',
     color: '#b3b3b3',
@@ -1583,7 +1638,7 @@ export const styles = stylex.create({
 
   pmInstallCode: {
     margin: 0,
-    fontFamily: 'var(--font-mono)',
+    fontFamily: fonts.mono,
     fontSize: 'var(--pm-fs-xs)',
     lineHeight: 1.6,
     color: 'var(--pm-term-text)',
@@ -1695,7 +1750,7 @@ export const styles = stylex.create({
     fontWeight: 700,
     lineHeight: 1.3,
     color: 'inherit',
-    fontFamily: 'var(--font-mono)',
+    fontFamily: fonts.mono,
     wordBreak: 'break-word',
   },
 
@@ -1768,7 +1823,7 @@ export const styles = stylex.create({
   },
 
   pmWorkflowNum: {
-    fontFamily: 'var(--font-mono)',
+    fontFamily: fonts.mono,
     fontSize: 'var(--pm-fs-small)',
     fontWeight: 700,
     color: 'var(--pm-ink-soft)',
@@ -1919,7 +1974,7 @@ export const styles = stylex.create({
   },
 
   pmInlineCode: {
-    fontFamily: 'var(--font-mono)',
+    fontFamily: fonts.mono,
     fontSize: '0.9em',
     paddingBlock: '0.15em',
     paddingInline: '0.4em',
@@ -1941,7 +1996,10 @@ export const styles = stylex.create({
     color: 'var(--pm-ink-soft)',
   },
 
-  /* --- CTA box --- */
+  /* --- CTA box ---
+     Same treatment as the hero: a themed panel, not a hard-coded dark band.
+     Mirrors the `surface → bg-soft` wash used by pmFlowCore so light mode
+     reads as one system. */
   pmCtaBox: {
     marginTop: '64px',
     marginBottom: '80px',
@@ -1951,12 +2009,12 @@ export const styles = stylex.create({
     paddingLeft: '40px',
     textAlign: 'center',
     backgroundImage:
-      'linear-gradient(180deg, #141414 0%, var(--pm-term-bg) 100%)',
+      'linear-gradient(180deg, var(--pm-surface) 0%, var(--pm-bg-soft) 100%)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'rgba(160, 160, 160, 0.16)',
+    borderColor: 'var(--pm-border)',
     borderRadius: 24,
     '@media (max-width: 767px)': {
       paddingTop: '32px',
@@ -1975,7 +2033,7 @@ export const styles = stylex.create({
     fontWeight: 700,
     lineHeight: 1.25,
     letterSpacing: '-0.02em',
-    color: '#f6f6f6',
+    color: 'var(--pm-ink)',
     '@media (max-width: 767px)': {
       fontSize: '1.55rem',
     },
@@ -1989,7 +2047,7 @@ export const styles = stylex.create({
     maxWidth: 520,
     fontSize: 'var(--pm-fs-card)',
     lineHeight: 1.6,
-    color: '#b3b3b3',
+    color: 'var(--pm-ink-soft)',
   },
 
   pmCtaActions: {
@@ -2049,32 +2107,42 @@ export const styles = stylex.create({
     },
   },
 
+  /* Ghost button on a themed surface (the hero and the closing CTA box, both
+     light in light mode). The previous dark-surface variant is gone: no
+     product surface is fixed-dark any more — the terminal mockups keep their
+     own `--pm-term-*` atoms instead.
+
+     Fill is `--pm-surface`, NOT `--pm-bg-soft`: both panels bottom out at
+     bg-soft, so a bg-soft pill measured 1.00:1 against the panel behind it and
+     only its hairline border delineated it. A surface fill keeps the pill a
+     distinct element without needing a heavy border. */
   pmCtaGhost: {
-    color: 'var(--pm-term-text)',
-    backgroundColor: 'rgba(255, 255, 255, 0.02)',
-    borderColor: 'rgba(160, 160, 160, 0.35)',
+    color: 'var(--pm-ink)',
+    backgroundColor: 'var(--pm-surface)',
+    borderColor: 'var(--pm-border)',
     boxShadow: 'none',
     transitionProperty: 'box-shadow, transform, background-color, border-color, color',
     ':hover': {
-      color: '#ffffff',
-      backgroundColor: 'rgba(255, 255, 255, 0.08)',
-      borderColor: 'rgba(160, 160, 160, 0.55)',
+      color: 'var(--pm-ink)',
+      backgroundColor: 'var(--pm-surface)',
+      borderColor: 'var(--pm-border-strong)',
       boxShadow: 'none',
       transform: 'translateY(-2px)',
       filter: 'none',
       textDecoration: 'none',
     },
     ':focus-visible': {
-      color: '#ffffff',
-      backgroundColor: 'rgba(255, 255, 255, 0.08)',
-      borderColor: 'rgba(160, 160, 160, 0.55)',
+      color: 'var(--pm-ink)',
+      backgroundColor: 'var(--pm-surface)',
+      borderColor: 'var(--pm-border-strong)',
       boxShadow: 'none',
       transform: 'translateY(-2px)',
       filter: 'none',
       textDecoration: 'none',
     },
     ':active': {
-      color: 'var(--pm-term-text)',
+      color: 'var(--pm-ink)',
+      backgroundColor: 'var(--pm-surface)',
       transform: 'translateY(0)',
       boxShadow: 'none',
     },

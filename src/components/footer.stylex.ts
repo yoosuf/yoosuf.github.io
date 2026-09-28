@@ -20,54 +20,7 @@ export const footerStyles = stylex.create({
   },
 
   layout: {
-    display: 'grid',
-    gap: { default: space['10'], '@media (min-width: 48rem)': space['12'] },
-    gridTemplateColumns: {
-      default: 'minmax(0, 1fr)',
-      // Identity keeps a third of the width; the link rows take the rest so an
-      // inline group like `Home · Services · Blog · About` stays on one line.
-      // 48rem, not 56rem — at 768px a single column throws away 300px of
-      // whitespace next to 146px of links and doubles the height for nothing.
-      '@media (min-width: 48rem)': 'minmax(0, 1fr) minmax(0, 1.7fr)',
-    },
-  },
-
-  identity: {
-    maxWidth: '26rem',
-    minWidth: 0,
-  },
-
-  brand: {
-    color: colors.text,
-    fontSize: '1.125rem',
-    fontWeight: weights.semibold,
-    letterSpacing: letterSpacing.tight,
-    lineHeight: lineHeights.snug,
-    marginBlock: 0,
-  },
-
-  brandLink: {
-    alignItems: 'center',
-    color: colors.text,
-    display: 'inline-flex',
-    minHeight: '2.5rem',
-    textDecorationLine: 'none',
-    transitionDuration: '0.15s',
-    transitionProperty: 'color',
-    ':hover': {
-      color: colors.accent,
-      textDecorationLine: 'underline',
-      textDecorationThickness: 1,
-      textUnderlineOffset: 4,
-    },
-  },
-
-  description: {
-    color: colors.textDim,
-    fontSize: '0.9375rem',
-    lineHeight: lineHeights.relaxed,
-    marginBlock: '0.75rem 0',
-    textWrap: 'pretty',
+    display: 'block',
   },
 
   groups: {

@@ -46,6 +46,7 @@
 ### Software Engineering & Web Development
 
 - [Answer Engine Optimization Is an Architecture Problem](https://yoosuf.me/blog/answer-engine-optimization-architecture/): How AEO actually works — the indexing plane, the query plane, query fan-out, hybrid retrieval, reranking, chunking as the real unit of ranking, retrieval vs. citation, crawler taxonomy, llms.txt, and measuring AEO lift with a control group
+- [SEO Is a Distributed System](https://yoosuf.me/blog/how-search-works-architecture/): How search ranking actually works — the crawl subsystem and crawl budget, the inverted index, canonicalisation as clustering, the candidate-generation ranking cascade, the link graph, click-behaviour signals, the render queue, Core Web Vitals as a field measurement system, hreflang, and what to distrust in SEO measurement
 - [Implementing Wizards the Right Way](https://yoosuf.me/blog/implementing-wizards-the-right-way/): Multi-step flow UI/UX patterns — progress indicators, per-step validation, back navigation, branching logic, state persistence, review steps, and anti-patterns
 - [10 Event-Driven Architecture Questions That Separate Architects from Framework Users](https://yoosuf.me/blog/10-event-driven-architecture-questions/): Idempotency, ordering, consistency boundaries, schema evolution, sagas, observability, and knowing when NOT to use events
 - [Setting Up a Legacy Rails 4.2.6 Project with Docker in 2024](https://yoosuf.me/blog/setting-up-legacy-rails-project-in-2024/): Maintaining legacy Rails apps with Docker
@@ -63,6 +64,7 @@
 
 ### AI & Technology
 
+- [Jev Returns a Type, Not a String](https://yoosuf.me/blog/jev-decision-model-routing/): JEV, TypeSafe's decision model, and what it changes for AI model routing — the control plane vs. the data plane, the Choice/Score/Noul primitives, why confidence is concentration rather than accuracy, state projection as a new request-shaping stage, OpenRouter's triage and prompt-injection benchmarks, the independent RouterArena ablation, benchmark reference-standard bias, decision-plane failure policies, and cache-aware routing as the per-context constraint
 - [Introducing Postwire](https://yoosuf.me/blog/introducing-postwire/): A tiny SMTP mail catcher in Rust with REST API and MCP server for automated testing and AI agents ([product page](https://yoosuf.me/postwire/))
 - [Beyond Email: SMS catching, 14 MCP tools, and email analysis in Postwire](https://yoosuf.me/blog/postwire-sms-mcp-analysis/): Postwire v0.2 adds dual-channel SMS catching with Twilio webhooks, 14 MCP tools for full MFA flows, and Litmus-style email analysis
 - [How ChatGPT helps me on day to day life](https://yoosuf.me/blog/chatgpt-daily-life/): Practical uses of AI tools in daily workflows

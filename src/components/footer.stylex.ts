@@ -112,9 +112,9 @@ export const footerStyles = stylex.create({
     alignItems: 'baseline',
     display: 'flex',
     flexWrap: 'wrap',
-    // 8px if a line ever wraps, 24px between links on the same line. The old
-    // 4px/18px had the links nearly touching.
-    columnGap: '0.5rem 1.5rem',
+    // Gap between links: 0.5rem wraps between lines, 1.5rem between items on same line
+    columnGap: '1.5rem',
+    rowGap: '0.5rem',
     marginBlock: 0,
     minWidth: 0,
   },
@@ -134,6 +134,11 @@ export const footerStyles = stylex.create({
     textDecorationLine: 'none',
     transitionDuration: '0.15s',
     transitionProperty: 'color',
+    ':not(:last-child)::after': {
+      content: '"·"',
+      marginInlineStart: '1.5rem',
+      color: colors.textFaint,
+    },
     ':hover': {
       color: colors.text,
       textDecorationLine: 'underline',

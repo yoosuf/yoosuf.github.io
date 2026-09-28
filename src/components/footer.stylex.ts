@@ -13,7 +13,7 @@ export const footerStyles = stylex.create({
     marginInlineEnd: 'auto',
     marginInlineStart: 'auto',
     maxWidth: '68rem',
-    paddingBlock: { default: space['10'], '@media (min-width: 40rem)': space['12'] },
+    paddingBlock: { default: space['12'], '@media (min-width: 40rem)': space['16'] },
     paddingInlineEnd: { default: '1.25rem', '@media (min-width: 40rem)': space['8'] },
     paddingInlineStart: { default: '1.25rem', '@media (min-width: 40rem)': space['8'] },
     width: '100%',
@@ -21,12 +21,14 @@ export const footerStyles = stylex.create({
 
   layout: {
     display: 'grid',
-    gap: { default: space['8'], '@media (min-width: 56rem)': space['12'] },
+    gap: { default: space['10'], '@media (min-width: 48rem)': space['12'] },
     gridTemplateColumns: {
       default: 'minmax(0, 1fr)',
       // Identity keeps a third of the width; the link rows take the rest so an
       // inline group like `Home · Services · Blog · About` stays on one line.
-      '@media (min-width: 56rem)': 'minmax(0, 1fr) minmax(0, 1.7fr)',
+      // 48rem, not 56rem — at 768px a single column throws away 300px of
+      // whitespace next to 146px of links and doubles the height for nothing.
+      '@media (min-width: 48rem)': 'minmax(0, 1fr) minmax(0, 1.7fr)',
     },
   },
 
@@ -48,7 +50,7 @@ export const footerStyles = stylex.create({
     alignItems: 'center',
     color: colors.text,
     display: 'inline-flex',
-    minHeight: '2.75rem',
+    minHeight: '2.5rem',
     textDecorationLine: 'none',
     transitionDuration: '0.15s',
     transitionProperty: 'color',
@@ -62,29 +64,32 @@ export const footerStyles = stylex.create({
 
   description: {
     color: colors.textDim,
-    fontSize: '0.9rem',
+    fontSize: '0.9375rem',
     lineHeight: lineHeights.relaxed,
-    marginBlock: '0.625rem 0',
+    marginBlock: '0.75rem 0',
     textWrap: 'pretty',
   },
 
   groups: {
     display: 'flex',
     flexDirection: 'column',
-    gap: space['2'],
+    // The groups are separate things, not a run-on. 8px between them made the
+    // three of them read as one dense block; 20px lets the eye finish one and
+    // start the next.
+    gap: space['5'],
     marginBlock: 0,
     minWidth: 0,
   },
 
   /** Label on the left, links flowing on the right. Stacked on narrow screens
-   *  where a 6rem label column would leave the links too little room. */
+   *  where a 7rem label column would leave the links too little room. */
   group: {
     display: 'grid',
-    columnGap: '1rem',
-    rowGap: '0.125rem',
+    alignItems: 'baseline',
+    columnGap: '1.25rem',
     gridTemplateColumns: {
       default: 'minmax(0, 1fr)',
-      '@media (min-width: 30rem)': '6rem minmax(0, 1fr)',
+      '@media (min-width: 34rem)': '7rem minmax(0, 1fr)',
     },
     marginBlock: 0,
     minWidth: 0,
@@ -95,7 +100,10 @@ export const footerStyles = stylex.create({
     fontSize: '0.75rem',
     fontWeight: weights.semibold,
     letterSpacing: letterSpacing.wide,
-    lineHeight: '2rem',
+    // Wide, the label shares a line with its links, so it matches the link row
+    // height and sits on the first link's baseline. Stacked under it, a 2.5rem
+    // line height would spend 40px on a two-word label.
+    lineHeight: { default: 1.4, '@media (min-width: 34rem)': '2.5rem' },
     marginBlock: 0,
     textTransform: 'uppercase',
   },
@@ -104,21 +112,24 @@ export const footerStyles = stylex.create({
     alignItems: 'baseline',
     display: 'flex',
     flexWrap: 'wrap',
-    columnGap: '0.25rem 1.125rem',
+    // 8px if a line ever wraps, 24px between links on the same line. The old
+    // 4px/18px had the links nearly touching.
+    columnGap: '0.5rem 1.5rem',
     marginBlock: 0,
     minWidth: 0,
   },
 
-  /** 2rem keeps every target comfortably past the 24px minimum without
-   *  spending 44px a row on a two-word label. */
+  /** 2.5rem (40px) is a comfortable pointer target and well past the 24px
+   *  WCAG 2.2 minimum, without the 44px row that made a 14-link list feel
+   *  like a ladder. */
   groupLink: {
     alignItems: 'center',
     color: colors.textMuted,
     display: 'inline-flex',
-    fontSize: '0.9rem',
-    lineHeight: 1.4,
+    fontSize: '0.9375rem',
+    lineHeight: 1.5,
     maxWidth: '100%',
-    minHeight: '2rem',
+    minHeight: '2.5rem',
     overflowWrap: 'anywhere',
     textDecorationLine: 'none',
     transitionDuration: '0.15s',
@@ -138,15 +149,15 @@ export const footerStyles = stylex.create({
     borderTopWidth: 1,
     display: 'flex',
     flexDirection: { default: 'column', '@media (min-width: 48rem)': 'row' },
-    gap: '0.25rem 1.5rem',
+    gap: '0.5rem 1.5rem',
     justifyContent: { default: 'flex-start', '@media (min-width: 48rem)': 'space-between' },
-    marginBlockStart: space['10'],
-    paddingBlockStart: space['4'],
+    marginBlockStart: space['12'],
+    paddingBlockStart: space['5'],
   },
 
   copyright: {
     color: colors.textDim,
-    fontSize: '0.8rem',
+    fontSize: '0.8125rem',
     lineHeight: 1.6,
     marginBlock: 0,
   },
@@ -154,7 +165,7 @@ export const footerStyles = stylex.create({
   utilityList: {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: '0 1rem',
+    gap: '0 1.25rem',
     listStyleType: 'none',
     marginBlock: 0,
     paddingInlineStart: 0,

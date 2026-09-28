@@ -25,6 +25,12 @@ export const markdownStyles = stylex.create({
     color: colors.accent, fontWeight: weights.medium, textDecorationLine: 'underline',
     textDecorationThickness: 1, textUnderlineOffset: 3, transitionDuration: '0.15s',
     transitionProperty: 'color',
+    // Prose links are often the URL itself, and a 60-character URL has no wrap
+    // opportunity. Without this it is the one thing on the page that can force a
+    // horizontal scroll on a phone, and code comments and bare domains do the
+    // same. `anywhere` rather than `break-word` because the content is a single
+    // unbreakable token — there is nowhere else for the break to go.
+    overflowWrap: 'anywhere',
     ':hover': { color: colors.accentStrong, textDecorationThickness: 2 },
   },
   quote: {

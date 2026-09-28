@@ -1,7 +1,22 @@
+# yoosuf.me — everything here is meant to be read, fetched and cited.
+#
+# Machine-readable surfaces, all crawlable:
+#   /sitemap-index.xml  canonical URL list
+#   /llms.txt           curated map of the site, grouped by topic
+#   /llms-full.txt      every post as plain text
+#   /feed.xml           RSS
+#
+# The AI crawlers below are explicitly allowed. The wildcard already covers
+# them; they are named because the convention tells operators to be explicit
+# about intent, and because a future edit to the wildcard should not silently
+# decide this.
+
 User-agent: *
 Allow: /
 
-# AI crawlers — explicitly allowed
+Sitemap: https://yoosuf.me/sitemap-index.xml
+
+# AI and answer-engine crawlers
 User-agent: GPTBot
 Allow: /
 
@@ -20,7 +35,22 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
 User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
 Allow: /
 
 User-agent: Applebot-Extended
@@ -44,31 +74,14 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-User-agent: Google-Extended
-Allow: /
-
-Sitemap: https://yoosuf.me/sitemap-index.xml
-
-# Additional AI and search crawlers
 User-agent: MistralAI-User
-Allow: /
-
-User-agent: Claude-User
-Allow: /
-
-User-agent: Claude-SearchBot
-Allow: /
-
-User-agent: Perplexity-User
 Allow: /
 
 User-agent: DuckAssistBot
 Allow: /
 
+# Search engines
 User-agent: Bingbot
-Allow: /
-
-User-agent: Applebot
 Allow: /
 
 User-agent: Yandex

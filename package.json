@@ -13,7 +13,10 @@
     "check:architecture": "node scripts/check-stylex-architecture.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "test:architecture": "node --test tests/stylex-architecture.test.mjs"
+    "test": "node --test \"tests/*.test.mjs\"",
+    "test:architecture": "node --test tests/stylex-architecture.test.mjs",
+    "test:seo": "node --test tests/seo.test.mjs",
+    "test:overflow": "node scripts/overflow-sweep.mjs"
   },
   "engines": {
     "node": ">=22"

@@ -1,5 +1,7 @@
 import type { APIContext } from 'astro'
-import { getCollection } from 'astro:content'
+import { getCollection, type CollectionEntry } from 'astro:content'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { SITE } from '../config'
 import { decodeEntities, ensureTrailingSlash, formatShortDate } from '../lib/utils'
 
@@ -14,6 +16,8 @@ export async function GET({ site }: APIContext) {
   const posts = (await getCollection('blog'))
     .filter((post) => post.data.published !== false)
     .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+
+  assertLlmsTxtListsEveryPost(posts)
 
   const sections: string[] = [
     `# ${SITE.title}`,
@@ -32,6 +36,9 @@ export async function GET({ site }: APIContext) {
     `- [Postwire](${origin}/postwire/): Open-source local auth testing tool`,
     `- [Messenger](${origin}/messenger/): Open-source relational chat schema`,
     `- [Blog](${origin}/blog/): All posts`,
+    `- [Terms](${origin}/terms/): Terms of service`,
+    `- [Terms and payments](${origin}/terms-payments/): How engagements are billed`,
+    `- [Privacy](${origin}/privacy/): What is collected, which is almost nothing`,
     '',
   ]
 
@@ -65,6 +72,26 @@ export async function GET({ site }: APIContext) {
       'Content-Type': 'text/plain; charset=utf-8',
     },
   })
+}
+
+/**
+ * `/llms.txt` is grouped by topic rather than generated, because the grouping
+ * is the part that makes it worth reading. That curation is also the one place
+ * on this site where publishing a post can go unnoticed — nothing else breaks
+ * when a post is missing from a list. So the omission is caught here instead, by
+ * name, at build time rather than by a crawler noticing months later.
+ */
+function assertLlmsTxtListsEveryPost(posts: CollectionEntry<'blog'>[]) {
+  const index = readFileSync(join(process.cwd(), 'public', 'llms.txt'), 'utf8')
+  const missing = posts
+    .map((post) => `${SITE.url}${ensureTrailingSlash(post.data.permalink)}`)
+    .filter((url) => !index.includes(url))
+
+  if (missing.length > 0) {
+    throw new Error(
+      `[llms.txt] ${missing.length} published post(s) are not listed. Add them to public/llms.txt:\n  ${missing.join('\n  ')}`,
+    )
+  }
 }
 
 /**

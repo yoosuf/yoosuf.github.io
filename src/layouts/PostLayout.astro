@@ -13,9 +13,16 @@ import {
   decodeEntities,
   ensureTrailingSlash,
   formatShortDate,
-  readingTime,
   toISODate,
 } from '../lib/utils'
+import {
+  buildToc,
+  extractCitations,
+  extractQuestions,
+  postProse,
+  readingMinutesOf,
+  wordCountOf,
+} from '../lib/answer'
 import { SITE } from '../config'
 import Paragraph from '../components/markdown/Paragraph.astro'
 import Heading2 from '../components/markdown/Heading2.astro'
@@ -50,14 +57,40 @@ interface Props {
 }
 
 const { entry, newer, older, related = [] } = Astro.props
-const { Content } = await render(entry)
+const { Content, headings } = await render(entry)
 
-const { title, date, updated, description, categories, tags, permalink, seoTitle } = entry.data
+const {
+  title,
+  subTitle,
+  author,
+  date,
+  updated,
+  description,
+  categories,
+  tags,
+  permalink,
+  seoTitle,
+} = entry.data
 const decodedTitle = decodeEntities(title)
 const url = ensureTrailingSlash(permalink)
 const absoluteUrl = new URL(url, SITE.url).href
-const minutes = readingTime(entry.body)
-const words = entry.body.trim().split(/\s+/).length
+// The page node and the article node are separate entities that reference each
+// other. Sharing one id would collapse them into a single node and lose the
+// page/article distinction that makes the graph navigable.
+const webPageId = `${absoluteUrl}#webpage`
+const breadcrumbId = `${absoluteUrl}#breadcrumb`
+
+// `subTitle` is the standfirst the author wrote for this post; `description` is
+// the one that already exists on all 41. Either way the reader gets the answer
+// above the fold instead of only in the search snippet.
+const dek = decodeEntities(subTitle ?? description ?? decodedTitle)
+
+// Reading time and word count come from the prose a reader actually reads.
+// Counting the MDX source inflated both — code fences, mermaid diagrams and
+// front matter were all being counted as words.
+const words = wordCountOf(postProse(entry.body))
+const minutes = readingMinutesOf(words)
+
 const isoDate = toISODate(date)
 const isoUpdated = updated ? toISODate(updated) : null
 const postImage = entry.data.heroImage
@@ -72,41 +105,68 @@ const markdownComponents = {
   figure: Figure, figcaption: Caption, strong: Strong, kbd: Kbd,
 }
 
+const toc = buildToc(headings)
+// A heading only becomes a Question when the paragraph under it really answers
+// it, so a section that opens with a diagram is left out rather than published
+// half-answered.
+const questions = extractQuestions(entry.body)
+const citations = extractCitations(entry.body, SITE.url)
+
 const articleJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   '@id': absoluteUrl,
-  mainEntityOfPage: { '@type': 'WebPage', '@id': absoluteUrl },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': webPageId },
+  url: absoluteUrl,
   headline: decodedTitle,
+  ...(subTitle ? { alternativeHeadline: decodeEntities(subTitle) } : {}),
   description,
-  image: postImage,
-  inLanguage: 'en',
+  image: {
+    '@type': 'ImageObject',
+    url: postImage,
+    width: 1200,
+    height: 630,
+    caption: postImageAlt,
+  },
+  inLanguage: SITE.lang,
   datePublished: isoDate,
   dateModified: isoUpdated ?? isoDate,
+  isAccessibleForFree: true,
   articleSection: categories[0] ?? 'Blog',
-  keywords: tags.join(','),
+  keywords: tags.join(', '),
   wordCount: words,
   timeRequired: `PT${minutes}M`,
-  author: {
-    '@type': 'Person',
-    '@id': `${SITE.url}/#person`,
-    name: 'Yoosuf Mohamed',
-    url: `${SITE.url}/about/`,
-    image: new URL(SITE.logo, SITE.url).href,
-  },
-  publisher: {
-    '@type': 'Organization',
-    '@id': `${SITE.url}/#organization`,
-    name: SITE.title,
-    url: SITE.url,
-    logo: {
-      '@type': 'ImageObject',
-      url: new URL(SITE.logoMark, SITE.url).href,
-      width: 512,
-      height: 512,
-    },
-  },
+  isPartOf: [{ '@id': `${SITE.url}/blog/#blog` }, { '@id': `${SITE.url}/#website` }],
+  about: { '@id': `${SITE.url}/#person` },
+  breadcrumb: { '@id': breadcrumbId },
+  author: { '@id': `${SITE.url}/#person` },
+  publisher: { '@id': `${SITE.url}/#organization` },
+  // What the post actually links to, published as its sources.
+  ...(citations.length > 0
+    ? {
+        citation: citations.map((source) => ({
+          '@type': 'CreativeWork',
+          name: source.name,
+          url: source.url,
+        })),
+      }
+    : {}),
 }
+
+const faqJsonLd =
+  questions.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        '@id': `${absoluteUrl}#faq`,
+        isPartOf: { '@id': webPageId },
+        mainEntity: questions.map((question) => ({
+          '@type': 'Question',
+          name: question.text,
+          acceptedAnswer: { '@type': 'Answer', text: question.answer },
+        })),
+      }
+    : null
 ---
 
 <BaseLayout
@@ -117,8 +177,12 @@ const articleJsonLd = {
   imageAlt={postImageAlt}
   canonical={url}
   type="article"
+  mainEntity={absoluteUrl}
+  breadcrumb={breadcrumbId}
+  speakable={['[data-answer]']}
   jsonLd={[
     articleJsonLd,
+    ...(faqJsonLd ? [faqJsonLd] : []),
     ...(related.length > 0
       ? [
           {
@@ -126,6 +190,7 @@ const articleJsonLd = {
             '@type': 'ItemList',
             '@id': `${absoluteUrl}#related`,
             name: 'Related reading',
+            numberOfItems: related.length,
             itemListOrder: 'https://schema.org/ItemListUnordered',
             itemListElement: related.map((post, position) => ({
               '@type': 'ListItem',
@@ -145,7 +210,11 @@ const articleJsonLd = {
   }}
 >
   <article {...stylex.attrs(pageStyles.page, pageStyles.container)}>
-      <Breadcrumbs items={[{ label: 'Blog', href: '/blog/' }, { label: decodedTitle }]} baseUrl={SITE.url} />
+      <Breadcrumbs
+        id={breadcrumbId}
+        items={[{ label: 'Blog', href: '/blog/' }, { label: decodedTitle }]}
+        baseUrl={SITE.url}
+      />
 
       <header {...stylex.attrs(pageStyles.header)}>
         {categories.length > 0 && (
@@ -157,6 +226,10 @@ const articleJsonLd = {
         <h1 {...stylex.attrs(postStyles.title)}>
           {decodedTitle}
         </h1>
+
+        <p {...stylex.attrs(postStyles.dek)} data-answer>
+          {dek}
+        </p>
 
         <p {...stylex.attrs(postStyles.meta)}>
           <time datetime={isoDate}>{formatShortDate(date)}</time>
@@ -175,7 +248,51 @@ const articleJsonLd = {
             {minutes} min read
           </span>
         </p>
+
+        <div {...stylex.attrs(postStyles.byline)}>
+          <img
+            {...stylex.attrs(postStyles.bylineAvatar)}
+            src={SITE.logo}
+            alt=""
+            width="28"
+            height="28"
+            loading="lazy"
+            decoding="async"
+          />
+          <span {...stylex.attrs(postStyles.bylineText)}>
+            By{' '}
+            <a {...stylex.attrs(postStyles.bylineName)} href="/yoosuf/">{author}</a>, Systems
+            Architect
+          </span>
+        </div>
       </header>
+
+      {toc.length >= 3 && (
+        <nav {...stylex.attrs(postStyles.toc)} aria-labelledby="toc-title">
+          <h2 id="toc-title" {...stylex.attrs(postStyles.tocTitle)}>On this page</h2>
+          <ul {...stylex.attrs(postStyles.tocList)}>
+            {toc.map((node) => (
+              <li {...stylex.attrs(postStyles.tocItem)}>
+                <a {...stylex.attrs(postStyles.tocLink)} href={`#${node.id}`}>{node.text}</a>
+                {node.children.length > 0 && (
+                  <ul {...stylex.attrs(postStyles.tocListSub)}>
+                    {node.children.map((child) => (
+                      <li {...stylex.attrs(postStyles.tocItem)}>
+                        <a
+                          {...stylex.attrs(postStyles.tocLink, postStyles.tocLinkSub)}
+                          href={`#${child.id}`}
+                        >
+                          {child.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
 
       <div {...proseAttrs}>
         <Content components={markdownComponents} />

@@ -1,13 +1,28 @@
+const NAMED_ENTITIES: Record<string, string> = {
+  '&nbsp;': ' ',
+  '&mdash;': '—',
+  '&ndash;': '–',
+  '&hellip;': '…',
+  '&middot;': '·',
+  '&lsquo;': '‘',
+  '&rsquo;': '’',
+  '&ldquo;': '“',
+  '&rdquo;': '”',
+  '&lt;': '<',
+  '&gt;': '>',
+  '&quot;': '"',
+  '&apos;': "'",
+  // Last on purpose: `&amp;mdash;` is an escaped ampersand followed by the
+  // literal text "mdash;", and decoding it early would invent an em dash.
+  '&amp;': '&',
+}
+
 /** Decode common HTML numeric and named entities in a string. */
 export function decodeEntities(s: string): string {
   return s
     .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(parseInt(n, 10)))
     .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;|&apos;/g, "'")
+    .replace(/&([a-z][a-z0-9]*);/gi, (entity) => NAMED_ENTITIES[entity.toLowerCase()] ?? entity)
 }
 
 /** Ensure a path has a trailing slash. */

@@ -1,32 +1,19 @@
+import { decodeEntities } from '../lib/utils'
+
 export interface FaqItem {
   question: string
   answer: string
 }
 
-const ENTITIES: Record<string, string> = {
-  '&amp;': '&',
-  '&mdash;': '—',
-  '&ndash;': '–',
-  '&nbsp;': ' ',
-  '&middot;': '·',
-  '&hellip;': '…',
-  '&lsquo;': '‘',
-  '&rsquo;': '’',
-  '&ldquo;': '“',
-  '&rdquo;': '”',
-  '&lt;': '<',
-  '&gt;': '>',
-  '&quot;': '"',
-  '&#39;': "'",
-  '&#x27;': "'",
-}
-
 /**
- * FAQ markup is authored in the product bodies (one generated from
- * `src/data/postwire.html`, one hand-written in `MessengerBody.astro`) and is
- * the only copy the visitor sees. Structured data is derived from that same
- * markup at build time so a question can never drift out of sync with the
- * answer the page actually renders.
+ * FAQ markup is authored next to the content it belongs to and is the only
+ * copy the visitor sees. Structured data is derived from that same markup at
+ * build time so a question can never drift out of sync with the answer the
+ * page actually renders.
+ *
+ * `src/data/postwire.html` holds the Postwire FAQ alone. The rendered body is
+ * `PostwireBody.astro`, where every string lives inside an Astro expression and
+ * cannot be read this way, so the FAQ is mirrored there for extraction.
  */
 export function extractFaqItems(markup: string, source: string): FaqItem[] {
   const items: FaqItem[] = []
@@ -61,7 +48,7 @@ function toText(fragment: string): string {
     .replace(/<svg\b[\s\S]*?<\/svg>/g, ' ')
     .replace(/\{[^{}]*\}/g, ' ')
     .replace(/<[^>]+>/g, ' ')
-    .replace(/&[a-z#0-9]+;/gi, (entity) => ENTITIES[entity.toLowerCase()] ?? entity)
+    .replace(/&[a-z#0-9]+;/gi, decodeEntities)
     .replace(/\s+/g, ' ')
     // An inline <code> becomes a word, so tighten the punctuation that follows it.
     .replace(/\s+([,.;:!?])/g, '$1')

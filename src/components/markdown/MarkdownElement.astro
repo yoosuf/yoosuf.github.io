@@ -38,7 +38,16 @@ const element = {
   kbd: 'kbd',
 } as const
 const tagName = element[tag as keyof typeof element] ?? 'p'
-const forwarded = { ...attrs, ...styleAttrs, ...(className ? { class: className } : {}) }
+// Compose rather than replace. The markdown highlighter hands every fenced
+// code block a `class="language-php"` alongside the component, and letting that
+// win silently strips the StyleX class — which is how a plain code fence ends
+// up with no surface styling and, more importantly, no `overflow-x: auto`, so
+// long lines push the whole page into a horizontal scroll on a phone.
+const styleClass = styleAttrs.class
+const mergedClass = className
+  ? [...new Set([styleClass, ...className.split(/\s+/)].filter(Boolean))].join(' ')
+  : styleClass
+const forwarded = { ...attrs, ...styleAttrs, ...(mergedClass ? { class: mergedClass } : {}) }
 ---
 
 {tagName === 'p' && <p {...forwarded}><slot /></p>}

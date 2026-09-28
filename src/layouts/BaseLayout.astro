@@ -1,5 +1,5 @@
 ---
-import { SITE, PERSON_JSON_LD, ORG_JSON_LD, WEBSITE_JSON_LD } from '../config'
+import { SITE, SOCIAL_PROFILES, PERSON_JSON_LD, ORG_JSON_LD, WEBSITE_JSON_LD } from '../config'
 import { ClientRouter } from 'astro:transitions'
 import * as stylex from '@stylexjs/stylex'
 import { shellStyles } from '../components/ui/shell.stylex'
@@ -29,6 +29,14 @@ export interface Props {
   pageType?: 'WebPage' | 'CollectionPage' | 'ItemPage' | 'ProfilePage' | 'AboutPage' | 'ContactPage'
   /** `@id` of the node this page is really about, when it differs from the page. */
   mainEntity?: string
+  /** `@id` of this page's `BreadcrumbList`, so the article can point back at it. */
+  breadcrumb?: string
+  /**
+   * CSS selectors for the parts of the page that answer the page's own
+   * question, published as `speakable`. Selectors must be stable hooks rather
+   * than class names — StyleX hashes those, so a class selector would rot.
+   */
+  speakable?: string[]
   jsonLd?: object[]
   article?: ArticleMeta
   noIndex?: boolean
@@ -45,6 +53,8 @@ const {
   type = 'website',
   pageType = 'WebPage',
   mainEntity,
+  breadcrumb,
+  speakable,
   jsonLd = [],
   article,
   noIndex = false,
@@ -53,8 +63,11 @@ const {
 // `metaTitle` wins when a page needs a shorter search/social title than its
 // visible headline.
 const pageTitle = metaTitle ?? title ?? SITE.title
-const canonicalUrl = canonical ? new URL(canonical, SITE.url).href : null
-const pageUrl = canonicalUrl ?? new URL(Astro.url.pathname, SITE.url).href
+// Every page gets a canonical, including the ones that never pass `canonical`.
+// A self-referencing canonical is the honest default; omitting the tag entirely
+// leaves the page for search engines and agents to guess between trailing-slash
+// and extensionless forms, which is how duplicate URLs get indexed.
+const pageUrl = new URL(canonical ?? Astro.url.pathname, SITE.url).href
 const imageUrl = image.startsWith('http') ? image : new URL(image, SITE.url).href
 
 const webPageJsonLd = {
@@ -68,6 +81,15 @@ const webPageJsonLd = {
   isPartOf: { '@id': `${SITE.url}/#website` },
   about: { '@id': `${SITE.url}/#person` },
   ...(mainEntity ? { mainEntity: { '@id': mainEntity } } : {}),
+  ...(breadcrumb ? { breadcrumb: { '@id': breadcrumb } } : {}),
+  ...(speakable?.length
+    ? {
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: speakable,
+        },
+      }
+    : {}),
   ...(article?.published
     ? {
         datePublished: article.published,
@@ -79,7 +101,7 @@ const webPageJsonLd = {
 const og = {
   title: pageTitle,
   type,
-  url: canonicalUrl ?? new URL(Astro.url.pathname, SITE.url).href,
+  url: pageUrl,
   image: imageUrl,
   imageWidth: '1200',
   imageHeight: '630',
@@ -97,7 +119,7 @@ const mainAttrs = stylex.attrs(shellStyles.main)
 
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <link rel="canonical" href={pageUrl} />
     {keywords && <meta name="keywords" content={keywords} />}
     {noIndex ? (
       <meta name="robots" content="noindex, nofollow, noarchive" />
@@ -105,6 +127,8 @@ const mainAttrs = stylex.attrs(shellStyles.main)
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     )}
     <meta name="author" content={SITE.author} />
+    <link rel="author" href={`${SITE.url}/about/`} />
+    {SOCIAL_PROFILES.map((href) => <link rel="me" href={href} />)}
 
     <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
@@ -115,6 +139,10 @@ const mainAttrs = stylex.attrs(shellStyles.main)
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0e0e0e" />
 
     <link rel="alternate" type="application/rss+xml" title={`${SITE.title} — RSS`} href="/feed.xml" />
+    {/* Machine-readable entry points. `llms.txt` is the summary a model reads to
+        decide what to fetch; `llms-full.txt` is every post as plain text. */}
+    <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt" />
+    <link rel="alternate" type="text/plain" title="llms-full.txt" href="/llms-full.txt" />
 
     {import.meta.env.DEV && (
       <>

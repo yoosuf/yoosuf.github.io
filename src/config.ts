@@ -57,6 +57,19 @@ export const FOOTER_LINKS = {
   ],
 } as const
 
+/** Profiles that resolve to the same person. Single source for `Person.sameAs`
+ *  in schema and for the `rel="me"` links in the document head — a profile that
+ *  is claimed in one place and forgotten in the other is a broken identity. */
+export const SOCIAL_PROFILES = [
+  'https://twitter.com/aitchdei',
+  'https://www.linkedin.com/in/yoosufm',
+  'https://github.com/yoosuf',
+  'https://yoosuf.medium.com',
+  'https://www.facebook.com/aitchdei',
+  'https://www.instagram.com/aitchdei',
+  'https://www.youtube.com/@YoosufMo',
+] as const
+
 export const PERSON_JSON_LD = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -64,7 +77,7 @@ export const PERSON_JSON_LD = {
   name: 'Yoosuf Mohamed',
   alternateName: ['Yoosuf Mo', 'Yoosuf', 'aitchdei'],
   url: SITE.url,
-  mainEntityOfPage: SITE.url,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE.url}/#about` },
   image: `${SITE.url}/assets/images/yoosuf.jpg`,
   jobTitle: ['Systems Architect', 'AI Engineer', 'Software Architect', 'Technical Consultant'],
   description:
@@ -82,34 +95,27 @@ export const PERSON_JSON_LD = {
     skills:
       'AI automation, LLM applications, RAG systems, SaaS architecture, backend engineering, full-stack product development, technical leadership',
   },
-  worksFor: { '@type': 'Organization', name: 'Crew Digital' },
+  worksFor: { '@id': `${SITE.url}/#organization` },
   homeLocation: { '@type': 'Place', name: 'Colombo, Sri Lanka' },
   subjectOf: [
     { '@type': 'WebPage', name: 'About Yoosuf Mohamed', url: `${SITE.url}/about/` },
     { '@type': 'WebPage', name: 'Services by Yoosuf Mohamed', url: `${SITE.url}/services/` },
     { '@type': 'SoftwareApplication', name: 'Postwire', url: `${SITE.url}/postwire/` },
   ],
-  sameAs: [
-    'https://twitter.com/aitchdei',
-    'https://www.facebook.com/aitchdei',
-    'https://www.instagram.com/aitchdei',
-    'https://www.youtube.com/@YoosufMo',
-    'https://www.linkedin.com/in/yoosufm',
-    'https://github.com/yoosuf',
-    'https://yoosuf.medium.com',
-  ],
+  sameAs: [...SOCIAL_PROFILES],
 }
 
-/** Site-wide Organization node — the shared publisher reference for every
- *  page-level schema block. Children resolve it by @id (`/#organization`). */
+/** The studio the site is published under, kept separate from the person who
+ *  writes on it. Naming the Organization after the person and listing the studio
+ *  as its `alternateName` — while `Person.worksFor` also claims the studio — puts
+ *  "Crew Digital" in the knowledge graph as an alias of a human being, so the
+ *  two are resolved as distinct entities here and cross-linked by `@id`. */
 export const ORG_JSON_LD = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': `${SITE.url}/#organization`,
-  name: SITE.title,
-  alternateName: 'Crew Digital',
-  url: SITE.url,
-  email: SITE.email,
+  name: 'Crew Digital',
+  description: 'Product studio where Yoosuf Mohamed works as a Systems Architect, and the publisher of yoosuf.me.',
   logo: {
     '@type': 'ImageObject',
     '@id': `${SITE.url}/#organization-logo`,
@@ -117,13 +123,8 @@ export const ORG_JSON_LD = {
     width: 512,
     height: 512,
   },
-  founder: { '@type': 'Person', name: SITE.author, url: `${SITE.url}/about/` },
-  sameAs: [
-    'https://twitter.com/aitchdei',
-    'https://www.linkedin.com/in/yoosufm',
-    'https://github.com/yoosuf',
-    'https://yoosuf.medium.com',
-  ],
+  founder: { '@id': `${SITE.url}/#person` },
+  member: { '@id': `${SITE.url}/#person` },
 }
 
 /** Site-wide WebSite node with publisher reference. Emitted on every page. */

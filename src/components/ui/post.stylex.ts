@@ -33,6 +33,116 @@ export const postStyles = stylex.create({
     gap: '0.25rem',
   },
 
+  // The standfirst under the headline. It is the one sentence on the page that
+  // answers "what is this", so it is also what `speakable` points at.
+  dek: {
+    color: colors.textDim,
+    fontSize: { default: '1.05rem', '@media (min-width: 40rem)': '1.2rem' },
+    lineHeight: lineHeights.relaxed,
+    marginBlock: space['3'],
+    maxWidth: '46rem',
+    textWrap: 'pretty',
+  },
+
+  byline: {
+    alignItems: 'center',
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '0.5rem 0.625rem',
+    marginBlockStart: space['5'],
+  },
+
+  bylineAvatar: {
+    blockSize: '1.75rem',
+    borderRadius: '999px',
+    flexShrink: 0,
+    inlineSize: '1.75rem',
+    objectFit: 'cover',
+  },
+
+  bylineText: {
+    color: colors.textDim,
+    fontSize: '0.825rem',
+    lineHeight: 1.6,
+  },
+
+  bylineName: {
+    color: colors.text,
+    fontWeight: weights.medium,
+    textDecorationColor: colors.border,
+    textDecorationLine: 'none',
+    textUnderlineOffset: '3px',
+    transitionDuration: '0.15s',
+    transitionProperty: 'color',
+    ':hover': {
+      color: colors.accent,
+      textDecorationLine: 'underline',
+    },
+  },
+
+  toc: {
+    borderBlockStartColor: colors.border,
+    borderBlockStartStyle: 'solid',
+    borderBlockStartWidth: 1,
+    marginBlockStart: space['8'],
+    paddingBlockStart: space['5'],
+  },
+
+  tocTitle: {
+    color: colors.textFaint,
+    fontSize: '0.7rem',
+    fontWeight: weights.semibold,
+    letterSpacing: '0.1em',
+    lineHeight: 1.5,
+    marginBlock: '0 0.625rem',
+    textTransform: 'uppercase',
+  },
+
+  tocList: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.375rem',
+    listStyleType: 'none',
+    marginBlock: 0,
+    maxWidth: '46rem',
+    paddingInlineStart: 0,
+  },
+
+  tocListSub: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.25rem',
+    listStyleType: 'none',
+    marginBlockStart: '0.25rem',
+    paddingInlineStart: '0.875rem',
+  },
+
+  tocItem: {
+    minWidth: 0,
+  },
+
+  tocLink: {
+    color: colors.textMuted,
+    display: 'block',
+    fontSize: '0.9rem',
+    lineHeight: 1.5,
+    overflowWrap: 'anywhere',
+    paddingBlock: '0.125rem',
+    textDecorationLine: 'none',
+    transitionDuration: '0.15s',
+    transitionProperty: 'color',
+    ':hover': {
+      color: colors.accent,
+      textDecorationLine: 'underline',
+      textUnderlineOffset: '3px',
+    },
+  },
+
+  tocLinkSub: {
+    color: colors.textDim,
+    fontSize: '0.85rem',
+  },
+
   prose: {
     marginBlockStart: space['10'],
     maxWidth: '46rem',

@@ -7,6 +7,8 @@ interface Props {
   items: Crumb[]
   /** Origin (e.g. SITE.url) used to build the Home crumb. */
   baseUrl: string
+  /** `@id` for the published trail, so a page's own schema can reference it. */
+  id?: string
 }
 
 const styles = stylex.create({
@@ -57,7 +59,7 @@ const styles = stylex.create({
   },
 })
 
-export function Breadcrumbs({ items, baseUrl }: Props) {
+export function Breadcrumbs({ items, baseUrl, id }: Props) {
   const trail: Crumb[] = [{ label: 'Home', href: `${baseUrl}/` }, ...items]
   const toAbsolute = (href: string) => {
     try {
@@ -69,6 +71,7 @@ export function Breadcrumbs({ items, baseUrl }: Props) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
+    ...(id ? { '@id': id } : {}),
     itemListElement: trail.map((crumb, i) => ({
       '@type': 'ListItem',
       position: i + 1,

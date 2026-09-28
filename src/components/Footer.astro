@@ -5,6 +5,34 @@ import { footerStyles } from './footer.stylex'
 import { a11y } from './ui/primitives'
 
 const year = SITE.date.currentYear
+
+/**
+ * The link groups read as label-then-links rows rather than columns of stacked
+ * items. Fourteen 44px rows in a row of columns is a ladder; four rows of
+ * `Label  a · b · c` is a list you can read in one pass. Every link keeps a
+ * 2rem target, well over the 24px minimum, and the two products stay the only
+ * site-wide inbound links to their pages.
+ */
+const GROUPS = [
+  {
+    id: 'footer-products',
+    label: 'Products',
+    links: FOOTER_LINKS.products.map((link) => ({ ...link, external: false, note: '' })),
+  },
+  {
+    id: 'footer-explore',
+    label: 'Explore',
+    links: FOOTER_LINKS.site.map((link) => ({ ...link, external: false, note: '' })),
+  },
+  {
+    id: 'footer-contact',
+    label: 'Contact',
+    links: [
+      ...FOOTER_LINKS.contact.map((link) => ({ ...link, note: '' })),
+      ...FOOTER_LINKS.social.map((link) => ({ ...link, note: link.context })),
+    ],
+  },
+] as const
 ---
 
 <footer id="site-footer" transition:persist {...stylex.attrs(footerStyles.bar)}>
@@ -19,40 +47,33 @@ const year = SITE.date.currentYear
         </p>
       </section>
 
-      <nav {...stylex.attrs(footerStyles.navGroup)} aria-labelledby="footer-explore">
-        <h3 id="footer-explore" {...stylex.attrs(footerStyles.groupTitle)}>Explore</h3>
-        <ul {...stylex.attrs(footerStyles.navList)}>
-          {FOOTER_LINKS.site.map((link) => (
-            <li key={link.href} {...stylex.attrs(footerStyles.navItem)}>
-              <a href={link.href} {...stylex.attrs(footerStyles.navLink)}>{link.label}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-
-      <nav {...stylex.attrs(footerStyles.navGroup)} aria-labelledby="footer-connect">
-        <h3 id="footer-connect" {...stylex.attrs(footerStyles.groupTitle)}>Connect</h3>
-        <ul {...stylex.attrs(footerStyles.navList)}>
-          {FOOTER_LINKS.connect.map((link) => (
-            <li key={link.href} {...stylex.attrs(footerStyles.navItem)}>
-              <a
-                href={link.href}
-                rel={link.rel}
-                target={link.opensNewTab ? '_blank' : undefined}
-                {...stylex.attrs(footerStyles.navLink)}
-              >
-                {link.label}
-                {link.opensNewTab && (
-                  <>
-                    {' '}
-                    <span {...stylex.attrs(a11y.srOnly)}>{link.context} (opens in new tab)</span>
-                  </>
-                )}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <dl {...stylex.attrs(footerStyles.groups)}>
+        {GROUPS.map((group) => (
+          <div {...stylex.attrs(footerStyles.group)}>
+            <dt {...stylex.attrs(footerStyles.groupLabel)}>{group.label}</dt>
+            <dd {...stylex.attrs(footerStyles.groupLinks)}>
+              {group.links.map((link) => (
+                <a
+                  href={link.href}
+                  rel={'rel' in link ? link.rel : undefined}
+                  target={'opensNewTab' in link && link.opensNewTab ? '_blank' : undefined}
+                  {...stylex.attrs(footerStyles.groupLink)}
+                >
+                  {link.label}
+                  {'opensNewTab' in link && link.opensNewTab && (
+                    <>
+                      {' '}
+                      <span {...stylex.attrs(a11y.srOnly)}>
+                        {link.note ? `${link.note} ` : ''}(opens in new tab)
+                      </span>
+                    </>
+                  )}
+                </a>
+              ))}
+            </dd>
+          </div>
+        ))}
+      </dl>
     </div>
 
     <div {...stylex.attrs(footerStyles.bottom)}>
@@ -60,7 +81,7 @@ const year = SITE.date.currentYear
       <nav aria-label="Legal and feed links">
         <ul {...stylex.attrs(footerStyles.utilityList)}>
           {FOOTER_LINKS.utility.map((link) => (
-            <li key={link.href} {...stylex.attrs(footerStyles.utilityItem)}>
+            <li {...stylex.attrs(footerStyles.utilityItem)}>
               <a href={link.href} {...stylex.attrs(footerStyles.utilityLink)}>{link.label}</a>
             </li>
           ))}

@@ -21,15 +21,17 @@ export const footerStyles = stylex.create({
 
   layout: {
     display: 'grid',
-    gap: { default: space['8'], '@media (min-width: 40rem)': space['10'] },
+    gap: { default: space['8'], '@media (min-width: 56rem)': space['12'] },
     gridTemplateColumns: {
       default: 'minmax(0, 1fr)',
-      '@media (min-width: 40rem)': 'minmax(0, 1.5fr) repeat(2, minmax(8rem, 0.75fr))',
+      // Identity keeps a third of the width; the link rows take the rest so an
+      // inline group like `Home · Services · Blog · About` stays on one line.
+      '@media (min-width: 56rem)': 'minmax(0, 1fr) minmax(0, 1.7fr)',
     },
   },
 
   identity: {
-    maxWidth: '34rem',
+    maxWidth: '26rem',
     minWidth: 0,
   },
 
@@ -62,55 +64,62 @@ export const footerStyles = stylex.create({
     color: colors.textDim,
     fontSize: '0.9rem',
     lineHeight: lineHeights.relaxed,
-    marginBlock: '0.75rem 0',
-    maxWidth: '32rem',
+    marginBlock: '0.625rem 0',
     textWrap: 'pretty',
   },
 
-  navGroup: {
+  groups: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: space['2'],
+    marginBlock: 0,
     minWidth: 0,
   },
 
-  groupTitle: {
-    color: colors.textDim,
+  /** Label on the left, links flowing on the right. Stacked on narrow screens
+   *  where a 6rem label column would leave the links too little room. */
+  group: {
+    display: 'grid',
+    columnGap: '1rem',
+    rowGap: '0.125rem',
+    gridTemplateColumns: {
+      default: 'minmax(0, 1fr)',
+      '@media (min-width: 30rem)': '6rem minmax(0, 1fr)',
+    },
+    marginBlock: 0,
+    minWidth: 0,
+  },
+
+  groupLabel: {
+    color: colors.textFaint,
     fontSize: '0.75rem',
     fontWeight: weights.semibold,
     letterSpacing: letterSpacing.wide,
-    lineHeight: 1.5,
+    lineHeight: '2rem',
     marginBlock: 0,
     textTransform: 'uppercase',
   },
 
-  navList: {
+  groupLinks: {
+    alignItems: 'baseline',
     display: 'flex',
     flexWrap: 'wrap',
-    gap: { default: '0.25rem 1rem', '@media (min-width: 40rem)': '0.125rem 0' },
-    listStyleType: 'none',
+    columnGap: '0.25rem 1.125rem',
     marginBlock: 0,
     minWidth: 0,
-    paddingInlineStart: 0,
-    '@media (min-width: 40rem)': {
-      flexDirection: 'column',
-      flexWrap: 'nowrap',
-    },
   },
 
-  navItem: {
-    maxWidth: '100%',
-    minWidth: 0,
-  },
-
-  navLink: {
+  /** 2rem keeps every target comfortably past the 24px minimum without
+   *  spending 44px a row on a two-word label. */
+  groupLink: {
     alignItems: 'center',
     color: colors.textMuted,
     display: 'inline-flex',
     fontSize: '0.9rem',
     lineHeight: 1.4,
     maxWidth: '100%',
-    minHeight: '2.75rem',
+    minHeight: '2rem',
     overflowWrap: 'anywhere',
-    paddingBlock: '0.5rem',
-    paddingInline: { default: 0, '@media (min-width: 40rem)': '0.25rem' },
     textDecorationLine: 'none',
     transitionDuration: '0.15s',
     transitionProperty: 'color',

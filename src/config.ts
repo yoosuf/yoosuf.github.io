@@ -29,9 +29,22 @@ export const FOOTER_LINKS = {
     ...NAV.map(({ name, link }) => ({ label: name, href: link })),
     { label: 'Profile', href: '/yoosuf/' },
   ],
-  connect: [
-    { label: 'Schedule a call', href: 'https://cal.com/yoosuf', rel: 'noopener noreferrer', opensNewTab: true, context: '' },
-    { label: 'Email', href: `mailto:${SITE.email}`, rel: 'me', opensNewTab: false, context: '' },
+  // Postwire and Messenger are `SoftwareApplication` entities in the schema.
+  // They are not in the primary nav, so the footer is their only site-wide
+  // inbound link — without it they are reachable only from the home page.
+  // No per-link description here: both pages carry their own, and a second
+  // copy in a 12rem column just wraps to three noisy lines.
+  products: [
+    { label: 'Postwire', href: '/postwire/' },
+    { label: 'Messenger', href: '/messenger/' },
+  ],
+  // Direct ways to reach Yoosuf, kept apart from the social profiles: one is a
+  // booking link and one is a real address, and neither is a "profile".
+  contact: [
+    { label: 'Schedule a call', href: 'https://cal.com/yoosuf', rel: 'noopener noreferrer', opensNewTab: true },
+    { label: 'Email', href: `mailto:${SITE.email}`, rel: 'me' },
+  ],
+  social: [
     { label: 'X', href: 'https://twitter.com/aitchdei', rel: 'me noopener noreferrer', opensNewTab: true, context: 'profile' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/yoosufm', rel: 'me noopener noreferrer', opensNewTab: true, context: 'profile' },
     { label: 'GitHub', href: 'https://github.com/yoosuf', rel: 'me noopener noreferrer', opensNewTab: true, context: 'profile' },

@@ -86,10 +86,6 @@ function setupInstallTabs(): void {
   })
 }
 
-function setupMcpTabs(): void {
-  setupTabGroup(document.getElementById('pmMcpTabs'))
-}
-
 function setupDocSearch(): void {
   const root = document.querySelector<HTMLElement>('[data-pm-hook="pm-doc-search"]')
   if (!root || root.dataset.initialized === 'true') return
@@ -144,7 +140,6 @@ function setupDocSearch(): void {
 
 function setupPage(): void {
   setupInstallTabs()
-  setupMcpTabs()
   setupDocSearch()
 }
 

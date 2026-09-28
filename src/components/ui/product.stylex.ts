@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex'
-import { fonts } from '../../styles/tokens.stylex'
+import { colors, fonts } from '../../styles/tokens.stylex'
 
 /**
  * Product marketing microsite — StyleX layer.
@@ -2306,8 +2306,8 @@ export const styles = stylex.create({
     fontSize: 'var(--pm-fs-body)',
     fontWeight: 600,
     lineHeight: 1.2,
-    color: 'light-dark(#ffffff, #1a1a1a)',
-    backgroundColor: 'light-dark(#2563eb, #8bb0ff)',
+    color: colors.onAccent,
+    backgroundColor: colors.accent,
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: 'transparent',
@@ -2317,22 +2317,22 @@ export const styles = stylex.create({
     transitionDuration: '0.2s',
     transitionTimingFunction: 'ease',
     ':hover': {
-      color: 'light-dark(#ffffff, #1a1a1a)',
-      backgroundColor: 'light-dark(#1d4ed8, #a9c4ff)',
+      color: colors.onAccent,
+      backgroundColor: colors.accentStrong,
       borderColor: 'transparent',
       transform: 'translateY(-2px)',
       textDecoration: 'none',
     },
     ':focus-visible': {
-      color: 'light-dark(#ffffff, #1a1a1a)',
-      backgroundColor: 'light-dark(#1d4ed8, #a9c4ff)',
+      color: colors.onAccent,
+      backgroundColor: colors.accentStrong,
       borderColor: 'transparent',
       transform: 'translateY(-2px)',
       textDecoration: 'none',
     },
     ':active': {
       transform: 'translateY(0)',
-      backgroundColor: 'light-dark(#1d4ed8, #a9c4ff)',
+      backgroundColor: colors.accentStrong,
     },
   },
 

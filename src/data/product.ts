@@ -100,7 +100,7 @@ export const postwire: Product = {
   },
   cta: {
     title: 'Make auth testing boring again.',
-    text: 'Free and MIT-licensed. One command gets you a working inbox dashboard and API — point your app or agent at it and finish your auth test suite in a single sitting.',
+    text: 'Free and MIT-licensed. One command gets you an inbox dashboard and an API on localhost. Point your app or your agent at it, and the inbox stops being the part that flakes.',
     actions: [
       {
         label: 'Upvote on Product Hunt',
@@ -164,7 +164,7 @@ export const messenger: Product = {
   hero: {
     tag: 'Open Source · Chat Schema · PostgreSQL / MySQL',
     title: 'The database core for realtime conversations',
-    sub: 'Ship chat products faster with a practical relational schema for one-to-one chat, group messaging, moderation, device sessions, and attachment workflows. Ready for Node.js or Go backends on PostgreSQL or MySQL, over Socket.IO or WebSocket.',
+    sub: 'One relational schema for one-to-one chat, group messaging, moderation, device sessions, and attachments — importing cleanly on both PostgreSQL and MySQL. Point a Node.js or Go backend at it over Socket.IO or WebSocket.',
     actions: [
       {
         label: 'View Repository',
@@ -184,12 +184,12 @@ export const messenger: Product = {
     checks: [
       'One-to-one + group messaging',
       'Report & block built in',
-      '16 relational tables',
+      '15 relational tables',
     ],
   },
   cta: {
-    title: 'Ship your chat backend on a proven schema.',
-    text: 'MIT-licensed, MySQL- and PostgreSQL-friendly. Import messenger.sql, review the ER diagram in MySQL Workbench, and start adding realtime endpoints against tables that already model the hard parts — soft deletes, moderation, and sessions.',
+    title: 'The schema is the part you don’t have to design.',
+    text: 'MIT-licensed, and it imports cleanly on MySQL or PostgreSQL. Load messenger.sql, open Messenger.mwb if you want the ER diagram, then start adding realtime endpoints against tables that already handle soft deletes, moderation and sessions.',
     actions: [
       {
         label: 'Star on GitHub',
@@ -221,7 +221,7 @@ export const messenger: Product = {
   seo: {
     title: 'Messenger — Open-Source Chat Schema for Realtime Apps',
     description:
-      'Messenger is an open-source relational chat schema: users, conversations, messages, moderation, and device sessions. A foundation for Node.js or Go chat backends.',
+      'Messenger is an open-source relational chat schema: users, conversations, messages, moderation, and device sessions. A foundation for Node or Go backends.',
     keywords:
       'chat database schema, messaging database design, group chat schema, one-to-one chat schema, PostgreSQL chat schema, MySQL chat schema, chat backend, realtime messaging, conversations table, participants table, message persistence, attachments table, moderation, block list, reports, devices, access tokens, Node.js chat, Go chat backend, Socket.IO, WebSocket, open source database design, Yoosuf Mohamed',
     canonical: '/messenger/',

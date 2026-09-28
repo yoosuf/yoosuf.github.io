@@ -5,103 +5,6 @@ import CodeBlock from './CodeBlock.astro'
 
 ---
 
-<!-- Generated with npm run generate:postwire. Do not edit by hand. -->
-<section data-pm-hook="pm-section pm-switch-section" {...stylex.attrs(styles.pmSection)}>
-
-  
-<div data-pm-hook="pm-container" {...stylex.attrs(styles.pmContainer)}>
-
-    
-<h2 data-pm-hook="pm-section-title" {...stylex.attrs(styles.pmSectionTitle)}>
-{"Why developers switch to Postwire"}
-</h2>
-
-    
-<p data-pm-hook="pm-section-sub" {...stylex.attrs(styles.pmSectionSub)}>
-{"\n      It replaces the messy parts of auth testing with one local tool: email testing, SMS 2FA testing,\n      webhook capture, OTP extraction, and agent-readable APIs in the same process.\n    "}
-</p>
-
-    
-<ul data-pm-hook="pm-switch-grid" {...stylex.attrs(styles.pmSwitchGrid)}>
-
-      
-<li data-pm-hook="pm-switch-card" {...stylex.attrs(styles.pmSwitchCard)}>
-
-        
-<p data-pm-hook="pm-switch-kicker" {...stylex.attrs(styles.pmSwitchKicker)}>
-{"For local dev"}
-</p>
-
-        
-<h3 data-pm-hook="pm-switch-title" {...stylex.attrs(styles.pmSwitchTitle)}>
-{"A MailHog and Mailpit alternative that understands modern auth"}
-</h3>
-
-        
-<p data-pm-hook="pm-switch-desc" {...stylex.attrs(styles.pmSwitchDesc)}>
-{"\n          Catch SMTP like the classic tools, then go further: parse verification codes, magic links,\n          reset URLs, and SMS messages without asking your app or your browser to pretend.\n        "}
-</p>
-
-      
-</li>
-
-      
-<li data-pm-hook="pm-switch-card" {...stylex.attrs(styles.pmSwitchCard)}>
-
-        
-<p data-pm-hook="pm-switch-kicker" {...stylex.attrs(styles.pmSwitchKicker)}>
-{"For E2E and CI"}
-</p>
-
-        
-<h3 data-pm-hook="pm-switch-title" {...stylex.attrs(styles.pmSwitchTitle)}>
-{"Deterministic Playwright auth tests with zero "}
-<code {...stylex.attrs(styles.pmInlineCode)}>
-{"sleep()"}
-</code>
-</h3>
-
-        
-<p data-pm-hook="pm-switch-desc" {...stylex.attrs(styles.pmSwitchDesc)}>
-{"\n          Long-polling waits return when the matching email or text arrives. Use "}
-<code {...stylex.attrs(styles.pmInlineCode)}>
-{"since"}
-</code>
-{",\n          assert the extracted code, clean the inbox, and keep the pipeline boring.\n        "}
-</p>
-
-      
-</li>
-
-      
-<li data-pm-hook="pm-switch-card" {...stylex.attrs(styles.pmSwitchCard)}>
-
-        
-<p data-pm-hook="pm-switch-kicker" {...stylex.attrs(styles.pmSwitchKicker)}>
-{"For AI agents"}
-</p>
-
-        
-<h3 data-pm-hook="pm-switch-title" {...stylex.attrs(styles.pmSwitchTitle)}>
-{"MCP-native email and SMS tools for full MFA flows"}
-</h3>
-
-        
-<p data-pm-hook="pm-switch-desc" {...stylex.attrs(styles.pmSwitchDesc)}>
-{"\n          Agents can wait for email, extract a link, wait for SMS, read the OTP, and finish login\n          through 14 structured MCP tools instead of screen-scraping webmail.\n        "}
-</p>
-
-      
-</li>
-
-    
-</ul>
-
-  
-</div>
-
-
-</section>
 
 
 
@@ -112,7 +15,7 @@ import CodeBlock from './CodeBlock.astro'
 
     
 <h2 data-pm-hook="pm-section-title" {...stylex.attrs(styles.pmSectionTitle)}>
-{"The problem: auth testing is still too fragile"}
+{"Why auth tests are so fragile"}
 </h2>
 
     
@@ -1261,22 +1164,10 @@ import CodeBlock from './CodeBlock.astro'
 
 
     
-    <div data-pm-hook="pm-tabs" {...stylex.attrs(styles.pmTabs)} id="pmMcpTabs">
-
-      <div data-pm-hook="pm-tablist" {...stylex.attrs(styles.pmTablist)} role="tablist" aria-label="MCP tools by channel">
-        <button data-pm-hook="pm-tab" {...stylex.attrs(styles.pmTab)} id="pmTabToolsEmail" type="button" role="tab" aria-selected="true" aria-controls="pmPanelToolsEmail" data-tabname="Email">
-          {"Email · 7 tools"}
-        </button>
-        <button data-pm-hook="pm-tab" {...stylex.attrs(styles.pmTab)} id="pmTabToolsSms" type="button" role="tab" aria-selected="false" aria-controls="pmPanelToolsSms" data-tabname="SMS" tabindex="-1">
-          {"SMS · 7 tools"}
-        </button>
-      </div>
-
-      <div data-pm-hook="pm-tabpanel" {...stylex.attrs(styles.pmTabpanel)} id="pmPanelToolsEmail" role="tabpanel" aria-labelledby="pmTabToolsEmail" data-tabname="Email">
-        <p data-pm-hook="pm-toolpanel-note" {...stylex.attrs(styles.pmToolPanelNote)}>
-          {"Seven tools for the mail side. An agent signs up, waits for the confirmation email, pulls the code or link out of it, and keeps going — no inbox to click through."}
-        </p>
-        <ul data-pm-hook="pm-tools" {...stylex.attrs(styles.pmTools)}>
+      <p data-pm-hook="pm-toolpanel-note" {...stylex.attrs(styles.pmToolPanelNote)}>
+        {"Fourteen tools across email and SMS, grouped by what an agent actually needs to do. An agent signs up, waits for the confirmation email, pulls the code or link out of it, reads the second factor, and keeps going — no inbox to click through."}
+      </p>
+      <ul data-pm-hook="pm-tools" {...stylex.attrs(styles.pmTools)}>
         <li data-pm-hook="pm-tool" {...stylex.attrs(styles.pmTool)}>
           <div data-pm-hook="pm-tool-icon" {...stylex.attrs(styles.pmToolIcon)}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1287,14 +1178,14 @@ import CodeBlock from './CodeBlock.astro'
           <div data-pm-hook="pm-tool-main" {...stylex.attrs(styles.pmToolMain)}>
             <div data-pm-hook="pm-tool-head" {...stylex.attrs(styles.pmToolHead)}>
               <h4 data-pm-hook="pm-tool-name" {...stylex.attrs(styles.pmToolName)}>
-                {"wait_for_email"}
+                {"wait"}
               </h4>
               <span data-pm-hook="pm-tool-role" {...stylex.attrs(styles.pmToolRole)}>
                 {"wait"}
               </span>
             </div>
             <p data-pm-hook="pm-tool-desc" {...stylex.attrs(styles.pmToolDesc)}>
-              {"Blocks until a matching message lands, then returns it. Resolves the moment the message arrives rather than on a poll interval, and gives up cleanly on timeout instead of leaving the agent hanging."}
+              <code {...stylex.attrs(styles.pmInlineCode)}>wait_for_email</code>and<code {...stylex.attrs(styles.pmInlineCode)}>wait_for_sms</code>block until a matching message lands on either channel and hand it straight back. They resolve the moment the message arrives rather than on a poll interval, and give up on timeout instead of leaving the agent hanging.
             </p>
           </div>
         </li>
@@ -1307,14 +1198,14 @@ import CodeBlock from './CodeBlock.astro'
           <div data-pm-hook="pm-tool-main" {...stylex.attrs(styles.pmToolMain)}>
             <div data-pm-hook="pm-tool-head" {...stylex.attrs(styles.pmToolHead)}>
               <h4 data-pm-hook="pm-tool-name" {...stylex.attrs(styles.pmToolName)}>
-                {"extract_signals"}
+                {"extract"}
               </h4>
               <span data-pm-hook="pm-tool-role" {...stylex.attrs(styles.pmToolRole)}>
                 {"extract"}
               </span>
             </div>
             <p data-pm-hook="pm-tool-desc" {...stylex.attrs(styles.pmToolDesc)}>
-              {"Pulls verification codes and links out of the raw MIME body, so nobody has to write a parsing regex. Recognises 4–8 digit numeric and alphanumeric OTPs, magic login links, password reset URLs and confirmation triggers."}
+              <code {...stylex.attrs(styles.pmInlineCode)}>extract_signals</code>and<code {...stylex.attrs(styles.pmInlineCode)}>extract_sms_signals</code>pull verification codes and links out of the raw body, so nobody has to write a parsing regex. They recognise 4–8 digit numeric and alphanumeric OTPs, magic login links, password reset URLs and confirmation triggers.
             </p>
           </div>
         </li>
@@ -1332,57 +1223,14 @@ import CodeBlock from './CodeBlock.astro'
           <div data-pm-hook="pm-tool-main" {...stylex.attrs(styles.pmToolMain)}>
             <div data-pm-hook="pm-tool-head" {...stylex.attrs(styles.pmToolHead)}>
               <h4 data-pm-hook="pm-tool-name" {...stylex.attrs(styles.pmToolName)}>
-                {"list_emails"}
+                {"read"}
               </h4>
               <span data-pm-hook="pm-tool-role" {...stylex.attrs(styles.pmToolRole)}>
                 {"read"}
               </span>
             </div>
             <p data-pm-hook="pm-tool-desc" {...stylex.attrs(styles.pmToolDesc)}>
-              {"Queries captured mail with search filters and pagination. This is how an agent takes inventory first, instead of blocking on a wait for a message that already arrived."}
-            </p>
-          </div>
-        </li>
-        <li data-pm-hook="pm-tool" {...stylex.attrs(styles.pmTool)}>
-          <div data-pm-hook="pm-tool-icon" {...stylex.attrs(styles.pmToolIcon)}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-<polyline points="14 2 14 8 20 8"/>
-<line x1="9" y1="13" x2="15" y2="13"/>
-</svg>
-          </div>
-          <div data-pm-hook="pm-tool-main" {...stylex.attrs(styles.pmToolMain)}>
-            <div data-pm-hook="pm-tool-head" {...stylex.attrs(styles.pmToolHead)}>
-              <h4 data-pm-hook="pm-tool-name" {...stylex.attrs(styles.pmToolName)}>
-                {"get_email"}
-              </h4>
-              <span data-pm-hook="pm-tool-role" {...stylex.attrs(styles.pmToolRole)}>
-                {"read"}
-              </span>
-            </div>
-            <p data-pm-hook="pm-tool-desc" {...stylex.attrs(styles.pmToolDesc)}>
-              {"Fetches one message in full — raw HTML, plain text and attachment data. Reach for this when the assertion is about the body itself rather than about an extracted signal."}
-            </p>
-          </div>
-        </li>
-        <li data-pm-hook="pm-tool" {...stylex.attrs(styles.pmTool)}>
-          <div data-pm-hook="pm-tool-icon" {...stylex.attrs(styles.pmToolIcon)}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-<polyline points="22,6 12,13 2,6"/>
-</svg>
-          </div>
-          <div data-pm-hook="pm-tool-main" {...stylex.attrs(styles.pmToolMain)}>
-            <div data-pm-hook="pm-tool-head" {...stylex.attrs(styles.pmToolHead)}>
-              <h4 data-pm-hook="pm-tool-name" {...stylex.attrs(styles.pmToolName)}>
-                {"send_test_email"}
-              </h4>
-              <span data-pm-hook="pm-tool-role" {...stylex.attrs(styles.pmToolRole)}>
-                {"inject"}
-              </span>
-            </div>
-            <p data-pm-hook="pm-tool-desc" {...stylex.attrs(styles.pmToolDesc)}>
-              {"Injects a synthetic message into the inbox, so a flow can be driven end to end with no SMTP peer listening. Useful for testing the agent’s own handling, not just the app under test."}
+              <code {...stylex.attrs(styles.pmInlineCode)}>list_emails</code>,<code {...stylex.attrs(styles.pmInlineCode)}>get_email</code>,<code {...stylex.attrs(styles.pmInlineCode)}>list_sms</code>and<code {...stylex.attrs(styles.pmInlineCode)}>get_sms</code>are for taking inventory before you wait. The list calls return headers and metadata without dragging the whole HTML body along; the get calls fetch one message when you actually need it.
             </p>
           </div>
         </li>
@@ -1398,202 +1246,18 @@ import CodeBlock from './CodeBlock.astro'
           <div data-pm-hook="pm-tool-main" {...stylex.attrs(styles.pmToolMain)}>
             <div data-pm-hook="pm-tool-head" {...stylex.attrs(styles.pmToolHead)}>
               <h4 data-pm-hook="pm-tool-name" {...stylex.attrs(styles.pmToolName)}>
-                {"delete_email"}
+                {"clear"}
               </h4>
               <span data-pm-hook="pm-tool-role" {...stylex.attrs(styles.pmToolRole)}>
-                {"clean up"}
+                {"clear"}
               </span>
             </div>
             <p data-pm-hook="pm-tool-desc" {...stylex.attrs(styles.pmToolDesc)}>
-              {"Removes a single message by ID. Keeps a long agent run from accumulating state it has already consumed."}
+              <code {...stylex.attrs(styles.pmInlineCode)}>send_test_email</code>and<code {...stylex.attrs(styles.pmInlineCode)}>send_test_sms</code>put a message into the local inbox, so you can drive a two-factor fixture from both ends.<code {...stylex.attrs(styles.pmInlineCode)}>delete_email</code>,<code {...stylex.attrs(styles.pmInlineCode)}>delete_sms</code>,<code {...stylex.attrs(styles.pmInlineCode)}>clear_inbox</code>and<code {...stylex.attrs(styles.pmInlineCode)}>clear_sms_inbox</code>reset either channel on its own between runs.
             </p>
           </div>
         </li>
-        <li data-pm-hook="pm-tool" {...stylex.attrs(styles.pmTool)}>
-          <div data-pm-hook="pm-tool-icon" {...stylex.attrs(styles.pmToolIcon)}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-<path d="m3 11 18-5v12L3 14v-3z"/>
-<path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
-</svg>
-          </div>
-          <div data-pm-hook="pm-tool-main" {...stylex.attrs(styles.pmToolMain)}>
-            <div data-pm-hook="pm-tool-head" {...stylex.attrs(styles.pmToolHead)}>
-              <h4 data-pm-hook="pm-tool-name" {...stylex.attrs(styles.pmToolName)}>
-                {"clear_inbox"}
-              </h4>
-              <span data-pm-hook="pm-tool-role" {...stylex.attrs(styles.pmToolRole)}>
-                {"clean up"}
-              </span>
-            </div>
-            <p data-pm-hook="pm-tool-desc" {...stylex.attrs(styles.pmToolDesc)}>
-              {"Resets the whole inbox between test runs — the one-call version of asserting a clean fixture, without restarting the server."}
-            </p>
-          </div>
-        </li>
-        </ul>
-      </div>
-
-      <div data-pm-hook="pm-tabpanel" {...stylex.attrs(styles.pmTabpanel)} id="pmPanelToolsSms" role="tabpanel" aria-labelledby="pmTabToolsSms" data-tabname="SMS" hidden>
-        <p data-pm-hook="pm-toolpanel-note" {...stylex.attrs(styles.pmToolPanelNote)}>
-          {"The same seven again for the second factor, over SMS. Hand the agent a number and it reads the code the same way."}
-        </p>
-        <ul data-pm-hook="pm-tools" {...stylex.attrs(styles.pmTools)}>
-        <li data-pm-hook="pm-tool" {...stylex.attrs(styles.pmTool)}>
-          <div data-pm-hook="pm-tool-icon" {...stylex.attrs(styles.pmToolIcon)}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-</svg>
-          </div>
-          <div data-pm-hook="pm-tool-main" {...stylex.attrs(styles.pmToolMain)}>
-            <div data-pm-hook="pm-tool-head" {...stylex.attrs(styles.pmToolHead)}>
-              <h4 data-pm-hook="pm-tool-name" {...stylex.attrs(styles.pmToolName)}>
-                {"wait_for_sms"}
-              </h4>
-              <span data-pm-hook="pm-tool-role" {...stylex.attrs(styles.pmToolRole)}>
-                {"wait"}
-              </span>
-            </div>
-            <p data-pm-hook="pm-tool-desc" {...stylex.attrs(styles.pmToolDesc)}>
-              {"The same long-poll, keyed on the destination number instead of a recipient address. Shares the wait semantics of the email side, so an agent can block on the code it just triggered."}
-            </p>
-          </div>
-        </li>
-        <li data-pm-hook="pm-tool" {...stylex.attrs(styles.pmTool)}>
-          <div data-pm-hook="pm-tool-icon" {...stylex.attrs(styles.pmToolIcon)}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-</svg>
-          </div>
-          <div data-pm-hook="pm-tool-main" {...stylex.attrs(styles.pmToolMain)}>
-            <div data-pm-hook="pm-tool-head" {...stylex.attrs(styles.pmToolHead)}>
-              <h4 data-pm-hook="pm-tool-name" {...stylex.attrs(styles.pmToolName)}>
-                {"extract_sms_signals"}
-              </h4>
-              <span data-pm-hook="pm-tool-role" {...stylex.attrs(styles.pmToolRole)}>
-                {"extract"}
-              </span>
-            </div>
-            <p data-pm-hook="pm-tool-desc" {...stylex.attrs(styles.pmToolDesc)}>
-              {"Pulls the OTP and any embedded URLs out of the message body. For a 2FA branch the agent usually wants the first code and nothing else."}
-            </p>
-          </div>
-        </li>
-        <li data-pm-hook="pm-tool" {...stylex.attrs(styles.pmTool)}>
-          <div data-pm-hook="pm-tool-icon" {...stylex.attrs(styles.pmToolIcon)}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-<line x1="8" y1="6" x2="21" y2="6"/>
-<line x1="8" y1="12" x2="21" y2="12"/>
-<line x1="8" y1="18" x2="21" y2="18"/>
-<line x1="3" y1="6" x2="3.01" y2="6"/>
-<line x1="3" y1="12" x2="3.01" y2="12"/>
-<line x1="3" y1="18" x2="3.01" y2="18"/>
-</svg>
-          </div>
-          <div data-pm-hook="pm-tool-main" {...stylex.attrs(styles.pmToolMain)}>
-            <div data-pm-hook="pm-tool-head" {...stylex.attrs(styles.pmToolHead)}>
-              <h4 data-pm-hook="pm-tool-name" {...stylex.attrs(styles.pmToolName)}>
-                {"list_sms"}
-              </h4>
-              <span data-pm-hook="pm-tool-role" {...stylex.attrs(styles.pmToolRole)}>
-                {"read"}
-              </span>
-            </div>
-            <p data-pm-hook="pm-tool-desc" {...stylex.attrs(styles.pmToolDesc)}>
-              {"Queries captured SMS with pagination, so an agent can see what already landed before it commits to waiting."}
-            </p>
-          </div>
-        </li>
-        <li data-pm-hook="pm-tool" {...stylex.attrs(styles.pmTool)}>
-          <div data-pm-hook="pm-tool-icon" {...stylex.attrs(styles.pmToolIcon)}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-</svg>
-          </div>
-          <div data-pm-hook="pm-tool-main" {...stylex.attrs(styles.pmToolMain)}>
-            <div data-pm-hook="pm-tool-head" {...stylex.attrs(styles.pmToolHead)}>
-              <h4 data-pm-hook="pm-tool-name" {...stylex.attrs(styles.pmToolName)}>
-                {"get_sms"}
-              </h4>
-              <span data-pm-hook="pm-tool-role" {...stylex.attrs(styles.pmToolRole)}>
-                {"read"}
-              </span>
-            </div>
-            <p data-pm-hook="pm-tool-desc" {...stylex.attrs(styles.pmToolDesc)}>
-              {"Returns one captured message: sender, recipient, body and timestamp."}
-            </p>
-          </div>
-        </li>
-        <li data-pm-hook="pm-tool" {...stylex.attrs(styles.pmTool)}>
-          <div data-pm-hook="pm-tool-icon" {...stylex.attrs(styles.pmToolIcon)}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-<rect x="3" y="4" width="18" height="14" rx="2"/>
-<line x1="3" y1="10" x2="21" y2="10"/>
-<path d="M8 2v4"/>
-<path d="M16 2v4"/>
-</svg>
-          </div>
-          <div data-pm-hook="pm-tool-main" {...stylex.attrs(styles.pmToolMain)}>
-            <div data-pm-hook="pm-tool-head" {...stylex.attrs(styles.pmToolHead)}>
-              <h4 data-pm-hook="pm-tool-name" {...stylex.attrs(styles.pmToolName)}>
-                {"send_test_sms"}
-              </h4>
-              <span data-pm-hook="pm-tool-role" {...stylex.attrs(styles.pmToolRole)}>
-                {"inject"}
-              </span>
-            </div>
-            <p data-pm-hook="pm-tool-desc" {...stylex.attrs(styles.pmToolDesc)}>
-              {"Injects a synthetic SMS, so an agent can rehearse a 2FA branch without a live SMS provider behind it."}
-            </p>
-          </div>
-        </li>
-        <li data-pm-hook="pm-tool" {...stylex.attrs(styles.pmTool)}>
-          <div data-pm-hook="pm-tool-icon" {...stylex.attrs(styles.pmToolIcon)}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-<polyline points="3 6 5 6 21 6"/>
-<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-<line x1="10" y1="11" x2="10" y2="17"/>
-<line x1="14" y1="11" x2="14" y2="17"/>
-</svg>
-          </div>
-          <div data-pm-hook="pm-tool-main" {...stylex.attrs(styles.pmToolMain)}>
-            <div data-pm-hook="pm-tool-head" {...stylex.attrs(styles.pmToolHead)}>
-              <h4 data-pm-hook="pm-tool-name" {...stylex.attrs(styles.pmToolName)}>
-                {"delete_sms"}
-              </h4>
-              <span data-pm-hook="pm-tool-role" {...stylex.attrs(styles.pmToolRole)}>
-                {"clean up"}
-              </span>
-            </div>
-            <p data-pm-hook="pm-tool-desc" {...stylex.attrs(styles.pmToolDesc)}>
-              {"Removes a single message by ID, leaving the rest of the captured run intact."}
-            </p>
-          </div>
-        </li>
-        <li data-pm-hook="pm-tool" {...stylex.attrs(styles.pmTool)}>
-          <div data-pm-hook="pm-tool-icon" {...stylex.attrs(styles.pmToolIcon)}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-<path d="m3 11 18-5v12L3 14v-3z"/>
-<rect x="7" y="14" width="8" height="5" rx="1"/>
-</svg>
-          </div>
-          <div data-pm-hook="pm-tool-main" {...stylex.attrs(styles.pmToolMain)}>
-            <div data-pm-hook="pm-tool-head" {...stylex.attrs(styles.pmToolHead)}>
-              <h4 data-pm-hook="pm-tool-name" {...stylex.attrs(styles.pmToolName)}>
-                {"clear_sms_inbox"}
-              </h4>
-              <span data-pm-hook="pm-tool-role" {...stylex.attrs(styles.pmToolRole)}>
-                {"clean up"}
-              </span>
-            </div>
-            <p data-pm-hook="pm-tool-desc" {...stylex.attrs(styles.pmToolDesc)}>
-              {"Resets SMS state between runs and leaves the email side untouched, so a two-factor fixture can be cleared on its own."}
-            </p>
-          </div>
-        </li>
-        </ul>
-      </div>
-
-    </div>
+      </ul>
 
 
 
@@ -2603,30 +2267,7 @@ import CodeBlock from './CodeBlock.astro'
         
 </div>
 
-
-        
-<div data-pm-hook="pm-doc-endpoint" {...stylex.attrs(styles.pmDocEndpoint)}>
-
           
-<h4 data-pm-hook="pm-doc-head" {...stylex.attrs(styles.pmDocHead)}>
-<span data-pm-hook="pm-method" {...stylex.attrs(styles.pmMethod)}>
-{"GET"}
-</span>
-<code data-pm-hook="pm-path" {...stylex.attrs(styles.pmPath)}>
-{"/api/messages/:id"}
-</code>
-<span data-pm-hook="pm-tag" {...stylex.attrs(styles.pmTag)}>
-{"fetch"}
-</span>
-</h4>
-
-          
-
-          
-<CodeBlock code={"curl \"http://localhost:8025/api/messages/msg_01J6XYZ\""} lang="bash" variant="block" />
-
-        
-</div>
 
 
         
@@ -2653,173 +2294,11 @@ import CodeBlock from './CodeBlock.astro'
         
 </div>
 
-
-        
-<div data-pm-hook="pm-doc-endpoint" {...stylex.attrs(styles.pmDocEndpoint)}>
-
-          
-<h4 data-pm-hook="pm-doc-head" {...stylex.attrs(styles.pmDocHead)}>
-<span data-pm-hook="pm-method" {...stylex.attrs(styles.pmMethod)}>
-{"GET"}
-</span>
-<code data-pm-hook="pm-path" {...stylex.attrs(styles.pmPath)}>
-{"/api/messages/:id/analysis"}
-</code>
-<span data-pm-hook="pm-tag" {...stylex.attrs(styles.pmTag)}>
-{"CI assertions"}
-</span>
-</h4>
-
-          
-
-          
-<CodeBlock code={"curl \"http://localhost:8025/api/messages/msg_01J6XYZ/analysis\"\n\n{\n  \"spam_score\": 12,\n  \"issues\": [\"missing doctype\", \"un-inlined styles\"]\n}"} lang="bash" variant="block" />
-
-        
-</div>
-
-
         
 <p data-pm-hook="pm-doc-footnote" {...stylex.attrs(styles.pmDocFootnote)}>
-{"\n          Cleanup: "}
-<code {...stylex.attrs(styles.pmInlineCode)}>
-{"POST /api/messages/bulk-delete"}
-</code>
-{" and "}
-<code {...stylex.attrs(styles.pmInlineCode)}>
-{"PATCH /api/messages/bulk-read"}
-</code>
-{" reset or mark inbox state between test runs.\n        "}
-</p>
-
-      
-</div>
-
-
-      
-<div data-pm-hook="pm-doc-block" {...stylex.attrs(styles.pmDocBlock)}>
-
-        
-<h3 data-pm-hook="pm-doc-group-title" {...stylex.attrs(styles.pmDocGroupTitle)}>
-{"SMS"}
-</h3>
-
-
-        
-<div data-pm-hook="pm-doc-endpoint" {...stylex.attrs(styles.pmDocEndpoint)}>
-
-          
-<h4 data-pm-hook="pm-doc-head" {...stylex.attrs(styles.pmDocHead)}>
-<span data-pm-hook="pm-method" {...stylex.attrs(styles.pmMethod)}>
-{"POST"}
-</span>
-<code data-pm-hook="pm-path" {...stylex.attrs(styles.pmPath)}>
-{"/api/sms"}
-</code>
-<span data-pm-hook="pm-tag" {...stylex.attrs(styles.pmTag)}>
-{"ingest"}
-</span>
-</h4>
-
-          
-
-          
-<CodeBlock code={"curl -X POST \"http://localhost:8025/api/sms\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"from\": \"+15550199\", \"to\": \"+15550100\", \"body\": \"Your code is 839201\"}'"} lang="bash" variant="block" />
-
-        
-</div>
-
-
-        
-<div data-pm-hook="pm-doc-endpoint" {...stylex.attrs(styles.pmDocEndpoint)}>
-
-          
-<h4 data-pm-hook="pm-doc-head" {...stylex.attrs(styles.pmDocHead)}>
-<span data-pm-hook="pm-method" {...stylex.attrs(styles.pmMethod)}>
-{"POST"}
-</span>
-<code data-pm-hook="pm-path" {...stylex.attrs(styles.pmPath)}>
-{"/api/sms/webhook"}
-</code>
-<span data-pm-hook="pm-tag" {...stylex.attrs(styles.pmTag)}>
-{"Twilio"}
-</span>
-</h4>
-
-          
-
-          
-<CodeBlock code={"curl -X POST \"http://localhost:8025/api/sms/webhook\" \\\n  -d \"From=%2B15550199\" -d \"To=%2B15550100\" \\\n  -d \"Body=Your verification code is 839201\""} lang="bash" variant="block" />
-
-        
-</div>
-
-
-        
-<div data-pm-hook="pm-doc-endpoint" {...stylex.attrs(styles.pmDocEndpoint)}>
-
-          
-<h4 data-pm-hook="pm-doc-head" {...stylex.attrs(styles.pmDocHead)}>
-<span data-pm-hook="pm-method" {...stylex.attrs(styles.pmMethod)}>
-{"GET"}
-</span>
-<code data-pm-hook="pm-path" {...stylex.attrs(styles.pmPath)}>
-{"/api/sms/wait"}
-</code>
-<span data-pm-hook="pm-tag" {...stylex.attrs(styles.pmTag)}>
-{"long-poll"}
-</span>
-</h4>
-
-          
-
-          
-<CodeBlock code={"curl \"http://localhost:8025/api/sms/wait?to=%2B15550100&since=2026-09-04T10:00:00Z&timeout_ms=10000\""} lang="bash" variant="block" />
-
-        
-</div>
-
-
-        
-<div data-pm-hook="pm-doc-endpoint" {...stylex.attrs(styles.pmDocEndpoint)}>
-
-          
-<h4 data-pm-hook="pm-doc-head" {...stylex.attrs(styles.pmDocHead)}>
-<span data-pm-hook="pm-method" {...stylex.attrs(styles.pmMethod)}>
-{"GET"}
-</span>
-<code data-pm-hook="pm-path" {...stylex.attrs(styles.pmPath)}>
-{"/api/sms/:id/extract"}
-</code>
-<span data-pm-hook="pm-tag" {...stylex.attrs(styles.pmTag)}>
-{"signals"}
-</span>
-</h4>
-
-          
-
-          
-<CodeBlock code={"curl \"http://localhost:8025/api/sms/sms_01A2B3/extract\"\n\n{ \"codes\": [\"839201\"], \"links\": [] }"} lang="bash" variant="block" />
-
-        
-</div>
-
-
-        
-<p data-pm-hook="pm-doc-footnote" {...stylex.attrs(styles.pmDocFootnote)}>
-{"\n          Cleanup: "}
-<code {...stylex.attrs(styles.pmInlineCode)}>
-{"POST /api/sms/bulk-delete"}
-</code>
-{" and "}
-<code {...stylex.attrs(styles.pmInlineCode)}>
-{"PATCH /api/sms/bulk-read"}
-</code>
-{".\n        "}
-</p>
-
-      
-</div>        </div>
+          The other six follow the same shape. Mail: <code {...stylex.attrs(styles.pmInlineCode)}>/api/messages/:id</code> fetches one message, <code {...stylex.attrs(styles.pmInlineCode)}>/api/messages/:id/analysis</code> returns a spam score you can assert on, and <code {...stylex.attrs(styles.pmInlineCode)}>POST /api/messages/bulk-delete</code> with <code {...stylex.attrs(styles.pmInlineCode)}>PATCH /api/messages/bulk-read</code> reset the inbox between runs. SMS: <code {...stylex.attrs(styles.pmInlineCode)}>POST /api/sms</code>, <code {...stylex.attrs(styles.pmInlineCode)}>POST /api/sms/webhook</code>, <code {...stylex.attrs(styles.pmInlineCode)}>GET /api/sms/wait</code> and <code {...stylex.attrs(styles.pmInlineCode)}>GET /api/sms/:id/extract</code>, plus the matching bulk endpoints. Every path, parameter and response is in the <a href="https://github.com/yoosuf/postwire#api" rel="noopener">API reference</a>.
+        </p>
+      </div>        </div>
       </details>
 
 

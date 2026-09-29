@@ -93,6 +93,11 @@ Use **mermaid** fenced blocks (```mermaid). Rendering is deferred with
 `requestIdleCallback` in `PostLayout.astro`, so diagrams cost nothing on the critical path.
 Keep diagrams meaningful and small; don't add one where a sentence is clearer.
 
+For blog posts, prefer vertical `flowchart TD`/`graph TD` diagrams by default. The article
+column is narrow on phones, and left-to-right diagrams often become wide, tiny, or dependent
+on horizontal scrolling. Use `LR`/`RL` only when the horizontal relationship is the point,
+and keep any subgraphs compact enough to read at mobile widths.
+
 ## Verification workflow (always do this)
 
 1. Write or edit the post in `src/content/blog/`.

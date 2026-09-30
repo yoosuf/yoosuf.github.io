@@ -56,8 +56,8 @@ I don't use one when it's just a long flat form. Split that page, section it, us
 The single most useful design rule: each step should answer one question, or complete one coherent chunk of work.
 
 ```mermaid
-flowchart LR
-    A["Who are you?"] --> B["Where does the data live?"]
+flowchart TD
+    A["Who are you?"] --> B["Where does your data live?"]
     B --> C["What should we import?"]
     C --> D["Review and confirm"]
 ```
@@ -81,7 +81,7 @@ Things that break it:
 GitHub's importer is the reference here. When you migrate a repository from another host, it names the stages outright — Analyzing, Migrating, Finalizing — and shows exactly which one you're in, next to a short list of the steps ahead. You know precisely what's happening and what's left, and because the stages aren't given a fake percentage, the page never promises something it can't deliver while the import stalls on a giant repo.
 
 ```mermaid
-flowchart LR
+flowchart TD
     S0[✓ Account] --> S1[● Data source]
     S1 --> S2((○ Mapping))
     S2 -. skipped for a single table .-> S3[○ Review]
@@ -215,9 +215,8 @@ If the wizard ends in anything consequential — a charge, a live integration, a
 TurboTax has done this for decades with its "your return at a glance" review before filing: every number that matters on one screen, editable by jumping back to the exact section. Shopify's import flow shows you a mapping preview before a single row touches your store. Stripe shows a review before you take a verification-failed workspace live, so you know exactly what you're committing to.
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph pre["Before the point of no return"]
-        direction TB
         P1[Step 1] --> P2[Step 2] --> P3[Step 3]
     end
     P3 --> RV[Read-only review<br/>inline edit links]
@@ -252,7 +251,7 @@ After enough of these, the mistakes get repetitive — and almost all of them ar
 - **The "one last step" that's actually four.** The progress bar said Review, then came payment, then came verification, then came an upsell. Users learn fast, and they don't come back.
 
 ```mermaid
-flowchart LR
+flowchart TD
     Promise[Progress bar says: Review — one step left] --> Payment[Payment]
     Payment --> Verification[Verification]
     Verification --> Upsell[Upsell]

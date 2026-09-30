@@ -24,7 +24,7 @@ Here's the reframe. Almost every "LLM router" you've used is middleware sitting 
 It isn't. It's a control plane. The generation is the work. The routing is a decision about the work, and decisions have completely different engineering requirements than work: they need a confidence signal, a failure policy, an audit trail, and someone who owns the threshold.
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph CP["Control plane - decides"]
         PROJ["State projection"] --> Q["Typed questions"]
         Q --> JEV["Decision model<br/>typed value + probability"]

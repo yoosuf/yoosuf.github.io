@@ -89,13 +89,15 @@ stateDiagram-v2
 That sequence makes sense. But distributed systems do not always deliver events exactly how humans expect them to arrive. A consumer might observe the events in a different order entirely:
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph Expected["Expected arrival"]
+        direction TB
         E1[OrderCreated] --> E2[OrderPaid]
         E2 --> E3[OrderPacked]
         E3 --> E4[OrderShipped]
     end
     subgraph Observed["What a consumer might observe"]
+        direction TB
         O1[OrderCreated] --> O2[OrderShipped]
         O2 --> O3[OrderPaid]
     end
@@ -104,7 +106,7 @@ flowchart LR
 Or worse — a cancelled order shipped:
 
 ```mermaid
-flowchart LR
+flowchart TD
     C1[OrderCancelled] --> C2[OrderShipped]
     style C1 fill:#f8d7da,stroke:#dc3545
     style C2 fill:#f8d7da,stroke:#dc3545
@@ -191,7 +193,7 @@ Naming messages correctly matters more than it appears. Consider `SendInvoiceEma
 `SendInvoiceEmail` expresses intent — someone is asking another component to perform an action. That is usually a **command**. `InvoiceGenerated` represents something that has already happened. That is an **event**.
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph Commands["Commands - intent"]
         C1[CapturePayment]
         C2[GenerateInvoice]
@@ -380,12 +382,14 @@ These are very different architectures.
 In many event-driven applications, the database is the source of truth and events are notifications about changes. In Event Sourcing, events are the source of truth and current state is derived by replaying historical events.
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph Traditional["Traditional - DB is the source of truth"]
+        direction TB
         DB1[(Orders Table)] -->|Change| EV1[OrderPaid event]
         EV1 --> R1[Other services react]
     end
     subgraph Sourcing["Event Sourcing - events are the source of truth"]
+        direction TB
         E1[AccountOpened] --> E2[MoneyDeposited 1000]
         E2 --> E3[MoneyWithdrawn 200]
         E3 --> E4[MoneyDeposited 500]
@@ -404,7 +408,7 @@ Event Sourcing can be extremely powerful for domains requiring complete audit hi
 In a synchronous application, debugging is relatively easy — one request, one trace, one response:
 
 ```mermaid
-flowchart LR
+flowchart TD
     REQ[HTTP Request] --> API[API] --> SRV[Service] --> DB[(Database)] --> RESP[Response]
 ```
 

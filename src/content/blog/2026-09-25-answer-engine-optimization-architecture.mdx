@@ -25,7 +25,7 @@ I'm a systems architect. When someone tells me a system is misbehaving, I don't 
 An answer engine isn't one component. It's two planes, and the gap between them is where almost all AEO confusion lives.
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph Offline["Offline - the indexing plane"]
         C[Crawler fleet] --> R[Render + extract]
         R --> P[Clean + chunk]
@@ -47,9 +47,9 @@ flowchart LR
     end
 ```
 
-Read that left to right and you'll notice something: **your content passes through a chunker and a renderer before anything about "optimization" even becomes relevant.** A page that isn't renderable, isn't chunkable, or isn't retrievable cannot be rescued by any amount of good writing.
+Read that top to bottom and you'll notice something: **your content passes through a chunker and a renderer before anything about "optimization" even becomes relevant.** A page that isn't renderable, isn't chunkable, or isn't retrievable cannot be rescued by any amount of good writing.
 
-That's the whole game, and most of the popular advice skips the left half of the diagram.
+That's the whole game, and most of the popular advice skips the first half of the diagram.
 
 ## The indexing plane runs whether you're looking or not
 

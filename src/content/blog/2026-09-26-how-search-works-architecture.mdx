@@ -27,7 +27,7 @@ This is the part I think SEO practitioners underrate most. The crawler is not a 
 The canonical description of this architecture comes from Andrei Broder's 2002 paper *The Anatomy of a Large-Scale Hypertext Search Engine*, and it's worth internalising because every modern search engine still resembles it:
 
 ```mermaid
-flowchart LR
+flowchart TD
     S[(Known URL store)] --> F[URL filter<br/>robots, freshness, dedup]
     F --> FR[(Crawl frontier<br/>priority queue)]
     FR --> SCH[Scheduler<br/>per-host politeness]
@@ -158,7 +158,7 @@ The architect's takeaway is the one people miss: **because the cascade is cheap-
 PageRank is the original random surfer model: a view of the web as a probability distribution over a directed graph, where a link is a vote and the rank flows.
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[Authoritative page] -->|links to, follows with context| B[Your article]
     B --> C[Internal page A]
     B --> D[Internal page B]

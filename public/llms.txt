@@ -106,3 +106,4 @@
 - Instagram: https://www.instagram.com/aitchdei
 - YouTube: https://www.youtube.com/@YoosufMo
 - Facebook: https://www.facebook.com/aitchdei
+- [How to Do Product Development: What to Include, What to Avoid](https://yoosuf.me/blog/how-to-do-product-development-what-to-include-what-to-avoid/): A long-form, evidence-backed guide to product development covering discovery, validation, usability, shipping, iteration, and common traps to avoid

@@ -1,0 +1,184 @@
+---
+title: "How to Do Product Development: What to Include, What to Avoid"
+subTitle: "A practical, evidence-backed guide for building products people actually want"
+author: Yoosuf Mohamed
+date: 2026-10-02 08:00:00
+permalink: /blog/how-to-do-product-development-what-to-include-what-to-avoid
+published: true
+description: "A long-form, evidence-backed guide to product development with industry examples, practical frameworks, and hard-earned lessons."
+categories: ["Engineering"]
+tags: ["Product Development", "Product Management", "MVP", "JTBD", "Lean Startup", "Product Discovery", "User Research"]
+---
+
+I've spent most of my career building products and systems, and if there's one thing I've learned the hard way, it's this: product development is less about writing perfect code, and more about learning what's actually worth building.
+
+It sounds simple, but it's easy to get it backwards. The hardest discipline in product isn't shipping fast — it's resisting the urge to ship the wrong thing fast. So here's a no-frills, long-form guide on how to do it properly, backed by research, industry use cases, and the kind of lessons you only learn after burning time on ideas nobody needed.
+
+## What to Include
+
+### 1. Start with a real problem, not a solution
+
+The most expensive mistake you can make in product development is solving a problem that doesn't exist. Before you write a single line of code, get painfully clear on whose problem you're solving, in what context, and why it hurts enough to warrant a solution.
+
+CB Insights' analysis of startup failures found that **42%** of failed startups cited "no market need" as the primary reason they shut down. That's not a technical failure. It's a discovery failure.
+
+> "Fall in love with the problem, not the solution." — Uri Levine, co-founder of Waze
+
+This isn't just startup wisdom. It's applicable whether you're building an internal tool for your engineering team or a consumer app for millions.
+
+- **Talk to users.** Aim for problem discovery interviews, not sales pitches. You're there to understand their workflow, frustrations, constraints, and workarounds. Ask about the last time this problem happened, not hypotheticals.
+- **Use Jobs to be Done (JTBD).** Frame around what someone is trying to accomplish, not what features they ask for. As Clayton Christensen put it, people "hire" products to make progress in a given situation. They're not buying software — they're trying to get a job done.
+- **Map their current state.** Observe behaviour where possible. What are they doing today? What's painful? What are they cobbling together with spreadsheets, Slack messages, Zapier, or sheer stubbornness?
+- **Find the switching trigger.** When does someone decide "enough is enough" and look for something new? Understanding that moment often tells you more than any wishlist ever will.
+
+**Industry use case: Dropbox.** Drew Houston famously built the first Dropbox demo video before writing much of the sync engine. He wasn't validating file sync architecture — he was validating that people had a painful, recurring problem (syncing files across devices) and would get excited enough to join a waitlist. That single video drove hundreds of thousands of sign-ups and validated demand before heavy engineering investment.
+
+The goal here isn't to validate your idea. It's to validate there's a problem worth solving.
+
+### 2. Validate before you build
+
+Once you've found a real problem, pressure-test it with the cheapest experiments possible. You don't need a full product to learn if there's pull. You need evidence.
+
+- **Define your riskiest assumption.** Is it demand, willingness to pay, technical feasibility, distribution, or timing? Tackle the biggest unknown first. Not the easiest one.
+- **Run cheap experiments.** A landing page, a waitlist, a manual-first MVP (aka "Wizard of Oz"), a concierge MVP, or a no-code prototype can all test demand. This is the heart of Eric Ries' *The Lean Startup* — validated learning over untested assumptions.
+- **Talk about money early.** If this is meant to generate revenue, ask about budget or current spend. "Would you pay for this?" gets polite nods. "How much do you currently pay to solve this today?" or "What budget do you have for this problem?" surfaces reality. The Academy of Management research consistently shows willingness to pay is a far stronger signal than interest alone.
+- **Look at the market honestly.** Map competitors, adjacent tools, and crucially, the alternative of "do nothing". Sometimes the fiercest competitor isn't another product — it's inertia. Use credible industry data (World Economic Forum, ILO, Gartner, or sector-specific reports) to sanity-check, but never outsource your user truth to third-party reports.
+- **Quantify the pain.** Try to understand time, money, or emotional cost. If someone loses 30 minutes a day on this, that's a concrete pain. If it's just "annoying", it rarely justifies adoption.
+
+**Industry use case: Zappos.** Nick Swinmurn didn't build a full e-commerce warehouse first. He ran a validation experiment: he posted photos of shoes from local stores online, and when someone ordered, he bought the shoes from the store and shipped them himself. That "concierge MVP" proved people would buy shoes online before investing in inventory or complex logistics. It was scrappy, cheap, and decisive.
+
+Research across The Standish Group's CHAOS Reports consistently shows unclear requirements and lack of user involvement are major drivers of project failure. Early validation directly addresses both.
+
+> "The only way to win is to learn faster than anyone else." — Eric Ries, *The Lean Startup*
+
+### 3. Define success before implementation
+
+One of the biggest traps I see teams fall into is building a list of features and calling it "done", without ever defining what success actually looks like. If you can't define the outcome you're aiming for, you'll measure whatever's easiest and fool yourself in the process.
+
+- **Pick a North Star metric.** Choose one outcome metric that reflects real value to users (e.g. time saved, jobs completed successfully, successful onboarding completion, or weekly active users doing the core job). Sean Ellis' product-market fit work emphasises tracking value delivery, not vanity clicks.
+- **Set guardrails.** Define what "good enough to ship" means up front. This could be usability thresholds, performance targets, reliability, or something simple like "solves the core job for 5 paying users with minimal hand-holding".
+- **Use leading indicators.** Activation, adoption, retention, and frequency tend to predict long-term outcomes far better than total sign-ups. Pay attention to the behaviours that correlate with value.
+- **Write problem statements, not PRDs.** Marty Cagan (*Inspired*) argues empowered product teams thrive when given problems and desired outcomes, not prescriptive feature lists. A problem statement creates space for the team to find the best solution. A 40-page PRD often just locks in unvalidated assumptions.
+- **Agree on the kill criteria.** This one is uncomfortable, but invaluable. Decide in advance: if we don't see X movement in Y weeks, we'll pause, iterate, or stop. It saves you from the slow creep of sunk-cost bias later.
+
+**Industry use case: Airbnb.** Early on, the team obsessively tracked whether people were actually completing bookings (a value-based outcome), not just visits to the site. They focused relentlessly on removing friction in that critical path — from photography quality to payment flows — because they knew that completed stays, not pageviews, reflected the job getting done.
+
+### 4. Design, prototype, and test usability
+
+You don't need pixel-perfect designs to learn. You need to find out if people can use what you're thinking of building, without you sitting next to them explaining every screen.
+
+Jakob Nielsen's research at Nielsen Norman Group has consistently shown that usability testing with just **5 users** uncovers roughly **85%** of usability problems. That’s one of the highest ROI activities you can do in product development.
+
+- **Prototype at the right fidelity.** Paper sketches catch big conceptual flaws. Low-fidelity wireframes catch flow issues. Clickable prototypes catch micro-friction. Don't over-invest in polish until you've validated the core flow.
+- **Test with real users.** Prioritise your target audience, not stakeholders, not teammates, and not people who already know your product. Watch what they *do*, not what they *say*. The gulf between stated intent and actual behaviour is almost always wider than you expect.
+- **Follow the Double Diamond.** The Design Council's Double Diamond framework works well here — diverge to explore the problem space, converge to define, diverge again to explore solutions, converge to test and refine. It's a rhythm, not a rigid waterfall.
+- **Test the riskiest path first.** Don't test every edge case. Test the critical path that delivers the core job-to-be-done. If that fails, everything else is irrelevant.
+- **Embrace "ugly" learnings.** A clunky prototype that surfaces three major usability blockers is infinitely more valuable than a beautiful mockup nobody has tried.
+
+**Industry use case: Slack.** Stewart Butterfield and team spent an unusual amount of time dogfooding and iterating on the core experience with a small beta before scaling. They obsessed over reducing friction in real team communication, testing flows with actual working groups. That relentless usability focus is a big part of why it felt intuitive when it landed.
+
+> "If the user can't use it, it doesn't work." — Susan Dray, usability pioneer
+
+### 5. Build small, ship, and instrument everything
+
+At this point, you've validated the problem, the demand signal, and that people can navigate the solution. Now build the smallest viable slice that actually delivers the outcome you defined. Not the smallest number of buttons — the smallest slice of value.
+
+- **Ship incrementally.** Small PRs, trunk-based development, and feature flags let you de-risk releases and roll back safely when needed. You're optimising for learning velocity, not batch size.
+- **Instrument from day one.** Track events tied to your North Star and critical flows. You need both quantitative signals (what's happening) and qualitative ones (why it's happening). Capture the moments that reflect value delivery, not just clicks.
+- **Prioritise ruthlessly.** Cost-of-delay, RICE, or even a simple "impact vs effort" can help cut through noise. But frameworks are tools, not substitutes for judgement. McKinsey research on high-performing product organisations consistently shows empowered, outcome-oriented teams outperform feature-factory teams by a wide margin.
+- **Close the loop with users.** Have a frictionless way for people to report bugs, confusion, or unmet needs (in-app feedback, a simple support channel, or even a shared Slack). Treat support tickets as product insight, not operational overhead.
+- **Build for iteration, not perfection.** You're not launching a monument. You're launching something you can learn from. That means investing in the basics that let you iterate safely: observability, tests on critical paths, and sensible error handling.
+
+**Industry use case: Basecamp (37signals).** Jason Fried and David Heinemeier Hansson have long championed building small, shipping early, and resisting scope creep. Basecamp's philosophy of "shape the work" and ship meaningful slices reflects a discipline of restraint — they build less, but what they ship tends to solve the job cleanly. It's a practical counterweight to the "ship everything" mindset.
+
+### 6. Learn, iterate, or stop
+
+Shipping isn't the finish line. It's the starting line for learning. The most mature product teams I know are just as willing to kill something as they are to double down on it. That willingness is a competitive advantage.
+
+- **Review your metrics weekly.** Look for trends over time, not day-to-day noise. Compare reality against the success criteria you defined before building. If they're moving in the right direction, persevere. If they're flat or going the wrong way, investigate.
+- **Talk to users post-launch.** Some of your most valuable insights will come from churned, inactive, or confused users — not your biggest fans. Ask them what changed, what blocked them, or what they went back to. Their honesty is gold.
+- **Embrace continuous discovery.** Teresa Torres' *Continuous Discovery Habits* makes a compelling case for making discovery a continuous cadence, not a one-off phase. Product development isn't a linear project — it's an ongoing loop of learning.
+- **Decide: persevere, pivot, or park.** If you're not moving meaningfully towards your outcome after a reasonable, pre-agreed effort, be honest about it. The sunk cost fallacy is seductive. Honour the learning instead. Parking or killing a product isn't failure — shipping the wrong thing for months *is* expensive.
+
+**Industry use case: Instagram.** Kevin Systrom and Mike Krieger originally built Burbn, a location-based check-in app with way too many features. Through usage data and user feedback, they noticed people were almost exclusively using the photo-sharing part. Rather than clinging to the original vision, they made the hard call to pivot — stripping everything else and relaunching as Instagram. It was a textbook example of learning from real usage and having the courage to change direction.
+
+> "It’s not about being right all the time. It’s about being less wrong over time." — Astro Teller, X (formerly Google X)
+
+## What to Avoid
+
+### 1. Building before talking to users
+
+This is the cardinal sin. If you're solving a problem you haven't personally validated with your target users in their context, you're gambling with your time. That 42% "no market need" stat from CB Insights isn't an outlier — it's predictable for solution-first teams.
+
+**Avoid:** jumping straight to wireframes, architecture diagrams, or writing code off an internal hunch. Your intuition is a useful starting point, but it's not evidence. Treat assumptions as hypotheses to test, not facts to build on.
+
+### 2. Chasing feature requests verbatim
+
+Users will absolutely ask for features. It's human nature — when they're frustrated, they suggest solutions. The trap is treating those suggested solutions as requirements.
+
+**Avoid:** building feature requests at face value. What they ask for is often a symptom, not the root cause. Dig deeper to understand the underlying job-to-be-done. More often than not, a small workflow tweak, clearer language, or better defaults solves what a large feature was meant to fix.
+
+### 3. Optimising for vanity metrics
+
+Total downloads, page views, raw sign-ups, or "likes" can feel great in dashboards and demos. They rarely prove you're delivering real value.
+
+**Avoid:** conflating activity with value. If retention is flat, activation is low, or people aren't completing the core job, growth numbers are misleading. Chase outcomes, not optics.
+
+### 4. Perfectionism and analysis paralysis
+
+I've seen teams spend 3-6 months polishing an MVP that never sees a single real user. The goal isn't to impress your peers with polish — it's to learn what actually needs to exist.
+
+**Avoid:** endless refinement before first contact with reality. Ship something "good enough" to test your riskiest assumption, then iterate based on evidence. Speed of learning almost always beats perfection, especially early on.
+
+### 5. Ignoring technical sustainability
+
+While I firmly believe in shipping small and learning fast, I don't believe in shipping recklessly. There's a big difference between pragmatic technical debt (taken deliberately to learn) and accidental, compounding cruft.
+
+**Avoid:** treating "move fast" as an excuse to skip the basics — tests on critical paths, basic observability, sensible error handling, and security fundamentals. You're building to iterate, not to throw away something you'll be afraid to touch in 3 months.
+
+### 6. Building in a vacuum
+
+Product development fails when it's siloed. Great products emerge at the intersection of user needs, business viability, and technical feasibility. That intersection only works when disciplines collaborate early.
+
+**Avoid:** excluding engineers from discovery, excluding designers from technical trade-offs, or excluding users from feasibility conversations. Some of the best solutions come from engineers who understand the user's pain deeply, or designers who understand what's feasible. Collaboration isn't overhead — it's leverage.
+
+### 7. Not defining "done" or "success"
+
+Without clear criteria, scope creeps endlessly, debates drag on, and you can't honestly assess whether you moved the needle. Ambiguity is expensive.
+
+**Avoid:** shipping without evaluating against the outcome you defined before building. If you didn't define success upfront, that's your first thing to fix for the next iteration.
+
+### 8. Falling for the "build it and they will come" myth
+
+Distribution is part of product development, not an afterthought. A beautifully built solution that nobody ever discovers is still a solution nobody uses.
+
+**Avoid:** assuming users will magically appear post-launch. Think about channels, onboarding friction, and how you'll get your first 5-10 genuinely interested users *before* you invest heavily in scaling.
+
+### 9. Letting ego override evidence
+
+This one's the hardest to catch in yourself. It's easy to get attached to an idea you've invested weeks into. But attachment doesn't make it correct.
+
+**Avoid:** dismissing contradictory feedback, cherry-picking data, or reframing negative signals as "edge cases". Humility is a core product skill. As Paul Graham once put it bluntly, "The question is not whether the idea is good. The question is whether there's a market for it."
+
+## The Bottom Line
+
+Product development, done well, is a continuous loop: **discover → validate → build → measure → learn → repeat**. It's not a straight line — it's a loop you run as many times as necessary until you're delivering meaningful value.
+
+It requires humility to admit you're wrong, discipline to test as cheaply as possible, and courage to stop when the evidence says so. My rule of thumb is simple: spend more time understanding the problem than you think you need to, build less than you're tempted to, and ship earlier than your ego wants to.
+
+The research — from CB Insights' failure data, Nielsen's usability studies, Lean Startup principles, Jobs to be Done, and decades of real-world product work — all points in the same direction. The best products aren't built by guessing perfectly. They're built by learning relentlessly.
+
+And if nothing else, I keep coming back to this: code is cheap to write, but building the *wrong* thing is expensive to maintain.
+
+## References
+
+- CB Insights. "The Top 20 Reasons Startups Fail." [cbinsights.com](https://www.cbinsights.com/research/startup-failure-reasons/)
+- Christensen, C. M. et al. *Competing Against Luck: The Story of Innovation and Customer Choice.* HarperBusiness, 2016.
+- Ries, E. *The Lean Startup: How Today's Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses.* Crown Business, 2011.
+- Nielsen, J. "Why You Only Need to Test with 5 Users." Nielsen Norman Group, 2000. [nngroup.com](https://www.nngroup.com/articles/why-you-only-need-to-test-with-5-users/)
+- Cagan, M. *Inspired: How To Create Products Customers Love.* Wiley, 2nd ed., 2017.
+- Torres, T. *Continuous Discovery Habits.* Product Talk, 2021.
+- The Standish Group. CHAOS Reports (various years). [standishgroup.com](https://www.standishgroup.com/)
+- Ellis, S. "Product-Market Fit Survey." [seanellis.me](https://www.seanellis.me/)
+- Design Council. "The Double Diamond." [designcouncil.org.uk](https://www.designcouncil.org.uk/our-resources/the-double-diamond/)
+- World Economic Forum. Industry and technology reports. [weforum.org](https://www.weforum.org/reports/)
